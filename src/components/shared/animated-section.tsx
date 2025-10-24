@@ -37,12 +37,15 @@ export function AnimatedSection({
       className={cn(
         'transition-opacity duration-500',
         isInView ? 'opacity-100' : 'opacity-0',
+        isInView && animationClass,
         className
       )}
       style={{
-        animation: isInView ? `${animation} 0.6s ease-out forwards` : 'none',
         animationDelay: `${delay}s`,
-        opacity: 0, 
+        animationDuration: '0.6s',
+        animationFillMode: 'forwards',
+        animationTimingFunction: 'ease-out',
+        opacity: 0,
       }}
     >
       {children}
