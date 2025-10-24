@@ -17,11 +17,6 @@ const AppLayout = ({
   return (
     <html lang={language} className="!scroll-smooth">
       <head>
-        <title>Vision360ia</title>
-        <meta
-          name="description"
-          content="Soluciones Avanzadas de Seguridad para Vehículos"
-        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
