@@ -38,9 +38,9 @@ export function Testimonials({ translations: initialTranslations }: { translatio
                 key={testimonial.id}
                 className="pl-4 md:basis-1/2 lg:basis-1/3"
               >
-                <div className="p-1">
-                  <Card className="flex h-full flex-col rounded-xl border-border/50 bg-card shadow-sm">
-                    <CardContent className="flex flex-1 flex-col justify-between p-6">
+                <div className="p-1 h-full">
+                  <Card className="flex h-full flex-col rounded-xl border-border/50 bg-card shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <CardContent className="flex flex-1 flex-col justify-between p-8">
                       <div className="mb-4 flex">
                         {[...Array(5)].map((_, i) => (
                           <Star
@@ -52,8 +52,8 @@ export function Testimonials({ translations: initialTranslations }: { translatio
                       <blockquote className="flex-1 text-base italic text-muted-foreground">
                         &ldquo;{testimonial.quote}&rdquo;
                       </blockquote>
-                      <div className="mt-6 flex items-center gap-3">
-                        <Avatar className="h-12 w-12">
+                      <div className="mt-6 flex items-center gap-4">
+                        <Avatar className="h-14 w-14 border-2 border-primary">
                           <AvatarImage
                             src={testimonial.avatar.imageUrl}
                             alt={testimonial.author}

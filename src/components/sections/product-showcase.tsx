@@ -4,7 +4,7 @@ import { SectionWrapper } from '../shared/section-wrapper';
 import { SectionHeading } from '../shared/section-heading';
 import { Card, CardContent, CardHeader } from '../ui/card';
 import { Button } from '../ui/button';
-import { Check } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
 import { AnimatedSection } from '../shared/animated-section';
@@ -24,7 +24,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product, index) => (
           <AnimatedSection key={product.id} animation="slide-up" delay={index * 0.1}>
-            <Card className="flex h-full flex-col overflow-hidden rounded-xl border-border/50 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            <Card className="flex h-full flex-col overflow-hidden rounded-xl border-border/50 bg-card shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
               <CardHeader className="p-0">
                 <div className="aspect-h-9 aspect-w-16 relative">
                   <Image
@@ -37,19 +37,22 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
                 </div>
               </CardHeader>
               <CardContent className="flex flex-1 flex-col p-6">
-                <h3 className="mb-2 font-headline text-xl font-bold">{product.name}</h3>
+                <h3 className="mb-3 font-headline text-xl font-bold text-primary">{product.name}</h3>
                 <p className="flex-1 text-muted-foreground">{product.description}</p>
                 <ul className="mt-6 space-y-3 text-sm">
                   {product.specs.map((spec) => (
-                    <li key={spec} className="flex items-center gap-3">
-                      <Check className="h-5 w-5 text-primary" />
+                    <li key={spec} className="flex items-start gap-3">
+                      <Check className="h-5 w-5 flex-shrink-0 text-green-500 mt-0.5" />
                       <span>{spec}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
               <div className="p-6 pt-0">
-                <Button variant="outline" className="w-full">{t.addToCart}</Button>
+                <Button variant="outline" className="w-full group">
+                  {t.addToCart}
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
               </div>
             </Card>
           </AnimatedSection>
