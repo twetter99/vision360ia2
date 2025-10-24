@@ -1,6 +1,4 @@
 
-'use client';
-
 import { Contact } from '@/components/sections/contact';
 import { Faq } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
@@ -9,20 +7,22 @@ import { ProductShowcase } from '@/components/sections/product-showcase';
 import { SolutionsOverview } from '@/components/sections/solutions-overview';
 import { Testimonials } from '@/components/sections/testimonials';
 import { ThreatAnalysis } from '@/components/sections/threat-analysis';
-import { useLanguage } from '@/hooks/use-language';
+import { translations } from '@/lib/translations';
 
 export default function Home() {
-  const { translations } = useLanguage();
+  // Obtenemos las traducciones por defecto en el servidor (español)
+  const defaultTranslations = translations.es;
+  
   return (
     <div className="flex flex-col">
-      <Hero translations={translations} />
-      <ProductShowcase translations={translations} />
-      <SolutionsOverview translations={translations} />
-      <ThreatAnalysis translations={translations} />
-      <News translations={translations} />
-      <Testimonials translations={translations} />
-      <Faq translations={translations} />
-      <Contact translations={translations} />
+      <Hero translations={defaultTranslations} />
+      <ProductShowcase translations={defaultTranslations} />
+      <SolutionsOverview translations={defaultTranslations} />
+      <ThreatAnalysis translations={defaultTranslations} />
+      <News translations={defaultTranslations} />
+      <Testimonials translations={defaultTranslations} />
+      <Faq translations={defaultTranslations} />
+      <Contact translations={defaultTranslations} />
     </div>
   );
 }

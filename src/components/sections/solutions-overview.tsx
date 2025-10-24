@@ -6,11 +6,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { ShieldCheck } from 'lucide-react';
+import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
 
-export function SolutionsOverview({ translations }: { translations: Translation['es'] }) {
-  const t = translations.solutionsSection;
-  const solutions = translations.solutions;
+export function SolutionsOverview({ translations: initialTranslations }: { translations: Translation['es'] }) {
+  const { translations } = useLanguage();
+  const t = translations.solutionsSection || initialTranslations.solutionsSection;
+  const solutions = translations.solutions || initialTranslations.solutions;
 
   return (
     <SectionWrapper id="solutions" className="bg-card">

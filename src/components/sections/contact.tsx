@@ -13,11 +13,14 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/hooks/use-language";
 import type { Translation } from '@/lib/translations';
 
-export function Contact({ translations }: { translations: Translation['es'] }) {
+export function Contact({ translations: initialTranslations }: { translations: Translation['es'] }) {
+  const { translations } = useLanguage();
+  const t = translations.contactSection || initialTranslations.contactSection;
+
   const { toast } = useToast();
-  const t = translations.contactSection;
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const formSchema = z.object({

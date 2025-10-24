@@ -7,11 +7,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
 
-export function Faq({ translations }: { translations: Translation['es'] }) {
-  const t = translations.faqSection;
-  const faqs = translations.faqs;
+export function Faq({ translations: initialTranslations }: { translations: Translation['es'] }) {
+  const { translations } = useLanguage();
+  const t = translations.faqSection || initialTranslations.faqSection;
+  const faqs = translations.faqs || initialTranslations.faqs;
 
   return (
     <SectionWrapper id="faq" className="bg-card">
