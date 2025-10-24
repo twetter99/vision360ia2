@@ -14,6 +14,46 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+const CataloniaFlag = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="14"
+    viewBox="0 0 9 6"
+    className="mr-2"
+  >
+    <rect fill="#FCDD09" width="9" height="6" />
+    <path stroke="#DA121A" strokeWidth="0.6" d="M0 1.2h9M0 2.4h9M0 3.6h9M0 4.8h9" />
+  </svg>
+);
+
+const BasqueCountryFlag = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="14"
+    viewBox="0 0 100 60"
+    className="mr-2"
+  >
+    <rect width="100" height="60" fill="#da2128" />
+    <path d="M0,0 100,60M0,60 100,0" stroke="#009b48" strokeWidth="12" />
+    <path d="M50,0V60 M0,30H100" stroke="#fff" strokeWidth="12" />
+  </svg>
+);
+
+const SpainFlag = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" 
+    height="14" 
+    viewBox="0 0 750 500"
+    className="mr-2"
+  >
+    <rect width="750" height="500" fill="#c60b1e"/>
+    <rect width="750" height="250" y="125" fill="#ffc400"/>
+  </svg>
+);
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -63,9 +103,18 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>Castellano</DropdownMenuItem>
-              <DropdownMenuItem>Catalan</DropdownMenuItem>
-              <DropdownMenuItem>Euskera</DropdownMenuItem>
+              <DropdownMenuItem className="flex items-center">
+                <SpainFlag />
+                Castellano
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex items-center">
+                <CataloniaFlag />
+                Catalan
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex items-center">
+                <BasqueCountryFlag />
+                Euskera
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Button variant="outline" className="hidden md:flex">
