@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { SectionWrapper } from '../shared/section-wrapper';
@@ -36,7 +37,6 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
               </div>
             </CardHeader>
             <CardContent className="flex flex-1 flex-col p-6">
-              <Badge variant="secondary" className="mb-2 w-fit">{product.price}</Badge>
               <CardTitle className="mb-2 font-headline text-xl">{product.name}</CardTitle>
               <p className="flex-1 text-muted-foreground">{product.description}</p>
               <ul className="mt-4 space-y-2 text-sm">
@@ -49,7 +49,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
               </ul>
             </CardContent>
             <CardFooter className="p-6 pt-0">
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">{t.addToCart}</Button>
+              <Button variant="outline" className="w-full">{t.addToCart}</Button>
             </CardFooter>
           </Card>
         ))}
