@@ -1,3 +1,82 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "Abstract futuristic car dashboard",
+      "imageUrl": "https://images.unsplash.com/photo-1661029332138-3c653337a979?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmdXR1cmlzdGljJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2MTMzMzczOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "futuristic dashboard"
+    },
+    {
+      "id": "product1",
+      "description": "Sleek GPS tracker device",
+      "imageUrl": "https://images.unsplash.com/photo-1610985725707-bb0766bf123b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxncHMlMjB0cmFja2VyfGVufDB8fHx8MTc2MTMzMzczOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gps tracker"
+    },
+    {
+      "id": "product2",
+      "description": "Advanced car alarm system",
+      "imageUrl": "https://images.unsplash.com/photo-1748862719433-c81d2b1ef103?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjYXIlMjBhbGFybXxlbnwwfHx8fDE3NjEzMzM3Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car alarm"
+    },
+    {
+      "id": "product3",
+      "description": "Smart dashcam with AI",
+      "imageUrl": "https://images.unsplash.com/photo-1707349312470-bb47ecb72575?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGFzaGNhbXxlbnwwfHx8fDE3NjEzMzM3Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dashcam"
+    },
+    {
+      "id": "solution1",
+      "description": "Modern car in a city at night",
+      "imageUrl": "https://images.unsplash.com/photo-1560863189-524ad3dd6ef6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjYXIlMjBjaXR5fGVufDB8fHx8MTc2MTMzMzczOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car city"
+    },
+    {
+      "id": "solution2",
+      "description": "A fleet of commercial trucks",
+      "imageUrl": "https://images.unsplash.com/photo-1632435188736-f2f436a0e85a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb21tZXJjaWFsJTIwdHJ1Y2tzfGVufDB8fHx8MTc2MTMzMzczOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "commercial trucks"
+    },
+    {
+      "id": "solution3",
+      "description": "A motorcycle parked on a scenic road",
+      "imageUrl": "https://images.unsplash.com/photo-1759665973333-76aafabd7247?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3RvcmN5Y2xlJTIwc2NlbmljfGVufDB8fHx8MTc2MTMzMzczOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle scenic"
+    },
+    {
+      "id": "news1",
+      "description": "Hacker with a laptop",
+      "imageUrl": "https://images.unsplash.com/photo-1562813733-b31f71025d54?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxoYWNrZXIlMjBsYXB0b3B8ZW58MHx8fHwxNzYxMzI1NTU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hacker laptop"
+    },
+    {
+      "id": "news2",
+      "description": "A diagram of a secure network",
+      "imageUrl": "https://images.unsplash.com/photo-1477039181047-efb4357d01bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzZWN1cmUlMjBuZXR3b3JrfGVufDB8fHx8MTc2MTMwNDg0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "secure network"
+    },
+    {
+      "id": "news3",
+      "description": "futuristic city skyline",
+      "imageUrl": "https://images.unsplash.com/photo-1553675559-5046b59a5ca5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmdXR1cmlzdGljJTIwY2l0eXxlbnwwfHx8fDE3NjEyNDU5NDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "futuristic city"
+    },
+    {
+      "id": "avatar1",
+      "description": "Portrait of a man",
+      "imageUrl": "https://images.unsplash.com/photo-1636377985931-898218afd306?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEyNTU5NTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "avatar2",
+      "description": "Portrait of a woman",
+      "imageUrl": "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MTI1ODc2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "avatar3",
+      "description": "Portrait of a person",
+      "imageUrl": "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEzMjQyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    }
+  ]
 }
