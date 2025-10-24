@@ -6,10 +6,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card
 import { Button } from '../ui/button';
 import { Check } from 'lucide-react';
 import { Badge } from '../ui/badge';
-import { useLanguage } from '@/hooks/use-language';
+import type { Translation } from '@/lib/translations';
 
-export function ProductShowcase() {
-  const { translations } = useLanguage();
+export function ProductShowcase({ translations }: { translations: Translation['es'] }) {
   const t = translations.productsSection;
   const products = translations.products;
 

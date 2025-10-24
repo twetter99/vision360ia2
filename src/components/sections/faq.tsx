@@ -7,10 +7,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { useLanguage } from '@/hooks/use-language';
+import type { Translation } from '@/lib/translations';
 
-export function Faq() {
-  const { translations } = useLanguage();
+export function Faq({ translations }: { translations: Translation['es'] }) {
   const t = translations.faqSection;
   const faqs = translations.faqs;
 

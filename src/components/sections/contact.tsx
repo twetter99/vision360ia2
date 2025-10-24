@@ -13,11 +13,10 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
-import { useLanguage } from "@/hooks/use-language";
+import type { Translation } from '@/lib/translations';
 
-export function Contact() {
+export function Contact({ translations }: { translations: Translation['es'] }) {
   const { toast } = useToast();
-  const { translations } = useLanguage();
   const t = translations.contactSection;
   const [isSubmitting, setIsSubmitting] = useState(false);
   

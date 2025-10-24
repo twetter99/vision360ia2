@@ -6,10 +6,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { useLanguage } from '@/hooks/use-language';
+import type { Translation } from '@/lib/translations';
 
-export function News() {
-  const { translations } = useLanguage();
+export function News({ translations }: { translations: Translation['es'] }) {
   const t = translations.newsSection;
   const newsArticles = translations.newsArticles;
 

@@ -22,7 +22,7 @@ import { Loader2, Zap, AlertTriangle, ShieldCheck, Sparkles } from "lucide-react
 import { Textarea } from "../ui/textarea";
 import type { PersonalizedSecurityRecommendationsOutput } from "@/ai/flows/personalized-security-recommendations";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
-import { useLanguage } from "@/hooks/use-language";
+import type { Translation } from '@/lib/translations';
 
 const formSchema = z.object({
   vehicleType: z.string().min(2, "El tipo de vehículo es obligatorio."),
@@ -35,11 +35,10 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export function ThreatAnalysis() {
+export function ThreatAnalysis({ translations }: { translations: Translation['es'] }) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<PersonalizedSecurityRecommendationsOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const { translations } = useLanguage();
   const t = translations.aiAnalysisSection;
 
   const form = useForm<FormData>({

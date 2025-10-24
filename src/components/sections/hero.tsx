@@ -3,10 +3,9 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { heroData } from '@/lib/data';
-import { useLanguage } from '@/hooks/use-language';
+import type { Translation } from '@/lib/translations';
 
-export function Hero() {
-  const { translations } = useLanguage();
+export function Hero({ translations }: { translations: Translation['es'] }) {
   const t = translations.hero;
   const heroImage = heroData.image;
 

@@ -11,10 +11,9 @@ import { SectionHeading } from '../shared/section-heading';
 import { Card, CardContent } from '../ui/card';
 import { Star } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { useLanguage } from '@/hooks/use-language';
+import type { Translation } from '@/lib/translations';
 
-export function Testimonials() {
-  const { translations } = useLanguage();
+export function Testimonials({ translations }: { translations: Translation['es'] }) {
   const t = translations.testimonialsSection;
   const testimonials = translations.testimonials;
 
