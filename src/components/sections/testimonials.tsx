@@ -17,9 +17,9 @@ export function Testimonials() {
   return (
     <SectionWrapper id="testimonials">
       <SectionHeading
-        eyebrow="What Our Customers Say"
-        title="Trusted by Drivers and Fleet Managers"
-        description="Don't just take our word for it. Here's what our satisfied customers have to say about Vision360ia."
+        eyebrow="Lo que Dicen Nuestros Clientes"
+        title="Con la Confianza de Conductores y Gestores de Flotas"
+        description="No te fíes solo de nuestra palabra. Esto es lo que nuestros clientes satisfechos tienen que decir sobre Vision360ia."
       />
       <Carousel
         opts={{ align: "start", loop: true }}

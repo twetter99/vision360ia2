@@ -11,9 +11,9 @@ export function SolutionsOverview() {
   return (
     <SectionWrapper id="solutions" className="bg-card">
       <SectionHeading
-        eyebrow="Tailored Solutions"
-        title="Security That Fits Your Vehicle"
-        description="From personal cars to commercial fleets, we have a security solution designed for your specific needs."
+        eyebrow="Soluciones a Medida"
+        title="Seguridad que se Adapta a tu Vehículo"
+        description="Desde coches personales hasta flotas comerciales, tenemos una solución de seguridad diseñada para tus necesidades específicas."
       />
       <Tabs defaultValue={solutions[0].id} className="w-full">
         <TabsList className="mx-auto grid h-auto w-full max-w-lg grid-cols-1 sm:grid-cols-3">
@@ -47,7 +47,7 @@ export function SolutionsOverview() {
                       </li>
                     ))}
                   </ul>
-                  <Button size="lg" className="w-full sm:w-fit">Learn More</Button>
+                  <Button size="lg" className="w-full sm:w-fit">Saber Más</Button>
                 </div>
               </div>
             </Card>

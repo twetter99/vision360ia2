@@ -11,9 +11,9 @@ export function News() {
   return (
     <SectionWrapper id="news" className="bg-card">
       <SectionHeading
-        eyebrow="News & Insights"
-        title="Stay Ahead of Security Threats"
-        description="Read our latest articles on vehicle security trends, new technologies, and safety tips."
+        eyebrow="Noticias e Información"
+        title="Adelántate a las Amenazas de Seguridad"
+        description="Lee nuestros últimos artículos sobre tendencias en seguridad vehicular, nuevas tecnologías y consejos de seguridad."
       />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {newsArticles.map((article) => (
@@ -42,7 +42,7 @@ export function News() {
             <CardFooter className="p-6 pt-0">
               <Button asChild variant="link" className="p-0 text-primary">
                 <Link href="#">
-                  Read More
+                  Leer Más
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

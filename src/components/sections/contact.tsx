@@ -15,9 +15,9 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters."),
-  email: z.string().email("Invalid email address."),
-  message: z.string().min(10, "Message must be at least 10 characters."),
+  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
+  email: z.string().email("Dirección de correo electrónico no válida."),
+  message: z.string().min(10, "El mensaje debe tener al menos 10 caracteres."),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -39,8 +39,8 @@ export function Contact() {
 
     console.log(values);
     toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. We'll get back to you soon.",
+      title: "¡Mensaje Enviado!",
+      description: "Gracias por contactarnos. Te responderemos pronto.",
     });
     form.reset();
   }
@@ -48,9 +48,9 @@ export function Contact() {
   return (
     <SectionWrapper id="contact">
       <SectionHeading
-        eyebrow="Get In Touch"
-        title="We'd Love to Hear From You"
-        description="Have questions or need a custom quote? Fill out the form below and a member of our team will get back to you."
+        eyebrow="Ponte en Contacto"
+        title="Nos Encantaría Saber de Ti"
+        description="¿Tienes preguntas o necesitas un presupuesto personalizado? Rellena el siguiente formulario y un miembro de nuestro equipo se pondrá en contacto contigo."
       />
       <Card className="mx-auto max-w-3xl shadow-lg">
         <CardContent className="p-6 sm:p-8">
@@ -59,29 +59,29 @@ export function Contact() {
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <FormField control={form.control} name="name" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>Nombre Completo</FormLabel>
                     <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <FormField control={form.control} name="email" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address</FormLabel>
-                    <FormControl><Input placeholder="you@example.com" {...field} /></FormControl>
+                    <FormLabel>Dirección de Correo Electrónico</FormLabel>
+                    <FormControl><Input placeholder="tu@ejemplo.com" {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
               </div>
               <FormField control={form.control} name="message" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Your Message</FormLabel>
-                  <FormControl><Textarea rows={5} placeholder="How can we help you?" {...field} /></FormControl>
+                  <FormLabel>Tu Mensaje</FormLabel>
+                  <FormControl><Textarea rows={5} placeholder="¿Cómo podemos ayudarte?" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <Button type="submit" disabled={isSubmitting} size="lg" className="w-full">
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Send Message
+                Enviar Mensaje
               </Button>            
             </form>
           </Form>

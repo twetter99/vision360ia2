@@ -13,6 +13,6 @@ export async function getRecommendations(
     return { success: true, data: result };
   } catch (error) {
     console.error(error);
-    return { success: false, error: 'Failed to get recommendations.' };
+    return { success: false, error: 'No se pudieron obtener las recomendaciones.' };
   }
 }

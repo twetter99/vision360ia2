@@ -19,20 +19,20 @@ export function Hero() {
       <div className="relative z-10 flex h-full flex-col items-center justify-end pb-24 text-center">
         <div className="container">
           <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-6xl md:text-7xl">
-            Unrivaled Vehicle Security,
+            Seguridad Vehicular Inigualable,
             <br />
-            Powered by AI
+            Impulsada por IA
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-foreground/80 md:text-xl">
-            Vision360ia delivers cutting-edge protection, giving you total peace of mind. Explore our smart security solutions today.
+            Vision360ia ofrece protección de vanguardia, dándote total tranquilidad. Explora nuestras soluciones de seguridad inteligentes hoy.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-              Explore Solutions
+              Explorar Soluciones
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button size="lg" variant="outline" className="border-border/70 bg-background/50 backdrop-blur-sm hover:bg-background/80">
-              Request a Demo
+              Solicitar una Demostración
             </Button>
           </div>
         </div>

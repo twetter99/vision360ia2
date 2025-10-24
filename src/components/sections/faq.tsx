@@ -12,9 +12,9 @@ export function Faq() {
   return (
     <SectionWrapper id="faq" className="bg-card">
       <SectionHeading
-        eyebrow="Frequently Asked Questions"
-        title="Your Questions, Answered"
-        description="Find answers to common questions about our products, services, and vehicle security in general."
+        eyebrow="Preguntas Frecuentes"
+        title="Tus Preguntas, Respondidas"
+        description="Encuentra respuestas a preguntas comunes sobre nuestros productos, servicios y seguridad vehicular en general."
       />
       <Accordion type="single" collapsible className="mx-auto max-w-3xl">
         {faqs.map((faq, index) => (

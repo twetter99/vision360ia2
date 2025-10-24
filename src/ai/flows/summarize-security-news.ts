@@ -1,10 +1,10 @@
 'use server';
 /**
- * @fileOverview Summarizes the latest vehicle security news and trends.
+ * @fileOverview Resume las últimas noticias y tendencias de seguridad vehicular.
  *
- * - summarizeSecurityNews - A function that returns the summarized news.
- * - SummarizeSecurityNewsInput - The input type for the summarizeSecurityNews function.
- * - SummarizeSecurityNewsOutput - The return type for the summarizeSecurityNews function.
+ * - summarizeSecurityNews - Una función que devuelve las noticias resumidas.
+ * - SummarizeSecurityNewsInput - El tipo de entrada para la función summarizeSecurityNews.
+ * - SummarizeSecurityNewsOutput - El tipo de retorno para la función summarizeSecurityNews.
  */
 
 import {ai} from '@/ai/genkit';
@@ -13,7 +13,7 @@ import {z} from 'genkit';
 const SummarizeSecurityNewsInputSchema = z.object({
   newsArticles: z
     .array(z.string())
-    .describe('An array of news articles related to vehicle security.'),
+    .describe('Un array de artículos de noticias relacionados con la seguridad vehicular.'),
 });
 export type SummarizeSecurityNewsInput = z.infer<
   typeof SummarizeSecurityNewsInputSchema
@@ -23,7 +23,7 @@ const SummarizeSecurityNewsOutputSchema = z.object({
   summary: z
     .string()
     .describe(
-      'A summary of the latest vehicle security news and trends, highlighting potential threats and new security technologies.'
+      'Un resumen de las últimas noticias y tendencias de seguridad vehicular, destacando amenazas potenciales y nuevas tecnologías de seguridad.'
     ),
 });
 export type SummarizeSecurityNewsOutput = z.infer<
@@ -40,7 +40,7 @@ const summarizeSecurityNewsPrompt = ai.definePrompt({
   name: 'summarizeSecurityNewsPrompt',
   input: {schema: SummarizeSecurityNewsInputSchema},
   output: {schema: SummarizeSecurityNewsOutputSchema},
-  prompt: `You are an expert in vehicle security. Summarize the following news articles and trends, highlighting potential threats and new security technologies.\n\nNews Articles:\n{{#each newsArticles}}\n- {{{this}}}\n{{/each}}`,
+  prompt: `Eres un experto en seguridad vehicular. Resume los siguientes artículos de noticias y tendencias, destacando las amenazas potenciales y las nuevas tecnologías de seguridad.\n\nArtículos de Noticias:\n{{#each newsArticles}}\n- {{{this}}}\n{{/each}}`,
 });
 
 const summarizeSecurityNewsFlow = ai.defineFlow(

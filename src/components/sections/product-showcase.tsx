@@ -11,9 +11,9 @@ export function ProductShowcase() {
   return (
     <SectionWrapper id="products">
       <SectionHeading
-        eyebrow="Our Products"
-        title="State-of-the-Art Security Hardware"
-        description="Explore our range of premium security products, designed for reliability and performance."
+        eyebrow="Nuestros Productos"
+        title="Hardware de Seguridad de Última Generación"
+        description="Explora nuestra gama de productos de seguridad premium, diseñados para la fiabilidad y el rendimiento."
       />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
@@ -43,7 +43,7 @@ export function ProductShowcase() {
               </ul>
             </CardContent>
             <CardFooter className="p-6 pt-0">
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Add to Cart</Button>
+              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Añadir al Carrito</Button>
             </CardFooter>
           </Card>
         ))}

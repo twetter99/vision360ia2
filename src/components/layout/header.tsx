@@ -1,12 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, Shield } from 'lucide-react';
+import { Menu, Shield, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { navigationLinks } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,17 +55,30 @@ export function Header() {
           ))}
         </nav>
         <div className="ml-auto flex items-center gap-4">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Globe className="h-5 w-5" />
+                <span className="sr-only">Cambiar idioma</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>Castellano</DropdownMenuItem>
+              <DropdownMenuItem>Catalan</DropdownMenuItem>
+              <DropdownMenuItem>Euskera</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Button variant="outline" className="hidden md:flex">
-            Sign In
+            Iniciar Sesión
           </Button>
           <Button className="hidden bg-accent text-accent-foreground hover:bg-accent/90 md:flex">
-            Get a Quote
+            Pedir Presupuesto
           </Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle Menu</span>
+                <span className="sr-only">Abrir Menú</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
@@ -74,8 +93,8 @@ export function Header() {
                   </Link>
                 ))}
                 <div className="mt-4 flex flex-col gap-4">
-                  <Button variant="outline">Sign In</Button>
-                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90">Get a Quote</Button>
+                  <Button variant="outline">Iniciar Sesión</Button>
+                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90">Pedir Presupuesto</Button>
                 </div>
               </nav>
             </SheetContent>
