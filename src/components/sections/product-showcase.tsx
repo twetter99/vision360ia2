@@ -1,14 +1,13 @@
-
 'use client';
 import Image from 'next/image';
 import { SectionWrapper } from '../shared/section-wrapper';
 import { SectionHeading } from '../shared/section-heading';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardHeader } from '../ui/card';
 import { Button } from '../ui/button';
 import { Check } from 'lucide-react';
-import { Badge } from '../ui/badge';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
+import { AnimatedSection } from '../shared/animated-section';
 
 export function ProductShowcase({ translations: initialTranslations }: { translations: Translation['es'] }) {
   const { translations } = useLanguage();
@@ -23,35 +22,37 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
         description={t.description}
       />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
-          <Card key={product.id} className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl">
-            <CardHeader className="p-0">
-              <div className="aspect-h-2 aspect-w-3">
-                <Image
-                  src={product.image.imageUrl}
-                  alt={product.image.description}
-                  fill
-                  className="object-cover"
-                  data-ai-hint={product.image.imageHint}
-                />
+        {products.map((product, index) => (
+          <AnimatedSection key={product.id} animation="slide-up" delay={index * 0.1}>
+            <Card className="flex h-full flex-col overflow-hidden rounded-xl border-border/50 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <CardHeader className="p-0">
+                <div className="aspect-h-9 aspect-w-16 relative">
+                  <Image
+                    src={product.image.imageUrl}
+                    alt={product.image.description}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={product.image.imageHint}
+                  />
+                </div>
+              </CardHeader>
+              <CardContent className="flex flex-1 flex-col p-6">
+                <h3 className="mb-2 font-headline text-xl font-bold">{product.name}</h3>
+                <p className="flex-1 text-muted-foreground">{product.description}</p>
+                <ul className="mt-6 space-y-3 text-sm">
+                  {product.specs.map((spec) => (
+                    <li key={spec} className="flex items-center gap-3">
+                      <Check className="h-5 w-5 text-primary" />
+                      <span>{spec}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <div className="p-6 pt-0">
+                <Button variant="outline" className="w-full">{t.addToCart}</Button>
               </div>
-            </CardHeader>
-            <CardContent className="flex flex-1 flex-col p-6">
-              <CardTitle className="mb-2 font-headline text-xl">{product.name}</CardTitle>
-              <p className="flex-1 text-muted-foreground">{product.description}</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                {product.specs.map((spec) => (
-                  <li key={spec} className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-primary" />
-                    <span>{spec}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardFooter className="p-6 pt-0">
-              <Button variant="outline" className="w-full">{t.addToCart}</Button>
-            </CardFooter>
-          </Card>
+            </Card>
+          </AnimatedSection>
         ))}
       </div>
     </SectionWrapper>

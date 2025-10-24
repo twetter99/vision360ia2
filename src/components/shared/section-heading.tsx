@@ -1,3 +1,4 @@
+import { AnimatedSection } from "./animated-section";
 import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "react";
 
@@ -9,7 +10,8 @@ interface SectionHeadingProps extends HTMLAttributes<HTMLDivElement> {
 
 export function SectionHeading({ title, description, eyebrow, className, ...props }: SectionHeadingProps) {
   return (
-    <div
+    <AnimatedSection
+      animation="slide-up"
       className={cn("mx-auto mb-12 max-w-3xl text-center", className)}
       {...props}
     >
@@ -26,6 +28,6 @@ export function SectionHeading({ title, description, eyebrow, className, ...prop
           {description}
         </p>
       )}
-    </div>
+    </AnimatedSection>
   );
 }

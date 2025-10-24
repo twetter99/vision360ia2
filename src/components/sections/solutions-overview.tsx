@@ -8,6 +8,7 @@ import { Button } from '../ui/button';
 import { ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
+import { AnimatedSection } from '../shared/animated-section';
 
 export function SolutionsOverview({ translations: initialTranslations }: { translations: Translation['es'] }) {
   const { translations } = useLanguage();
@@ -31,32 +32,34 @@ export function SolutionsOverview({ translations: initialTranslations }: { trans
         </TabsList>
         {solutions.map((solution) => (
           <TabsContent key={solution.id} value={solution.id} className="mt-8">
-            <Card className="overflow-hidden shadow-lg">
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative min-h-[300px] md:min-h-0">
-                  <Image
-                    src={solution.image.imageUrl}
-                    alt={solution.image.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={solution.image.imageHint}
-                  />
+            <AnimatedSection animation="fade-in">
+              <Card className="overflow-hidden shadow-lg border-border/50">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  <div className="relative min-h-[300px] md:min-h-0">
+                    <Image
+                      src={solution.image.imageUrl}
+                      alt={solution.image.description}
+                      fill
+                      className="object-cover"
+                      data-ai-hint={solution.image.imageHint}
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center p-8 md:p-12">
+                    <h3 className="mb-3 font-headline text-2xl font-bold">{solution.title}</h3>
+                    <p className="mb-6 text-muted-foreground">{solution.description}</p>
+                    <ul className="mb-8 space-y-3">
+                      {solution.features.map((feature) => (
+                        <li key={feature} className="flex items-center gap-3">
+                          <ShieldCheck className="h-5 w-5 flex-shrink-0 text-primary" />
+                          <span className="font-medium">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button size="lg" className="w-full sm:w-fit">{t.learnMore}</Button>
+                  </div>
                 </div>
-                <div className="flex flex-col justify-center p-8 md:p-12">
-                  <h3 className="mb-3 font-headline text-2xl font-bold">{solution.title}</h3>
-                  <p className="mb-6 text-muted-foreground">{solution.description}</p>
-                  <ul className="mb-8 space-y-3">
-                    {solution.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3">
-                        <ShieldCheck className="h-5 w-5 flex-shrink-0 text-primary" />
-                        <span className="font-medium">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button size="lg" className="w-full sm:w-fit">{t.learnMore}</Button>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </AnimatedSection>
           </TabsContent>
         ))}
       </Tabs>
