@@ -1,8 +1,7 @@
+
 'use client';
 import { useContext } from 'react';
-import {
-  LanguageContext,
-} from '@/context/language-provider';
+import { LanguageContext } from '@/context/language-provider';
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);

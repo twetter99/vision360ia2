@@ -1,39 +1,49 @@
-import Image from "next/image";
-import { testimonials } from "@/lib/data";
-import { SectionWrapper } from "../shared/section-wrapper";
-import { SectionHeading } from "../shared/section-heading";
-import { Card, CardContent } from "../ui/card";
+'use client';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Star } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+} from '@/components/ui/carousel';
+import { SectionWrapper } from '../shared/section-wrapper';
+import { SectionHeading } from '../shared/section-heading';
+import { Card, CardContent } from '../ui/card';
+import { Star } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { useLanguage } from '@/hooks/use-language';
 
 export function Testimonials() {
+  const { translations } = useLanguage();
+  const t = translations.testimonialsSection;
+  const testimonials = translations.testimonials;
+
   return (
     <SectionWrapper id="testimonials">
       <SectionHeading
-        eyebrow="Lo que Dicen Nuestros Clientes"
-        title="Con la Confianza de Conductores y Gestores de Flotas"
-        description="No te fíes solo de nuestra palabra. Esto es lo que nuestros clientes satisfechos tienen que decir sobre Vision360ia."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        description={t.description}
       />
       <Carousel
-        opts={{ align: "start", loop: true }}
+        opts={{ align: 'start', loop: true }}
         className="mx-auto w-full max-w-6xl"
       >
         <CarouselContent className="-ml-4">
           {testimonials.map((testimonial) => (
-            <CarouselItem key={testimonial.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+            <CarouselItem
+              key={testimonial.id}
+              className="pl-4 md:basis-1/2 lg:basis-1/3"
+            >
               <div className="p-1">
                 <Card className="flex h-full flex-col">
                   <CardContent className="flex flex-1 flex-col justify-between p-6">
                     <div className="mb-4 flex">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                        <Star
+                          key={i}
+                          className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                        />
                       ))}
                     </div>
                     <blockquote className="flex-1 text-base italic text-muted-foreground">
@@ -41,11 +51,19 @@ export function Testimonials() {
                     </blockquote>
                     <div className="mt-6 flex items-center gap-3">
                       <Avatar className="h-12 w-12">
-                        <AvatarImage src={testimonial.avatar.imageUrl} alt={testimonial.author} data-ai-hint={testimonial.avatar.imageHint} />
-                        <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
+                        <AvatarImage
+                          src={testimonial.avatar.imageUrl}
+                          alt={testimonial.author}
+                          data-ai-hint={testimonial.avatar.imageHint}
+                        />
+                        <AvatarFallback>
+                          {testimonial.author.charAt(0)}
+                        </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-semibold text-foreground">{testimonial.author}</p>
+                        <p className="font-semibold text-foreground">
+                          {testimonial.author}
+                        </p>
                       </div>
                     </div>
                   </CardContent>

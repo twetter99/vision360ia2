@@ -1,20 +1,25 @@
-import { faqs } from "@/lib/data";
-import { SectionWrapper } from "../shared/section-wrapper";
-import { SectionHeading } from "../shared/section-heading";
+'use client';
+import { SectionWrapper } from '../shared/section-wrapper';
+import { SectionHeading } from '../shared/section-heading';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from '@/components/ui/accordion';
+import { useLanguage } from '@/hooks/use-language';
 
 export function Faq() {
+  const { translations } = useLanguage();
+  const t = translations.faqSection;
+  const faqs = translations.faqs;
+
   return (
     <SectionWrapper id="faq" className="bg-card">
       <SectionHeading
-        eyebrow="Preguntas Frecuentes"
-        title="Tus Preguntas, Respondidas"
-        description="Encuentra respuestas a preguntas comunes sobre nuestros productos, servicios y seguridad vehicular en general."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        description={t.description}
       />
       <Accordion type="single" collapsible className="mx-auto max-w-3xl">
         {faqs.map((faq, index) => (

@@ -1,19 +1,24 @@
-import Image from "next/image";
-import { newsArticles } from "@/lib/data";
-import { SectionWrapper } from "../shared/section-wrapper";
-import { SectionHeading } from "../shared/section-heading";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+'use client';
+import Image from 'next/image';
+import { SectionWrapper } from '../shared/section-wrapper';
+import { SectionHeading } from '../shared/section-heading';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Button } from '../ui/button';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/hooks/use-language';
 
 export function News() {
+  const { translations } = useLanguage();
+  const t = translations.newsSection;
+  const newsArticles = translations.newsArticles;
+
   return (
     <SectionWrapper id="news" className="bg-card">
       <SectionHeading
-        eyebrow="Noticias e Información"
-        title="Adelántate a las Amenazas de Seguridad"
-        description="Lee nuestros últimos artículos sobre tendencias en seguridad vehicular, nuevas tecnologías y consejos de seguridad."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        description={t.description}
       />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {newsArticles.map((article) => (
@@ -42,7 +47,7 @@ export function News() {
             <CardFooter className="p-6 pt-0">
               <Button asChild variant="link" className="p-0 text-primary">
                 <Link href="#">
-                  Leer Más
+                  {t.readMore}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

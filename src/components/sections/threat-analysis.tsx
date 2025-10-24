@@ -22,6 +22,7 @@ import { Loader2, Zap, AlertTriangle, ShieldCheck, Sparkles } from "lucide-react
 import { Textarea } from "../ui/textarea";
 import type { PersonalizedSecurityRecommendationsOutput } from "@/ai/flows/personalized-security-recommendations";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import { useLanguage } from "@/hooks/use-language";
 
 const formSchema = z.object({
   vehicleType: z.string().min(2, "El tipo de vehículo es obligatorio."),
@@ -38,6 +39,8 @@ export function ThreatAnalysis() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<PersonalizedSecurityRecommendationsOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { translations } = useLanguage();
+  const t = translations.aiAnalysisSection;
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -67,9 +70,9 @@ export function ThreatAnalysis() {
   return (
     <SectionWrapper id="ai-analysis">
       <SectionHeading
-        eyebrow="Análisis con IA"
-        title="Obtén tu Informe de Seguridad Personalizado"
-        description="Nuestra herramienta inteligente de análisis de amenazas evalúa los riesgos para tu vehículo y ubicación específicos para proporcionar recomendaciones de seguridad a medida."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        description={t.description}
       />
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
         <Card className="p-6 sm:p-8">
@@ -79,50 +82,50 @@ export function ThreatAnalysis() {
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <FormField control={form.control} name="vehicleType" render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Tipo de Vehículo</FormLabel>
-                      <FormControl><Input placeholder="p. ej. SUV" {...field} /></FormControl>
+                      <FormLabel>{t.form.vehicleType}</FormLabel>
+                      <FormControl><Input placeholder={t.form.vehicleTypePlaceholder} {...field} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )} />
                   <FormField control={form.control} name="vehicleMake" render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Marca</FormLabel>
-                      <FormControl><Input placeholder="p. ej. Toyota" {...field} /></FormControl>
+                      <FormLabel>{t.form.vehicleMake}</FormLabel>
+                      <FormControl><Input placeholder={t.form.vehicleMakePlaceholder} {...field} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )} />
                   <FormField control={form.control} name="vehicleModel" render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Modelo</FormLabel>
-                      <FormControl><Input placeholder="p. ej. RAV4" {...field} /></FormControl>
+                      <FormLabel>{t.form.vehicleModel}</FormLabel>
+                      <FormControl><Input placeholder={t.form.vehicleModelPlaceholder} {...field} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )} />
                   <FormField control={form.control} name="vehicleYear" render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Año</FormLabel>
-                      <FormControl><Input type="number" placeholder="p. ej. 2023" {...field} /></FormControl>
+                      <FormLabel>{t.form.vehicleYear}</FormLabel>
+                      <FormControl><Input type="number" placeholder={t.form.vehicleYearPlaceholder} {...field} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )} />
                 </div>
                 <FormField control={form.control} name="location" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Ubicación (Ciudad, Provincia)</FormLabel>
-                    <FormControl><Input placeholder="p. ej. San Francisco, CA" {...field} /></FormControl>
+                    <FormLabel>{t.form.location}</FormLabel>
+                    <FormControl><Input placeholder={t.form.locationPlaceholder} {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <FormField control={form.control} name="specificConcerns" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Preocupaciones Específicas (Opcional)</FormLabel>
-                    <FormControl><Textarea placeholder="p. ej. Allanamiento, robo de catalizador" {...field} /></FormControl>
+                    <FormLabel>{t.form.specificConcerns}</FormLabel>
+                    <FormControl><Textarea placeholder={t.form.specificConcernsPlaceholder} {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <Button type="submit" disabled={isLoading} size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                   {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Zap className="mr-2 h-5 w-5" />}
-                  Analizar Amenazas
+                  {t.form.analyzeButton}
                 </Button>
               </form>
             </Form>
@@ -132,36 +135,36 @@ export function ThreatAnalysis() {
           {isLoading && (
             <div className="text-center text-muted-foreground">
               <Loader2 className="mx-auto mb-4 h-12 w-12 animate-spin text-primary" />
-              <h3 className="font-headline text-xl font-semibold">Analizando tu vehículo...</h3>
-              <p>Nuestra IA está elaborando tu informe personalizado.</p>
+              <h3 className="font-headline text-xl font-semibold">{t.results.loading}</h3>
+              <p>{t.results.loadingDescription}</p>
             </div>
           )}
           {error && (
             <div className="text-center text-destructive">
               <AlertTriangle className="mx-auto mb-4 h-12 w-12" />
-              <h3 className="font-headline text-xl font-semibold">El Análisis Falló</h3>
+              <h3 className="font-headline text-xl font-semibold">{t.results.errorTitle}</h3>
               <p>{error}</p>
             </div>
           )}
           {!isLoading && !error && !result && (
              <div className="text-center text-muted-foreground">
                 <Sparkles className="mx-auto mb-4 h-12 w-12 text-primary/50" />
-                <h3 className="font-headline text-xl font-semibold text-foreground">Tu Informe te Espera</h3>
-                <p>Rellena el formulario para empezar.</p>
+                <h3 className="font-headline text-xl font-semibold text-foreground">{t.results.pendingTitle}</h3>
+                <p>{t.results.pendingDescription}</p>
             </div>
           )}
           {result && (
             <div className="w-full">
-              <h3 className="mb-4 font-headline text-2xl font-bold">Tu Informe de Seguridad</h3>
+              <h3 className="mb-4 font-headline text-2xl font-bold">{t.results.reportTitle}</h3>
               <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
                 <AccordionItem value="item-1">
-                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><AlertTriangle className="mr-2 h-5 w-5 text-destructive" />Análisis de Amenazas</AccordionTrigger>
+                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><AlertTriangle className="mr-2 h-5 w-5 text-destructive" />{t.results.threatAnalysis}</AccordionTrigger>
                   <AccordionContent className="text-base text-muted-foreground whitespace-pre-wrap">
                     {result.threatAnalysis}
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
-                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><ShieldCheck className="mr-2 h-5 w-5 text-primary" />Recomendaciones</AccordionTrigger>
+                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><ShieldCheck className="mr-2 h-5 w-5 text-primary" />{t.results.recommendations}</AccordionTrigger>
                   <AccordionContent>
                     <ul className="space-y-3 pl-2">
                       {result.recommendations.map((rec, index) => (
@@ -174,7 +177,7 @@ export function ThreatAnalysis() {
                   </AccordionContent>
                 </AccordionItem>
                  <AccordionItem value="item-3">
-                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><Sparkles className="mr-2 h-5 w-5 text-accent" />Razonamiento</AccordionTrigger>
+                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><Sparkles className="mr-2 h-5 w-5 text-accent" />{t.results.reasoning}</AccordionTrigger>
                   <AccordionContent className="text-base text-muted-foreground whitespace-pre-wrap">
                     {result.reasoning}
                   </AccordionContent>

@@ -15,10 +15,12 @@ import {
 import { useLanguage } from '@/hooks/use-language';
 import { LanguageBanner } from './language-banner';
 import { CataloniaFlag, SpainFlag, BasqueCountryFlag } from './flags';
+import { usePathname } from 'next/navigation';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { language, setLanguage, translations } = useLanguage();
+  const { setLanguage, translations } = useLanguage();
+  const pathname = usePathname();
 
   const navigationLinks = translations.navigationLinks;
   const t = translations.header;
@@ -73,7 +75,10 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-medium text-foreground/60 transition-colors hover:text-foreground"
+                className={cn(
+                  'font-medium text-foreground/60 transition-colors hover:text-foreground',
+                  pathname === link.href && 'text-foreground'
+                )}
               >
                 {link.label}
               </Link>

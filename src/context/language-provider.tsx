@@ -1,3 +1,4 @@
+
 'use client';
 import React, {
   createContext,
@@ -5,6 +6,7 @@ import React, {
   useEffect,
   ReactNode,
   useMemo,
+  useCallback,
 } from 'react';
 import { translations, Translation } from '@/lib/translations';
 
@@ -32,7 +34,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // 1. Check for a stored language preference
+    // This effect runs only on the client
     const storedLang = localStorage.getItem('language') as Language | null;
     if (storedLang && ['es', 'ca', 'eu'].includes(storedLang)) {
       setLanguageState(storedLang);
@@ -40,7 +42,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    // 2. Detect browser language
     const browserLang = navigator.language.split('-')[0];
     let detectedLang: Language | null = null;
     if (browserLang === 'ca') {
@@ -51,8 +52,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       detectedLang = 'es';
     }
 
-    // 3. Show banner if detected language is different from default ('es')
-    if (detectedLang && detectedLang !== 'es') {
+    if (detectedLang && detectedLang !== 'es' && !storedLang) {
       setSuggestedLanguage(detectedLang);
       setShowBanner(true);
     }
@@ -60,12 +60,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setIsInitialized(true);
   }, []);
 
-  const setLanguage = (lang: Language) => {
+  const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('language', lang);
-    // When user manually selects a language, hide the banner
     setShowBanner(false);
-  };
+  }, []);
 
   const currentTranslations = useMemo(
     () => translations[language],
@@ -80,10 +79,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     showBanner: isInitialized && showBanner,
     setShowBanner,
   };
-
-  if (!isInitialized) {
-    return null; // Or a loading spinner
-  }
 
   return (
     <LanguageContext.Provider value={value}>

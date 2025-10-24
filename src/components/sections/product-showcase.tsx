@@ -1,19 +1,24 @@
-import Image from "next/image";
-import { products } from "@/lib/data";
-import { SectionWrapper } from "../shared/section-wrapper";
-import { SectionHeading } from "../shared/section-heading";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import { Check } from "lucide-react";
-import { Badge } from "../ui/badge";
+'use client';
+import Image from 'next/image';
+import { SectionWrapper } from '../shared/section-wrapper';
+import { SectionHeading } from '../shared/section-heading';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Button } from '../ui/button';
+import { Check } from 'lucide-react';
+import { Badge } from '../ui/badge';
+import { useLanguage } from '@/hooks/use-language';
 
 export function ProductShowcase() {
+  const { translations } = useLanguage();
+  const t = translations.productsSection;
+  const products = translations.products;
+
   return (
     <SectionWrapper id="products">
       <SectionHeading
-        eyebrow="Nuestros Productos"
-        title="Hardware de Seguridad de Última Generación"
-        description="Explora nuestra gama de productos de seguridad premium, diseñados para la fiabilidad y el rendimiento."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        description={t.description}
       />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
@@ -43,7 +48,7 @@ export function ProductShowcase() {
               </ul>
             </CardContent>
             <CardFooter className="p-6 pt-0">
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Añadir al Carrito</Button>
+              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">{t.addToCart}</Button>
             </CardFooter>
           </Card>
         ))}

@@ -1,19 +1,24 @@
+'use client';
 import Image from 'next/image';
-import { solutions } from '@/lib/data';
 import { SectionWrapper } from '../shared/section-wrapper';
 import { SectionHeading } from '../shared/section-heading';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { ShieldCheck } from 'lucide-react';
+import { useLanguage } from '@/hooks/use-language';
 
 export function SolutionsOverview() {
+  const { translations } = useLanguage();
+  const t = translations.solutionsSection;
+  const solutions = translations.solutions;
+
   return (
     <SectionWrapper id="solutions" className="bg-card">
       <SectionHeading
-        eyebrow="Soluciones a Medida"
-        title="Seguridad que se Adapta a tu Vehículo"
-        description="Desde coches personales hasta flotas comerciales, tenemos una solución de seguridad diseñada para tus necesidades específicas."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        description={t.description}
       />
       <Tabs defaultValue={solutions[0].id} className="w-full">
         <TabsList className="mx-auto grid h-auto w-full max-w-lg grid-cols-1 sm:grid-cols-3">
@@ -47,7 +52,7 @@ export function SolutionsOverview() {
                       </li>
                     ))}
                   </ul>
-                  <Button size="lg" className="w-full sm:w-fit">Saber Más</Button>
+                  <Button size="lg" className="w-full sm:w-fit">{t.learnMore}</Button>
                 </div>
               </div>
             </Card>
