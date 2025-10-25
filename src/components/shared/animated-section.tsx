@@ -1,3 +1,4 @@
+// components/shared/animated-section.tsx
 'use client';
 
 import { useInView } from '@/hooks/use-in-view';
@@ -24,24 +25,33 @@ export function AnimatedSection({
   once = true,
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once, rootMargin: '0px 0px -20% 0px', threshold: 0.25 });
+  // Mantenemos las opciones ajustadas del IntersectionObserver
+  const isInView = useInView(ref, { once, rootMargin: '0px', threshold: 0.1 });
 
-  const animationClass = {
-    'fade-in': 'animate-fade-in',
-    'slide-up': 'animate-slide-up',
-  }[animation];
+  // Clases base para la transición
+  const baseTransitionClasses = 'transition-all duration-600 ease-out';
+
+  // Clases para el estado inicial (invisible, y movido si es slide-up)
+  const initialClasses = cn(
+    'opacity-0',
+    animation === 'slide-up' && 'translate-y-[30px]' // Empieza 30px más abajo
+  );
+
+  // Clases para el estado final (visible, en posición original)
+  const finalClasses = 'opacity-100 translate-y-0';
 
   return (
     <Component
       ref={ref}
       className={cn(
-        'opacity-0', // Start invisible
-        isInView && animationClass, // Apply animation class only when in view
+        baseTransitionClasses, // Aplica siempre las propiedades de transición
+        initialClasses,        // Aplica siempre el estado inicial
+        isInView && finalClasses, // Aplica el estado final SOLO cuando está en vista
         className
       )}
       style={{
-        animationDelay: `${delay}s`,
-        animationFillMode: 'forwards',
+        transitionDelay: `${delay}s`, // Usa transition-delay para el escalonamiento
+        // Ya no necesitamos animationFillMode aquí
       }}
     >
       {children}
