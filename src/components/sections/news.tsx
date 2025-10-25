@@ -47,7 +47,7 @@ export function News({ newsArticles, translations: initialTranslations }: { news
                     {article.title}
                   </Link>
                 </h3>
-                <p className="text-muted-foreground line-clamp-3">{article.excerpt}</p>
+                <p className="text-muted-foreground line-clamp-3 text-justify">{article.excerpt}</p>
               </CardContent>
               <CardFooter className="p-6 pt-0">
                 <Button asChild variant="link" className="p-0 text-primary">

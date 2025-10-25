@@ -138,21 +138,21 @@ export function ThreatAnalysis({ translations: initialTranslations }: { translat
             <div className="text-center text-muted-foreground">
               <Loader2 className="mx-auto mb-4 h-12 w-12 animate-spin text-primary" />
               <h3 className="font-headline text-xl font-semibold">{t.results.loading}</h3>
-              <p>{t.results.loadingDescription}</p>
+              <p className="text-justify">{t.results.loadingDescription}</p>
             </div>
           )}
           {error && (
             <div className="text-center text-destructive">
               <AlertTriangle className="mx-auto mb-4 h-12 w-12" />
               <h3 className="font-headline text-xl font-semibold">{t.results.errorTitle}</h3>
-              <p>{error}</p>
+              <p className="text-justify">{error}</p>
             </div>
           )}
           {!isLoading && !error && !result && (
              <div className="text-center text-muted-foreground">
                 <Sparkles className="mx-auto mb-4 h-12 w-12 text-primary/50" />
                 <h3 className="font-headline text-xl font-semibold text-foreground">{t.results.pendingTitle}</h3>
-                <p>{t.results.pendingDescription}</p>
+                <p className="text-justify">{t.results.pendingDescription}</p>
             </div>
           )}
           {result && (
@@ -161,7 +161,7 @@ export function ThreatAnalysis({ translations: initialTranslations }: { translat
               <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
                 <AccordionItem value="item-1">
                   <AccordionTrigger className="font-headline text-lg hover:no-underline"><AlertTriangle className="mr-2 h-5 w-5 text-destructive" />{t.results.threatAnalysis}</AccordionTrigger>
-                  <AccordionContent className="text-base text-muted-foreground whitespace-pre-wrap">
+                  <AccordionContent className="text-base text-muted-foreground whitespace-pre-wrap text-justify">
                     {result.threatAnalysis}
                   </AccordionContent>
                 </AccordionItem>
@@ -170,7 +170,7 @@ export function ThreatAnalysis({ translations: initialTranslations }: { translat
                   <AccordionContent>
                     <ul className="space-y-3 pl-2">
                       {result.recommendations.map((rec, index) => (
-                        <li key={index} className="flex gap-3">
+                        <li key={index} className="flex gap-3 text-justify">
                           <ShieldCheck className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
                           <span className="text-muted-foreground">{rec}</span>
                         </li>
@@ -180,7 +180,7 @@ export function ThreatAnalysis({ translations: initialTranslations }: { translat
                 </AccordionItem>
                  <AccordionItem value="item-3">
                   <AccordionTrigger className="font-headline text-lg hover:no-underline"><Sparkles className="mr-2 h-5 w-5 text-accent" />{t.results.reasoning}</AccordionTrigger>
-                  <AccordionContent className="text-base text-muted-foreground whitespace-pre-wrap">
+                  <AccordionContent className="text-base text-muted-foreground whitespace-pre-wrap text-justify">
                     {result.reasoning}
                   </AccordionContent>
                 </AccordionItem>

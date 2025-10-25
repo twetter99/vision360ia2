@@ -49,7 +49,7 @@ export function Testimonials({ translations: initialTranslations }: { translatio
                           />
                         ))}
                       </div>
-                      <blockquote className="flex-1 text-base italic text-muted-foreground">
+                      <blockquote className="flex-1 text-base italic text-muted-foreground text-justify">
                         &ldquo;{testimonial.quote}&rdquo;
                       </blockquote>
                       <div className="mt-6 flex items-center gap-4">

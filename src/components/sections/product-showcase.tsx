@@ -38,7 +38,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
               </CardHeader>
               <CardContent className="flex flex-1 flex-col p-6">
                 <h3 className="mb-3 font-headline text-xl font-bold text-primary">{product.name}</h3>
-                <p className="flex-1 text-muted-foreground">{product.description}</p>
+                <p className="flex-1 text-muted-foreground text-justify">{product.description}</p>
                 <ul className="mt-6 space-y-3 text-sm">
                   {product.specs.map((spec) => (
                     <li key={spec} className="flex items-start gap-3">

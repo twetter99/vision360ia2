@@ -28,7 +28,7 @@ export function Faq({ translations: initialTranslations }: { translations: Trans
             <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-base text-muted-foreground">
+            <AccordionContent className="text-base text-muted-foreground text-justify">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>

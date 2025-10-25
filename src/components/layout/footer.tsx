@@ -26,7 +26,7 @@ export function Footer() {
                 Vision360ia
               </span>
             </Link>
-            <p className="max-w-xs text-muted-foreground">
+            <p className="max-w-xs text-muted-foreground text-justify">
               {t.tagline}
             </p>
             <div className="flex gap-2">

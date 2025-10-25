@@ -46,7 +46,7 @@ export function SolutionsOverview({ translations: initialTranslations }: { trans
                   </div>
                   <div className="flex flex-col justify-center p-8 md:p-12">
                     <h3 className="mb-4 font-headline text-3xl font-bold text-primary">{solution.title}</h3>
-                    <p className="mb-6 text-muted-foreground">{solution.description}</p>
+                    <p className="mb-6 text-muted-foreground text-justify">{solution.description}</p>
                     <ul className="mb-8 space-y-4">
                       {solution.features.map((feature) => (
                         <li key={feature} className="flex items-center gap-3">
