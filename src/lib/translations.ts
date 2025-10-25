@@ -28,7 +28,7 @@ const baseTranslations = {
   hero: {
     title: 'Control 360° con IA: Reduce Riesgos, Maximiza Eficiencia.',
     subtitle: 'Seguridad 360° con Inteligencia Artificial.',
-    description: 'Vision360ia redefine la seguridad vehicular con sistemas ADAS potenciados por IA. Nuestra tecnología de visión 360° elimina puntos ciegos, anticipa colisiones y optimiza la operativa de tu flota, proporcionando una visibilidad sin precedentes para proteger a tus conductores y activos. Transforma datos en seguridad activa.',
+    description: 'Cada día, tu flota se enfrenta a lo imprevisible. Con Vision360IA, tus vehículos ven más allá: detectan riesgos, anticipan colisiones y convierten datos en seguridad activa. Tecnología ADAS potenciada por IA, diseñada para proteger lo que más importa: tu equipo y tus activos.',
     mainCta: 'Solicita una Demo',
     secondaryCta: 'Ver Casos de Uso',
   },
@@ -178,7 +178,7 @@ export const translations = {
     hero: {
       ...baseTranslations.hero,
       title: 'Control 360° amb IA: Redueix Riscos, Maximitza Eficiència.',
-      description: 'Vision360ia redefineix la seguretat vehicular amb sistemes ADAS potenciats per IA. La nostra tecnologia de visió 360° elimina punts cecs, anticipa col·lisions i optimitza l\'operativa de la teva flota, proporcionant una visibilitat sense precedents per protegir els teus conductors i actius. Transforma dades en seguretat activa.',
+      description: 'Cada dia, la teva flota s\'enfronta a l\'imprevisible. Amb Vision360IA, els teus vehicles veuen més enllà: detecten riscos, anticipen col·lisions i converteixen dades en seguretat activa. Tecnologia ADAS potenciada per IA, dissenyada per protegir el que més importa: el teu equip i els teus actius.',
     },
     header: {
       login: 'Iniciar Sessió',
@@ -319,7 +319,7 @@ export const translations = {
     hero: {
       ...baseTranslations.hero,
       title: '360° Kontrola IA-rekin: Arriskuak Murriztu, Eraginkortasuna Maximizatu.',
-      description: 'Vision360ia-k ibilgailuen segurtasuna birdefinitzen du IA-k bultzatutako ADAS sistemekin. Gure 360°-ko ikusmen teknologiak puntu itsuak ezabatzen ditu, talkak aurreikusten ditu eta zure flotaren operatibitatea optimizatzen du, zure gidariak eta aktiboak babesteko aurrekaririk gabeko ikusgarritasuna eskainiz. Datuak segurtasun aktibo bihurtzen ditu.',
+      description: 'Egunero, zure flota ezustekoari aurre egiten dio. Vision360IA-rekin, zure ibilgailuek haratago ikusten dute: arriskuak detektatzen dituzte, talkak aurreikusten dituzte eta datuak segurtasun aktibo bihurtzen dituzte. IA-k bultzatutako ADAS teknologia, gehien axola duena babesteko diseinatua: zure taldea eta zure aktiboak.',
     },
     header: {
       login: 'Saioa Hasi',
