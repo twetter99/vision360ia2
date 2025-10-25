@@ -35,17 +35,16 @@ export function AnimatedSection({
     <Component
       ref={ref}
       className={cn(
-        'transition-opacity duration-500',
-        isInView ? 'opacity-100' : 'opacity-0',
+        'transition-opacity',
+        !isInView && 'opacity-0',
         isInView && animationClass,
         className
       )}
       style={{
         animationDelay: `${delay}s`,
         animationDuration: '0.6s',
-        animationFillMode: 'forwards',
         animationTimingFunction: 'ease-out',
-        opacity: 0,
+        animationFillMode: 'forwards',
       }}
     >
       {children}
