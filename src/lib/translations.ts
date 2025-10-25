@@ -26,9 +26,9 @@ const baseTranslations = {
     copyright: 'Todos los derechos reservados.',
   },
   hero: {
-    title: 'Reduce Accidentes. Optimiza tu Flota.',
+    title: 'Control 360° con IA: Reduce Riesgos, Maximiza Eficiencia.',
     subtitle: 'Seguridad 360° con Inteligencia Artificial.',
-    description: 'Vision360ia es el sistema ADAS que te da visibilidad total para proteger a tus conductores, reducir costes y tomar el control de tu operación. Previene colisiones antes de que ocurran.',
+    description: 'Vision360ia redefine la seguridad vehicular con sistemas ADAS potenciados por IA. Nuestra tecnología de visión 360° elimina puntos ciegos, anticipa colisiones y optimiza la operativa de tu flota, proporcionando una visibilidad sin precedentes para proteger a tus conductores y activos. Transforma datos en seguridad activa.',
     mainCta: 'Solicita una Demo',
     secondaryCta: 'Ver Casos de Uso',
   },
@@ -160,11 +160,6 @@ export const translations = {
       { id: 'sol2', vehicleType: 'Flota Comercial', title: 'Gestión y Seguridad Total de la Flota', description: 'Monitoriza toda tu flota en tiempo real. Optimiza rutas, supervisa el comportamiento del conductor y protege tus valiosos activos contra robos y malos usos con nuestra solución integral para flotas.', image: findImage('solution2'), features: ['Seguimiento de Flota en Vivo', 'Alertas de Comportamiento del Conductor', 'Geofencing e Historial de Rutas', 'Apagado Remoto del Motor']},
       { id: 'sol3', vehicleType: 'Motocicletas', title: 'Protección Compacta y Robusta para Motos', description: 'Asegura tu motocicleta con nuestros rastreadores y alarmas discretos, impermeables y resistentes a las vibraciones. Recibe alertas instantáneas si tu moto es movida o manipulada.', image: findImage('solution3'), features: ['Alarma Sensible a Vibraciones', 'Unidad GPS Impermeable', 'Bajo Consumo de Energía', 'Alertas de Inclinación y Movimiento']},
     ],
-    newsArticles: [
-      { id: 'news1', title: 'El Auge del Robo de Coches Sin Llave y Cómo Prevenirlo', date: '26 de Octubre, 2023', excerpt: 'Los sistemas de entrada sin llave son convenientes, pero también han abierto la puerta a una nueva ola de ladrones de coches de alta tecnología. Aprende cómo funcionan los ataques de relé y qué puedes hacer.', image: findImage('news1') },
-      { id: 'news2', title: 'Por Qué los Rastreadores GPS son Imprescindibles para los Gestores de Flotas', date: '15 de Octubre, 2023', excerpt: 'Más allá de la recuperación por robo, los rastreadores GPS modernos ofrecen un conjunto de herramientas para mejorar la eficiencia, reducir costes y aumentar la seguridad para flotas comerciales de todos los tamaños.', image: findImage('news2') },
-      { id: 'news3', title: 'El Futuro de la Seguridad Vehicular: IA y Análisis Predictivo', date: '5 de Octubre, 2023', excerpt: 'La inteligencia artificial ya no es ciencia ficción. Descubre cómo la IA está revolucionando la seguridad vehicular al predecir y prevenir amenazas antes de que ocurran.', image: findImage('news3') },
-    ],
     testimonials: [
       { id: 'test1', quote: 'El sistema de Vision360ia me dio tranquilidad. Puedo revisar mi camión en cualquier momento y lugar. ¡La instalación fue perfecta y el equipo de soporte es fantástico!', author: 'Juan D., Propietario de Cía. de Camiones', avatar: findImage('avatar1')},
       { id: 'test2', quote: 'Después de que me robaran en el coche, instalé la alarma Aegis A5. La sensación de seguridad no tiene precio. Duermo mejor por la noche sabiendo que mi coche está protegido.', author: 'Sara K., Conductora Urbana', avatar: findImage('avatar2') },
@@ -179,6 +174,12 @@ export const translations = {
     ],
   },
   ca: {
+    ...baseTranslations,
+    hero: {
+      ...baseTranslations.hero,
+      title: 'Control 360° amb IA: Redueix Riscos, Maximitza Eficiència.',
+      description: 'Vision360ia redefineix la seguretat vehicular amb sistemes ADAS potenciats per IA. La nostra tecnologia de visió 360° elimina punts cecs, anticipa col·lisions i optimitza l\'operativa de la teva flota, proporcionant una visibilitat sense precedents per protegir els teus conductors i actius. Transforma dades en seguretat activa.',
+    },
     header: {
       login: 'Iniciar Sessió',
       getQuote: 'Demanar Pressupost',
@@ -201,13 +202,6 @@ export const translations = {
         terms: 'Termes de Servei',
       },
       copyright: 'Tots els drets reservats.',
-    },
-    hero: {
-      title: 'Redueix Accidents. Optimitza la teva Flota.',
-      subtitle: 'Seguretat 360° amb Intel·ligència Artificial.',
-      description: 'Vision360ia és el sistema ADAS que et dóna visibilitat total per protegir els teus conductors, reduir costos i prendre el control de la teva operació. Prevé col·lisions abans que passin.',
-      mainCta: 'Sol·licita una Demo',
-      secondaryCta: 'Veure Casos d\'Ús',
     },
     productsSection: {
       eyebrow: 'Avantatges Clau',
@@ -307,11 +301,6 @@ export const translations = {
         { id: 'sol2', vehicleType: 'Flota Comercial', title: 'Gestió i Seguretat Total de la Flota', description: 'Monitoritza tota la teva flota en temps real. Optimitza rutes, supervisa el comportament del conductor i protegeix els teus valuosos actius contra robatoris i mals usos amb la nostra solució integral per a flotes.', image: findImage('solution2'), features: ['Seguiment de Flota en Viu', 'Alertes de Comportament del Conductor', 'Geofencing i Historial de Rutes', 'Apagat Remot del Motor'] },
         { id: 'sol3', vehicleType: 'Motocicletes', title: 'Protecció Compacta i Robusta per a Motos', description: 'Assegura la teva motocicleta amb els nostres rastrejadors i alarmes discrets, impermeables i resistents a les vibracions. Rep alertes instantànies si la teva moto és moguda o manipulada.', image: findImage('solution3'), features: ['Alarma Sensible a Vibracions', 'Unitat GPS Impermeable', 'Baix Consum d\'Energia', 'Alertes d\'Inclinació i Moviment'] },
     ],
-    newsArticles: [
-        { id: 'news1', title: 'L\'Auge del Robatori de Cotxes Sense Clau i Com Prevenir-ho', date: '26 d\'Octubre, 2023', excerpt: 'Els sistemes d\'entrada sense clau són convenients, però també han obert la porta a una nova onada de lladres de cotxes d\'alta tecnologia. Aprèn com funcionen els atacs de relé i què pots fer.', image: findImage('news1') },
-        { id: 'news2', title: 'Per Què els Rastrejadors GPS són Imprescindibles per als Gestors de Flotes', date: '15 d\'Octubre, 2023', excerpt: 'Més enllà de la recuperació per robatori, els rastrejadors GPS moderns ofereixen un conjunt d\'eines per millorar l\'eficiència, reduir costos i augmentar la seguretat per a flotes comercials de totes les mides.', image: findImage('news2') },
-        { id: 'news3', title: 'El Futur de la Seguretat Vehicular: IA i Anàlisi Predictiva', date: '5 d\'Octubre, 2023', excerpt: 'La intel·ligència artificial ja no és ciència-ficció. Descobreix com la IA està revolucionant la seguretat vehicular al predir i prevenir amenaces abans que ocorrin.', image: findImage('news3') },
-    ],
     testimonials: [
         { id: 'test1', quote: 'El sistema de Vision360ia em va donar tranquil·litat. Puc revisar el meu camió en qualsevol moment i lloc. La instal·lació va ser perfecta i l\'equip de suport és fantàstic!', author: 'Joan D., Propietari de Cia. de Camions', avatar: findImage('avatar1') },
         { id: 'test2', quote: 'Després que em robessin al cotxe, vaig instal·lar l\'alarma Aegis A5. La sensació de seguretat no té preu. Dormo millor a la nit sabent que el meu cotxe està protegit.', author: 'Sara K., Conductora Urbana', avatar: findImage('avatar2') },
@@ -326,6 +315,12 @@ export const translations = {
     ],
   },
   eu: {
+    ...baseTranslations,
+    hero: {
+      ...baseTranslations.hero,
+      title: '360° Kontrola IA-rekin: Arriskuak Murriztu, Eraginkortasuna Maximizatu.',
+      description: 'Vision360ia-k ibilgailuen segurtasuna birdefinitzen du IA-k bultzatutako ADAS sistemekin. Gure 360°-ko ikusmen teknologiak puntu itsuak ezabatzen ditu, talkak aurreikusten ditu eta zure flotaren operatibitatea optimizatzen du, zure gidariak eta aktiboak babesteko aurrekaririk gabeko ikusgarritasuna eskainiz. Datuak segurtasun aktibo bihurtzen ditu.',
+    },
     header: {
       login: 'Saioa Hasi',
       getQuote: 'Aurrekontua Eskatu',
@@ -349,20 +344,13 @@ export const translations = {
       },
       copyright: 'Eskubide guztiak erreserbatuta.',
     },
-    hero: {
-      title: 'Istripuak Murriztu. Zure Flota Optimizatu.',
-      subtitle: '360° Segurtasuna Adimen Artifizialarekin.',
-      description: 'Vision360ia zure gidariak babesteko, kostuak murrizteko eta zure operazioaren kontrola hartzeko ikuspen osoa ematen dizun ADAS sistema da. Talkak gertatu baino lehen prebenitzen ditu.',
-      mainCta: 'Demo bat Eskatu',
-      secondaryCta: 'Erabilera Kasuak Ikusi',
-    },
     productsSection: {
       eyebrow: 'Abantaila Nagusiak',
       title: 'Zure Inbertsioa Babesteko Diseinatutako Teknologia',
       description: 'Zure ibilgailuak hardware sendo eta fidagarriarekin hornitzen ditugu, angelu guztiak aztertzeko eta arriskua aurreikusteko prestatuta, babes handiena eta efizientzia operatiboa bermatuz.',
       addToCart: 'Informazio Gehiago',
     },
-solutionsSection: {
+    solutionsSection: {
       eyebrow: 'Neurrira Egindako Soluzioak',
       title: 'Zure Ibilgailura Egokitzen den Segurtasuna',
       description: 'Auto pertsonaletatik flota komertzialetara, zure behar espezifikoetarako diseinatutako segurtasun soluzio bat dugu.',
@@ -410,6 +398,11 @@ solutionsSection: {
       title: 'Gidari eta Flota Kudeatzaileen Konfiantza',
       description: 'Ez fidatu bakarrik gure hitzarekin. Hona hemen gure bezero pozikek Vision360ia-ri buruz esaten dutena.',
     },
+    faqSection: {
+      eyebrow: 'Maiz Egindako Galderak',
+      title: 'Zure Galderak, Erantzunda',
+      description: 'Aurkitu gure produktuei, zerbitzuei eta ibilgailuen segurtasunari buruzko galdera ohikoenen erantzunak.',
+    },
     contactSection: {
       eyebrow: 'Jarri Harremanetan',
       title: 'Zure Berri Izatea Gustatuko Litzaiguke',
@@ -449,11 +442,6 @@ solutionsSection: {
         { id: 'sol2', vehicleType: 'Flota Komertziala', title: 'Flotaren Kudeaketa eta Segurtasun Osoa', description: 'Monitorizatu zure flota osoa denbora errealean. Optimizatu ibilbideak, gainbegiratu gidariaren portaera eta babestu zure aktibo baliotsuak lapurreta eta erabilera okerretatik gure flota soluzio integralarekin.', image: findImage('solution2'), features: ['Flotaren Jarraipena Zuzenean', 'Gidariaren Portaera Alertak', 'Geofencing eta Ibilbide Historia', 'Motorraren Urruneko Itzaltzea'] },
         { id: 'sol3', vehicleType: 'Motorrak', title: 'Motozikletentzako Babes Trinkoa eta sendoa', description: 'Babestu zure motorra gure jarraitzaile eta alarma diskretu, iragazgaitz eta bibrazio-erresistenteekin. Jaso berehalako alertak zure motorra mugitzen edo manipulatzen bada.', image: findImage('solution3'), features: ['Bibrazio-sentikor Alarma', 'GPS Unitate Iragazgaitza', 'Energia Kontsumo Baxua', 'Okertze eta Mugimendu Alertak'] },
     ],
-    newsArticles: [
-        { id: 'news1', title: 'Giltzarik Gabeko Autoen Lapurreten Gorakada eta Nola Prebenitu', date: '2023ko Urriaren 26a', excerpt: 'Giltzarik gabeko sarrera sistemak erosoak dira, baina goi-teknologiako auto lapurren olatu berri bati atea ireki diote. Ikasi nola funtzionatzen duten errele-erasoek eta zer egin dezakezun.', image: findImage('news1') },
-        { id: 'news2', title: 'Zergatik diren GPS Jarraitzaileak Ezinbestekoak Flota Kudeatzaileentzat', date: '2023ko Urriaren 15a', excerpt: 'Lapurreten berreskurapenaz haratago, GPS jarraitzaile modernoek eraginkortasuna hobetzeko, kostuak murrizteko eta segurtasuna handitzeko tresna sorta bat eskaintzen dute tamaina guztietako flota komertzialentzat.', image: findImage('news2') },
-        { id: 'news3', title: 'Ibilgailuen Segurtasunaren Etorkizuna: IA eta Analisi Prediktiboa', date: '2023ko Urriaren 5a', excerpt: 'Adimen artifiziala jada ez da zientzia-fikzioa. Ezagutu nola ari den IA ibilgailuen segurtasuna iraultzen mehatxuak gertatu aurretik aurreikusi eta prebenituz.', image: findImage('news3') },
-    ],
     testimonials: [
         { id: 'test1', quote: 'Vision360iaren sistemak lasaitasuna eman zidan. Nire kamioia edozein unetan eta lekutan berrikus dezaket. Instalazioa ezin hobea izan zen eta laguntza taldea zoragarria da!', author: 'Jon D., Kamioi Konpainiaren Jabea', avatar: findImage('avatar1') },
         { id: 'test2', quote: 'Autoan lapurreta egin zidaten ondoren, Aegis A5 alarma instalatu nuen. Segurtasun sentsazioak ez du preziorik. Hobeto lo egiten dut gauez nire autoa babestuta dagoela jakinda.', author: 'Sara K., Hiri Gidaria', avatar: findImage('avatar2') },
@@ -470,3 +458,5 @@ solutionsSection: {
 };
 
 export type Translation = typeof translations;
+
+    
