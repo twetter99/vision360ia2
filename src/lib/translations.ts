@@ -35,7 +35,7 @@ const baseTranslations = {
   productsSection: {
     eyebrow: 'Ventajas Clave',
     title: 'Tecnología Diseñada para Proteger tu Inversión',
-    description: 'Equipamos tus vehículos con hardware robusto y fiable, preparado para analizar cada ángulo y anticipar el peligro, garantizando la máxima protección y eficiencia operativa.',
+    description: 'Integramos hardware de vanguardia en tus vehículos: cámaras de alta definición y sensores robustos, procesados por algoritmos de IA, que analizan el entorno en tiempo real para anticipar peligros, eliminar puntos ciegos y garantizar una protección integral y eficiencia operativa superior.',
     addToCart: 'Más Información',
   },
   solutionsSection: {
@@ -163,7 +163,7 @@ export const translations = {
     testimonials: [
       { id: 'test1', quote: 'El sistema de Vision360ia me dio tranquilidad. Puedo revisar mi camión en cualquier momento y lugar. ¡La instalación fue perfecta y el equipo de soporte es fantástico!', author: 'Juan D., Propietario de Cía. de Camiones', avatar: findImage('avatar1')},
       { id: 'test2', quote: 'Después de que me robaran en el coche, instalé la alarma Aegis A5. La sensación de seguridad no tiene precio. Duermo mejor por la noche sabiendo que mi coche está protegido.', author: 'Sara K., Conductora Urbana', avatar: findImage('avatar2') },
-      { id: 'test3', quote: 'El rastreador GPS para mi motocicleta es increíble. Es tan pequeño y discreto, pero increíblemente potente. Recibí una alerta cuando alguien intentó moverla y pude detenerlos.', author: 'Miguel R., Entusiasta de las Motocicletas', avatar: findImage('avatar3') },
+      { id: 'test3', quote: 'El rastreador GPS para mi motocicleta es increíble. Es tan pequeño y discreto, pero increíblemente potente. Recibí una alerta cuando alguien intentó moverla y pude detenerlos.', author: 'Miguel R., Entusiasta de las Motocicletes', avatar: findImage('avatar3') },
     ],
     faqs: [
       { id: 'faq1', question: '¿Cuánto tiempo tarda la instalación?', answer: 'La instalación estándar para la mayoría de nuestros productos tarda entre 1 y 3 horas. Nuestros técnicos certificados aseguran una instalación limpia y profesional sin dañar el interior de tu vehículo.' },
@@ -206,7 +206,7 @@ export const translations = {
     productsSection: {
       eyebrow: 'Avantatges Clau',
       title: 'Tecnologia Dissenyada per Protegir la teva Inversió',
-      description: 'Equipem els teus vehicles amb maquinari robust i fiable, preparat per analitzar cada angle i anticipar el perill, garantint la màxima protecció i eficiència operativa.',
+      description: 'Integrem maquinari d\'avantguarda als teus vehicles: càmeres d\'alta definició i sensors robustos, processats per algoritmes d\'IA, que analitzen l\'entorn en temps real per anticipar perills, eliminar punts cecs i garantir una protecció integral i una eficiència operativa superior.',
       addToCart: 'Més Informació',
     },
     solutionsSection: {
@@ -347,7 +347,7 @@ export const translations = {
     productsSection: {
       eyebrow: 'Abantaila Nagusiak',
       title: 'Zure Inbertsioa Babesteko Diseinatutako Teknologia',
-      description: 'Zure ibilgailuak hardware sendo eta fidagarriarekin hornitzen ditugu, angelu guztiak aztertzeko eta arriskua aurreikusteko prestatuta, babes handiena eta efizientzia operatiboa bermatuz.',
+      description: 'Puntako hardwarea integratzen dugu zure ibilgailuetan: definizio altuko kamerak eta sentsore sendoak, IA algoritmoek prozesatuta, ingurunea denbora errealean aztertzen dutenak arriskuak aurreikusteko, puntu itsuak ezabatzeko eta babes integrala eta eraginkortasun operatibo handiagoa bermatzeko.',
       addToCart: 'Informazio Gehiago',
     },
     solutionsSection: {
@@ -440,7 +440,7 @@ export const translations = {
     solutions: [
         { id: 'sol1', vehicleType: 'Auto Pertsonalak', title: 'Segurtasun Osoa Zure Eguneroko Bidaiarako', description: 'Babestu zure autoa lapurreta eta sartzeetatik gure sistema integratuarekin, alarmak, immobilizadoreak eta GPS jarraipena barne. Gozatu zure ibilgailu pertsonala seguru dagoela jakitearen lasaitasunaz.', image: findImage('solution1'), features: ['Bolantearen Blokeoak', 'Immobilizadore Aurreratuak', 'Kristal Apurketa Sentoreak', '24/7 GPS Jarraipena'] },
         { id: 'sol2', vehicleType: 'Flota Komertziala', title: 'Flotaren Kudeaketa eta Segurtasun Osoa', description: 'Monitorizatu zure flota osoa denbora errealean. Optimizatu ibilbideak, gainbegiratu gidariaren portaera eta babestu zure aktibo baliotsuak lapurreta eta erabilera okerretatik gure flota soluzio integralarekin.', image: findImage('solution2'), features: ['Flotaren Jarraipena Zuzenean', 'Gidariaren Portaera Alertak', 'Geofencing eta Ibilbide Historia', 'Motorraren Urruneko Itzaltzea'] },
-        { id: 'sol3', vehicleType: 'Motorrak', title: 'Motozikletentzako Babes Trinkoa eta sendoa', description: 'Babestu zure motorra gure jarraitzaile eta alarma diskretu, iragazgaitz eta bibrazio-erresistenteekin. Jaso berehalako alertak zure motorra mugitzen edo manipulatzen bada.', image: findImage('solution3'), features: ['Bibrazio-sentikor Alarma', 'GPS Unitate Iragazgaitza', 'Energia Kontsumo Baxua', 'Okertze eta Mugimendu Alertak'] },
+        { id: 'sol3', vehicleType: 'Motorrak', title: 'Motorrentzako Babes Trinkoa eta sendoa', description: 'Babestu zure motorra gure jarraitzaile eta alarma diskretu, iragazgaitz eta bibrazio-erresistenteekin. Jaso berehalako alertak zure motorra mugitzen edo manipulatzen bada.', image: findImage('solution3'), features: ['Bibrazio-sentikor Alarma', 'GPS Unitate Iragazgaitza', 'Energia Kontsumo Baxua', 'Okertze eta Mugimendu Alertak'] },
     ],
     testimonials: [
         { id: 'test1', quote: 'Vision360iaren sistemak lasaitasuna eman zidan. Nire kamioia edozein unetan eta lekutan berrikus dezaket. Instalazioa ezin hobea izan zen eta laguntza taldea zoragarria da!', author: 'Jon D., Kamioi Konpainiaren Jabea', avatar: findImage('avatar1') },
@@ -459,4 +459,5 @@ export const translations = {
 
 export type Translation = typeof translations;
 
+    
     
