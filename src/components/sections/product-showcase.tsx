@@ -41,7 +41,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
                 <p className="flex-1 text-muted-foreground text-justify">{product.description}</p>
                 <ul className="mt-6 space-y-3 text-sm">
                   {product.specs.map((spec) => (
-                    <li key={spec} className="flex items-start gap-3">
+                    <li key={spec} className="flex items-start gap-3 text-justify">
                       <Check className="h-5 w-5 flex-shrink-0 text-green-500 mt-0.5" />
                       <span>{spec}</span>
                     </li>
