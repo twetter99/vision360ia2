@@ -35,8 +35,8 @@ export function AnimatedSection({
     <Component
       ref={ref}
       className={cn(
-        !isInView && 'opacity-0',
-        isInView && animationClass,
+        'opacity-0', // Always start as invisible
+        isInView && animationClass, // Apply animation class when in view
         className
       )}
       style={{
