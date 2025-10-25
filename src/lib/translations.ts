@@ -124,8 +124,8 @@ const baseTranslations = {
 
 const productSpecs = {
   prod1: {
-    name: 'Visión Periférica 360º',
-    description: 'Elimina los puntos ciegos con una cobertura total. La fusión de cámaras y radar ofrece una vista completa alrededor del vehículo, incluso en condiciones adversas.',
+    name: 'Visión total, control absoluto',
+    description: 'Fusiona imágenes de cámaras ultra gran angular para crear una vista cenital en tiempo real. Elimina puntos ciegos, mejora la maniobrabilidad y ofrece una visión nítida en todo momento, incluso en condiciones adversas.',
     specs: ['Cámaras HD de gran angular', 'Detección por radar de corto y largo alcance', 'Calibración automática', 'Resistencia a la intemperie (IP69K)'],
   },
   prod2: {
@@ -292,7 +292,7 @@ export const translations = {
         { href: '#contact', label: 'Contacte' },
     ],
     products: [
-        { id: 'prod1', name: 'Visió Perifèrica 360º', description: 'Elimina els punts cecs amb una cobertura total. La fusió de càmeres i radar ofereix una vista completa al voltant del vehicle, fins i tot en condicions adverses.', price: 'Benefici', image: findImage('product1'), specs: ['Càmeres HD de gran angular', 'Detecció per radar de curt i llarg abast', 'Calibratge automàtic', 'Resistència a la intempèrie (IP69K)'] },
+        { id: 'prod1', name: 'Visió total, control absolut', description: 'Fusiona imatges de càmeres ultra gran angular per crear una vista zenital en temps real. Elimina punts cecs, millora la maniobrabilitat i ofereix una visió nítida en tot moment, fins i tot en condicions adverses.', price: 'Benefici', image: findImage('product1'), specs: ['Càmeres HD de gran angular', 'Detecció per radar de curt i llarg abast', 'Calibratge automàtic', 'Resistència a la intempèrie (IP69K)'] },
         { id: 'prod2', name: 'Alertes Proactives a la Cabina', description: 'Anticipa\'t al risc. El sistema avisa el conductor amb alertes visuals i sonores de col·lisions potencials, sortides de carril i vianants propers.', price: 'Benefici', image: findImage('product2'), specs: ['Alertes de col·lisió frontal (FCW)', 'Avís de sortida de carril (LDW)', 'Detecció de vianants i ciclistes', 'Interfície de conductor intuïtiva'] },
         { id: 'prod3', name: 'Anàlisi IA i Informes', description: 'Transforma dades en decisions. La nostra IA analitza patrons de conducció i esdeveniments de risc per generar informes que t\'ajuden a reduir costos i millorar la seguretat.', price: 'Benefici', image: findImage('product3'), specs: ['Anàlisi del comportament del conductor', 'Reconstrucció d\'esdeveniments crítics', 'Panell de control per a gestors de flota', 'Integració via API'] },
     ],
@@ -433,7 +433,7 @@ export const translations = {
         { href: '#contact', label: 'Kontaktua' },
     ],
     products: [
-        { id: 'prod1', name: '360º-ko Ikuspegi Periferikoa', description: 'Puntu itsuak ezabatu estaldura osoarekin. Kameren eta radarren bat-egiteak ibilgailuaren inguruko ikuspegi osoa eskaintzen du, baita baldintza txarretan ere.', price: 'Abantaila', image: findImage('product1'), specs: ['Angelu zabaleko HD kamerak', 'Irismen labur eta luzeko radar bidezko detekzioa', 'Kalibrazio automatikoa', 'Eguraldiarekiko erresistentzia (IP69K)'] },
+        { id: 'prod1', name: 'Ikuspegi osoa, kontrol absolutua', description: 'Angelu ultra zabaleko kameren irudiak fusionatzen ditu denbora errealean goitiko ikuspegia sortzeko. Puntu itsuak ezabatzen ditu, maniobrabilitatea hobetzen du eta uneoro ikuspegi garbia eskaintzen du, baita baldintza txarretan ere.', price: 'Abantaila', image: findImage('product1'), specs: ['Angelu zabaleko HD kamerak', 'Irismen labur eta luzeko radar bidezko detekzioa', 'Kalibrazio automatikoa', 'Eguraldiarekiko erresistentzia (IP69K)'] },
         { id: 'prod2', name: 'Alerta Proaktiboak Kabinan', description: 'Arriskuari aurrea hartu. Sistemak gidariari talka potentzialen, erreitik irteteen eta hurbileko oinezkoen abisu bisual eta soinudunak ematen dizkio.', price: 'Abantaila', image: findImage('product2'), specs: ['Aurreko talka-alertak (FCW)', 'Erreitik irteteko abisua (LDW)', 'Oinezkoen eta txirrindularien detekzioa', 'Gidariarentzako interfaze intuitiboa'] },
         { id: 'prod3', name: 'IA Analisia eta Txostenak', description: 'Datuak erabaki bihurtu. Gure IA-k gidatze-ereduak eta arrisku-gertaerak aztertzen ditu, kostuak murrizten eta segurtasuna hobetzen laguntzen dizuten txostenak sortzeko.', price: 'Abantaila', image: findImage('product3'), specs: ['Gidariaren portaeraren analisia', 'Gertaera kritikoen berreraikitzea', 'Flota-kudeatzaileentzako aginte-panela', 'API bidezko integrazioa'] },
     ],
