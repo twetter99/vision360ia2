@@ -149,8 +149,16 @@ const productSpecs = {
   },
   prod3: {
     name: 'Análisis IA y Reportes',
-    description: 'Transforma datos en decisiones. Nuestra IA analiza patrones de conducción y eventos de riesgo para generar informes que te ayudan a reducir costes y mejorar la seguridad.',
-    specs: ['Análisis del comportamiento del conductor', 'Reconstrucción de eventos críticos', 'Panel de control para gestores de flota', 'Integración vía API'],
+    description: 'La Plataforma de Análisis de Flota con IA transforma los datos telemáticos en información estratégica para la toma de decisiones. Mediante algoritmos avanzados de inteligencia artificial y aprendizaje automático, analiza patrones de conducción, eventos críticos y comportamientos de riesgo, generando informes precisos y personalizables. Esta herramienta ofrece una visión integral del rendimiento operativo de cada vehículo y conductor, ayudando a optimizar rutas, reducir costes de combustible y mantenimiento, y a promover una cultura de conducción más segura y eficiente.',
+    specs: [
+      'Evaluación continua y scoring del comportamiento del conductor.',
+      'Reconstrucción detallada de eventos críticos, incluyendo vídeo.',
+      'Panel de control web para gestores de flota con KPIs en tiempo real.',
+      'Informes personalizables y exportables.',
+      'Integración mediante API con plataformas de gestión de flotas (FMS).',
+      'Procesamiento en la nube con modelos IA para análisis predictivo.',
+      'Cumplimiento de estándares de seguridad y privacidad de datos (GDPR).'
+    ],
   },
 };
 
@@ -306,9 +314,9 @@ export const translations = {
         { href: '#contact', label: 'Contacte' },
     ],
     products: [
-      { id: 'prod1', price: 'Benefici', image: findImage('product1'), name: 'Visió total, control absolut', description: 'Vision360ia elimina els punts cecs i ofereix control total de l\'entorn. Mitjançant la fusió intel·ligent de càmeres HD ultra gran angular (>180°), genera una vista zenital unificada en temps real. La seva ECU dedicada processa i compon la imatge amb màxima precisió per mostrar al monitor de cabina una visualització contínua, nítida i estable, fins i tot amb pluja, pols o baixa lluminositat. Integració ràpida i configurable per a qualsevol tipus de vehicle.', specs: ['Seguretat superior: sense punts cecs i major percepció situacional.', 'Maniobres més àgils: aparcaments, girs i acoblaments amb més precisió.', 'Menys incidents: redueix cops, temps morts i costos associats.', 'Calibratge automàtic i perfil configurable per model de vehicle.', 'Grau industrial IP69K, resistent a intempèrie, pols i vibracions.'] },
-      { id: 'prod2', price: 'Benefici', image: findImage('product2'), name: 'Assistència Proactiva al Conductor amb IA', description: 'El sistema d\'Assistència Proactiva al Conductor amb IA eleva la seguretat activa del vehicle mitjançant la detecció primerenca de riscos. Basat en algoritmes de visió artificial i anàlisi predictiva, aquest mòdul ADAS supervisa constantment l\'entorn del vehicle i emet alertes visuals i sonores a la cabina davant de possibles situacions de perill. El sistema detecta i notifica risc de col·lisió frontal (FCW), sortides involuntàries de carril (LDW) i la presència de vianants o ciclistes (VRU) en zones de risc. La seva interfície intuïtiva i configurable facilita la interpretació de les alertes, permetent al conductor reaccionar de forma immediata.', specs: ['Alertes de col·lisió frontal (FCW) amb diferents nivells d\'urgència.', 'Avís de sortida de carril (LDW) i assistent de manteniment de trajectòria.', 'Detecció intel·ligent de vianants i ciclistes (VRU) mitjançant IA.', 'Interfície de conductor configurable (alertes visuals i acústiques).', 'Integració opcional amb sistemes de frenada automàtica i ADAS.', 'Processament en ECU dedicada per a resposta en mil·lisegons.', 'Operativitat garantida en condicions adverses.'] },
-      { id: 'prod3', price: 'Benefici', image: findImage('product3'), name: 'Anàlisi IA i Informes', description: 'Transforma dades en decisions. La nostra IA analitza patrons de conducció i esdeveniments de risc per generar informes que t\'ajuden a reduir costos i millorar la seguretat.', specs: ['Anàlisi del comportament del conductor', 'Reconstrucció d\'esdeveniments crítics', 'Panell de control per a gestors de flota', 'Integració via API'] },
+      { id: 'prod1', price: 'Benefici', image: findImage('product1'), ...productSpecs.prod1 },
+      { id: 'prod2', price: 'Benefici', image: findImage('product2'), ...productSpecs.prod2 },
+      { id: 'prod3', price: 'Benefici', image: findImage('product3'), ...productSpecs.prod3 },
     ],
     solutions: [
         { id: 'sol1', vehicleType: 'Cotxes Personals', title: 'Seguretat Completa pel Teu Viatge Diari', description: 'Protegeix el teu cotxe contra robatoris i intrusions amb el nostre sistema integrat que inclou alarmes, immobilitzadors i seguiment GPS. Gaudeix de la tranquil·litat de saber que el teu vehicle personal està segur.', image: findImage('solution1'), features: ['Bloquejos de Volant', 'Immobilitzadors Avançats', 'Sensors de Trencament de Vidre', 'Seguiment GPS 24/7'] },
@@ -447,9 +455,9 @@ export const translations = {
         { href: '#contact', label: 'Kontaktua' },
     ],
     products: [
-      { id: 'prod1', price: 'Abantaila', image: findImage('product1'), name: 'Ikuspegi osoa, kontrol absolutua', description: 'Vision360ia-k puntu itsuak ezabatzen ditu eta ingurunearen kontrol osoa eskaintzen du. HD angelu ultra zabaleko (>180°) kameren fusio adimentsuaren bidez, denbora errealeko ikuspegi zenital bateratua sortzen du. Bere ECU dedikatuak irudia doitasun handienarekin prozesatu eta osatzen du kabinako monitorean ikuspegi jarraitu, garbi eta egonkorra erakusteko, baita euria, hautsa edo argi gutxirekin ere. Edozein ibilgailu motarako integrazio azkarra eta konfiguragarria.', specs: ['Segurtasun handiagoa: puntu itsurik gabe eta pertzepzio situazional handiagoa.', 'Maniobra arinagoak: aparkalekuak, birak eta akoplamenduak doitasun handiagoz.', 'Gorabehera gutxiago: kolpeak, geldialdiak eta lotutako kostuak murrizten ditu.', 'Kalibrazio automatikoa eta profil konfiguragarria ibilgailu eredu bakoitzeko.', 'IP69K industria-maila, eguraldiari, hautsari eta bibrazioei erresistentea.'] },
-      { id: 'prod2', price: 'Abantaila', image: findImage('product2'), name: 'Gidariari Laguntza Proaktiboa IA-rekin', description: 'Gidariari Laguntza Proaktiboa emateko sistemak IA-rekin ibilgailuaren segurtasun aktiboa areagotzen du arriskuen detekzio goiztiarraren bidez. Ikusmen artifizialeko eta analisi prediktiboko algoritmoetan oinarrituta, ADAS modulu honek etengabe gainbegiratzen du ibilgailuaren ingurunea eta kabinan abisu bisualak eta soinudunak ematen ditu arrisku egoera posibleen aurrean. Sistemak aurreko talka arriskua (FCW), erreitik nahi gabe ateratzeak (LDW) eta oinezkoen edo txirrindularien presentzia (VRU) detektatzen eta jakinarazten du arrisku-eremuetan. Bere interfaze intuitibo eta konfiguragarriak alertak interpretatzea errazten du, gidariari berehala erreakzionatzeko aukera emanez.', specs: ['Aurreko talka-alertak (FCW) premia-maila desberdinekin.', 'Erreitik irteteko abisua (LDW) eta ibilbidea mantentzeko laguntzailea.', 'Oinezkoen eta txirrindularien detekzio adimenduna (VRU) IA bidez.', 'Gidariaren interfaze konfiguragarria (abisu bisualak eta akustikoak).', 'Aukerako integrazioa balaztatze automatikoko sistemekin eta ADASekin.', 'Prozesamendua ECU dedikatuan milisegundotan erantzuteko.', 'Funtzionamendu bermatua baldintza kaltegarrietan.'] },
-      { id: 'prod3', price: 'Abantaila', image: findImage('product3'), name: 'IA Analisia eta Txostenak', description: 'Datuak erabaki bihurtu. Gure IA-k gidatze-ereduak eta arrisku-gertaerak aztertzen ditu, kostuak murrizten eta segurtasuna hobetzen laguntzen dizuten txostenak sortzeko.', specs: ['Gidariaren portaeraren analisia', 'Gertaera kritikoen berreraikitzea', 'Flota-kudeatzaileentzako aginte-panela', 'API bidezko integrazioa'] },
+      { id: 'prod1', price: 'Abantaila', image: findImage('product1'), ...productSpecs.prod1 },
+      { id: 'prod2', price: 'Abantaila', image: findImage('product2'), ...productSpecs.prod2 },
+      { id: 'prod3', price: 'Abantaila', image: findImage('product3'), ...productSpecs.prod3 },
     ],
     solutions: [
         { id: 'sol1', vehicleType: 'Auto Pertsonalak', title: 'Segurtasun Osoa Zure Eguneroko Bidaiarako', description: 'Babestu zure autoa lapurreta eta sartzeetatik gure sistema integratuarekin, alarmak, immobilizadoreak eta GPS jarraipena barne. Gozatu zure ibilgailu pertsonala seguru dagoela jakitearen lasaitasunaz.', image: findImage('solution1'), features: ['Bolantearen Blokeoak', 'Immobilizadore Aurreratuak', 'Kristal Apurketa Sentoreak', '24/7 GPS Jarraipena'] },
