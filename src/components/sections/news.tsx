@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { SectionWrapper } from '../shared/section-wrapper';
@@ -9,12 +10,12 @@ import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
 import { AnimatedSection } from '../shared/animated-section';
+import type { NewsArticle } from '@/services/cms';
 
-export function News({ translations: initialTranslations }: { translations: Translation['es'] }) {
+export function News({ newsArticles, translations: initialTranslations }: { newsArticles: NewsArticle[], translations: Translation['es'] }) {
   const { translations } = useLanguage();
   const t = translations.newsSection || initialTranslations.newsSection;
-  const newsArticles = translations.newsArticles || initialTranslations.newsArticles;
-
+  
   return (
     <SectionWrapper id="news" className="bg-card">
       <SectionHeading
