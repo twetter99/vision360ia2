@@ -23,7 +23,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
       />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product, index) => (
-          <AnimatedSection key={product.id} animation="slide-up" delay={index * 0.1}>
+          <AnimatedSection key={product.id} animation="slide-up" delay={index * 0.22}>
             <Card className="flex h-full flex-col overflow-hidden rounded-xl border-border/50 bg-card shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
               <CardHeader className="p-0">
                 <div className="aspect-h-9 aspect-w-16 relative">

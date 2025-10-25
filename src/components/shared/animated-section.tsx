@@ -24,7 +24,7 @@ export function AnimatedSection({
   once = true,
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once, rootMargin: '0px 0px -100px 0px' });
+  const isInView = useInView(ref, { once, rootMargin: '0px 0px -20% 0px', threshold: 0.25 });
 
   const animationClass = {
     'fade-in': 'animate-fade-in',
