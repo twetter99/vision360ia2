@@ -38,7 +38,7 @@ export function WhyUs({
   const cards = translations.whyWinfinCards || initialTranslations.whyWinfinCards;
 
   return (
-    <SectionWrapper id="why-winfin" className="bg-card">
+    <SectionWrapper id="why-winfin" className="bg-card" lang={language}>
       <div className="mx-auto max-w-7xl">
         <AnimatedSection animation="fade-in" delay={0.1}>
           <div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
@@ -46,7 +46,7 @@ export function WhyUs({
               <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl [text-wrap:balance]">
                 {t.title}
               </h2>
-              <p className="mt-4 max-w-prose text-lg text-muted-foreground text-justify leading-relaxed tracking-normal" lang={language}>
+              <p className="mt-4 max-w-prose text-lg text-muted-foreground text-justify leading-relaxed tracking-normal">
                 {t.description}
               </p>
             </div>
@@ -80,13 +80,13 @@ export function WhyUs({
                         <Icon className="h-6 w-6" aria-hidden="true" />
                       </div>
                     )}
-                    <CardTitle className="font-headline text-xl font-bold">
+                    <CardTitle className="font-headline text-xl font-bold [text-wrap:balance]">
                       {card.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 pt-0">
                     <p
-                      className="text-muted-foreground text-justify"
+                      className="text-left leading-relaxed tracking-normal text-muted-foreground"
                       lang={language}
                       dangerouslySetInnerHTML={{ __html: card.text }}
                     />
