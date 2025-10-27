@@ -7,6 +7,7 @@ import { ProductShowcase } from '@/components/sections/product-showcase';
 import { SolutionsOverview } from '@/components/sections/solutions-overview';
 import { Testimonials } from '@/components/sections/testimonials';
 import { ThreatAnalysis } from '@/components/sections/threat-analysis';
+import { WhyUs } from '@/components/sections/why-us';
 import { translations } from '@/lib/translations';
 import { getNewsArticles } from '@/services/cms';
 import { Metadata } from 'next';
@@ -24,6 +25,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col">
       <Hero translations={defaultTranslations} />
+      <WhyUs translations={defaultTranslations} />
       <ProductShowcase translations={defaultTranslations} />
       <SolutionsOverview translations={defaultTranslations} />
       <ThreatAnalysis translations={defaultTranslations} />

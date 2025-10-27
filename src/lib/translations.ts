@@ -121,6 +121,12 @@ const baseTranslations = {
     confirm: 'Sí, cambiar',
     dismiss: 'No, gracias',
   },
+  whyWinfinSection: {
+    title: '¿Por qué elegir WINFIN?',
+    description: 'Nuestro liderazgo en sistemas tecnológicos para el transporte se basa en décadas de experiencia, innovación constante y compromiso con la calidad en cada proyecto.',
+    aboutUsButton: 'Quiénes somos',
+    aboutUsAriaLabel: 'Leer más sobre quiénes somos',
+  },
 };
 
 const productSpecs = {
@@ -167,6 +173,34 @@ const productSpecs = {
   },
 };
 
+const whyWinfinCardsData = [
+  {
+    id: 'experience',
+    icon: 'Users',
+    title: 'Experiencia',
+    text: 'Más de 20 años en instalación y mantenimiento de sistemas embarcados en buses, trenes y flotas industriales. <strong>+2.000 vehículos equipados</strong>.',
+  },
+  {
+    id: 'trust',
+    icon: 'Handshake',
+    title: 'Confianza',
+    text: 'Colaboramos con integradoras como <strong>Indra, GMV y Etra</strong>, y operadores como <strong>EMT Madrid, CRTM, ATM Barcelona y Lurraldebus</strong>.',
+  },
+  {
+    id: 'innovation',
+    icon: 'BrainCircuit',
+    title: 'Innovación',
+    text: 'Soluciones basadas en <strong>IoT, Big Data e IA</strong>: <strong>Vision360IA</strong> y <strong>Afluencia360</strong> para seguridad, eficiencia y sostenibilidad.',
+  },
+  {
+    id: 'custom-solutions',
+    icon: 'Lightbulb',
+    title: 'Soluciones a medida',
+    text: 'Integración de CCTV, routers embarcados y analítica predictiva, con soporte técnico continuo y máxima interoperabilidad.',
+  },
+];
+
+
 export const translations = {
   es: {
     ...baseTranslations,
@@ -177,6 +211,7 @@ export const translations = {
       { href: '#faq', label: 'FAQs' },
       { href: '#contact', label: 'Contacto' },
     ],
+    whyWinfinCards: whyWinfinCardsData,
     products: [
       { id: 'prod1', price: 'Beneficio', image: findImage('product1'), ...productSpecs.prod1 },
       { id: 'prod2', price: 'Beneficio', image: findImage('product2'), ...productSpecs.prod2 },
@@ -411,6 +446,38 @@ export const translations = {
         confirm: 'Sí, canvia',
         dismiss: 'No, gràcies',
     },
+    whyWinfinSection: {
+      title: 'Per què triar WINFIN?',
+      description: 'El nostre lideratge en sistemes tecnològics per al transport es basa en dècades d’experiència, innovació constant i compromís amb la qualitat en cada projecte.',
+      aboutUsButton: 'Qui som',
+      aboutUsAriaLabel: 'Llegir més sobre qui som',
+    },
+    whyWinfinCards: [
+      {
+        id: 'experience',
+        icon: 'Users',
+        title: 'Experiència',
+        text: 'Més de 20 anys en instal·lació i manteniment de sistemes embarcats en busos, trens i flotes industrials. <strong>+2.000 vehicles equipats</strong>.',
+      },
+      {
+        id: 'trust',
+        icon: 'Handshake',
+        title: 'Confiança',
+        text: 'Col·laborem amb integradores com <strong>Indra, GMV i Etra</strong>, i operadors com <strong>EMT Madrid, CRTM, ATM Barcelona i Lurraldebus</strong>.',
+      },
+      {
+        id: 'innovation',
+        icon: 'BrainCircuit',
+        title: 'Innovació',
+        text: 'Solucions basades en <strong>IoT, Big Data i IA</strong>: <strong>Vision360IA</strong> i <strong>Afluencia360</strong> per a seguretat, eficiència i sostenibilitat.',
+      },
+      {
+        id: 'custom-solutions',
+        icon: 'Lightbulb',
+        title: 'Solucions a mida',
+        text: 'Integració de CCTV, routers embarcats i analítica predictiva, amb suport tècnic continu i màxima interoperabilitat.',
+      },
+    ],
     navigationLinks: [
         { href: '#products', label: 'Beneficis' },
         { href: '#solutions', label: 'Casos d\'Ús' },
@@ -661,6 +728,38 @@ export const translations = {
         confirm: 'Bai, aldatu',
         dismiss: 'Ez, eskerrik asko',
     },
+    whyWinfinSection: {
+      title: 'Zergatik aukeratu WINFIN?',
+      description: 'Garraiorako sistema teknologikoetan dugun lidergoa hamarkadetako esperientzian, etengabeko berrikuntzan eta proiektu bakoitzean kalitatearekin dugun konpromisoan oinarritzen da.',
+      aboutUsButton: 'Nor gara',
+      aboutUsAriaLabel: 'Nor garenari buruz gehiago irakurri',
+    },
+    whyWinfinCards: [
+      {
+        id: 'experience',
+        icon: 'Users',
+        title: 'Esperientzia',
+        text: '20 urte baino gehiago autobusetan, trenetan eta flota industrialetan barneratutako sistemak instalatzen eta mantentzen. <strong>+2.000 ibilgailu hornituta</strong>.',
+      },
+      {
+        id: 'trust',
+        icon: 'Handshake',
+        title: 'Konfiantza',
+        text: '<strong>Indra, GMV eta Etra</strong> bezalako integratzaileekin, eta <strong>EMT Madrid, CRTM, ATM Barcelona eta Lurraldebus</strong> bezalako operadoreekin lan egiten dugu.',
+      },
+      {
+        id: 'innovation',
+        icon: 'BrainCircuit',
+        title: 'Berrikuntza',
+        text: '<strong>IoT, Big Data eta IA</strong>n oinarritutako soluzioak: <strong>Vision360IA</strong> eta <strong>Afluencia360</strong> segurtasunerako, eraginkortasunerako eta iraunkortasunerako.',
+      },
+      {
+        id: 'custom-solutions',
+        icon: 'Lightbulb',
+        title: 'Neurrirako soluzioak',
+        text: 'CCTV, barneratutako routerrak eta analisi prediktiboaren integrazioa, etengabeko laguntza teknikoarekin eta interoperabilitate gorenarekin.',
+      },
+    ],
     navigationLinks: [
         { href: '#products', label: 'Onurak' },
         { href: '#solutions', label: 'Erabilera-kasuak' },
