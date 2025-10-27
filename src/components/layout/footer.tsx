@@ -1,8 +1,9 @@
 'use client';
 import Link from 'next/link';
-import { Shield, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Twitter, Linkedin, Facebook } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/hooks/use-language';
+import { BrandLogo } from '../brand/BrandLogo';
 
 export function Footer() {
   const { translations } = useLanguage();
@@ -21,10 +22,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:grid-cols-5">
           <div className="flex flex-col items-start gap-4 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2">
-              <Shield className="h-8 w-8 text-primary" />
-              <span className="font-headline text-2xl font-bold text-primary">
-                Vision360ia
-              </span>
+              <BrandLogo className="h-7 w-auto" />
             </Link>
             <p className="max-w-xs text-muted-foreground text-justify">
               {t.tagline}

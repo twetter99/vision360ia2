@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, Shield } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -11,6 +11,7 @@ import { useLanguage } from '@/hooks/use-language';
 import { LanguageBanner } from './language-banner';
 import { CataloniaFlag, SpainFlag, BasqueCountryFlag } from './flags';
 import { usePathname } from 'next/navigation';
+import { BrandLogo } from '../brand/BrandLogo';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,10 +63,7 @@ export function Header() {
       >
         <div className="container flex h-16 items-center">
           <Link href="/" className="mr-6 flex items-center gap-2">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="font-headline text-lg font-bold text-primary">
-              Vision360ia
-            </span>
+            <BrandLogo className="h-8 w-auto md:h-10" priority />
           </Link>
           <nav className="hidden items-center gap-6 text-sm md:flex">
             {navigationLinks.map((link) => (
