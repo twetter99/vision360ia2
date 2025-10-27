@@ -146,11 +146,11 @@ const baseTranslations = {
         title: 'Qué Hacemos',
         text: 'Ofrecemos un ecosistema completo de soluciones tecnológicas para el transporte.',
       },
-      cta: {
-        title: '¿Listo para transformar tu flota?',
-        text: 'Hablemos de cómo nuestras soluciones pueden adaptarse a tus necesidades específicas.',
-        button: 'Solicitar Propuesta',
-      },
+    },
+    cta: {
+      title: '¿Listo para transformar tu flota?',
+      text: 'Hablemos de cómo nuestras soluciones pueden adaptarse a tus necesidades específicas.',
+      button: 'Solicitar Propuesta',
     },
   },
 };
@@ -498,11 +498,11 @@ export const translations = {
           title: 'Què Fem',
           text: 'Oferim un ecosistema complet de solucions tecnològiques per al transport.',
         },
-        cta: {
-          title: 'A punt per transformar la teva flota?',
-          text: 'Parlem de com les nostres solucions es poden adaptar a les teves necessitats específiques.',
-          button: 'Sol·licitar Proposta',
-        },
+      },
+      cta: {
+        title: 'A punt per transformar la teva flota?',
+        text: 'Parlem de com les nostres solucions es poden adaptar a les teves necessitats específiques.',
+        button: 'Sol·licitar Proposta',
       },
     },
     whyWinfinCards: [
@@ -807,11 +807,11 @@ export const translations = {
           title: 'Zer Egiten Dugu',
           text: 'Garraiorako soluzio teknologikoen ekosistema osoa eskaintzen dugu.',
         },
-        cta: {
-          title: 'Zure flota eraldatzeko prest?',
-          text: 'Hitz egin dezagun gure soluzioak zure behar espezifikoetara nola egokitu daitezkeen.',
-          button: 'Proposamena Eskatu',
-        },
+      },
+      cta: {
+        title: 'Zure flota eraldatzeko prest?',
+        text: 'Hitz egin dezagun gure soluzioak zure behar espezifikoetara nola egokitu daitezkeen.',
+        button: 'Proposamena Eskatu',
       },
     },
     whyWinfinCards: [

@@ -4,14 +4,14 @@ import { translations } from '@/lib/translations';
 import Image from 'next/image';
 import { findImage } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, BarChart, CheckCircle, Cpu, HardHat, PenTool, ShieldCheck, Wifi, Award, Map, Users, Clock, Briefcase } from 'lucide-react';
+import { ArrowRight, BarChart, CheckCircle, Cpu, HardHat, ShieldCheck, Wifi, Award, Briefcase, Clock, Users } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SectionWrapper } from '@/components/shared/section-wrapper';
 import { AnimatedSection } from '@/components/shared/animated-section';
 
 export const metadata: Metadata = {
-  title: 'Quiénes somos | WINFIN',
+  title: 'Quiénes somos | Vision360ia',
   description: 'Conoce la experiencia de más de 20 años de WINFIN en sistemas tecnológicos para el transporte, nuestra misión, visión y compromiso con la innovación.',
 };
 
