@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "hero",
-      "description": "Abstract futuristic car dashboard",
-      "imageUrl": "https://images.unsplash.com/photo-1661029332138-3c653337a979?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmdXR1cmlzdGljJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2MTMzMzczOHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "futuristic dashboard"
+      "description": "futuristic ADAS interface for vehicle safety",
+      "imageUrl": "https://images.unsplash.com/photo-1633334961772-3f32f3a6b3a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhZHZhbmNlZCUyMGRhc2hib2FyZCUyMGF1dG9tb3RpdmV8ZW58MHx8fHwxNzE4NzIwNzM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "automotive interface"
     },
     {
       "id": "product1",

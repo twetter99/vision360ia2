@@ -1,11 +1,12 @@
 'use client';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, PlayCircle } from 'lucide-react';
+import { ArrowRight, PlayCircle, ShieldCheck, Cpu, GitMerge } from 'lucide-react';
 import { heroData } from '@/lib/data';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
 import { AnimatedSection } from '../shared/animated-section';
+import { Badge } from '@/components/ui/badge';
 
 export function Hero({ translations: initialTranslations }: { translations: Translation['es'] }) {
   const { translations } = useLanguage();
@@ -13,7 +14,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
   const heroImage = heroData.image;
 
   return (
-    <section className="relative h-screen min-h-[750px] w-full overflow-hidden">
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col justify-center items-center py-20">
       <div className="absolute inset-0">
         <Image
           src={heroImage.imageUrl}
@@ -23,8 +24,8 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           data-ai-hint={heroImage.imageHint}
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-primary/20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/40 to-transparent" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
@@ -47,6 +48,33 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
               <PlayCircle className="mr-2 h-5 w-5" />
               {t.secondaryCta}
             </Button>
+          </div>
+
+          <div className="mt-12 flex flex-col items-center gap-6">
+            <div className="flex flex-wrap justify-center gap-4">
+              <Badge variant="secondary" className="gap-2 border-transparent bg-white/20 px-4 py-1.5 text-sm text-white backdrop-blur-sm">
+                <ShieldCheck className="h-4 w-4 text-green-400" />
+                <span>IP69K</span>
+              </Badge>
+              <Badge variant="secondary" className="gap-2 border-transparent bg-white/20 px-4 py-1.5 text-sm text-white backdrop-blur-sm">
+                <Cpu className="h-4 w-4 text-blue-400" />
+                <span>IA ADAS</span>
+              </Badge>
+              <Badge variant="secondary" className="gap-2 border-transparent bg-white/20 px-4 py-1.5 text-sm text-white backdrop-blur-sm">
+                <GitMerge className="h-4 w-4 text-purple-400" />
+                <span>Integración CAN/FMS</span>
+              </Badge>
+            </div>
+            
+            <div className="mt-6 text-center">
+              <p className="text-sm text-primary-foreground/70">{t.trustedBy}</p>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-75">
+                <p className="font-headline text-xl font-semibold text-white">TRANSCO</p>
+                <p className="font-headline text-xl font-semibold text-white">LogiMove</p>
+                <p className="font-headline text-xl font-semibold text-white">URBAN-X</p>
+                <p className="font-headline text-xl font-semibold text-white">FleetMax</p>
+              </div>
+            </div>
           </div>
         </AnimatedSection>
       </div>

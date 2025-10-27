@@ -29,8 +29,9 @@ const baseTranslations = {
     title: 'Control 360° con IA: Reduce Riesgos, Maximiza Eficiencia.',
     subtitle: '-40% de incidentes en flotas en 6 meses.',
     description: 'Cada día, tu flota se enfrenta a lo imprevisible. Con Vision360IA, tus vehículos ven más allá: detectan riesgos, anticipan colisiones y convierten datos en seguridad activa. Tecnología ADAS potenciada por IA, diseñada para proteger lo que más importa: tu equipo y tus activos.',
-    mainCta: 'Solicita una Demo',
-    secondaryCta: 'Ver Casos de Uso',
+    mainCta: 'Solicita demo',
+    secondaryCta: 'Ver vídeo 60s',
+    trustedBy: 'Con la confianza de las principales flotas',
   },
   productsSection: {
     eyebrow: 'Ventajas Clave',
@@ -41,7 +42,7 @@ const baseTranslations = {
   solutionsSection: {
     eyebrow: 'Soluciones a Medida',
     title: 'Seguridad que se Adapta a tu Vehículo',
-    description: 'Nuestras soluciones avanzadas de visión 360° y asistencia al conductor (ADAS) se adaptan a las particularidades de cada tipo de vehículo —desde turismos y autobuses hasta maquinaria industrial y pesada— proporcionando una cobertura visual completa y una detección inteligente del entorno. Diseñadas para mejorar la seguridad, la eficiencia operativa y la toma de decisiones, nuestras tecnologías integran visión artificial, análisis predictivo e inteligencia artificial, ofreciendo una protección activa y una conducción más segura en cualquier entorno.',
+    description: 'Nuestras soluciones avanzadas de visión 360° y asistencia al conductor (ADAS) se adaptan a las particularidades de cada tipo de vehículo —desde turismos y autobuses hasta maquinaria industrial y pesada— proporcionando una cobertura visual completa y una detección inteligente del entorno.\nDiseñadas para mejorar la seguridad, la eficiencia operativa y la toma de decisiones, nuestras tecnologías integran visión artificial, análisis predictivo e inteligencia artificial, ofreciendo una protección activa y una conducción más segura en cualquier entorno.',
     learnMore: 'Saber Más',
   },
   aiAnalysisSection: {
@@ -291,8 +292,9 @@ export const translations = {
       title: 'Control 360° amb IA: Redueix Riscos, Maximitza Eficiència.',
       subtitle: '-40% d\'incidents en flotes en 6 mesos.',
       description: 'Cada dia, la teva flota s\'enfronta a l\'imprevisible. Amb Vision360IA, els teus vehicles veuen més enllà: detecten riscos, anticipen col·lisions i converteixen dades en seguretat activa. Tecnologia ADAS potenciada per IA, dissenyada per protegir el que més importa: el teu equip i els teus actius.',
-      mainCta: 'Sol·licita una Demo',
-      secondaryCta: 'Veure Casos d\'Ús',
+      mainCta: 'Sol·licita demo',
+      secondaryCta: 'Veure vídeo 60s',
+      trustedBy: 'Amb la confiança de les principals flotes',
     },
     footer: {
         ...baseTranslations.footer,
@@ -322,7 +324,7 @@ export const translations = {
         ...baseTranslations.solutionsSection,
         eyebrow: 'Solucions a Mida',
         title: 'Seguretat que s\'Adapta al teu Vehicle',
-        description: 'Les nostres solucions avançades de visió 360° i assistència al conductor (ADAS) s\'adapten a les particularitats de cada tipus de vehicle —des de turismes i autobusos fins a maquinària industrial i pesada— proporcionant una cobertura visual completa i una detecció intel·ligent de l\'entorn. Dissenyades per millorar la seguretat, l\'eficiència operativa i la presa de decisions, les nostres tecnologies integren visió artificial, anàlisi predictiva i intel·ligència artificial, oferint una protecció activa i una conducció més segura en qualsevol entorn.',
+        description: 'Les nostres solucions avançades de visió 360° i assistència al conductor (ADAS) s\'adapten a les particularitats de cada tipus de vehicle —des de turismes i autobusos fins a maquinària industrial i pesada— proporcionant una cobertura visual completa i una detecció intel·ligent de l\'entorn.\nDissenyades per millorar la seguretat, l\'eficiència operativa i la presa de decisions, les nostres tecnologies integren visió artificial, anàlisi predictiva i intel·ligència artificial, oferint una protecció activa i una conducció més segura en qualsevol entorn.',
         learnMore: 'Saber Més',
     },
     aiAnalysisSection: {
@@ -540,8 +542,9 @@ export const translations = {
       title: '360° Kontrola IA-rekin: Arriskuak Murriztu, Eraginkortasuna Maximizatu.',
       subtitle: '-40% istripu flotetan 6 hilabetetan.',
       description: 'Egunero, zure flota ezustekoari aurre egiten dio. Vision360IA-rekin, zure ibilgailuek haratago ikusten dute: arriskuak detektatzen dituzte, talkak aurreikusten dituzte eta datuak segurtasun aktibo bihurtzen dituzte. IA-k bultzatutako ADAS teknologia, garrantzitsuena babesteko diseinatua: zure taldea eta zure aktiboak.',
-      mainCta: 'Demo bat Eskatu',
-      secondaryCta: 'Erabilera Kasuak Ikusi',
+      mainCta: 'Demo bat eskatu',
+      secondaryCta: 'Bideoa ikusi 60s',
+      trustedBy: 'Flota nagusien konfiantzarekin',
     },
     footer: {
         ...baseTranslations.footer,
@@ -571,7 +574,7 @@ export const translations = {
         ...baseTranslations.solutionsSection,
         eyebrow: 'Neurrira Egindako Soluzioak',
         title: 'Zure Ibilgailura Egokitzen den Segurtasuna',
-        description: 'Gure 360° ikuspegi aurreratuko eta gidariari laguntzeko (ADAS) soluzioak ibilgailu mota bakoitzaren berezitasunetara egokitzen dira —autoetatik eta autobusetatik hasi eta makineria industrial eta astunera arte— ikus-estaldura osoa eta ingurunearen detekzio adimenduna eskainiz. Segurtasuna, eraginkortasun operatiboa eta erabakiak hartzea hobetzeko diseinatuta, gure teknologiak ikusmen artifiziala, analisi prediktiboa eta adimen artifiziala integratzen dituzte, babes aktiboa eta gidatze seguruagoa eskainiz edozein ingurunetan.',
+        description: 'Gure 360° ikuspegi aurreratuko eta gidariari laguntzeko (ADAS) soluzioak ibilgailu mota bakoitzaren berezitasunetara egokitzen dira —autoetatik eta autobusetatik hasi eta makineria industrial eta astunera arte— ikus-estaldura osoa eta ingurunearen detekzio adimenduna eskainiz.\nSegurtasuna, eraginkortasun operatiboa eta erabakiak hartzea hobetzeko diseinatuta, gure teknologiak ikusmen artifiziala, analisi prediktiboa eta adimen artifiziala integratzen dituzte, babes aktiboa eta gidatze seguruagoa eskainiz edozein ingurunetan.',
         learnMore: 'Gehiago Jakin',
     },
     aiAnalysisSection: {
