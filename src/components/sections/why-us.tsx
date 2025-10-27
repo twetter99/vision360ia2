@@ -33,7 +33,7 @@ export function WhyUs({
 }: {
   translations: Translation['es'];
 }) {
-  const { translations } = useLanguage();
+  const { language, translations } = useLanguage();
   const t = translations.whyWinfinSection || initialTranslations.whyWinfinSection;
   const cards = translations.whyWinfinCards || initialTranslations.whyWinfinCards;
 
@@ -43,10 +43,10 @@ export function WhyUs({
         <AnimatedSection animation="fade-in" delay={0.1}>
           <div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
             <div className="max-w-3xl">
-              <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl [text-wrap:balance]">
                 {t.title}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground text-justify">
+              <p className="mt-4 max-w-prose text-lg text-muted-foreground text-justify leading-relaxed tracking-normal" lang={language}>
                 {t.description}
               </p>
             </div>
@@ -87,6 +87,7 @@ export function WhyUs({
                   <CardContent className="p-6 pt-0">
                     <p
                       className="text-muted-foreground text-justify"
+                      lang={language}
                       dangerouslySetInnerHTML={{ __html: card.text }}
                     />
                   </CardContent>
@@ -99,4 +100,3 @@ export function WhyUs({
     </SectionWrapper>
   );
 }
-

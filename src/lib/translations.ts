@@ -127,6 +127,32 @@ const baseTranslations = {
     aboutUsButton: 'Quiénes somos',
     aboutUsAriaLabel: 'Leer más sobre quiénes somos',
   },
+  aboutPage: {
+    hero: {
+      title: 'Quiénes somos',
+      subtitle: 'Más de 20 años impulsando la innovación y la seguridad en el transporte.',
+      cta: 'Contactar',
+    },
+    sections: {
+      mission: {
+        title: 'Nuestra Misión',
+        text: 'Proporcionar soluciones tecnológicas de vanguardia que garanticen la máxima seguridad, eficiencia y sostenibilidad para flotas de transporte, protegiendo vidas y activos a través de la innovación constante.',
+      },
+      vision: {
+        title: 'Nuestra Visión',
+        text: 'Ser el partner tecnológico líder a nivel global en sistemas inteligentes para el transporte, transformando la manera en que el mundo se mueve, un vehículo a la vez.',
+      },
+      whatWeDo: {
+        title: 'Qué Hacemos',
+        text: 'Ofrecemos un ecosistema completo de soluciones tecnológicas para el transporte.',
+      },
+      cta: {
+        title: '¿Listo para transformar tu flota?',
+        text: 'Hablemos de cómo nuestras soluciones pueden adaptarse a tus necesidades específicas.',
+        button: 'Solicitar Propuesta',
+      },
+    },
+  },
 };
 
 const productSpecs = {
@@ -205,6 +231,7 @@ export const translations = {
   es: {
     ...baseTranslations,
     navigationLinks: [
+      { href: '/quienes-somos', label: 'Quiénes somos' },
       { href: '#products', label: 'Beneficios' },
       { href: '#solutions', label: 'Casos de Uso' },
       { href: '#ai-analysis', label: 'Análisis IA' },
@@ -452,6 +479,32 @@ export const translations = {
       aboutUsButton: 'Qui som',
       aboutUsAriaLabel: 'Llegir més sobre qui som',
     },
+    aboutPage: {
+      hero: {
+        title: 'Qui som',
+        subtitle: 'Més de 20 anys impulsant la innovació i la seguretat en el transport.',
+        cta: 'Contactar',
+      },
+      sections: {
+        mission: {
+          title: 'La Nostra Missió',
+          text: 'Proporcionar solucions tecnològiques d\'avantguarda que garanteixin la màxima seguretat, eficiència i sostenibilitat per a flotes de transport, protegint vides i actius a través de la innovació constant.',
+        },
+        vision: {
+          title: 'La Nostra Visió',
+          text: 'Ser el partner tecnològic líder a nivell global en sistemes intel·ligents per al transport, transformant la manera com el món es mou, un vehicle a la vegada.',
+        },
+        whatWeDo: {
+          title: 'Què Fem',
+          text: 'Oferim un ecosistema complet de solucions tecnològiques per al transport.',
+        },
+        cta: {
+          title: 'A punt per transformar la teva flota?',
+          text: 'Parlem de com les nostres solucions es poden adaptar a les teves necessitats específiques.',
+          button: 'Sol·licitar Proposta',
+        },
+      },
+    },
     whyWinfinCards: [
       {
         id: 'experience',
@@ -479,6 +532,7 @@ export const translations = {
       },
     ],
     navigationLinks: [
+        { href: '/quienes-somos', label: 'Qui som' },
         { href: '#products', label: 'Beneficis' },
         { href: '#solutions', label: 'Casos d\'Ús' },
         { href: '#ai-analysis', label: 'Anàlisi IA' },
@@ -734,6 +788,32 @@ export const translations = {
       aboutUsButton: 'Nor gara',
       aboutUsAriaLabel: 'Nor garenari buruz gehiago irakurri',
     },
+    aboutPage: {
+      hero: {
+        title: 'Nor gara',
+        subtitle: '20 urte baino gehiago garraioaren berrikuntza eta segurtasuna bultzatzen.',
+        cta: 'Kontaktatu',
+      },
+      sections: {
+        mission: {
+          title: 'Gure Misioa',
+          text: 'Garraio-flotetarako segurtasun, eraginkortasun eta iraunkortasun handiena bermatzen duten abangoardiako soluzio teknologikoak eskaintzea, berrikuntza etengabearen bidez bizitzak eta aktiboak babestuz.',
+        },
+        vision: {
+          title: 'Gure Ikuspegia',
+          text: 'Garraiorako sistema adimendunetan mundu mailako partner teknologiko liderra izatea, mundua mugitzeko modua eraldatuz, ibilgailuz ibilgailu.',
+        },
+        whatWeDo: {
+          title: 'Zer Egiten Dugu',
+          text: 'Garraiorako soluzio teknologikoen ekosistema osoa eskaintzen dugu.',
+        },
+        cta: {
+          title: 'Zure flota eraldatzeko prest?',
+          text: 'Hitz egin dezagun gure soluzioak zure behar espezifikoetara nola egokitu daitezkeen.',
+          button: 'Proposamena Eskatu',
+        },
+      },
+    },
     whyWinfinCards: [
       {
         id: 'experience',
@@ -761,6 +841,7 @@ export const translations = {
       },
     ],
     navigationLinks: [
+        { href: '/quienes-somos', label: 'Nor gara' },
         { href: '#products', label: 'Onurak' },
         { href: '#solutions', label: 'Erabilera-kasuak' },
         { href: '#ai-analysis', label: 'IA Analisia' },
