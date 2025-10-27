@@ -27,7 +27,7 @@ const baseTranslations = {
   },
   hero: {
     title: 'Control 360° con IA: Reduce Riesgos, Maximiza Eficiencia.',
-    subtitle: 'Seguridad 360° con Inteligencia Artificial.',
+    subtitle: '-40% de incidentes en flotas en 6 meses.',
     description: 'Cada día, tu flota se enfrenta a lo imprevisible. Con Vision360IA, tus vehículos ven más allá: detectan riesgos, anticipan colisiones y convierten datos en seguridad activa. Tecnología ADAS potenciada por IA, diseñada para proteger lo que más importa: tu equipo y tus activos.',
     mainCta: 'Solicita una Demo',
     secondaryCta: 'Ver Casos de Uso',
@@ -124,7 +124,7 @@ const baseTranslations = {
 
 const productSpecs = {
   prod1: {
-    name: 'Visión total, control absoluto',
+    name: 'Visión Periférica 360º',
     description: 'Vision360ia elimina los puntos ciegos y ofrece control total del entorno. Mediante la fusión inteligente de cámaras HD ultra gran angular (>180°), genera una vista cenital unificada en tiempo real. Su ECU dedicada procesa y compone la imagen con máxima precisión para mostrar en el monitor de cabina una visualización continua, nítida y estable, incluso con lluvia, polvo o baja luminosidad. Integración rápida y configurable para cualquier tipo de vehículo.',
     specs: [
         'Seguridad superior: sin puntos ciegos y mayor percepción situacional.',
@@ -139,7 +139,7 @@ const productSpecs = {
     ],
   },
   prod2: {
-    name: 'Asistencia Proactiva al Conductor con IA',
+    name: 'Alertas Proactivas en Cabina',
     description: 'El sistema de Asistencia Proactiva al Conductor con IA eleva la seguridad activa del vehículo mediante la detección temprana de riesgos. Basado en algoritmos de visión artificial y análisis predictivo, este módulo ADAS supervisa constantemente el entorno del vehículo y emite alertas visuales y sonoras en cabina ante posibles situaciones de peligro. El sistema detecta y notifica riesgo de colisión frontal (FCW), salidas involuntarias de carril (LDW) y la presencia de peatones o ciclistas (VRU) en zonas de riesgo. Su interfaz intuitiva y configurable facilita la interpretación de las alertas, permitiendo al conductor reaccionar de forma inmediata.',
     specs: [
       'Alertas de colisión frontal (FCW) con distintos niveles de urgencia.',
@@ -204,7 +204,7 @@ export const translations = {
           'Monitorización 360º en tiempo real para cada vehículo.',
           'Análisis de IA del comportamiento del conductor y scoring de riesgo.',
           'Optimización de rutas y gestión de combustible.',
-          'Alertas de mantenimiento y diagnóstico de vehículos.',
+          'Alertes de mantenimiento y diagnóstico de vehículos.',
         ],
         image: findImage('solution2'),
       },
@@ -286,6 +286,10 @@ export const translations = {
       openMenu: 'Obrir Menú',
       changeLanguage: 'Canviar idioma',
     },
+    hero: {
+      ...baseTranslations.hero,
+      subtitle: '-40% d\'incidents en flotes en 6 mesos.',
+    },
     footer: {
         ...baseTranslations.footer,
         tagline: 'Solucions Avançades de Seguretat per a Vehicles per a un demà més segur.',
@@ -302,12 +306,6 @@ export const translations = {
             terms: 'Termes de Servei',
         },
         copyright: 'Tots els drets reservats.',
-    },
-    hero: {
-      title: 'Control 360° amb IA: Redueix Riscos, Maximitza Eficiència.',
-      description: 'Cada dia, la teva flota s\'enfronta a l\'imprevisible. Amb Vision360IA, els teus vehicles veuen més enllà: detecten riscos, anticipen col·lisions i converteixen dades en seguretat activa. Tecnologia ADAS potenciada per IA, dissenyada per protegir el que més importa: el teu equip i els teus actius.',
-      mainCta: 'Sol·licita una Demo',
-      secondaryCta: 'Veure Casos d\'Ús',
     },
     productsSection: {
       ...baseTranslations.productsSection,
@@ -416,11 +414,11 @@ export const translations = {
     ],
     products: [
         { id: 'prod1', price: 'Benefici', image: findImage('product1'), ...productSpecs.prod1, 
-          name: 'Visió total, control absolut',
+          name: 'Visió Perifèrica 360º',
           description: 'Vision360ia elimina els punts cecs i ofereix control total de l\'entorn. Mitjançant la fusió intel·ligent de càmeres HD ultra gran angular (>180°), genera una vista zenital unificada en temps real. La seva ECU dedicada processa i compon la imatge amb màxima precisió per mostrar al monitor de cabina una visualització contínua, nítida i estable, fins i tot amb pluja, pols o baixa lluminositat. Integració ràpida i configurable per a qualsevol tipus de vehicle.',
         },
         { id: 'prod2', price: 'Benefici', image: findImage('product2'), ...productSpecs.prod2, 
-          name: 'Assistència Proactiva al Conductor amb IA',
+          name: 'Alertes Proactives a la Cabina',
           description: 'El sistema d\'Assistència Proactiva al Conductor amb IA eleva la seguretat activa del vehicle mitjançant la detecció primerenca de riscos. Basat en algoritmes de visió artificial i anàlisi predictiva, aquest mòdul ADAS supervisa constantment l\'entorn del vehicle i emet alertes visuals i sonores a la cabina davant de possibles situacions de perill. El sistema detecta i notifica el risc de col·lisió frontal (FCW), sortides involuntàries de carril (LDW) i la presència de vianants o ciclistes (VRU) en zones de risc. La seva interfície intuïtiva i configurable facilita la interpretació de les alertes, permetent al conductor reaccionar de manera immediata.',
         },
         { id: 'prod3', price: 'Benefici', image: findImage('product3'), ...productSpecs.prod3, 
@@ -533,6 +531,10 @@ export const translations = {
         openMenu: 'Menua Ireki',
         changeLanguage: 'Hizkuntza Aldatu',
     },
+    hero: {
+      ...baseTranslations.hero,
+      subtitle: '-40% istripu flotetan 6 hilabetetan.',
+    },
     footer: {
         ...baseTranslations.footer,
         tagline: 'Ibilgailuentzako Segurtasun Soluzio Aurreratuak etorkizun seguruago baterako.',
@@ -549,12 +551,6 @@ export const translations = {
             terms: 'Zerbitzu Baldintzak',
         },
         copyright: 'Eskubide guztiak erreserbatuta.',
-    },
-    hero: {
-      title: '360° Kontrola IA-rekin: Arriskuak Murriztu, Eraginkortasuna Maximizatu.',
-      description: 'Egunero, zure flotak ezustekoari aurre egiten dio. Vision360IA-rekin, zure ibilgailuek haratago ikusten dute: arriskuak detektatzen dituzte, talkak aurreikusten dituzte eta datuak segurtasun aktibo bihurtzen dituzte. IA-k bultzatutako ADAS teknologia, garrantzitsuena babesteko diseinatua: zure taldea eta zure aktiboak.',
-      mainCta: 'Demo bat Eskatu',
-      secondaryCta: 'Erabilera Kasuak Ikusi',
     },
     productsSection: {
       ...baseTranslations.productsSection,
@@ -663,11 +659,11 @@ export const translations = {
     ],
     products: [
         { id: 'prod1', price: 'Onura', image: findImage('product1'), ...productSpecs.prod1,
-          name: 'Ikuspegi osoa, kontrol absolutua',
+          name: '360º-ko Ikuspegi Periferikoa',
           description: 'Vision360ia-k puntu itsuak ezabatzen ditu eta ingurunearen kontrol osoa eskaintzen du. HD ultra angelu zabaleko (>180°) kameren fusio adimendunaren bidez, denbora errealeko ikuspegi zenital bateratua sortzen du. Bere ECU dedikatuak irudia doitasun handienarekin prozesatu eta konposatzen du kabinako monitorean etengabeko, zorrotz eta egonkorra den bistaratzea erakusteko, baita euriarekin, hautsarekin edo argi gutxirekin ere. Edozein ibilgailu motarako integrazio azkarra eta konfiguragarria.',
         },
         { id: 'prod2', price: 'Onura', image: findImage('product2'), ...productSpecs.prod2,
-          name: 'Gidariari Laguntza Proaktiboa IA-rekin',
+          name: 'Kabinako Alerta Proaktiboak',
           description: 'Gidariari Laguntza Proaktiboa IA-rekin sistemak ibilgailuaren segurtasun aktiboa areagotzen du arriskuen detekzio goiztiarraren bidez. Ikusmen artifizialeko eta analisi prediktiboko algoritmoetan oinarrituta, ADAS modulu honek etengabe gainbegiratzen du ibilgailuaren ingurunea eta abisu bisualak eta soinudunak igortzen ditu kabinan arrisku-egoera posibleen aurrean. Sistemak aurreko talka-arriskua (FCW), nahigabeko erreitik irteteak (LDW) eta oinezkoen edo txirrindularien presentzia (VRU) detektatu eta jakinarazten ditu arrisku-eremuetan. Bere interfaze intuitibo eta konfiguragarriak alerten interpretazioa errazten du, gidariari berehala erreakzionatzeko aukera emanez.',
         },
         { id: 'prod3', price: 'Onura', image: findImage('product3'), ...productSpecs.prod3,

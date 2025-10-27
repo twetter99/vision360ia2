@@ -32,6 +32,9 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           <h1 className="font-headline text-4xl font-bold tracking-tight text-primary-foreground drop-shadow-lg sm:text-6xl md:text-7xl lg:text-8xl">
             {t.title}
           </h1>
+          <p className="mt-4 font-headline text-xl font-semibold text-accent drop-shadow-md md:text-2xl">
+            {t.subtitle}
+          </p>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-primary-foreground/90 drop-shadow-md md:text-xl text-justify">
             {t.description}
           </p>
