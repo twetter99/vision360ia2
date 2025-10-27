@@ -288,7 +288,11 @@ export const translations = {
     },
     hero: {
       ...baseTranslations.hero,
+      title: 'Control 360° amb IA: Redueix Riscos, Maximitza Eficiència.',
       subtitle: '-40% d\'incidents en flotes en 6 mesos.',
+      description: 'Cada dia, la teva flota s\'enfronta a l\'imprevisible. Amb Vision360IA, els teus vehicles veuen més enllà: detecten riscos, anticipen col·lisions i converteixen dades en seguretat activa. Tecnologia ADAS potenciada per IA, dissenyada per protegir el que més importa: el teu equip i els teus actius.',
+      mainCta: 'Sol·licita una Demo',
+      secondaryCta: 'Veure Casos d\'Ús',
     },
     footer: {
         ...baseTranslations.footer,
@@ -533,7 +537,11 @@ export const translations = {
     },
     hero: {
       ...baseTranslations.hero,
+      title: '360° Kontrola IA-rekin: Arriskuak Murriztu, Eraginkortasuna Maximizatu.',
       subtitle: '-40% istripu flotetan 6 hilabetetan.',
+      description: 'Egunero, zure flota ezustekoari aurre egiten dio. Vision360IA-rekin, zure ibilgailuek haratago ikusten dute: arriskuak detektatzen dituzte, talkak aurreikusten dituzte eta datuak segurtasun aktibo bihurtzen dituzte. IA-k bultzatutako ADAS teknologia, garrantzitsuena babesteko diseinatua: zure taldea eta zure aktiboak.',
+      mainCta: 'Demo bat Eskatu',
+      secondaryCta: 'Erabilera Kasuak Ikusi',
     },
     footer: {
         ...baseTranslations.footer,
