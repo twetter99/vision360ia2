@@ -1,17 +1,12 @@
+
 'use client';
 
 import Link from 'next/link';
-import { Menu, Shield, Globe } from 'lucide-react';
+import { Menu, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { useLanguage } from '@/hooks/use-language';
 import { LanguageBanner } from './language-banner';
 import { CataloniaFlag, SpainFlag, BasqueCountryFlag } from './flags';
@@ -19,7 +14,7 @@ import { usePathname } from 'next/navigation';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { setLanguage, translations } = useLanguage();
+  const { language, setLanguage, translations } = useLanguage();
   const pathname = usePathname();
 
   const navigationLinks = translations.navigationLinks;
@@ -42,6 +37,8 @@ export function Header() {
       flag: <BasqueCountryFlag />,
     },
   ];
+
+  const otherLanguages = languageOptions.filter(opt => opt.code !== language);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,27 +81,22 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <div className="ml-auto flex items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Globe className="h-5 w-5" />
-                  <span className="sr-only">{t.changeLanguage}</span>
+          <div className="ml-auto flex items-center gap-2">
+            <div className="flex items-center gap-2">
+              {otherLanguages.map(option => (
+                <Button 
+                  key={option.code}
+                  variant="ghost" 
+                  size="icon" 
+                  onClick={() => setLanguage(option.code as 'es' | 'ca' | 'eu')}
+                  aria-label={`Cambiar a ${option.name}`}
+                  className="h-8 w-8"
+                >
+                  {option.flag}
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {languageOptions.map((option) => (
-                  <DropdownMenuItem
-                    key={option.code}
-                    className="flex items-center"
-                    onClick={() => setLanguage(option.code as 'es' | 'ca' | 'eu')}
-                  >
-                    {option.flag}
-                    {option.name}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+              ))}
+            </div>
+            
             <Button variant="outline" className="hidden md:flex">
               {t.login}
             </Button>
