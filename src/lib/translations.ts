@@ -28,7 +28,7 @@ const baseTranslations = {
   hero: {
     title: 'Control 360° con IA: Reduce Riesgos, Maximiza Eficiencia.',
     subtitle: '-40% de incidentes en flotas en 6 meses.',
-    description: 'Cada día, tu flota se enfrenta a lo imprevisible. Con Vision360IA, tus vehículos ven más allá: detectan riesgos, anticipan colisiones y convierten datos en seguridad activa. Tecnología ADAS potenciada por IA, diseñada para proteger lo que más importa: tu equipo y tus activos.',
+    description: 'Cada día, tu flota se enfrenta a lo imprevisible. Con **Vision360IA**, tus vehículos ven más allá: detectan riesgos, anticipan colisiones y convierten datos en seguridad activa. Tecnología **ADAS potenciada por IA**, diseñada para proteger lo que más importa: **tu equipo y tus activos**.',
     mainCta: 'Solicita demo',
     secondaryCta: 'Ver vídeo 60s',
     trustedBy: 'Con la confianza de las principales flotas',
@@ -123,7 +123,7 @@ const baseTranslations = {
   },
   whyWinfinSection: {
     title: '¿Por qué elegir WINFIN?',
-    description: 'Nuestro liderazgo en sistemas tecnológicos para el transporte se basa en décadas de experiencia, innovación constante y compromiso con la calidad en cada proyecto.',
+    description: 'Llevamos décadas dedicados a crear sistemas tecnológicos para el transporte.\nEsta experiencia nos permite desarrollar soluciones fiables y que evolucionan con las necesidades de cada proyecto.',
     aboutUsButton: 'Quiénes somos',
     aboutUsAriaLabel: 'Leer más sobre quiénes somos',
   },

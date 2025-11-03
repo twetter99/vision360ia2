@@ -14,7 +14,7 @@ export function useInView(
   options: IntersectionObserverOptions = {}
 ): boolean {
   const [isInView, setIsInView] = useState(false);
-  const { root = null, rootMargin = '0px 0px -20% 0px', threshold = 0.25, once = true } = options;
+  const { root = null, rootMargin = '0px', threshold = 0.5, once = false } = options;
 
   useEffect(() => {
     const element = ref.current;

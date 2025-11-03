@@ -14,6 +14,7 @@ interface AnimatedSectionProps {
   animation?: AnimationType;
   delay?: number;
   once?: boolean;
+  style?: React.CSSProperties;
 }
 
 export function AnimatedSection({
@@ -23,6 +24,7 @@ export function AnimatedSection({
   animation = 'fade-in',
   delay = 0,
   once = true,
+  style,
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLElement>(null);
   // Mantenemos las opciones ajustadas del IntersectionObserver
@@ -51,7 +53,7 @@ export function AnimatedSection({
       )}
       style={{
         transitionDelay: `${delay}s`, // Usa transition-delay para el escalonamiento
-        // Ya no necesitamos animationFillMode aquí
+        ...style, // Permite estilos adicionales
       }}
     >
       {children}

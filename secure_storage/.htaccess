@@ -1,0 +1,3 @@
+# Denegar acceso desde web
+Order Deny,Allow
+Deny from all

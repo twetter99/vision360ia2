@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Formulario PHP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .test-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .test-btn:hover {
+            background: #5568d3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test del Sistema de Formularios</h1>
+        <p>Prueba rápida del endpoint PHP</p>
+        
+        <div>
+            <button class="test-btn" onclick="testSuccess()">✅ Test Éxito</button>
+            <button class="test-btn" onclick="testValidation()">❌ Test Validación</button>
+            <button class="test-btn" onclick="testRateLimit()">⏳ Test Rate Limit</button>
+            <button class="test-btn" onclick="testHoneypot()">🍯 Test Honeypot</button>
+        </div>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const API_URL = '/api/form/contacto.php';
+        
+        function showResult(data, isError = false) {
+            const resultDiv = document.getElementById('result');
+            const className = isError ? 'error' : 'success';
+            resultDiv.className = 'result ' + className;
+            resultDiv.textContent = JSON.stringify(data, null, 2);
+        }
+        
+        function showInfo(message) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result info';
+            resultDiv.textContent = message;
+        }
+        
+        async function testSuccess() {
+            showInfo('Enviando formulario válido...');
+            
+            const data = {
+                name: 'Juan Pérez Test',
+                email: 'test@example.com',
+                company: 'Test Company SL',
+                vehicleType: 'Turismo',
+                location: 'Madrid',
+                specificConcerns: 'Solo una prueba del sistema',
+                formLoadTime: Math.floor(Date.now() / 1000) - 5,
+                pageUrl: window.location.href
+            };
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                showResult({
+                    status: response.status,
+                    ...result
+                }, !response.ok);
+            } catch (error) {
+                showResult({ error: error.message }, true);
+            }
+        }
+        
+        async function testValidation() {
+            showInfo('Enviando con email inválido...');
+            
+            const data = {
+                name: 'Test',
+                email: 'email-invalido',
+                vehicleType: 'Turismo',
+                formLoadTime: Math.floor(Date.now() / 1000) - 5,
+                pageUrl: window.location.href
+            };
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                showResult({
+                    status: response.status,
+                    ...result
+                }, response.status !== 422);
+            } catch (error) {
+                showResult({ error: error.message }, true);
+            }
+        }
+        
+        async function testRateLimit() {
+            showInfo('Enviando 6 solicitudes para activar rate limit...');
+            
+            for (let i = 0; i < 6; i++) {
+                const data = {
+                    name: `Test ${i}`,
+                    email: `test${i}@example.com`,
+                    vehicleType: 'Turismo',
+                    formLoadTime: Math.floor(Date.now() / 1000) - 5,
+                    pageUrl: window.location.href
+                };
+                
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.status === 429) {
+                    showResult({
+                        attempt: i + 1,
+                        status: response.status,
+                        ...result
+                    });
+                    return;
+                }
+                
+                // Pequeña pausa entre requests
+                await new Promise(resolve => setTimeout(resolve, 200));
+            }
+            
+            showResult({ message: 'No se activó el rate limit en 6 intentos' }, true);
+        }
+        
+        async function testHoneypot() {
+            showInfo('Activando honeypot (campo anti-bot)...');
+            
+            const data = {
+                name: 'Bot Test',
+                email: 'bot@example.com',
+                vehicleType: 'Turismo',
+                website: 'http://spam.com',  // Campo honeypot
+                formLoadTime: Math.floor(Date.now() / 1000) - 5,
+                pageUrl: window.location.href
+            };
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                showResult({
+                    status: response.status,
+                    ...result,
+                    note: 'El servidor responde OK pero no procesa el form (engaña al bot)'
+                });
+            } catch (error) {
+                showResult({ error: error.message }, true);
+            }
+        }
+    </script>
+</body>
+</html>

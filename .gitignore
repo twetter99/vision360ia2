@@ -39,7 +39,17 @@ next-env.d.ts
 
 .genkit/*
 .env*
+!.env.local.example
+
+# Storage de formularios
+storage/
 
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+# Formularios PHP - Datos sensibles
+secure_storage/submissions/*.json
+secure_storage/submissions/*.csv
+secure_storage/logs/*.log
+secure_storage/rate_limit_*.json

@@ -1,12 +1,5 @@
-
 'use client';
 import { SectionWrapper } from '../shared/section-wrapper';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
 import {
@@ -14,12 +7,8 @@ import {
   Handshake,
   BrainCircuit,
   Lightbulb,
-  ArrowRight,
 } from 'lucide-react';
-import React from 'react';
-import { AnimatedSection } from '../shared/animated-section';
-import { Button } from '../ui/button';
-import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
 
 const iconMap: { [key: string]: React.ElementType } = {
   Users,
@@ -37,66 +26,93 @@ export function WhyUs({
   const t = translations.whyWinfinSection || initialTranslations.whyWinfinSection;
   const cards = translations.whyWinfinCards || initialTranslations.whyWinfinCards;
 
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Intersection Observer para animaciones
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setVisibleCards((prev) => new Set(prev).add(index));
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: '0px 0px -100px 0px',
+        }
+      );
+
+      observer.observe(card);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, [cards.length]);
+
   return (
-    <SectionWrapper id="why-winfin" className="bg-card" lang={language}>
-      <div className="mx-auto max-w-7xl">
-        <AnimatedSection animation="fade-in" delay={0.1}>
-          <div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-            <div className="max-w-3xl">
-              <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl [text-wrap:balance]">
-                {t.title}
-              </h2>
-              <p className="mt-4 max-w-prose text-lg text-muted-foreground text-justify leading-relaxed tracking-normal">
-                {t.description}
-              </p>
-            </div>
-            <Link href="/quienes-somos" passHref>
-              <Button
-                variant="secondary"
-                className="shrink-0"
-                aria-label={t.aboutUsAriaLabel}
-              >
-                {t.aboutUsButton}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+    <div className="relative bg-[#f9f9f9] py-16 md:py-24">
+      <SectionWrapper id="why-winfin" className="bg-transparent">
+        <div className="mx-auto max-w-7xl px-4">
+          {/* Encabezado */}
+          <div className="mb-12 text-center lg:mb-16">
+            <h2 className="apple-text apple-smooth mb-4 text-4xl font-semibold tracking-tight text-[#333] md:text-5xl">
+              {t.title}
+            </h2>
+            <p className="apple-text apple-smooth mx-auto max-w-3xl text-lg leading-relaxed text-[#6e6e73] md:text-xl whitespace-pre-line">
+              {t.description}
+            </p>
           </div>
-        </AnimatedSection>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {cards.map((card, index) => {
-            const Icon = iconMap[card.icon];
-            return (
-              <AnimatedSection
-                key={card.id}
-                as="div"
-                animation="fade-in"
-                delay={0.2 + index * 0.1}
-                className="h-full"
-              >
-                <Card className="flex h-full flex-col rounded-2xl border-border/50 bg-background shadow-sm transition-all duration-200 ease-out hover:-translate-y-1.5 hover:shadow-lg focus-visible:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                  <CardHeader className="p-6">
-                    {Icon && (
-                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                        <Icon className="h-6 w-6" aria-hidden="true" />
-                      </div>
-                    )}
-                    <CardTitle className="font-headline text-xl font-bold [text-wrap:balance]">
+
+          {/* Tarjetas apiladas verticalmente */}
+          <div className="mx-auto max-w-4xl space-y-8 md:space-y-12">
+            {cards.map((card, index) => {
+              const Icon = iconMap[card.icon];
+              const isVisible = visibleCards.has(index);
+
+              return (
+                <div
+                  key={index}
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }}
+                  className={`transform transition-all duration-[600ms] ease-out ${
+                    isVisible
+                      ? 'translate-y-0 opacity-100'
+                      : 'translate-y-12 opacity-0'
+                  }`}
+                  role="article"
+                  aria-label={`${card.title} - Beneficio ${index + 1} de ${cards.length}`}
+                >
+                  <div className="rounded-3xl bg-white p-8 shadow-lg transition-transform hover:scale-[1.02] md:p-12">
+                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0071e3] to-[#0077ed] text-white shadow-md">
+                      {Icon && <Icon className="h-8 w-8" />}
+                    </div>
+
+                    <h3 className="apple-text mb-4 text-2xl font-semibold text-[#1d1d1f] md:text-3xl">
                       {card.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-6 pt-0">
-                    <p
-                      className="text-left leading-relaxed tracking-normal text-muted-foreground"
-                      lang={language}
+                    </h3>
+
+                    <div
+                      className="apple-text text-base leading-relaxed text-[#6e6e73] md:text-lg"
                       dangerouslySetInnerHTML={{ __html: card.text }}
                     />
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            );
-          })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </SectionWrapper>
+      </SectionWrapper>
+    </div>
   );
 }

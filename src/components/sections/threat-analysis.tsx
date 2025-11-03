@@ -1,192 +1,288 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { getRecommendations } from "@/app/actions";
 import { SectionWrapper } from "../shared/section-wrapper";
 import { SectionHeading } from "../shared/section-heading";
 import { Card, CardContent } from "../ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Loader2, Zap, AlertTriangle, ShieldCheck, Sparkles } from "lucide-react";
-import { Textarea } from "../ui/textarea";
-import type { PersonalizedSecurityRecommendationsOutput } from "@/ai/flows/personalized-security-recommendations";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import { Loader2, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
-import type { Translation } from '@/lib/translations';
+import type { Translation } from "@/lib/translations";
 
-const formSchema = z.object({
-  vehicleType: z.string().min(2, "El tipo de vehículo es obligatorio."),
-  vehicleMake: z.string().min(2, "La marca del vehículo es obligatoria."),
-  vehicleModel: z.string().min(2, "El modelo del vehículo es obligatorio."),
-  vehicleYear: z.coerce.number().min(1900, "Año no válido.").max(new Date().getFullYear() + 1, "Año no válido."),
-  location: z.string().min(2, "La ubicación es obligatoria."),
-  specificConcerns: z.string().optional(),
-});
 
-type FormData = z.infer<typeof formSchema>;
+const vehicleTypes = [
+  "Turismo",
+  "SUV/4x4",
+  "Furgoneta",
+  "Camión",
+  "Autobús",
+  "Maquinaria Industrial",
+  "Motocicleta",
+  "Otro",
+];
 
-export function ThreatAnalysis({ translations: initialTranslations }: { translations: Translation['es'] }) {
+type FormState = 'idle' | 'submitting' | 'success' | 'error';
+
+interface FormErrors {
+  [key: string]: string;
+}
+
+export function ThreatAnalysis({
+  translations: initialTranslations,
+}: {
+  translations: Translation["es"];
+}) {
   const { translations } = useLanguage();
-  const t = translations.aiAnalysisSection || initialTranslations.aiAnalysisSection;
-  
-  const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<PersonalizedSecurityRecommendationsOutput | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const t =
+    translations.aiAnalysisSection || initialTranslations.aiAnalysisSection;
 
-  const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      vehicleType: "",
-      vehicleMake: "",
-      vehicleModel: "",
-      vehicleYear: new Date().getFullYear(),
-      location: "",
-      specificConcerns: "",
-    },
-  });
+  const [formState, setFormState] = useState<FormState>('idle');
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
 
-  async function onSubmit(values: FormData) {
-    setIsLoading(true);
-    setResult(null);
-    setError(null);
-    const response = await getRecommendations(values);
-    if (response.success && response.data) {
-      setResult(response.data);
-    } else {
-      setError(response.error || "Ocurrió un error desconocido.");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    setFormState('submitting');
+    setErrors({});
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      company: formData.get('company') as string || '',
+      vehicleType: formData.get('vehicleType') as string,
+      location: formData.get('location') as string || '',
+      specificConcerns: formData.get('specificConcerns') as string || '',
+      website: '', // honeypot
+      formLoadTime: formLoadTime,
+      pageUrl: window.location.href,
+      utm_source: new URLSearchParams(window.location.search).get('utm_source') || '',
+      utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || '',
+      utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || '',
+    };
+
+    try {
+    const response = await fetch('/api/form/contacto', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });      const result = await response.json();
+
+      if (response.ok && result.ok) {
+        setFormState('success');
+        // Reset form
+        (e.target as HTMLFormElement).reset();
+      } else {
+        // Error de validación
+        if (result.field && result.error) {
+          setErrors({ [result.field]: result.error });
+        }
+        setFormState('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setFormState('error');
+      setErrors({ general: 'Ha ocurrido un error. Por favor, inténtalo de nuevo.' });
     }
-    setIsLoading(false);
-  }
+  };
 
   return (
-    <SectionWrapper id="ai-analysis">
+    <SectionWrapper
+      id="ai-analysis"
+      className="bg-gradient-to-b from-background to-muted/20"
+    >
       <SectionHeading
-        eyebrow={t.eyebrow}
-        title={t.title}
-        description={t.description}
+        eyebrow="Contacto Directo"
+        title="Solicita tu Consultoría Personalizada"
+        description="Rellena tus datos y uno de nuestros expertos analizará tu caso para darte una solución a medida. Nos pondremos en contacto contigo en menos de 24 horas."
       />
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-        <Card className="p-6 sm:p-8">
-          <CardContent className="p-0">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <FormField control={form.control} name="vehicleType" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t.form.vehicleType}</FormLabel>
-                      <FormControl><Input placeholder={t.form.vehicleTypePlaceholder} {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <FormField control={form.control} name="vehicleMake" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t.form.vehicleMake}</FormLabel>
-                      <FormControl><Input placeholder={t.form.vehicleMakePlaceholder} {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <FormField control={form.control} name="vehicleModel" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t.form.vehicleModel}</FormLabel>
-                      <FormControl><Input placeholder={t.form.vehicleModelPlaceholder} {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <FormField control={form.control} name="vehicleYear" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t.form.vehicleYear}</FormLabel>
-                      <FormControl><Input type="number" placeholder={t.form.vehicleYearPlaceholder} {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
+
+      <div className="mx-auto max-w-3xl">
+        {formState === 'success' ? (
+          <Card className="p-12 text-center border-2 border-green-500/30 bg-green-50/50 dark:bg-green-950/20 shadow-xl">
+            <CardContent className="p-0 space-y-6">
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+                <CheckCircle2 className="h-12 w-12 text-green-600 dark:text-green-400" />
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="font-headline text-2xl md:text-3xl font-bold text-green-900 dark:text-green-100">
+                  ¡Gracias! Hemos recibido tu solicitud.
+                </h3>
+                <p className="text-lg text-green-700 dark:text-green-300 max-w-xl mx-auto">
+                  Un experto de nuestro equipo se pondrá en contacto contigo muy pronto.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card className="p-8 shadow-xl border-2 border-primary/20">
+            <CardContent className="p-0">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Campo honeypot (oculto para anti-spam) */}
+                <input type="text" name="website" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+                
+                {/* Error general */}
+                {errors.general && (
+                  <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg flex items-start gap-3">
+                    <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-destructive">{errors.general}</p>
+                  </div>
+                )}
+
+                {/* Nombre Completo */}
+                <div>
+                  <label htmlFor="name" className="block text-base font-semibold mb-2">
+                    Nombre Completo <span className="text-destructive">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Juan Pérez García"
+                    className="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    required
+                  />
+                  {errors.name && <p className="mt-1 text-sm text-destructive">{errors.name}</p>}
                 </div>
-                <FormField control={form.control} name="location" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t.form.location}</FormLabel>
-                    <FormControl><Input placeholder={t.form.locationPlaceholder} {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
-                <FormField control={form.control} name="specificConcerns" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t.form.specificConcerns}</FormLabel>
-                    <FormControl><Textarea placeholder={t.form.specificConcernsPlaceholder} {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
-                <Button type="submit" disabled={isLoading} size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                  {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Zap className="mr-2 h-5 w-5" />}
-                  {t.form.analyzeButton}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-        <div className="flex min-h-[400px] items-center justify-center rounded-lg border-2 border-dashed p-8 lg:min-h-full">
-          {isLoading && (
-            <div className="text-center text-muted-foreground">
-              <Loader2 className="mx-auto mb-4 h-12 w-12 animate-spin text-primary" />
-              <h3 className="font-headline text-xl font-semibold">{t.results.loading}</h3>
-              <p className="text-justify">{t.results.loadingDescription}</p>
-            </div>
-          )}
-          {error && (
-            <div className="text-center text-destructive">
-              <AlertTriangle className="mx-auto mb-4 h-12 w-12" />
-              <h3 className="font-headline text-xl font-semibold">{t.results.errorTitle}</h3>
-              <p className="text-justify">{error}</p>
-            </div>
-          )}
-          {!isLoading && !error && !result && (
-             <div className="text-center text-muted-foreground">
-                <Sparkles className="mx-auto mb-4 h-12 w-12 text-primary/50" />
-                <h3 className="font-headline text-xl font-semibold text-foreground">{t.results.pendingTitle}</h3>
-                <p className="text-justify">{t.results.pendingDescription}</p>
-            </div>
-          )}
-          {result && (
-            <div className="w-full">
-              <h3 className="mb-4 font-headline text-2xl font-bold">{t.results.reportTitle}</h3>
-              <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
-                <AccordionItem value="item-1">
-                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><AlertTriangle className="mr-2 h-5 w-5 text-destructive" />{t.results.threatAnalysis}</AccordionTrigger>
-                  <AccordionContent className="text-base text-muted-foreground whitespace-pre-wrap text-justify">
-                    {result.threatAnalysis}
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-2">
-                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><ShieldCheck className="mr-2 h-5 w-5 text-primary" />{t.results.recommendations}</AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="space-y-3 pl-2">
-                      {result.recommendations.map((rec, index) => (
-                        <li key={index} className="flex gap-3 text-justify">
-                          <ShieldCheck className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
-                          <span className="text-muted-foreground">{rec}</span>
-                        </li>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Email Profesional */}
+                  <div>
+                    <label htmlFor="email" className="block text-base font-semibold mb-2">
+                      Email Profesional <span className="text-destructive">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="tu@empresa.com"
+                      className="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      required
+                    />
+                    {errors.email && <p className="mt-1 text-sm text-destructive">{errors.email}</p>}
+                  </div>
+
+                  {/* Empresa */}
+                  <div>
+                    <label htmlFor="company" className="block text-base font-semibold mb-2">
+                      Empresa
+                    </label>
+                    <input
+                      id="company"
+                      name="company"
+                      type="text"
+                      placeholder="Tu Empresa S.L."
+                      className="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                    {errors.company && <p className="mt-1 text-sm text-destructive">{errors.company}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Tipo de Vehículo */}
+                  <div>
+                    <label htmlFor="vehicleType" className="block text-base font-semibold mb-2">
+                      Tipo de Vehículo <span className="text-destructive">*</span>
+                    </label>
+                    <select
+                      id="vehicleType"
+                      name="vehicleType"
+                      className="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      required
+                    >
+                      <option value="">Selecciona el tipo</option>
+                      {vehicleTypes.map((type) => (
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
                       ))}
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-                 <AccordionItem value="item-3">
-                  <AccordionTrigger className="font-headline text-lg hover:no-underline"><Sparkles className="mr-2 h-5 w-5 text-accent" />{t.results.reasoning}</AccordionTrigger>
-                  <AccordionContent className="text-base text-muted-foreground whitespace-pre-wrap text-justify">
-                    {result.reasoning}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+                    </select>
+                    {errors.vehicleType && <p className="mt-1 text-sm text-destructive">{errors.vehicleType}</p>}
+                  </div>
+
+                  {/* Ubicación Principal */}
+                  <div>
+                    <label htmlFor="location" className="block text-base font-semibold mb-2">
+                      Ubicación Principal
+                    </label>
+                    <input
+                      id="location"
+                      name="location"
+                      type="text"
+                      placeholder="Madrid, Barcelona..."
+                      className="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                    {errors.location && <p className="mt-1 text-sm text-destructive">{errors.location}</p>}
+                  </div>
+                </div>
+
+                {/* Preocupaciones Específicas */}
+                <div>
+                  <label htmlFor="specificConcerns" className="block text-base font-semibold mb-2">
+                    Preocupaciones Específicas o Comentarios
+                  </label>
+                  <textarea
+                    id="specificConcerns"
+                    name="specificConcerns"
+                    placeholder="Cuéntanos qué necesitas o qué problemas de seguridad quieres resolver..."
+                    className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
+                  />
+                  {errors.specificConcerns && <p className="mt-1 text-sm text-destructive">{errors.specificConcerns}</p>}
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={formState === 'submitting'}
+                  size="lg"
+                  className="w-full bg-accent text-accent-foreground hover:bg-accent/90 h-14 text-lg font-semibold"
+                >
+                  {formState === 'submitting' ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-5 w-5" />
+                      Enviar Solicitud
+                    </>
+                  )}
+                </Button>
+
+                <p className="text-sm text-center text-muted-foreground">
+                  🔒 Tus datos están protegidos. Los usaremos únicamente para
+                  contactarte sobre tu consultoría.
+                </p>
+              </form>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      <div className="mt-12 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div className="p-6 rounded-lg bg-card border border-border">
+            <div className="text-3xl font-bold text-primary mb-2">
+              &lt; 24h
             </div>
-          )}
+            <p className="text-sm text-muted-foreground">
+              Tiempo de respuesta
+            </p>
+          </div>
+          <div className="p-6 rounded-lg bg-card border border-border">
+            <div className="text-3xl font-bold text-primary mb-2">100%</div>
+            <p className="text-sm text-muted-foreground">
+              Consultoría gratuita
+            </p>
+          </div>
+          <div className="p-6 rounded-lg bg-card border border-border">
+            <div className="text-3xl font-bold text-primary mb-2">0€</div>
+            <p className="text-sm text-muted-foreground">Sin compromiso</p>
+            </div>
         </div>
       </div>
     </SectionWrapper>

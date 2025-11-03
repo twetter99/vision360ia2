@@ -15,7 +15,7 @@ const AppLayout = ({
   const { language } = useLanguage();
 
   return (
-    <html lang={language} className="!scroll-smooth">
+    <html lang={language}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -24,7 +24,7 @@ const AppLayout = ({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Exo+2:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
