@@ -21,6 +21,13 @@ export function Header() {
   const navigationLinks = translations.navigationLinks;
   const t = translations.header;
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contacto');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const languageOptions = [
     {
       code: 'es',
@@ -95,10 +102,13 @@ export function Header() {
               ))}
             </div>
             
-            <Button variant="outline" className="hidden md:flex">
+            <Button variant="outline" className="hidden md:flex" onClick={scrollToContact}>
               {t.login}
             </Button>
-            <Button className="hidden bg-accent text-accent-foreground hover:bg-accent/90 md:flex">
+            <Button 
+              className="hidden bg-accent text-accent-foreground hover:bg-accent/90 md:flex"
+              onClick={scrollToContact}
+            >
               {t.getQuote}
             </Button>
             <Sheet>
@@ -120,8 +130,11 @@ export function Header() {
                     </Link>
                   ))}
                   <div className="mt-4 flex flex-col gap-4">
-                    <Button variant="outline">{t.login}</Button>
-                    <Button className="bg-accent text-accent-foreground hover:bg-accent/90">
+                    <Button variant="outline" onClick={scrollToContact}>{t.login}</Button>
+                    <Button 
+                      className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      onClick={scrollToContact}
+                    >
                       {t.getQuote}
                     </Button>
                   </div>

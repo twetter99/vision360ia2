@@ -2,18 +2,21 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, PlayCircle, ShieldCheck, Cpu, GitMerge } from 'lucide-react';
+import { ArrowRight, PlayCircle, ShieldCheck, Cpu, GitMerge, X } from 'lucide-react';
 import { heroData } from '@/lib/data';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
 import { AnimatedSection } from '../shared/animated-section';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogClose, DialogTitle } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 export function Hero({ translations: initialTranslations }: { translations: Translation['es'] }) {
   const { translations } = useLanguage();
   const t = translations.hero || initialTranslations.hero;
   const heroImage = heroData.image;
   const [scrollY, setScrollY] = useState(0);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +33,14 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
   const parallaxY = scrollY < fadeThreshold ? scrollY * 0.5 : fadeThreshold * 0.5;
 
   const handleVideoClick = () => {
-    window.open('https://vimeo.com/1131769025?share=copy&fl=sv&fe=ci', '_blank', 'noopener,noreferrer');
+    setIsVideoOpen(true);
+  };
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contacto');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (
@@ -131,7 +141,11 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
             animation="slide-up"
             delay={0.45}
           >
-            <Button size="lg" className="bg-accent text-accent-foreground shadow-lg transition-transform hover:scale-105 hover:bg-accent/90">
+            <Button 
+              size="lg" 
+              className="bg-accent text-accent-foreground shadow-lg transition-transform hover:scale-105 hover:bg-accent/90"
+              onClick={scrollToContact}
+            >
               {t.mainCta}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -185,6 +199,28 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           </AnimatedSection>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="max-w-5xl w-full p-0 bg-black border-0">
+          <VisuallyHidden>
+            <DialogTitle>Video de Vision360IA</DialogTitle>
+          </VisuallyHidden>
+          <DialogClose className="absolute right-4 top-4 z-50 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+            <X className="h-6 w-6 text-white" />
+            <span className="sr-only">Close</span>
+          </DialogClose>
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              src="https://player.vimeo.com/video/1131769025?autoplay=1&title=0&byline=0&portrait=0"
+              className="absolute top-0 left-0 w-full h-full"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

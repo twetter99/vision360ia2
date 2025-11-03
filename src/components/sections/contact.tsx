@@ -50,7 +50,7 @@ export function Contact({ translations: initialTranslations }: { translations: T
   }
 
   return (
-    <SectionWrapper id="contact">
+    <SectionWrapper id="contacto">
       <SectionHeading
         eyebrow={t.eyebrow}
         title={t.title}

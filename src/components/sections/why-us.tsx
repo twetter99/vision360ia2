@@ -68,9 +68,15 @@ export function WhyUs({
             <h2 className="apple-text apple-smooth mb-4 text-4xl font-semibold tracking-tight text-[#333] md:text-5xl">
               {t.title}
             </h2>
-            <p className="apple-text apple-smooth mx-auto max-w-3xl text-lg leading-relaxed text-[#6e6e73] md:text-xl whitespace-pre-line">
-              {t.description}
-            </p>
+            <div className="mx-auto text-center max-w-[66ch] md:max-w-[68ch] px-4">
+              {t.description.split('\n').map((line, idx) => (
+                <p
+                  key={idx}
+                  className={`apple-text apple-smooth text-lg md:text-xl leading-relaxed text-[#6e6e73] text-balance ${idx > 0 ? 'mt-4' : ''}`}
+                  dangerouslySetInnerHTML={{ __html: line }}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Tarjetas apiladas verticalmente */}

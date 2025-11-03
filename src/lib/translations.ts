@@ -42,7 +42,7 @@ const baseTranslations = {
   solutionsSection: {
     eyebrow: 'Soluciones a Medida',
     title: 'Seguridad que se Adapta a tu Vehículo',
-    description: 'Nuestras soluciones avanzadas de visión 360° y asistencia al conductor (ADAS) se adaptan a las particularidades de cada tipo de vehículo —desde turismos y autobuses hasta maquinaria industrial y pesada— proporcionando una cobertura visual completa y una detección inteligente del entorno.\nDiseñadas para mejorar la seguridad, la eficiencia operativa y la toma de decisiones, nuestras tecnologías integran visión artificial, análisis predictivo e inteligencia artificial, ofreciendo una protección activa y una conducción más segura en cualquier entorno.',
+    description: 'Diseñamos, implantamos y mantenemos ecosistemas digitales integrados para flotas de transporte: autobuses, camiones, trenes y vehículos industriales.\nTecnología orientada a la fiabilidad operativa y a los nuevos desafíos de la movilidad inteligente.',
     learnMore: 'Saber Más',
   },
   aiAnalysisSection: {
@@ -122,8 +122,8 @@ const baseTranslations = {
     dismiss: 'No, gracias',
   },
   whyWinfinSection: {
-    title: '¿Por qué elegir WINFIN?',
-    description: 'Llevamos décadas dedicados a crear sistemas tecnológicos para el transporte.\nEsta experiencia nos permite desarrollar soluciones fiables y que evolucionan con las necesidades de cada proyecto.',
+    title: '¿Por qué Vision360IA?',
+    description: '<strong>Vision360IA</strong> es la plataforma de seguridad avanzada desarrollada por <strong>WINFIN</strong>, una empresa con más de <strong>20 años de experiencia</strong> en sistemas tecnológicos para el transporte.\nCon esta experiencia, desarrollamos <strong>soluciones que combinan fiabilidad e innovación</strong>, y que mejoran continuamente para responder a los <strong>retos de la movilidad inteligente</strong>.',
     aboutUsButton: 'Quiénes somos',
     aboutUsAriaLabel: 'Leer más sobre quiénes somos',
   },
@@ -222,7 +222,7 @@ const whyWinfinCardsData = [
     id: 'custom-solutions',
     icon: 'Lightbulb',
     title: 'Soluciones a medida',
-    text: 'Integración de CCTV, routers embarcados y analítica predictiva, con soporte técnico continuo y máxima interoperabilidad.',
+    text: 'Diseñamos, implantamos y mantenemos <strong>ecosistemas digitales integrados</strong> para flotas de transporte: <strong>autobuses, camiones, trenes y vehículos industriales</strong>.<br class="hidden sm:block" /><span class="block mt-2"><strong>Tecnología orientada a la fiabilidad operativa</strong> y a los <strong>nuevos desafíos de la movilidad inteligente</strong>.</span>',
   },
 ];
 
@@ -386,7 +386,7 @@ export const translations = {
         ...baseTranslations.solutionsSection,
         eyebrow: 'Solucions a Mida',
         title: 'Seguretat que s\'Adapta al teu Vehicle',
-        description: 'Les nostres solucions avançades de visió 360° i assistència al conductor (ADAS) s\'adapten a les particularitats de cada tipus de vehicle —des de turismes i autobusos fins a maquinària industrial i pesada— proporcionant una cobertura visual completa i una detecció intel·ligent de l\'entorn.\nDissenyades per millorar la seguretat, l\'eficiència operativa i la presa de decisions, les nostres tecnologies integren visió artificial, anàlisi predictiva i intel·ligència artificial, oferint una protecció activa i una conducció més segura en qualsevol entorn.',
+        description: 'Dissenyem, implantem i mantenim ecosistemes digitals integrats per a flotes de transport: autobusos, camions, trens i vehicles industrials.\nTecnologia orientada a la fiabilitat operativa i als nous desafiaments de la mobilitat intel·ligent.',
         learnMore: 'Saber Més',
     },
     aiAnalysisSection: {
@@ -474,8 +474,8 @@ export const translations = {
         dismiss: 'No, gràcies',
     },
     whyWinfinSection: {
-      title: 'Per què triar WINFIN?',
-      description: 'El nostre lideratge en sistemes tecnològics per al transport es basa en dècades d’experiència, innovació constant i compromís amb la qualitat en cada projecte.',
+      title: 'Per què Vision360IA?',
+      description: '<strong>Vision360IA</strong> és la plataforma de seguretat avançada desenvolupada per <strong>WINFIN</strong>, una empresa amb més de <strong>20 anys d\'experiència</strong> en sistemes tecnològics per al transport.\nAmb aquesta experiència, desenvolupem <strong>solucions que combinen fiabilitat i innovació</strong>, i que milloren contínuament per respondre als <strong>reptes de la mobilitat intel·ligent</strong>.',
       aboutUsButton: 'Qui som',
       aboutUsAriaLabel: 'Llegir més sobre qui som',
     },
@@ -528,7 +528,7 @@ export const translations = {
         id: 'custom-solutions',
         icon: 'Lightbulb',
         title: 'Solucions a mida',
-        text: 'Integració de CCTV, routers embarcats i analítica predictiva, amb suport tècnic continu i màxima interoperabilitat.',
+        text: 'Dissenyem, implantem i mantenim <strong>ecosistemes digitals integrats</strong> per a flotes de transport: <strong>autobusos, camions, trens i vehicles industrials</strong>.<br class="hidden sm:block" /><span class="block mt-2"><strong>Tecnologia orientada a la fiabilitat operativa</strong> i als <strong>nous desafiaments de la mobilitat intel·ligent</strong>.</span>',
       },
     ],
     navigationLinks: [
@@ -695,7 +695,7 @@ export const translations = {
         ...baseTranslations.solutionsSection,
         eyebrow: 'Neurrira Egindako Soluzioak',
         title: 'Zure Ibilgailura Egokitzen den Segurtasuna',
-        description: 'Gure 360° ikuspegi aurreratuko eta gidariari laguntzeko (ADAS) soluzioak ibilgailu mota bakoitzaren berezitasunetara egokitzen dira —autoetatik eta autobusetatik hasi eta makineria industrial eta astunera arte— ikus-estaldura osoa eta ingurunearen detekzio adimenduna eskainiz.\nSegurtasuna, eraginkortasun operatiboa eta erabakiak hartzea hobetzeko diseinatuta, gure teknologiak ikusmen artifiziala, analisi prediktiboa eta adimen artifiziala integratzen dituzte, babes aktiboa eta gidatze seguruagoa eskainiz edozein ingurunetan.',
+        description: 'Garraio-flotarako ekosistema digital integratuak diseinatzen, ezartzen eta mantentzen ditugu: autobusak, kamioak, trenak eta ibilgailu industrialak.\nTeknologia eraginkortasun operatiborako eta mugikortasun adimendunaren erronka berrietarako bideratua.',
         learnMore: 'Gehiago Jakin',
     },
     aiAnalysisSection: {
@@ -783,8 +783,8 @@ export const translations = {
         dismiss: 'Ez, eskerrik asko',
     },
     whyWinfinSection: {
-      title: 'Zergatik aukeratu WINFIN?',
-      description: 'Garraiorako sistema teknologikoetan dugun lidergoa hamarkadetako esperientzian, etengabeko berrikuntzan eta proiektu bakoitzean kalitatearekin dugun konpromisoan oinarritzen da.',
+      title: 'Zergatik Vision360IA?',
+      description: '<strong>Vision360IA</strong> WINFINek garatutako segurtasun aurreratuko plataforma da; <strong>WINFINek</strong> <strong>20 urte baino gehiagoko esperientzia</strong> du garraiorako sistema teknologikoetan.\nEsperientzia honekin, <strong>fidagarritasuna eta berrikuntza uztartzen dituzten soluzioak</strong> garatzen ditugu, eta etengabe hobetzen ditugu <strong>mugikortasun adimendunaren erronkei</strong> erantzuteko.',
       aboutUsButton: 'Nor gara',
       aboutUsAriaLabel: 'Nor garenari buruz gehiago irakurri',
     },
@@ -837,7 +837,7 @@ export const translations = {
         id: 'custom-solutions',
         icon: 'Lightbulb',
         title: 'Neurrirako soluzioak',
-        text: 'CCTV, barneratutako routerrak eta analisi prediktiboaren integrazioa, etengabeko laguntza teknikoarekin eta interoperabilitate gorenarekin.',
+        text: 'Garraio-flotarako <strong>ekosistema digital integratuak</strong> diseinatzen, ezartzen eta mantentzen ditugu: <strong>autobusak, kamioak, trenak eta ibilgailu industrialak</strong>.<br class="hidden sm:block" /><span class="block mt-2"><strong>Teknologia eraginkortasun operatiborako</strong> eta <strong>mugikortasun adimendunaren erronka berrietarako</strong> bideratua.</span>',
       },
     ],
     navigationLinks: [
