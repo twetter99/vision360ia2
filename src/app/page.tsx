@@ -1,6 +1,7 @@
 
 import { Contact } from '@/components/sections/contact';
 import { Faq } from '@/components/sections/faq';
+import { Geofencing } from '@/components/sections/geofencing';
 import { Hero } from '@/components/sections/hero';
 import { ProductShowcase } from '@/components/sections/product-showcase';
 import { SolutionsOverview } from '@/components/sections/solutions-overview';
@@ -86,6 +87,7 @@ export default async function Home() {
         <Hero translations={defaultTranslations} />
         <WhyUs translations={defaultTranslations} />
         <ProductShowcase translations={defaultTranslations} />
+        <Geofencing translations={defaultTranslations} />
         <SolutionsOverview translations={defaultTranslations} />
         <ThreatAnalysis translations={defaultTranslations} />
         <Faq translations={defaultTranslations} />

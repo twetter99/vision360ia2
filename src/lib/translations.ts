@@ -44,6 +44,35 @@ const baseTranslations = {
     title: 'Soluciones ADAS y Gestión para Vehículos de Empresa',
     learnMore: 'Saber Más',
   },
+  geofencingSection: {
+    eyebrow: 'Automatización Geoespacial',
+    title: 'Vallas Electrónicas: Tu Perímetro de Seguridad Virtual',
+    description: 'Transforma el mapa en una herramienta de control activo. Delimita zonas exactas y automatiza la supervisión de tu flota según su ubicación.',
+    features: [
+      {
+        title: 'Diseño de precisión flexible',
+        description: 'Dibuja polígonos complejos, rectángulos o círculos para adaptarte exactamente a tu operación (almacenes, rutas prohibidas, zonas de clientes). Personaliza cada valla con nombre, descripción y colores para identificación visual inmediata.'
+      },
+      {
+        title: 'Asignación inteligente de activos',
+        description: 'Vincula dispositivos o grupos de vehículos específicos a cada valla. Tú decides qué reglas aplican a quién y dónde.'
+      },
+      {
+        title: 'Reglas de automatización críticas',
+        description: 'Configura disparadores automáticos basados en el comportamiento dentro del perímetro:',
+        subFeatures: [
+          {
+            title: 'Control de Acceso',
+            description: 'Alertas inmediatas por entrada o salida no autorizada de la zona.'
+          },
+          {
+            title: 'Seguridad Vial',
+            description: 'Impón límites de velocidad exclusivos dentro del área (ej. "Máx. 10 km/h en el patio de carga").'
+          }
+        ]
+      }
+    ]
+  },
   aiAnalysisSection: {
     eyebrow: 'Análisis con IA',
     title: 'Obtén tu Informe de Seguridad Personalizado',
@@ -317,32 +346,42 @@ export const translations = {
       {
         id: 'faq1',
         question: '¿Cómo funciona exactamente el sistema de cámaras 360°?',
-        answer: 'El sistema utiliza cuatro o más cámaras HD de gran angular ubicadas estratégicamente en el vehículo (frontal, trasera y laterales). Las imágenes se envían a una Unidad de Control Electrónico (ECU) que las procesa, corrige las distorsiones ópticas y fusiona en tiempo real, generando una vista cenital o “vista de pájaro” que muestra el vehículo y su entorno inmediato con total claridad en el monitor de cabina.',
+        answer: 'Nuestro sistema utiliza Inteligencia Artificial para fusionar imágenes en tiempo real. Mediante tecnología de stitching, integramos la señal de hasta 6 cámaras ojo de pez HD con 190° de apertura. Esto crea una vista envolvente única que elimina totalmente los puntos ciegos, permitiendo detectar peatones, ciclistas y vehículos cercanos mediante IA y alertar al conductor con avisos visuales y sonoros.',
       },
       {
         id: 'faq2',
-        question: '¿Qué diferencia hay entre vuestro sistema y una cámara de reversa convencional?',
-        answer: 'Una cámara de reversa ofrece únicamente la vista trasera, mientras que el sistema de visión envolvente 360° combina simultáneamente las imágenes de varias cámaras para proporcionar una visión integral de todo el perímetro del vehículo. Esto permite eliminar puntos ciegos en todas las direcciones, mejorar la percepción del entorno y facilitar maniobras complejas —como giros cerrados, estacionamientos o circulación en espacios reducidos— con total seguridad.',
+        question: '¿Cumple el sistema con la Normativa GSR (R151, R158, R159)?',
+        answer: 'Sí, Vision 360 es la herramienta ideal para cumplir con el Reglamento de Seguridad General (GSR) de la UE, cubriendo sus tres pilares fundamentales: R151 (BSIS - Ángulo Muerto) detecta ciclistas y peatones en el lado del copiloto, alertando de riesgos en giros. R158 (Reversing - Marcha Atrás) garantiza visibilidad completa al maniobrar hacia atrás, detectando obstáculos y personas. R159 (MOIS - Arranque Frontal) incluye alerta de colisión frontal y detección de peatones en la zona delantera al iniciar la marcha.',
       },
       {
         id: 'faq3',
-        question: '¿Es complicado instalar el sistema en camiones o vehículos de gran tamaño?',
-        answer: 'No. Los sistemas están diseñados para una instalación rápida y precisa por técnicos certificados. El proceso incluye la colocación estratégica de las cámaras y una calibración automática que garantiza la correcta fusión de las imágenes. Disponemos de kits específicos adaptados a diferentes tipos de vehículos, desde autobuses y camiones hasta maquinaria industrial o agrícola, asegurando siempre un resultado óptimo y fiable.',
+        question: '¿Qué diferencia hay entre este sistema y una cámara de reversa convencional?',
+        answer: 'Una cámara convencional es pasiva. Vision 360 es un sistema de prevención activa que actúa como un copiloto digital. Cobertura Total: Cubrimos los 360° del vehículo eliminando ángulos muertos laterales y frontales, no solo los traseros. Inteligencia Artificial: Detecta riesgos (peatones, salida de carril) y avisa al conductor antes de que ocurra el accidente. Telemetría: Registramos impactos (sensor G) y datos de conducción, algo que una cámara simple no hace.',
       },
       {
         id: 'faq4',
-        question: '¿El sistema graba las imágenes o solo muestra la visión en tiempo real?',
-        answer: 'Por defecto, el sistema muestra la visión en tiempo real, pero puede integrarse con una unidad de grabación (DVR) que almacena las imágenes de todas las cámaras. Esto permite registrar eventos o maniobras críticas para su posterior análisis, formación de conductores o investigación de incidentes, cumpliendo siempre con la normativa vigente en materia de protección de datos (GDPR).',
+        question: '¿Ayuda este sistema a reducir los costes de la flota?',
+        answer: 'Sí, el retorno de inversión es rápido. Se estima que el sistema se amortiza con solo evitar uno o dos incidentes. Seguros: Ayuda a reducir primas y obtener bonificaciones al incorporar sistemas ADAS y grabación. Operativa: Minimiza los días de vehículos inmovilizados en taller al evitar pequeñas colisiones en maniobras.',
       },
       {
         id: 'faq5',
-        question: '¿Se puede integrar con otros sistemas del vehículo (ADAS, FMS, etc.)?',
-        answer: 'Sí. Nuestra tecnología está preparada para integrarse mediante protocolos estándar (CAN, Ethernet, API, FMS) con sistemas de asistencia avanzada (ADAS), monitorización de flotas o plataformas telemáticas. De este modo, los datos de visión y alertas pueden combinarse con información de sensores, GPS o gestión de rutas, ofreciendo una visión global y centralizada del rendimiento y la seguridad del vehículo.',
+        question: '¿El sistema graba las imágenes o solo muestra la visión en tiempo real?',
+        answer: 'Ofrece protección integral. Grabación: Se activa por sensor G, exceso de velocidad o detección de IA. Los archivos están protegidos contra sobreescritura. Evidencia Legal: En caso de litigio, dispones de un registro con fecha, hora, coordenadas GPS y vídeo HD para evitar reclamaciones falsas.',
       },
       {
         id: 'faq6',
-        question: '¿Requiere mantenimiento periódico o recalibración?',
-        answer: 'El sistema está diseñado para un funcionamiento continuo y estable, sin necesidad de ajustes frecuentes. No obstante, se recomienda una revisión visual y recalibración básica tras operaciones de mantenimiento del vehículo o sustitución de cámaras, para asegurar una alineación perfecta. Los componentes están fabricados con certificación IP69K, garantizando resistencia a polvo, agua, vibraciones y temperaturas extremas.',
+        question: '¿Es complicado instalar el sistema en camiones o vehículos de gran tamaño?',
+        answer: 'No, está diseñado para flotas profesionales. Rápido: Calibración automática en menos de 1 minuto para reducir tiempos de parada. Versátil: Compatible con vehículos de 12V y 24V, nuevos o antiguos, y cámaras con certificación IP69K para máxima resistencia.',
+      },
+      {
+        id: 'faq7',
+        question: '¿El sistema me avisa si un vehículo se sale de su ruta?',
+        answer: 'Sí, mediante el módulo de Valla Electrónica. Puedes dibujar zonas en el mapa y configurar reglas automáticas. El sistema generará una alarma si el vehículo entra en zona prohibida, sale de su área o excede la velocidad en un perímetro definido.',
+      },
+      {
+        id: 'faq8',
+        question: '¿Quién respalda la tecnología y el soporte?',
+        answer: 'Vision 360 cuenta con el respaldo de WINFIN, con más de 15 años de experiencia y más de 2.000 vehículos instalados. Ofrecemos garantía de 2 años y soporte técnico real para asegurar la operatividad de tu flota.',
       },
     ],
   },
