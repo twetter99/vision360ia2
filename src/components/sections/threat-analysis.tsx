@@ -2,7 +2,7 @@
 
 import { SectionWrapper } from "../shared/section-wrapper";
 import { Button } from "../ui/button";
-import { ArrowRight, Shield, Zap, Users } from "lucide-react";
+import { ArrowRight, Shield, Code2, FlaskConical, Rocket } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import type { Translation } from "@/lib/translations";
 
@@ -41,25 +41,25 @@ export function ThreatAnalysis({
 
             <div className="space-y-4">
               <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-                ¿Listo para Proteger tu Flota?
+                Hablemos de Ingeniería, no de ventas
               </h2>
               <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-                Agenda una consultoría gratuita con nuestros expertos y descubre cómo Vision360IA puede reducir accidentes y costes en tu operación.
+                Agenda una sesión técnica con un ingeniero especializado en sistemas embarcados. Evaluamos tu flota actual y diseñamos la arquitectura Vision360IA específica para tu operación.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="flex flex-col items-center gap-3 p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20">
-                <Zap className="w-8 h-8 text-accent" />
-                <p className="text-white font-semibold">Respuesta en &lt; 24h</p>
+                <Code2 className="w-8 h-8 text-accent" />
+                <p className="text-white font-semibold">Hablas con ingenieros</p>
               </div>
               <div className="flex flex-col items-center gap-3 p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20">
-                <Users className="w-8 h-8 text-accent" />
-                <p className="text-white font-semibold">Consultoría 100% gratuita</p>
+                <FlaskConical className="w-8 h-8 text-accent" />
+                <p className="text-white font-semibold">Estudio de viabilidad</p>
               </div>
               <div className="flex flex-col items-center gap-3 p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20">
-                <Shield className="w-8 h-8 text-accent" />
-                <p className="text-white font-semibold">Sin compromiso</p>
+                <Rocket className="w-8 h-8 text-accent" />
+                <p className="text-white font-semibold">Sin compromiso de compra</p>
               </div>
             </div>
 
@@ -69,28 +69,13 @@ export function ThreatAnalysis({
                 size="lg"
                 className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg px-8 py-6 h-auto"
               >
-                Solicitar Consultoría Gratuita
+                Hablar con un Experto
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <p className="mt-4 text-sm text-white/70">
                  Tus datos están protegidos. Sin spam.
               </p>
             </div>
-          </div>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div className="p-6 rounded-lg bg-card border border-border shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-4xl font-bold text-primary mb-2">95%</div>
-            <p className="text-sm text-muted-foreground">Reducción de accidentes reportada</p>
-          </div>
-          <div className="p-6 rounded-lg bg-card border border-border shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-4xl font-bold text-primary mb-2">1000+</div>
-            <p className="text-sm text-muted-foreground">Vehículos protegidos</p>
-          </div>
-          <div className="p-6 rounded-lg bg-card border border-border shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-4xl font-bold text-primary mb-2">24/7</div>
-            <p className="text-sm text-muted-foreground">Monitoreo continuo</p>
           </div>
         </div>
       </div>

@@ -35,14 +35,13 @@ const baseTranslations = {
   },
   productsSection: {
     eyebrow: 'Ventajas Clave',
-    title: 'Tecnología Diseñada para Proteger tu Inversión',
+    title: 'Sistemas ADAS y Seguridad Vehicular con IA',
     description: 'Integramos hardware de vanguardia en tus vehículos: cámaras de alta definición y sensores robustos, procesados por algoritmos de IA, que analizan el entorno en tiempo real para anticipar peligros, eliminar puntos ciegos y garantizar una protección integral y eficiencia operativa superior.',
     addToCart: 'Más Información',
   },
   solutionsSection: {
     eyebrow: 'Soluciones a Medida',
-    title: 'Seguridad que se Adapta a tu Vehículo',
-    description: 'Diseñamos, implantamos y mantenemos ecosistemas digitales integrados para flotas de transporte: autobuses, camiones, trenes y vehículos industriales.\nTecnología orientada a la fiabilidad operativa y a los nuevos desafíos de la movilidad inteligente.',
+    title: 'Soluciones ADAS y Gestión para Vehículos de Empresa',
     learnMore: 'Saber Más',
   },
   aiAnalysisSection: {
@@ -88,14 +87,31 @@ const baseTranslations = {
     description: 'No te fíes solo de nuestra palabra. Esto es lo que nuestros clientes satisfechos tienen que decir sobre Vision360ia.',
   },
   faqSection: {
-    eyebrow: 'Preguntas Frecuentes',
-    title: 'Tus Preguntas, Respondidas',
-    description: 'Encuentra respuestas a preguntas comunes sobre nuestros productos, servicios y seguridad vehicular en general.',
+    eyebrow: 'FAQ Técnico',
+    title: 'Implementación: Lo que necesitas saber',
+    description: 'Transparencia total. Despejamos las dudas operativas y técnicas más frecuentes para que tomes una decisión informada y segura para tu negocio.',
   },
   contactSection: {
-    eyebrow: 'Ponte en Contacto',
-    title: 'Nos Encantaría Saber de Ti',
-    description: '¿Tienes preguntas o necesitas un presupuesto personalizado? Rellena el siguiente formulario y un miembro de nuestro equipo se pondrá en contacto contigo.',
+    eyebrow: 'Hablemos de tu Proyecto',
+    title: 'Hablemos de Ingeniería, no de ventas',
+    description: 'Agenda una sesión técnica con un ingeniero especializado en sistemas embarcados. Evaluamos tu flota actual y diseñamos la arquitectura Vision360IA específica para tu operación.',
+    trustBoxes: [
+      {
+        icon: 'Code2',
+        title: 'Hablas con ingenieros',
+        description: 'No comerciales. Conversación técnica real sobre arquitectura, integración y requisitos específicos de tu flota.'
+      },
+      {
+        icon: 'FlaskConical',
+        title: 'Estudio de viabilidad',
+        description: 'Analizamos compatibilidad con tu hardware actual, infraestructura de red y sistemas de gestión existentes.'
+      },
+      {
+        icon: 'Rocket',
+        title: 'Sin compromiso de compra',
+        description: 'Primero entendemos el problema. Si Vision360IA no es la solución óptima para tu caso, te lo diremos.'
+      }
+    ],
     form: {
       name: 'Nombre Completo',
       namePlaceholder: 'John Doe',
@@ -103,7 +119,7 @@ const baseTranslations = {
       emailPlaceholder: 'tu@ejemplo.com',
       message: 'Tu Mensaje',
       messagePlaceholder: '¿Cómo podemos ayudarte?',
-      sendButton: 'Enviar Mensaje',
+      sendButton: 'Hablar con un Experto →',
     },
     toast: {
       title: '¡Mensaje Enviado!',
@@ -122,8 +138,7 @@ const baseTranslations = {
     dismiss: 'No, gracias',
   },
   whyWinfinSection: {
-    title: '¿Por qué Vision360IA?',
-    description: '<strong>Vision360IA</strong> es la plataforma de seguridad avanzada desarrollada por <strong>WINFIN</strong>, una empresa con más de <strong>20 años de experiencia</strong> en sistemas tecnológicos para el transporte.\nCon esta experiencia, desarrollamos <strong>soluciones que combinan fiabilidad e innovación</strong>, y que mejoran continuamente para responder a los <strong>retos de la movilidad inteligente</strong>.',
+    title: '¿Por qué elegir Vision360IA?',
     aboutUsButton: 'Quiénes somos',
     aboutUsAriaLabel: 'Leer más sobre quiénes somos',
   },
@@ -157,8 +172,10 @@ const baseTranslations = {
 
 const productSpecs = {
   prod1: {
-    name: 'Visión Periférica 360º',
+    name: 'Sistema ADAS con Visión Periférica 360º',
     description: 'Vision360ia elimina los puntos ciegos y ofrece control total del entorno. Mediante la fusión inteligente de cámaras HD ultra gran angular (>180°), genera una vista cenital unificada en tiempo real. Su ECU dedicada procesa y compone la imagen con máxima precisión para mostrar en el monitor de cabina una visualización continua, nítida y estable, incluso con lluvia, polvo o baja luminosidad. Integración rápida y configurable para cualquier tipo de vehículo.',
+    vimeoId: '1133755711',
+    videoPoster: '/images/winfin_vision360ia_1.jpg',
     specs: [
         'Seguridad superior: sin puntos ciegos y mayor percepción situacional.',
         'Maniobras más ágiles: aparcamientos, giros y acoples con mayor precisión.',
@@ -172,8 +189,10 @@ const productSpecs = {
     ],
   },
   prod2: {
-    name: 'Alertas Proactivas en Cabina',
+    name: 'ADAS con Alertas de Seguridad Vehicular Inteligente',
     description: 'El sistema de Asistencia Proactiva al Conductor con IA eleva la seguridad activa del vehículo mediante la detección temprana de riesgos. Basado en algoritmos de visión artificial y análisis predictivo, este módulo ADAS supervisa constantemente el entorno del vehículo y emite alertas visuales y sonoras en cabina ante posibles situaciones de peligro. El sistema detecta y notifica riesgo de colisión frontal (FCW), salidas involuntarias de carril (LDW) y la presencia de peatones o ciclistas (VRU) en zonas de riesgo. Su interfaz intuitiva y configurable facilita la interpretación de las alertas, permitiendo al conductor reaccionar de forma inmediata.',
+    vimeoId: '1133755727',
+    videoPoster: '/images/winfin_vision360ia_2.jpg',
     specs: [
       'Alertas de colisión frontal (FCW) con distintos niveles de urgencia.',
       'Aviso de salida de carril (LDW) y asistente de mantenimiento de trayectoria.',
@@ -185,8 +204,10 @@ const productSpecs = {
     ],
   },
   prod3: {
-    name: 'Análisis IA y Reportes',
+    name: 'Gestión de Flotas con Análisis IA y Reportes',
     description: 'La Plataforma de Análisis de Flota con IA transforma los datos telemáticos en información estratégica para la toma de decisiones. Mediante algoritmos avanzados de inteligencia artificial y aprendizaje automático, analiza patrones de conducción, eventos críticos y comportamientos de riesgo, generando informes precisos y personalizables. Esta herramienta ofrece una visión integral del rendimiento operativo de cada vehículo y conductor, ayudando a optimizar rutas, reducir costes de combustible y mantenimiento, y a promover una cultura de conducción más segura y eficiente.',
+    vimeoId: '1133755748',
+    videoPoster: '/images/winfin_vision360ia_3.jpg',
     specs: [
       'Evaluación continua y scoring del comportamiento del conductor.',
       'Reconstrucción detallada de eventos críticos, incluyendo vídeo.',
@@ -204,25 +225,30 @@ const whyWinfinCardsData = [
     id: 'experience',
     icon: 'Users',
     title: 'Experiencia',
-    text: 'Más de 20 años en instalación y mantenimiento de sistemas embarcados en buses, trenes y flotas industriales. <strong>+2.000 vehículos equipados</strong>.',
+    metric: '20+ años',
+    text: 'Instalando sistemas embarcados en buses, trenes y flotas industriales.',
+    submetric: '+2.000 vehículos equipados',
   },
   {
     id: 'trust',
     icon: 'Handshake',
     title: 'Confianza',
-    text: 'Colaboramos con integradoras como <strong>Indra, GMV y Etra</strong>, y operadores como <strong>EMT Madrid, CRTM, ATM Barcelona y Lurraldebus</strong>.',
+    subtitle: 'Respaldados por la industria',
+    text: 'Si confían en nosotros <strong>EMT Madrid, Indra o ATM Barcelona</strong>, tú también puedes hacerlo. Cumplimos con los estándares más exigentes del mercado.',
   },
   {
     id: 'innovation',
     icon: 'BrainCircuit',
     title: 'Innovación',
-    text: 'Soluciones basadas en <strong>IoT, Big Data e IA</strong>: <strong>Vision360IA</strong> y <strong>Afluencia360</strong> para seguridad, eficiencia y sostenibilidad.',
+    subtitle: 'Tecnología que ahorra y protege',
+    text: 'Convierte datos en decisiones. Nuestras soluciones <strong>Vision360IA</strong> y <strong>Afluencia360</strong> utilizan IA y Big Data para maximizar la seguridad y reducir costes operativos.',
   },
   {
     id: 'custom-solutions',
     icon: 'Lightbulb',
     title: 'Soluciones a medida',
-    text: 'Diseñamos, implantamos y mantenemos <strong>ecosistemas digitales integrados</strong> para flotas de transporte: <strong>autobuses, camiones, trenes y vehículos industriales</strong>.<br class="hidden sm:block" /><span class="block mt-2"><strong>Tecnología orientada a la fiabilidad operativa</strong> y a los <strong>nuevos desafíos de la movilidad inteligente</strong>.</span>',
+    subtitle: 'Soluciones "Llave en Mano"',
+    text: 'Olvídate de la gestión técnica. Nos encargamos de todo el ciclo de vida: desde el diseño hasta el mantenimiento de tus sistemas embarcados.',
   },
 ];
 
@@ -246,42 +272,21 @@ export const translations = {
     ],
     solutions: [
       {
-        id: 'cars',
-        vehicleType: 'Turismos',
-        title: 'Protección Avanzada para Conductores Particulares',
-        description: 'La seguridad no es solo para flotas. Nuestras soluciones ADAS para turismos llevan la tecnología de asistencia al conductor de alta gama a tu vehículo personal. Disfruta de una mayor tranquilidad con alertas de colisión, detección de peatones y una visión 360º que hace que aparcar y maniobrar en la ciudad sea más fácil y seguro que nunca.',
-        features: [
-          'Visión periférica completa para eliminar puntos ciegos.',
-          'Alertas de colisión frontal y de tráfico cruzado trasero.',
-          'Asistente de aparcamiento con vista de pájaro.',
-          'Detección de peatones y ciclistas para seguridad urbana.',
-        ],
+        id: 'vans',
+        vehicleType: 'Furgonetas',
+        title: 'Seguridad activa para reparto, logística y última milla.',
         image: findImage('solution1'),
       },
       {
-        id: 'trucks',
+        id: 'fleets',
         vehicleType: 'Flotas',
-        title: 'Optimización y Seguridad para Flotas Comerciales',
-        description: 'Maximiza la eficiencia y minimiza el riesgo en toda tu flota. Nuestra plataforma centralizada te ofrece una visión completa de todos tus vehículos, con análisis de comportamiento del conductor, optimización de rutas, y alertas de mantenimiento predictivo. Reduce los costes de combustible, evita accidentes costosos y garantiza que tu equipo y tu carga lleguen a su destino de forma segura.',
-        features: [
-          'Monitorización 360º en tiempo real para cada vehículo.',
-          'Análisis de IA del comportamiento del conductor y scoring de riesgo.',
-          'Optimización de rutas y gestión de combustible.',
-          'Alertes de mantenimiento y diagnóstico de vehículos.',
-        ],
+        title: 'Control unificado y reducción de costes para grandes parques móviles.',
         image: findImage('solution2'),
       },
       {
-        id: 'motorcycles',
+        id: 'professionals',
         vehicleType: 'Profesionales',
-        title: 'Seguridad Mejorada para Profesionales en Movimiento',
-        description: 'Desde repartidores hasta servicios de emergencia, los profesionales en la carretera se enfrentan a riesgos únicos. Nuestras soluciones compactas y robustas están diseñadas para motocicletas y vehículos ligeros, ofreciendo detección de puntos ciegos y alertas de colisión adaptadas a la agilidad y vulnerabilidad de estos vehículos, mejorando drásticamente la seguridad del conductor.',
-        features: [
-          'Detección de vehículos en puntos ciegos laterales y traseros.',
-          'Alertas de colisión frontal con aviso de proximidad.',
-          'Diseño compacto, resistente a la intemperie y de bajo consumo.',
-          'Fácil instalación y integración con sistemas existentes.',
-        ],
+        title: 'Tecnología robusta para vehículos industriales y transporte pesado.',
         image: findImage('solution3'),
       },
     ],

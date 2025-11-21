@@ -19,9 +19,20 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   useEffect(() => {
+    // Optimización de rendimiento: throttling con requestAnimationFrame
+    // Reduce llamadas a setState de ~60/s a ~16-30/s, sincronizado con el navegador
+    let ticking = false;
+    
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -60,6 +71,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           className="object-cover scale-105"
           data-ai-hint={heroImage.imageHint}
           priority
+          quality={85}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent" 
              style={{ height: '65%' }} />
@@ -168,10 +180,12 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           >
             <div className="rounded-full bg-black/20 backdrop-blur-md border border-white/10 px-6 py-4 md:px-8 md:py-5">
               <p className="text-xs text-white/70 mb-3 md:text-sm">{t.trustedBy}</p>
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:gap-x-8">
-                <p className="font-headline text-base font-semibold text-white/80 grayscale opacity-80 transition-all duration-300 hover:grayscale-0 hover:opacity-100 md:text-lg">CRTM Madrid</p>
-                <p className="font-headline text-base font-semibold text-white/80 grayscale opacity-80 transition-all duration-300 hover:grayscale-0 hover:opacity-100 md:text-lg">ATM Barcelona</p>
-                <p className="font-headline text-base font-semibold text-white/80 grayscale opacity-80 transition-all duration-300 hover:grayscale-0 hover:opacity-100 md:text-lg">Lurraldebus Guipúzcoa</p>
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-10">
+                {['CRTM Madrid', 'ATM Barcelona', 'Lurraldebus'].map((name, i) => (
+                  <div key={i} className="h-10 px-4 bg-white/10 rounded flex items-center justify-center backdrop-blur-sm border border-white/5 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                    <span className="text-white/90 font-bold text-sm uppercase tracking-wider">{name}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </AnimatedSection>

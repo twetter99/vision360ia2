@@ -60,27 +60,18 @@ export function WhyUs({
   }, [cards.length]);
 
   return (
-    <div className="relative bg-[#f9f9f9] py-16 md:py-24">
+    <div className="relative bg-[#f9f9f9] py-16 md:py-20">
       <SectionWrapper id="why-winfin" className="bg-transparent">
         <div className="mx-auto max-w-7xl px-4">
           {/* Encabezado */}
-          <div className="mb-12 text-center lg:mb-16">
-            <h2 className="apple-text apple-smooth mb-4 text-4xl font-semibold tracking-tight text-[#333] md:text-5xl">
+          <div className="mb-10 text-center lg:mb-12">
+            <h2 className="apple-text apple-smooth text-4xl font-semibold tracking-tight text-[#333] md:text-5xl">
               {t.title}
             </h2>
-            <div className="mx-auto text-center max-w-[66ch] md:max-w-[68ch] px-4">
-              {t.description.split('\n').map((line, idx) => (
-                <p
-                  key={idx}
-                  className={`apple-text apple-smooth text-lg md:text-xl leading-relaxed text-[#6e6e73] text-balance ${idx > 0 ? 'mt-4' : ''}`}
-                  dangerouslySetInnerHTML={{ __html: line }}
-                />
-              ))}
-            </div>
           </div>
 
-          {/* Tarjetas apiladas verticalmente */}
-          <div className="mx-auto max-w-4xl space-y-8 md:space-y-12">
+          {/* Grid 2x2 de píldoras */}
+          <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-stretch">
             {cards.map((card, index) => {
               const Icon = iconMap[card.icon];
               const isVisible = visibleCards.has(index);
@@ -99,19 +90,42 @@ export function WhyUs({
                   role="article"
                   aria-label={`${card.title} - Beneficio ${index + 1} de ${cards.length}`}
                 >
-                  <div className="rounded-3xl bg-white p-8 shadow-lg transition-transform hover:scale-[1.02] md:p-12">
-                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0071e3] to-[#0077ed] text-white shadow-md">
-                      {Icon && <Icon className="h-8 w-8" />}
+                  <div className="rounded-3xl bg-white p-6 shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl hover:border-primary/20 border border-transparent md:p-8 h-full flex flex-col md:min-h-[280px]">
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0071e3] to-[#0077ed] text-white shadow-md">
+                      {Icon && <Icon className="h-7 w-7" />}
                     </div>
 
-                    <h3 className="apple-text mb-4 text-2xl font-semibold text-[#1d1d1f] md:text-3xl">
+                    <h3 className="apple-text mb-2 text-xl font-semibold text-[#1d1d1f] md:text-2xl">
                       {card.title}
                     </h3>
 
+                    {/* Subtítulo si existe */}
+                    {(card as any).subtitle && (
+                      <p className="apple-text mb-3 text-base font-medium text-primary md:text-lg">
+                        {(card as any).subtitle}
+                      </p>
+                    )}
+
+                    {/* Métrica grande si existe */}
+                    {(card as any).metric && (
+                      <div className="mb-4">
+                        <div className="text-5xl md:text-6xl font-bold text-primary mb-2">
+                          {(card as any).metric}
+                        </div>
+                      </div>
+                    )}
+
                     <div
-                      className="apple-text text-base leading-relaxed text-[#6e6e73] md:text-lg"
+                      className="apple-text text-sm leading-relaxed text-[#6e6e73] md:text-base flex-grow"
                       dangerouslySetInnerHTML={{ __html: card.text }}
                     />
+
+                    {/* Submétrica si existe */}
+                    {(card as any).submetric && (
+                      <div className="mt-4 text-lg font-semibold text-[#1d1d1f]">
+                        {(card as any).submetric}
+                      </div>
+                    )}
                   </div>
                 </div>
               );

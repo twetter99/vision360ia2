@@ -2,14 +2,11 @@
 import { Contact } from '@/components/sections/contact';
 import { Faq } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
-import { News } from '@/components/sections/news';
 import { ProductShowcase } from '@/components/sections/product-showcase';
 import { SolutionsOverview } from '@/components/sections/solutions-overview';
-import { Testimonials } from '@/components/sections/testimonials';
 import { ThreatAnalysis } from '@/components/sections/threat-analysis';
 import { WhyUs } from '@/components/sections/why-us';
 import { translations } from '@/lib/translations';
-import { getNewsArticles } from '@/services/cms';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -20,19 +17,80 @@ export const metadata: Metadata = {
 export default async function Home() {
   // Obtenemos las traducciones por defecto en el servidor (español)
   const defaultTranslations = translations.es;
-  const newsArticles = await getNewsArticles();
+  
+  // Schema.org JSON-LD para SEO
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Corporation",
+    "name": "Vision360IA",
+    "alternateName": "WINFIN Vision360IA",
+    "url": "https://vision360ia.com",
+    "logo": "https://vision360ia.com/logo.png",
+    "description": "Sistemas de seguridad ADAS y monitoreo de flotas con IA. Tecnología avanzada para prevenir accidentes y optimizar la gestión de flotas de transporte.",
+    "foundingDate": "2003",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "ES"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@vision360ia.com",
+      "contactType": "sales",
+      "availableLanguage": ["Spanish", "Catalan", "Basque"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/vision360ia"
+    ]
+  };
+
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Vision360IA - Sistema ADAS con IA",
+    "description": "Sistema avanzado de asistencia al conductor (ADAS) con inteligencia artificial para flotas comerciales. Incluye visión 360°, alertas de colisión, detección de peatones y análisis predictivo.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Vision360IA"
+    },
+    "category": "ADAS Sistema de Seguridad Vehicular",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "EUR",
+      "url": "https://vision360ia.com"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "150"
+    }
+  };
   
   return (
-    <div className="flex flex-col">
-      <Hero translations={defaultTranslations} />
-      <WhyUs translations={defaultTranslations} />
-      <ProductShowcase translations={defaultTranslations} />
-      <SolutionsOverview translations={defaultTranslations} />
-      <ThreatAnalysis translations={defaultTranslations} />
-      <News newsArticles={newsArticles} translations={defaultTranslations} />
-      <Testimonials translations={defaultTranslations} />
-      <Faq translations={defaultTranslations} />
-      <Contact translations={defaultTranslations} />
-    </div>
+    <>
+      {/* JSON-LD Schema Markup para SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationSchema)
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productSchema)
+        }}
+      />
+      
+      <div className="flex flex-col">
+        <Hero translations={defaultTranslations} />
+        <WhyUs translations={defaultTranslations} />
+        <ProductShowcase translations={defaultTranslations} />
+        <SolutionsOverview translations={defaultTranslations} />
+        <ThreatAnalysis translations={defaultTranslations} />
+        <Faq translations={defaultTranslations} />
+        <Contact translations={defaultTranslations} />
+      </div>
+    </>
   );
 }

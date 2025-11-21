@@ -17,9 +17,24 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Poppins', 'sans-serif'],
-        headline: ['Poppins', 'sans-serif'],
+        body: ['var(--font-body)', 'sans-serif'],
+        headline: ['var(--font-headline)', 'sans-serif'],
         code: ['monospace'],
+      },
+      animation: {
+        'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite',
+      },
+      keyframes: {
+        'pulse-subtle': {
+          '0%, 100%': { 
+            boxShadow: '0 0 0 0 rgba(6, 182, 212, 0.4)',
+            transform: 'scale(1)',
+          },
+          '50%': { 
+            boxShadow: '0 0 0 12px rgba(6, 182, 212, 0)',
+            transform: 'scale(1.02)',
+          },
+        },
       },
       colors: {
         background: 'hsl(var(--background))',
