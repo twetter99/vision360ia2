@@ -6,6 +6,8 @@ import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { LanguageProvider } from '@/context/language-provider';
+import { ContactSlideOverProvider } from '@/context/contact-slideover-provider';
+import { ContactSlideOver } from '@/components/ui/contact-slideover';
 import { useLanguage } from '@/hooks/use-language';
 
 const spaceGrotesk = Space_Grotesk({ 
@@ -37,6 +39,7 @@ const AppLayout = ({
         <main>{children}</main>
         <Footer />
         <Toaster />
+        <ContactSlideOver />
       </body>
     </html>
   );
@@ -49,7 +52,9 @@ export default function RootLayout({
 }>) {
   return (
     <LanguageProvider>
-      <AppLayout>{children}</AppLayout>
+      <ContactSlideOverProvider>
+        <AppLayout>{children}</AppLayout>
+      </ContactSlideOverProvider>
     </LanguageProvider>
   );
 }

@@ -91,7 +91,7 @@ export default async function Home() {
         <SolutionsOverview translations={defaultTranslations} />
         <ThreatAnalysis translations={defaultTranslations} />
         <Faq translations={defaultTranslations} />
-        <Contact translations={defaultTranslations} />
+        <Contact />
       </div>
     </>
   );

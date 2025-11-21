@@ -4,6 +4,7 @@ import { SectionWrapper } from "../shared/section-wrapper";
 import { Button } from "../ui/button";
 import { ArrowRight, Shield, Code2, FlaskConical, Rocket } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { useContactSlideOver } from "@/context/contact-slideover-provider";
 import type { Translation } from "@/lib/translations";
 
 export function ThreatAnalysis({
@@ -14,13 +15,7 @@ export function ThreatAnalysis({
   const { translations } = useLanguage();
   const t =
     translations.aiAnalysisSection || initialTranslations.aiAnalysisSection;
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contacto');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+  const { openContactSlideOver } = useContactSlideOver();
 
   return (
     <SectionWrapper
@@ -65,7 +60,7 @@ export function ThreatAnalysis({
 
             <div className="pt-4">
               <Button
-                onClick={scrollToContact}
+                onClick={openContactSlideOver}
                 size="lg"
                 className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg px-8 py-6 h-auto"
               >

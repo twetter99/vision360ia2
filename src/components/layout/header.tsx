@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/hooks/use-language';
+import { useContactSlideOver } from '@/context/contact-slideover-provider';
 import { LanguageBanner } from './language-banner';
 import { CataloniaFlag, SpainFlag, BasqueCountryFlag } from './flags';
 import { usePathname } from 'next/navigation';
@@ -16,17 +17,11 @@ import { BrandLogo } from '../brand/BrandLogo';
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage, translations } = useLanguage();
+  const { openContactSlideOver } = useContactSlideOver();
   const pathname = usePathname();
 
   const navigationLinks = translations.navigationLinks;
   const t = translations.header;
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contacto');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
 
   const languageOptions = [
     {
@@ -102,12 +97,12 @@ export function Header() {
               ))}
             </div>
             
-            <Button variant="outline" className="hidden md:flex" onClick={scrollToContact}>
+            <Button variant="outline" className="hidden md:flex" onClick={openContactSlideOver}>
               {t.login}
             </Button>
             <Button 
               className="hidden bg-accent text-accent-foreground hover:bg-accent/90 md:flex"
-              onClick={scrollToContact}
+              onClick={openContactSlideOver}
             >
               {t.getQuote}
             </Button>
@@ -130,10 +125,10 @@ export function Header() {
                     </Link>
                   ))}
                   <div className="mt-4 flex flex-col gap-4">
-                    <Button variant="outline" onClick={scrollToContact}>{t.login}</Button>
+                    <Button variant="outline" onClick={openContactSlideOver}>{t.login}</Button>
                     <Button 
                       className="bg-accent text-accent-foreground hover:bg-accent/90"
-                      onClick={scrollToContact}
+                      onClick={openContactSlideOver}
                     >
                       {t.getQuote}
                     </Button>

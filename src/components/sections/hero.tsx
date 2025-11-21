@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, PlayCircle, ShieldCheck, Cpu, GitMerge, X } from 'lucide-react';
 import { heroData } from '@/lib/data';
 import { useLanguage } from '@/hooks/use-language';
+import { useContactSlideOver } from '@/context/contact-slideover-provider';
 import type { Translation } from '@/lib/translations';
 import { AnimatedSection } from '../shared/animated-section';
 import { Badge } from '@/components/ui/badge';
@@ -47,12 +48,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
     setIsVideoOpen(true);
   };
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contacto');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+  const { openContactSlideOver } = useContactSlideOver();
 
   return (
     <section 
@@ -156,7 +152,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
             <Button 
               size="lg" 
               className="bg-accent text-accent-foreground shadow-lg transition-transform hover:scale-105 hover:bg-accent/90"
-              onClick={scrollToContact}
+              onClick={openContactSlideOver}
             >
               {t.mainCta}
               <ArrowRight className="ml-2 h-5 w-5" />
