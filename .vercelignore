@@ -1,0 +1,40 @@
+# Archivos que Vercel debe ignorar
+
+# Variables de entorno locales
+.env.local
+.env*.local
+
+# Archivos PHP (no funcionan en Vercel)
+public/api/**/*.php
+
+# Directorios de almacenamiento local
+secure_storage/
+storage/
+
+# Node modules
+node_modules/
+
+# Build outputs locales
+.next/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+
+# Misc
+.DS_Store
+*.pem
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Debug
+.genkit/
