@@ -35,6 +35,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // This effect runs only on the client
+    
+    // 1. Primero, verificar si hay un idioma guardado en localStorage (preferencia explícita del usuario)
     const storedLang = localStorage.getItem('language') as Language | null;
     if (storedLang && ['es', 'ca', 'eu'].includes(storedLang)) {
       setLanguageState(storedLang);
@@ -42,6 +44,21 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    // 2. Si no hay preferencia explícita, leer la cookie 'lang' establecida por el middleware
+    const cookieLang = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('lang='))
+      ?.split('=')[1] as Language | undefined;
+
+    if (cookieLang && ['es', 'ca', 'eu'].includes(cookieLang)) {
+      setLanguageState(cookieLang);
+      // Guardar en localStorage para futuras visitas
+      localStorage.setItem('language', cookieLang);
+      setIsInitialized(true);
+      return;
+    }
+
+    // 3. Fallback al idioma del navegador (como última opción)
     const browserLang = navigator.language.split('-')[0];
     let detectedLang: Language | null = null;
     if (browserLang === 'ca') {
