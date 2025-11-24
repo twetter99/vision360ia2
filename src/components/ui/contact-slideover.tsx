@@ -99,6 +99,33 @@ export function ContactSlideOver() {
 
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
 
+  // Cargar script de reCAPTCHA v3 (solo en el cliente)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    if (!siteKey) {
+      console.warn('reCAPTCHA site key not configured');
+      return;
+    }
+
+    // Verificar si el script ya está cargado
+    if (document.querySelector(`script[src*="recaptcha/api.js"]`)) {
+      return;
+    }
+
+    // Inyectar script de reCAPTCHA
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // No removemos el script para evitar problemas de recarga
+    };
+  }, []);
+
   // Bloquear scroll del body cuando el slide-over está abierto
   useEffect(() => {
     if (isOpen) {
@@ -126,11 +153,25 @@ export function ContactSlideOver() {
     setIsSubmitting(true);
 
     try {
+      // 🔐 OBTENER TOKEN DE RECAPTCHA v3 ANTES DE ENVIAR
+      let recaptchaToken = '';
+      
+      if (typeof window !== 'undefined' && window.grecaptcha) {
+        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+        if (siteKey) {
+          try {
+            recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
+          } catch (recaptchaError) {
+            console.error('reCAPTCHA error:', recaptchaError);
+            // Continuar sin token en caso de error de reCAPTCHA
+          }
+        }
+      }
+
       const response = await fetch("/api/form/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // ⚠️ Mantengo el payload actual para no romper el backend.
-        // Cuando quieras guardar más campos, solo habrá que ampliar el schema del API.
+        // ⚠️ Mantengo el payload actual + token de reCAPTCHA
         body: JSON.stringify({
           name: values.name,
           email: values.email,
@@ -139,6 +180,7 @@ export function ContactSlideOver() {
           specificConcerns: values.message,
           pageUrl: typeof window !== "undefined" ? window.location.href : "",
           formLoadTime,
+          token: recaptchaToken, // 🔐 Token de reCAPTCHA
         }),
       });
 

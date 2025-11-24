@@ -38,11 +38,72 @@ interface FormData {
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
+  token?: string; // 🔐 Token de reCAPTCHA v3
+}
+
+// 🔐 Interfaz para la respuesta de Google reCAPTCHA
+interface RecaptchaVerifyResponse {
+  success: boolean;
+  challenge_ts?: string;
+  hostname?: string;
+  score?: number;
+  action?: string;
+  'error-codes'?: string[];
 }
 
 interface ValidationError {
   field: string;
   error: string;
+}
+
+// 🔐 FUNCIÓN: Validar token de reCAPTCHA v3 con Google
+async function validateRecaptcha(token: string): Promise<boolean> {
+  try {
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+    
+    if (!secretKey) {
+      console.warn('reCAPTCHA secret key not configured');
+      return true; // Permitir si no está configurado (desarrollo)
+    }
+    
+    if (!token) {
+      console.warn('No reCAPTCHA token provided');
+      return false;
+    }
+    
+    // Hacer request a la API de Google
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(token)}`,
+    });
+    
+    const data: RecaptchaVerifyResponse = await response.json();
+    
+    // Verificar éxito y score
+    if (!data.success) {
+      console.error('reCAPTCHA verification failed:', data['error-codes']);
+      return false;
+    }
+    
+    // reCAPTCHA v3 devuelve un score de 0.0 a 1.0
+    // 0.0 = muy probable que sea bot, 1.0 = muy probable que sea humano
+    const minScore = 0.5; // Umbral recomendado
+    
+    if (data.score !== undefined && data.score < minScore) {
+      console.warn(`reCAPTCHA score too low: ${data.score} (min: ${minScore})`);
+      return false;
+    }
+    
+    console.log(`reCAPTCHA validated successfully. Score: ${data.score}`);
+    return true;
+    
+  } catch (error) {
+    console.error('reCAPTCHA validation error:', error);
+    return false; // Fallar en caso de error de red
+  }
 }
 
 // Validación de campos
@@ -275,7 +336,23 @@ export async function POST(request: NextRequest) {
     
     // Parsear datos
     const rawData = await request.json();
-    const data = sanitizeData(rawData);
+    const { token, ...formDataRaw } = rawData; // 🔐 Extraer token de reCAPTCHA
+    const data = sanitizeData(formDataRaw);
+    
+    // 🔐 VALIDAR RECAPTCHA ANTES DE PROCESAR
+    const isRecaptchaValid = await validateRecaptcha(token);
+    
+    if (!isRecaptchaValid) {
+      console.warn('reCAPTCHA validation failed for IP:', ip);
+      return NextResponse.json(
+        {
+          ok: false,
+          error: 'reCAPTCHA validation failed',
+          message: 'Verificación de seguridad fallida. Por favor, recarga la página e inténtalo de nuevo.'
+        },
+        { status: 400 }
+      );
+    }
     
     // Verificar honeypot
     if (data.website) {
