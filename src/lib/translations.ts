@@ -143,7 +143,7 @@ const baseTranslations = {
     ],
     form: {
       name: 'Nombre Completo',
-      namePlaceholder: 'John Doe',
+      namePlaceholder: 'Juan García López',
       email: 'Dirección de Correo Electrónico',
       emailPlaceholder: 'tu@ejemplo.com',
       message: 'Tu Mensaje',
