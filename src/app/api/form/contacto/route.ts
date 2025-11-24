@@ -26,12 +26,28 @@ const ALLOWED_VEHICLE_TYPES = [
 ];
 
 interface FormData {
+  // Datos básicos de contacto
   name: string;
   email: string;
   company?: string;
-  vehicleType: string;
-  location?: string;
-  specificConcerns?: string;
+  role?: string;
+  phone?: string;
+  
+  // Información de flota
+  fleetSize?: string;
+  vehicleTypes?: string[];
+  
+  // Detalles del proyecto
+  mainInterest?: string;
+  projectHorizon?: string;
+  contactPreference?: string;
+  
+  // Mensaje y legal
+  message?: string;
+  privacyAccepted?: boolean;
+  marketingOptIn?: boolean;
+  
+  // Metadata
   website?: string; // honeypot
   formLoadTime?: number;
   pageUrl?: string;
@@ -61,9 +77,15 @@ async function validateRecaptcha(token: string): Promise<boolean> {
   try {
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     
+    // ⚠️ MODO DESARROLLO: Siempre permitir (localhost no está autorizado en Google)
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('⚠️ Development mode: bypassing reCAPTCHA validation');
+      return true;
+    }
+    
     if (!secretKey) {
       console.warn('reCAPTCHA secret key not configured');
-      return true; // Permitir si no está configurado (desarrollo)
+      return true; // Permitir si no está configurado
     }
     
     if (!token) {
@@ -119,28 +141,42 @@ function validateFormData(data: FormData): ValidationError | null {
     return { field: 'email', error: 'Por favor, ingresa un email válido' };
   }
   
-  // Tipo de vehículo requerido
-  if (!data.vehicleType || !ALLOWED_VEHICLE_TYPES.includes(data.vehicleType)) {
-    return { field: 'vehicleType', error: 'Por favor, selecciona un tipo de vehículo válido' };
+  // Longitud máxima de mensaje
+  if (data.message && data.message.length > 2000) {
+    return { field: 'message', error: 'El mensaje no puede exceder 2000 caracteres' };
   }
   
-  // Longitud máxima de concerns
-  if (data.specificConcerns && data.specificConcerns.length > 2000) {
-    return { field: 'specificConcerns', error: 'El mensaje no puede exceder 2000 caracteres' };
-  }
-  
+  // Todo lo demás es opcional
   return null;
 }
 
 // Sanitizar datos
 function sanitizeData(data: any): FormData {
   return {
+    // Datos básicos de contacto
     name: String(data.name || '').trim().slice(0, 100),
     email: String(data.email || '').trim().toLowerCase().slice(0, 100),
     company: data.company ? String(data.company).trim().slice(0, 100) : undefined,
-    vehicleType: String(data.vehicleType || '').trim(),
-    location: data.location ? String(data.location).trim().slice(0, 100) : undefined,
-    specificConcerns: data.specificConcerns ? String(data.specificConcerns).trim().slice(0, 2000) : undefined,
+    role: data.role ? String(data.role).trim().slice(0, 100) : undefined,
+    phone: data.phone ? String(data.phone).trim().slice(0, 20) : undefined,
+    
+    // Información de flota
+    fleetSize: data.fleetSize ? String(data.fleetSize).trim() : undefined,
+    vehicleTypes: Array.isArray(data.vehicleTypes) 
+      ? data.vehicleTypes.map((v: any) => String(v).trim()).filter(Boolean)
+      : undefined,
+    
+    // Detalles del proyecto
+    mainInterest: data.mainInterest ? String(data.mainInterest).trim() : undefined,
+    projectHorizon: data.projectHorizon ? String(data.projectHorizon).trim() : undefined,
+    contactPreference: data.contactPreference ? String(data.contactPreference).trim() : undefined,
+    
+    // Mensaje y legal
+    message: data.message ? String(data.message).trim().slice(0, 2000) : undefined,
+    privacyAccepted: Boolean(data.privacyAccepted),
+    marketingOptIn: Boolean(data.marketingOptIn),
+    
+    // Metadata
     website: data.website,
     formLoadTime: data.formLoadTime,
     pageUrl: data.pageUrl,
@@ -228,74 +264,199 @@ async function sendEmail(data: FormData, metadata: any): Promise<boolean> {
       },
     });
     
-    // Email HTML
+    // Email HTML mejorado con toda la información del formulario
     const htmlContent = `
       <!DOCTYPE html>
       <html>
       <head>
         <meta charset="UTF-8">
         <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px 8px 0 0; }
-          .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px; }
-          .field { margin-bottom: 15px; }
-          .label { font-weight: bold; color: #667eea; }
-          .value { margin-top: 5px; }
-          .footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
+          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+          .container { max-width: 650px; margin: 20px auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+          .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; }
+          .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
+          .header p { margin: 8px 0 0 0; opacity: 0.9; font-size: 14px; }
+          .content { padding: 30px; }
+          .section { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #e5e7eb; }
+          .section:last-of-type { border-bottom: none; }
+          .section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #667eea; margin-bottom: 15px; }
+          .field { margin-bottom: 12px; }
+          .label { font-size: 13px; font-weight: 600; color: #64748b; margin-bottom: 4px; }
+          .value { font-size: 15px; color: #1e293b; word-break: break-word; }
+          .message-box { background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea; }
+          .footer { background: #f8fafc; padding: 20px 30px; font-size: 12px; color: #64748b; }
+          .footer-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+          .badge { display: inline-block; padding: 4px 12px; background: #e0e7ff; color: #4f46e5; border-radius: 12px; font-size: 12px; font-weight: 600; margin-top: 4px; }
         </style>
       </head>
       <body>
         <div class="container">
           <div class="header">
-            <h2>🚗 Nueva Solicitud de Contacto - Vision360 IA</h2>
+            <h1>🚗 Nueva Solicitud de Contacto</h1>
+            <p>Formulario Vision360IA - ${new Date(metadata.timestamp).toLocaleString('es-ES')}</p>
           </div>
+          
           <div class="content">
-            <div class="field">
-              <div class="label">Nombre:</div>
-              <div class="value">${data.name}</div>
+            <!-- SECCIÓN 1: Datos de contacto -->
+            <div class="section">
+              <div class="section-title">👤 Datos de Contacto</div>
+              <div class="field">
+                <div class="label">Nombre completo</div>
+                <div class="value">${data.name}</div>
+              </div>
+              <div class="field">
+                <div class="label">Email</div>
+                <div class="value"><a href="mailto:${data.email}" style="color: #667eea;">${data.email}</a></div>
+              </div>
+              ${data.company ? `
+              <div class="field">
+                <div class="label">Empresa</div>
+                <div class="value">${data.company}</div>
+              </div>` : ''}
+              ${data.role ? `
+              <div class="field">
+                <div class="label">Cargo / Rol</div>
+                <div class="value">${data.role}</div>
+              </div>` : ''}
+              ${data.phone ? `
+              <div class="field">
+                <div class="label">Teléfono</div>
+                <div class="value"><a href="tel:${data.phone}" style="color: #667eea;">${data.phone}</a></div>
+              </div>` : ''}
             </div>
-            <div class="field">
-              <div class="label">Email:</div>
-              <div class="value">${data.email}</div>
+
+            <!-- SECCIÓN 2: Información de flota -->
+            <div class="section">
+              <div class="section-title">🚌 Información de Flota</div>
+              ${data.fleetSize ? `
+              <div class="field">
+                <div class="label">Tamaño de flota</div>
+                <div class="value"><span class="badge">${data.fleetSize}</span></div>
+              </div>` : ''}
+              ${data.vehicleTypes && data.vehicleTypes.length > 0 ? `
+              <div class="field">
+                <div class="label">Tipos de vehículos</div>
+                <div class="value">
+                  ${data.vehicleTypes.map(v => `<span class="badge" style="margin-right: 8px; margin-bottom: 4px;">${v}</span>`).join('')}
+                </div>
+              </div>` : ''}
             </div>
-            ${data.company ? `
-            <div class="field">
-              <div class="label">Empresa:</div>
-              <div class="value">${data.company}</div>
+
+            <!-- SECCIÓN 3: Detalles del proyecto -->
+            ${data.mainInterest || data.projectHorizon || data.contactPreference ? `
+            <div class="section">
+              <div class="section-title">🎯 Detalles del Proyecto</div>
+              ${data.mainInterest ? `
+              <div class="field">
+                <div class="label">Interés principal</div>
+                <div class="value">${data.mainInterest}</div>
+              </div>` : ''}
+              ${data.projectHorizon ? `
+              <div class="field">
+                <div class="label">Horizonte del proyecto</div>
+                <div class="value">${data.projectHorizon}</div>
+              </div>` : ''}
+              ${data.contactPreference ? `
+              <div class="field">
+                <div class="label">Preferencia de contacto</div>
+                <div class="value"><span class="badge">${data.contactPreference}</span></div>
+              </div>` : ''}
             </div>` : ''}
-            <div class="field">
-              <div class="label">Tipo de Vehículo:</div>
-              <div class="value">${data.vehicleType}</div>
-            </div>
-            ${data.location ? `
-            <div class="field">
-              <div class="label">Ubicación:</div>
-              <div class="value">${data.location}</div>
+
+            <!-- SECCIÓN 4: Mensaje -->
+            ${data.message ? `
+            <div class="section">
+              <div class="section-title">💬 Mensaje del Cliente</div>
+              <div class="message-box">
+                ${data.message.replace(/\n/g, '<br>')}
+              </div>
             </div>` : ''}
-            ${data.specificConcerns ? `
-            <div class="field">
-              <div class="label">Mensaje:</div>
-              <div class="value">${data.specificConcerns}</div>
-            </div>` : ''}
-            <div class="footer">
-              <p><strong>Metadata:</strong></p>
-              <p>IP: ${metadata.ip} | Fecha: ${metadata.timestamp}</p>
-              ${metadata.utm.source ? `<p>UTM: ${metadata.utm.source} / ${metadata.utm.medium} / ${metadata.utm.campaign}</p>` : ''}
+            
+            <!-- SECCIÓN 5: Consentimientos -->
+            <div class="section">
+              <div class="section-title">✅ Consentimientos</div>
+              <div class="field">
+                <div class="label">Política de privacidad</div>
+                <div class="value">${data.privacyAccepted ? '✅ Aceptada' : '❌ No aceptada'}</div>
+              </div>
+              <div class="field">
+                <div class="label">Marketing y comunicaciones</div>
+                <div class="value">${data.marketingOptIn ? '✅ Acepta recibir información' : '⚪ No acepta'}</div>
+              </div>
             </div>
+
+            <!-- SECCIÓN 4: Origen de la solicitud -->
+            <div class="section">
+              <div class="section-title">📍 Origen de la Solicitud</div>
+              <div class="field">
+                <div class="label">Página de origen</div>
+                <div class="value" style="font-size: 13px; color: #64748b;">${metadata.pageUrl || 'No especificada'}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FOOTER con metadata técnica -->
+          <div class="footer">
+            <div class="footer-row">
+              <span><strong>IP:</strong> ${metadata.ip}</span>
+              <span><strong>User Agent:</strong> ${metadata.userAgent.substring(0, 50)}...</span>
+            </div>
+            ${metadata.utm.source ? `
+            <div class="footer-row">
+              <span><strong>UTM Source:</strong> ${metadata.utm.source}</span>
+              <span><strong>UTM Medium:</strong> ${metadata.utm.medium || '-'}</span>
+              <span><strong>UTM Campaign:</strong> ${metadata.utm.campaign || '-'}</span>
+            </div>` : ''}
           </div>
         </div>
       </body>
       </html>
     `;
     
-    // Enviar email
+    // Enviar email con toda la información
     await transporter.sendMail({
-      from: `"Vision360 IA" <${process.env.SMTP_USER || 'noreply@vision360ia.com'}>`,
+      from: `"Vision360 IA - Formulario Web" <${process.env.SMTP_USER || 'noreply@vision360ia.com'}>`,
       to: process.env.MAIL_TO || 'info@vision360ia.com',
-      subject: `Nueva solicitud de ${data.name} - ${data.vehicleType}`,
+      replyTo: data.email, // Permitir responder directamente al cliente
+      subject: `🚗 Nuevo Lead: ${data.name}${data.company ? ` (${data.company})` : ''} - ${data.vehicleType}`,
       html: htmlContent,
-      text: `Nueva solicitud de contacto\n\nNombre: ${data.name}\nEmail: ${data.email}\n${data.company ? `Empresa: ${data.company}\n` : ''}Tipo: ${data.vehicleType}\n${data.specificConcerns ? `Mensaje: ${data.specificConcerns}\n` : ''}\n\nIP: ${metadata.ip}\nFecha: ${metadata.timestamp}`,
+      text: `
+═══════════════════════════════════════════════
+  NUEVA SOLICITUD DE CONTACTO - VISION360 IA
+═══════════════════════════════════════════════
+
+📋 DATOS DE CONTACTO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nombre: ${data.name}
+Email: ${data.email}
+${data.company ? `Empresa: ${data.company}\n` : ''}${data.role ? `Cargo: ${data.role}\n` : ''}${data.phone ? `Teléfono: ${data.phone}\n` : ''}
+
+🚌 INFORMACIÓN DE FLOTA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${data.fleetSize ? `Tamaño: ${data.fleetSize}\n` : ''}${data.vehicleTypes && data.vehicleTypes.length > 0 ? `Tipos: ${data.vehicleTypes.join(', ')}\n` : ''}
+
+🎯 DETALLES DEL PROYECTO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${data.mainInterest ? `Interés: ${data.mainInterest}\n` : ''}${data.projectHorizon ? `Horizonte: ${data.projectHorizon}\n` : ''}${data.contactPreference ? `Preferencia: ${data.contactPreference}\n` : ''}
+
+💬 MENSAJE DEL CLIENTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${data.message || 'Sin mensaje adicional'}
+
+✅ CONSENTIMIENTOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Privacidad: ${data.privacyAccepted ? 'Aceptada' : 'No aceptada'}
+Marketing: ${data.marketingOptIn ? 'Sí acepta' : 'No acepta'}
+
+📍 INFORMACIÓN TÉCNICA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IP: ${metadata.ip}
+Fecha: ${metadata.timestamp}
+Página: ${metadata.pageUrl || 'No especificada'}
+${metadata.utm.source ? `UTM: ${metadata.utm.source} / ${metadata.utm.medium} / ${metadata.utm.campaign}` : ''}
+
+═══════════════════════════════════════════════
+      `,
     });
     
     return true;

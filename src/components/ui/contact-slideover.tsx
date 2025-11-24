@@ -156,38 +156,87 @@ export function ContactSlideOver() {
       // 🔐 OBTENER TOKEN DE RECAPTCHA v3 ANTES DE ENVIAR
       let recaptchaToken = '';
       
-      if (typeof window !== 'undefined' && window.grecaptcha) {
+      if (typeof window !== 'undefined') {
         const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
         if (siteKey) {
           try {
-            recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
+            // Esperar a que grecaptcha esté listo (máximo 5 segundos)
+            const grecaptchaReady = await Promise.race([
+              new Promise<boolean>((resolve) => {
+                if (window.grecaptcha && window.grecaptcha.ready) {
+                  window.grecaptcha.ready(() => resolve(true));
+                } else {
+                  resolve(false);
+                }
+              }),
+              new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000))
+            ]);
+            
+            if (grecaptchaReady && window.grecaptcha) {
+              recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
+              console.log('✅ reCAPTCHA token generado');
+            } else {
+              console.warn('⚠️ reCAPTCHA no está disponible, continuando sin token');
+            }
           } catch (recaptchaError) {
-            console.error('reCAPTCHA error:', recaptchaError);
+            console.error('❌ reCAPTCHA error:', recaptchaError);
             // Continuar sin token en caso de error de reCAPTCHA
           }
+        } else {
+          console.warn('⚠️ NEXT_PUBLIC_RECAPTCHA_SITE_KEY no configurada');
         }
       }
+
+      // Preparar datos completos para enviar
+      const payload = {
+        // Datos básicos de contacto
+        name: values.name,
+        email: values.email,
+        company: values.company || undefined,
+        role: values.role || undefined,
+        phone: values.phone || undefined,
+        
+        // Información de flota
+        fleetSize: values.fleetSize || undefined,
+        vehicleTypes: values.vehicleTypes && values.vehicleTypes.length > 0 
+          ? values.vehicleTypes 
+          : undefined,
+        
+        // Detalles del proyecto
+        mainInterest: values.mainInterest || undefined,
+        projectHorizon: values.projectHorizon || undefined,
+        contactPreference: values.contactPreference || undefined,
+        
+        // Mensaje y legal
+        message: values.message || undefined,
+        privacyAccepted: values.privacyAccepted,
+        marketingOptIn: values.marketingOptIn || false,
+        
+        // Metadata
+        pageUrl: typeof window !== "undefined" ? window.location.href : "",
+        formLoadTime,
+        token: recaptchaToken, // 🔐 Token de reCAPTCHA
+      };
+
+      console.log('📤 Enviando formulario completo:', payload);
 
       const response = await fetch("/api/form/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // ⚠️ Mantengo el payload actual + token de reCAPTCHA
-        body: JSON.stringify({
-          name: values.name,
-          email: values.email,
-          company: values.company,
-          vehicleType: values.fleetSize,
-          specificConcerns: values.message,
-          pageUrl: typeof window !== "undefined" ? window.location.href : "",
-          formLoadTime,
-          token: recaptchaToken, // 🔐 Token de reCAPTCHA
-        }),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Error al enviar");
+        // Mostrar el mensaje específico del servidor
+        const errorMessage = data.message || data.error || "Error al enviar el formulario";
+        toast({
+          title: "Error",
+          description: errorMessage,
+          variant: "destructive",
+        });
+        return; // Salir sin lanzar excepción
       }
 
       toast({
