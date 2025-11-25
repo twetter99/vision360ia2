@@ -357,10 +357,7 @@ export const translations = {
   es: {
     ...baseTranslations,
     navigationLinks: [
-      { href: '/quienes-somos', label: 'Quiénes somos' },
-      { href: '#products', label: 'Beneficios' },
-      { href: '#solutions', label: 'Casos de Uso' },
-      { href: '#ai-analysis', label: 'Análisis IA' },
+      { href: '#products', label: 'Producto' },
       { href: '#faq', label: 'FAQs' },
       { href: '#contact', label: 'Contacto' },
     ],
@@ -718,10 +715,7 @@ export const translations = {
       },
     ],
     navigationLinks: [
-        { href: '/quienes-somos', label: 'Qui som' },
-        { href: '#products', label: 'Beneficis' },
-        { href: '#solutions', label: 'Casos d\'Ús' },
-        { href: '#ai-analysis', label: 'Anàlisi IA' },
+        { href: '#products', label: 'Producte' },
         { href: '#faq', label: 'FAQs' },
         { href: '#contact', label: 'Contacte' },
     ],
@@ -1098,10 +1092,7 @@ export const translations = {
       },
     ],
     navigationLinks: [
-        { href: '/quienes-somos', label: 'Nor gara' },
-        { href: '#products', label: 'Onurak' },
-        { href: '#solutions', label: 'Erabilera-kasuak' },
-        { href: '#ai-analysis', label: 'IA Analisia' },
+        { href: '#products', label: 'Produktua' },
         { href: '#faq', label: 'FAQs' },
         { href: '#contact', label: 'Kontaktua' },
     ],
