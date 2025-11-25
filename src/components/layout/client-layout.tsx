@@ -7,6 +7,7 @@ import { Footer } from '@/components/layout/footer';
 import { LanguageProvider } from '@/context/language-provider';
 import { ContactSlideOverProvider } from '@/context/contact-slideover-provider';
 import { ContactSlideOver } from '@/components/ui/contact-slideover';
+import { CookieBanner } from '@/components/ui/cookie-banner';
 import { useLanguage } from '@/hooks/use-language';
 
 // Componente interno que usa hooks de idioma
@@ -34,6 +35,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
         <Footer />
         <Toaster />
         <ContactSlideOver />
+        <CookieBanner />
       </ContactSlideOverProvider>
     </LanguageProvider>
   );
