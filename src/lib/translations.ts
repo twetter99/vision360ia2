@@ -28,15 +28,15 @@ const baseTranslations = {
     copyright: 'Todos los derechos reservados.',
   },
   hero: {
-    title: 'Control 360° con IA: Reduce Riesgos, Maximiza Eficiencia.',
-    subtitle: '-40% de incidentes en flotas en 6 meses.',
+    title: 'Visión Perimetral 360º con IA para Autobuses y Camiones',
+    subtitle: 'Sistema de visión 360° que reduce un 40% los accidentes en flotas',
     description: 'Cada día, tu flota se enfrenta a lo imprevisible. Con **Vision360IA**, tus vehículos ven más allá: detectan riesgos, anticipan colisiones y convierten datos en seguridad activa. Tecnología **ADAS potenciada por IA**, diseñada para proteger lo que más importa: **tu equipo y tus activos**.',
     mainCta: 'Solicita demo',
     secondaryCta: 'Ver vídeo 60s',
     trustedBy: 'Con la confianza de las principales flotas',
-    dailyChallenge: 'Cada día, tu flota se enfrenta a lo imprevisible.',
+    dailyChallenge: 'Elimina los puntos ciegos en autobuses urbanos, interurbanos y camiones.',
     withVision360ia: 'Con',
-    vision360iaIntro: 'tus vehículos ven más allá',
+    vision360iaIntro: 'tus vehículos ven en 360º',
     badges: {
       detectRisks: 'Detecta riesgos',
       anticipateCollisions: 'Anticipa colisiones',
@@ -286,8 +286,8 @@ const baseTranslations = {
 
 const productSpecs = {
   prod1: {
-    name: 'Sistema ADAS con Visión Periférica 360º',
-    description: 'Vision360ia elimina los puntos ciegos y ofrece control total del entorno. Mediante la fusión inteligente de cámaras HD ultra gran angular (>180°), genera una vista cenital unificada en tiempo real. Su ECU dedicada procesa y compone la imagen con máxima precisión para mostrar en el monitor de cabina una visualización continua, nítida y estable, incluso con lluvia, polvo o baja luminosidad. Integración rápida y configurable para cualquier tipo de vehículo.',
+    name: 'Visión Perimetral 360º para Autobuses y Camiones',
+    description: 'Sistema de visión perimetral 360º que elimina los puntos ciegos en autobuses urbanos, interurbanos y camiones. Mediante la fusión inteligente de cámaras HD ultra gran angular (>180°), genera una vista cenital unificada en tiempo real. Compatible con vehículos de 12V y 24V. Su ECU dedicada procesa y compone la imagen con máxima precisión para mostrar en el monitor de cabina una visualización continua, nítida y estable, incluso con lluvia, polvo o baja luminosidad. Integración rápida y configurable para cualquier tipo de vehículo.',
     vimeoId: '1133755711',
     videoPoster: '/images/winfin_vision360ia_1.jpg',
     specs: [

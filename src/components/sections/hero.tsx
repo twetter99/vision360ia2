@@ -62,7 +62,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
       <div className="absolute inset-0 overflow-hidden" style={{ transform: `translateY(${parallaxY}px)` }}>
         <Image
           src={heroImage.imageUrl}
-          alt="Sistema ADAS Vision360IA instalado en flota de transporte - Vista 360 grados con detección inteligente"
+          alt="Sistema de visión perimetral 360 grados para autobuses y camiones - Vision360IA elimina puntos ciegos"
           fill
           className="object-cover scale-105"
           data-ai-hint={heroImage.imageHint}

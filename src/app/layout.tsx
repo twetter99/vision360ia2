@@ -22,34 +22,36 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://vision360ia.com'),
   title: {
-    default: 'Vision360IA | Sistema ADAS Homologado para Flotas en España',
-    template: '%s | Vision360IA - ADAS para Flotas'
+    default: 'Vision360IA | Visión Perimetral 360° para Autobuses y Camiones',
+    template: '%s | Vision360IA'
   },
-  description: 'Líder en sistemas ADAS con IA para flotas de autobuses y camiones en España. Cámaras 360°, alertas de colisión FCW, detección de peatones. Homologado GSR (R151, R158, R159). +2.000 vehículos equipados. EMT Madrid, ATM Barcelona confían en nosotros.',
+  description: 'Sistema de visión perimetral 360° con IA para autobuses urbanos, interurbanos, camiones y flotas industriales. Cámaras HD con eliminación de puntos ciegos, alertas FCW/LDW/VRU. Homologado GSR R151, R158, R159. Compatible 12V y 24V. +2.000 vehículos equipados en EMT Madrid, ATM Barcelona, Lurraldebus.',
   keywords: [
-    // Keywords principales (alto volumen)
-    'sistema ADAS',
+    // Keywords EXACTAS de búsqueda (prioridad máxima)
+    'vision perimetral bus',
+    'vision 360 autobus',
+    'vision 360 perimetral autobuses urbanos',
+    'sistema vision 360 bus industrial',
+    'camaras 360 autobus',
+    'vision perimetral camion',
+    // Keywords secundarias (alto volumen)
+    'sistema ADAS autobus',
     'ADAS para flotas',
-    'cámaras 360 autobús',
-    'cámaras 360 camión',
-    // Keywords de intención comercial
-    'sistema ADAS precio',
-    'instalar ADAS flota',
-    'ADAS homologado España',
-    // Keywords técnicos (búsquedas específicas)
+    'cámaras perimetrales bus',
+    'sistema vision perimetral 12V 24V',
+    // Keywords técnicos (normativa)
     'GSR R151 BSIS',
     'GSR R158 marcha atrás',
     'GSR R159 MOIS',
-    'alertas colisión frontal FCW',
-    'detección puntos ciegos BSD',
+    'homologacion GSR autobus',
     // Keywords long-tail
-    'sistema seguridad autobús urbano',
-    'cámaras vigilancia flota camiones',
-    'prevención accidentes transporte público',
-    'monitorización conductor IA',
+    'kit vision 360 autobus urbano',
+    'sistema camaras 360 grados camion',
+    'eliminar puntos ciegos autobus',
+    'vision perimetral transporte publico',
     // Marca
     'Vision360IA',
-    'WINFIN sistemas embarcados'
+    'WINFIN'
   ],
   authors: [{ name: 'WINFIN Instalaciones S.L.', url: 'https://vision360ia.com' }],
   creator: 'WINFIN',

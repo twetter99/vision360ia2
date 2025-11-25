@@ -8,12 +8,12 @@ import { translations } from '@/lib/translations';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sistema ADAS con IA para Flotas | Cámaras 360° Autobús y Camión - Vision360IA',
-  description: 'Sistema ADAS homologado GSR con visión 360° e IA para flotas de autobuses y camiones. -40% accidentes comprobado. +2.000 vehículos en EMT Madrid, ATM Barcelona. Instalación y soporte en España. Demo gratuita.',
-  keywords: ['sistema ADAS autobús', 'cámaras 360 camión', 'ADAS flotas España', 'GSR R151 R158 R159', 'seguridad flotas transporte'],
+  title: 'Visión Perimetral 360° para Autobuses y Camiones | Sistema Vision360IA',
+  description: 'Sistema de visión perimetral 360º con IA para autobuses urbanos, camiones y flotas industriales. Elimina puntos ciegos, cumple GSR R151/R158/R159. Instalación 12/24V. +2.000 vehículos: EMT Madrid, ATM Barcelona. Solicita demo.',
+  keywords: ['vision perimetral bus', 'vision 360 autobus', 'vision 360 perimetral autobuses urbanos', 'sistema vision 360 bus industrial', 'camaras 360 autobus', 'vision perimetral camion', 'ADAS autobus', 'sistema vision perimetral flotas'],
   openGraph: {
-    title: 'Sistema ADAS con IA para Flotas | Vision360IA',
-    description: '-40% accidentes en flotas. Sistema ADAS homologado con cámaras 360° e IA. +2.000 vehículos equipados en España.',
+    title: 'Visión Perimetral 360° para Autobuses y Camiones | Vision360IA',
+    description: 'Sistema de visión 360º con IA para autobuses y camiones. Elimina puntos ciegos, homologado GSR. +2.000 vehículos en EMT Madrid, ATM Barcelona.',
   },
 }
 
@@ -93,9 +93,12 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "Product",
     "@id": "https://vision360ia.com/#product",
-    "name": "Vision360IA - Sistema ADAS con Visión 360° e IA",
-    "description": "Sistema avanzado de asistencia al conductor (ADAS) con inteligencia artificial para flotas de autobuses, camiones y vehículos industriales. Incluye: cámaras 360° HD con eliminación de puntos ciegos, alertas de colisión frontal (FCW), detección de peatones y ciclistas (VRU), aviso de salida de carril (LDW) y plataforma de análisis con IA. Homologado según normativa GSR europea (R151, R158, R159).",
+    "name": "Sistema de Visión Perimetral 360° para Autobuses y Camiones",
+    "alternateName": ["Vision 360 Autobus", "Vision Perimetral Bus", "Kit Vision 360 Industrial"],
+    "description": "Sistema de visión perimetral 360º con IA para autobuses urbanos, interurbanos, camiones y flotas industriales. Elimina puntos ciegos con cámaras HD ultra gran angular (>180°). Incluye alertas de colisión frontal (FCW), detección de peatones y ciclistas (VRU), aviso de salida de carril (LDW). Compatible 12V y 24V. Homologado GSR R151 (BSIS), R158 (Marcha atrás), R159 (MOIS). Certificación IP69K.",
     "image": "https://vision360ia.com/images/og-image.jpg",
+    "sku": "V360IA-PRO",
+    "mpn": "VISION360-BUS-2024",
     "brand": {
       "@type": "Brand",
       "name": "Vision360IA",
@@ -105,12 +108,12 @@ export default async function Home() {
       "@type": "Organization",
       "name": "WINFIN Instalaciones S.L."
     },
-    "category": "Sistemas ADAS para Flotas Comerciales",
+    "category": "Sistemas de Visión Perimetral 360 para Autobuses y Camiones",
     "additionalProperty": [
       {
         "@type": "PropertyValue",
-        "name": "Certificación",
-        "value": "GSR R151, R158, R159"
+        "name": "Certificación GSR",
+        "value": "R151 (BSIS), R158 (Marcha atrás), R159 (MOIS)"
       },
       {
         "@type": "PropertyValue",
@@ -119,8 +122,23 @@ export default async function Home() {
       },
       {
         "@type": "PropertyValue",
-        "name": "Compatibilidad",
+        "name": "Voltaje",
         "value": "12V y 24V"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Ángulo de cámara",
+        "value": ">180° (ojo de pez HD)"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Vehículos compatibles",
+        "value": "Autobuses urbanos, interurbanos, camiones, flotas industriales"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Funcionalidades ADAS",
+        "value": "FCW, LDW, VRU, BSD"
       }
     ],
     "offers": {
