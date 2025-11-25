@@ -123,7 +123,18 @@ const baseTranslations = {
   contactSection: {
     eyebrow: 'Hablemos de tu Proyecto',
     title: 'Hablemos de Ingeniería, no de ventas',
-    description: 'Agenda una sesión técnica con un ingeniero especializado en sistemas embarcados. Evaluamos tu flota actual y diseñamos la arquitectura Vision360IA específica para tu operación.',
+    description: 'Cuéntanos cómo es tu flota y en una sesión técnica de 20–30 minutos un ingeniero de WINFIN te propondrá la arquitectura Vision360IA más eficiente para tu operación.',
+    badges: [
+      '+2.000 vehículos equipados',
+      'Integradores: Indra, GMV, Etra',
+      'Operadores: EMT Madrid, CRTM, ATM…'
+    ],
+    blocks: {
+      contact: 'Datos de contacto',
+      fleet: 'Sobre tu flota',
+      technical: 'Detalles técnicos',
+      privacy: 'Privacidad y comunicaciones'
+    },
     trustBoxes: [
       {
         icon: 'Code2',
@@ -146,8 +157,59 @@ const baseTranslations = {
       namePlaceholder: 'Juan García López',
       email: 'Dirección de Correo Electrónico',
       emailPlaceholder: 'tu@ejemplo.com',
+      company: 'Empresa',
+      companyPlaceholder: 'Nombre de tu operador / empresa',
+      role: 'Cargo / rol',
+      rolePlaceholder: 'Ej.: Director de Operaciones, CTO, Responsable de Flota…',
+      phone: 'Teléfono (opcional)',
+      phonePlaceholder: 'Para coordinar más rápido la sesión técnica',
+      fleetSize: 'Tamaño de flota *',
+      fleetSizeOptions: {
+        placeholder: 'Selecciona…',
+        option1: '1–20 vehículos',
+        option2: '21–100 vehículos',
+        option3: '101–300 vehículos',
+        option4: 'Más de 300 vehículos'
+      },
+      vehicleTypes: 'Tipo de vehículos',
+      vehicleTypeOptions: {
+        urban: 'Autobuses urbanos',
+        intercity: 'Interurbanos / regionales',
+        trucks: 'Camiones / logística',
+        industrial: 'Vehículos industriales / especiales'
+      },
+      mainInterest: 'Interés principal',
+      mainInterestOptions: {
+        placeholder: 'Selecciona…',
+        vision360: 'Vision360 (cámaras 360°)',
+        driverMonitoring: 'Monitorización del conductor',
+        analytics: 'Analítica de eventos e incidencias',
+        integration: 'Integración con sistemas existentes',
+        pilot: 'Proyecto piloto / prueba de concepto'
+      },
+      projectHorizon: 'Horizonte del proyecto',
+      projectHorizonOptions: {
+        placeholder: 'Selecciona…',
+        exploring: 'Explorando opciones',
+        months3: '1–3 meses',
+        months6: '3–6 meses',
+        year: 'Más de 6 meses'
+      },
+      contactPreference: 'Preferencia de contacto',
+      contactPreferenceOptions: {
+        placeholder: 'Selecciona…',
+        video: 'Videollamada',
+        phone: 'Teléfono',
+        email: 'Email'
+      },
       message: 'Tu Mensaje',
       messagePlaceholder: '¿Cómo podemos ayudarte?',
+      privacyLabel: 'He leído y acepto la',
+      privacyLink: 'Política de Privacidad',
+      marketingLabel: 'Quiero recibir información sobre nuevas funcionalidades y casos de éxito (opcional)',
+      submitButton: 'Enviar y agendar sesión técnica',
+      submitting: 'Enviando...',
+      footerText: 'Tus datos están protegidos. Sin spam. Solo hablamos de tecnología y casos reales en flotas como la tuya.',
       sendButton: 'Hablar con un Experto →',
     },
     toast: {
@@ -488,18 +550,80 @@ export const translations = {
     },
     contactSection: {
         ...baseTranslations.contactSection,
-        eyebrow: 'Posa\'t en Contacte',
-        title: 'Ens Encantaria Escoltar-te',
-        description: 'Tens preguntes o necessites un pressupost personalitzat? Omple el formulari següent i un membre del nostre equip es posarà en contacte amb tu.',
+        eyebrow: 'Parlem del teu Projecte',
+        title: 'Parlem d\'Enginyeria, no de vendes',
+        description: 'Explica\'ns com és la teva flota i en una sessió tècnica de 20–30 minuts un enginyer de WINFIN et proposarà l\'arquitectura Vision360IA més eficient per a la teva operació.',
+        badges: [
+          '+2.000 vehicles equipats',
+          'Integradors: Indra, GMV, Etra',
+          'Operadors: EMT Madrid, CRTM, ATM…'
+        ],
+        blocks: {
+          contact: 'Dades de contacte',
+          fleet: 'Sobre la teva flota',
+          technical: 'Detalls tècnics',
+          privacy: 'Privacitat i comunicacions'
+        },
         form: {
             ...baseTranslations.contactSection.form,
             name: 'Nom Complet',
-            namePlaceholder: 'Joan Petit',
+            namePlaceholder: 'Joan Petit Martí',
             email: 'Adreça de Correu Electrònic',
             emailPlaceholder: 'el_teu@exemple.com',
+            company: 'Empresa',
+            companyPlaceholder: 'Nom del teu operador / empresa',
+            role: 'Càrrec / rol',
+            rolePlaceholder: 'Ex.: Director d\'Operacions, CTO, Responsable de Flota…',
+            phone: 'Telèfon (opcional)',
+            phonePlaceholder: 'Per coordinar més ràpid la sessió tècnica',
+            fleetSize: 'Mida de flota *',
+            fleetSizeOptions: {
+              placeholder: 'Selecciona…',
+              option1: '1–20 vehicles',
+              option2: '21–100 vehicles',
+              option3: '101–300 vehicles',
+              option4: 'Més de 300 vehicles'
+            },
+            vehicleTypes: 'Tipus de vehicles',
+            vehicleTypeOptions: {
+              urban: 'Autobusos urbans',
+              intercity: 'Interurbans / regionals',
+              trucks: 'Camions / logística',
+              industrial: 'Vehicles industrials / especials'
+            },
+            mainInterest: 'Interès principal',
+            mainInterestOptions: {
+              placeholder: 'Selecciona…',
+              vision360: 'Vision360 (càmeres 360°)',
+              driverMonitoring: 'Monitorització del conductor',
+              analytics: 'Analítica d\'esdeveniments i incidències',
+              integration: 'Integració amb sistemes existents',
+              pilot: 'Projecte pilot / prova de concepte'
+            },
+            projectHorizon: 'Horitzó del projecte',
+            projectHorizonOptions: {
+              placeholder: 'Selecciona…',
+              exploring: 'Explorant opcions',
+              months3: '1–3 mesos',
+              months6: '3–6 mesos',
+              year: 'Més de 6 mesos'
+            },
+            contactPreference: 'Preferència de contacte',
+            contactPreferenceOptions: {
+              placeholder: 'Selecciona…',
+              video: 'Videotrucada',
+              phone: 'Telèfon',
+              email: 'Email'
+            },
             message: 'El teu Missatge',
             messagePlaceholder: 'Com et podem ajudar?',
-            sendButton: 'Enviar Missatge',
+            privacyLabel: 'He llegit i accepto la',
+            privacyLink: 'Política de Privacitat',
+            marketingLabel: 'Vull rebre informació sobre noves funcionalitats i casos d\'èxit (opcional)',
+            submitButton: 'Enviar i agendar sessió tècnica',
+            submitting: 'Enviant...',
+            footerText: 'Les teves dades estan protegides. Sense spam. Només parlem de tecnologia i casos reals en flotes com la teva.',
+            sendButton: 'Parlar amb un Expert →',
         },
         toast: {
             title: 'Missatge Enviat!',
@@ -797,18 +921,80 @@ export const translations = {
     },
     contactSection: {
         ...baseTranslations.contactSection,
-        eyebrow: 'Jarri Harremanetan',
-        title: 'Gustatuko litzaiguke Zurekin Hitz Egitea',
-        description: 'Galderarik baduzu edo aurrekontu pertsonalizatua behar duzu? Bete beheko formularioa eta gure taldeko kide bat zurekin harremanetan jarriko da.',
+        eyebrow: 'Hitz Egin Dezagun Zure Proiektuaz',
+        title: 'Hitz Egin Dezagun Ingeniaritzaz, ez Salmentaz',
+        description: 'Kontatu nolakoa den zure flota eta 20–30 minutuko saio tekniko batean WINFINeko ingeniari batek Vision360IA arkitektura egokiena proposatuko dizu zure eragiketarako.',
+        badges: [
+          '+2.000 ibilgailu ekipatuta',
+          'Integratzaileak: Indra, GMV, Etra',
+          'Operadoreak: EMT Madrid, CRTM, ATM…'
+        ],
+        blocks: {
+          contact: 'Kontaktu datuak',
+          fleet: 'Zure flotari buruz',
+          technical: 'Xehetasun teknikoak',
+          privacy: 'Pribatutasuna eta komunikazioak'
+        },
         form: {
             ...baseTranslations.contactSection.form,
             name: 'Izen Osoa',
-            namePlaceholder: 'Jon Artola',
+            namePlaceholder: 'Jon Artola Etxeberria',
             email: 'Posta Elektroniko Helbidea',
-            emailPlaceholder: 'zurea@adibide.com',
+            emailPlaceholder: 'zurea@adibidea.eus',
+            company: 'Enpresa',
+            companyPlaceholder: 'Zure operadorearen / enpresaren izena',
+            role: 'Kargua / rola',
+            rolePlaceholder: 'Adib.: Eragiketa Zuzendaria, CTO, Flota Arduraduna…',
+            phone: 'Telefonoa (aukerakoa)',
+            phonePlaceholder: 'Saio teknikoa azkarrago koordinatzeko',
+            fleetSize: 'Flotaren tamaina *',
+            fleetSizeOptions: {
+              placeholder: 'Hautatu…',
+              option1: '1–20 ibilgailu',
+              option2: '21–100 ibilgailu',
+              option3: '101–300 ibilgailu',
+              option4: '300 ibilgailu baino gehiago'
+            },
+            vehicleTypes: 'Ibilgailu motak',
+            vehicleTypeOptions: {
+              urban: 'Autobus hiritarrak',
+              intercity: 'Hiriartekoek / eskualdekoak',
+              trucks: 'Kamioak / logistika',
+              industrial: 'Ibilgailu industrialak / bereziak'
+            },
+            mainInterest: 'Interes nagusia',
+            mainInterestOptions: {
+              placeholder: 'Hautatu…',
+              vision360: 'Vision360 (360° kamerak)',
+              driverMonitoring: 'Gidariaren monitorizazioa',
+              analytics: 'Gertaeren eta intzidenteen analitika',
+              integration: 'Lehendik dauden sistemekiko integrazioa',
+              pilot: 'Pilotu proiektua / kontzeptu froga'
+            },
+            projectHorizon: 'Proiektuaren horizontea',
+            projectHorizonOptions: {
+              placeholder: 'Hautatu…',
+              exploring: 'Aukerak aztertzen',
+              months3: '1–3 hilabete',
+              months6: '3–6 hilabete',
+              year: '6 hilabete baino gehiago'
+            },
+            contactPreference: 'Kontaktu lehentasuna',
+            contactPreferenceOptions: {
+              placeholder: 'Hautatu…',
+              video: 'Bideo-deia',
+              phone: 'Telefonoa',
+              email: 'Posta elektronikoa'
+            },
             message: 'Zure Mezua',
             messagePlaceholder: 'Nola lagun zaitzakegu?',
-            sendButton: 'Mezua Bidali',
+            privacyLabel: 'Irakurri eta onartzen dut',
+            privacyLink: 'Pribatutasun Politika',
+            marketingLabel: 'Funtzionalitate berrien eta arrakasta-kasuen informazioa jaso nahi dut (aukerakoa)',
+            submitButton: 'Bidali eta saio teknikoa antolatu',
+            submitting: 'Bidaltzen...',
+            footerText: 'Zure datuak babestuak daude. Spam-ik gabe. Teknologiaz eta flota errealetan gertaturikoz bakarrik hitz egiten dugu.',
+            sendButton: 'Adituarekin Hitz Egin →',
         },
         toast: {
             title: 'Mezua Bidalita!',

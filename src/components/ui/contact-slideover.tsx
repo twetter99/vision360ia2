@@ -20,35 +20,6 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
 
-const vehicleTypeOptions = [
-  { value: "urbano", label: "Autobuses urbanos" },
-  { value: "interurbano", label: "Interurbanos / regionales" },
-  { value: "tren-tranvia", label: "Trenes / tranvías" },
-  { value: "camion-logistica", label: "Camiones / logística" },
-  { value: "industrial", label: "Vehículos industriales / especiales" },
-];
-
-const mainInterestOptions = [
-  { value: "vision360", label: "Visión 360º y reducción de incidentes" },
-  { value: "seguridad-conductor", label: "Monitorización del conductor" },
-  { value: "analitica", label: "Analítica de eventos e incidencias" },
-  { value: "integracion", label: "Integración con sistemas existentes" },
-  { value: "piloto", label: "Proyecto piloto / prueba de concepto" },
-];
-
-const projectHorizonOptions = [
-  { value: "explorando", label: "Explorando opciones" },
-  { value: "0-3", label: "0–3 meses" },
-  { value: "3-6", label: "3–6 meses" },
-  { value: "6+", label: "Más de 6 meses" },
-];
-
-const contactPreferenceOptions = [
-  { value: "video", label: "Videollamada" },
-  { value: "telefono", label: "Teléfono" },
-  { value: "email", label: "Email" },
-];
-
 const formSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
   email: z.string().email("Dirección de correo electrónico no válida."),
@@ -77,6 +48,35 @@ export function ContactSlideOver() {
   const t = translations.contactSection;
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Opciones del formulario con traducciones
+  const vehicleTypeOptions = [
+    { value: "urban", label: t.form.vehicleTypeOptions.urban },
+    { value: "intercity", label: t.form.vehicleTypeOptions.intercity },
+    { value: "trucks", label: t.form.vehicleTypeOptions.trucks },
+    { value: "industrial", label: t.form.vehicleTypeOptions.industrial },
+  ];
+
+  const mainInterestOptions = [
+    { value: "vision360", label: t.form.mainInterestOptions.vision360 },
+    { value: "driverMonitoring", label: t.form.mainInterestOptions.driverMonitoring },
+    { value: "analytics", label: t.form.mainInterestOptions.analytics },
+    { value: "integration", label: t.form.mainInterestOptions.integration },
+    { value: "pilot", label: t.form.mainInterestOptions.pilot },
+  ];
+
+  const projectHorizonOptions = [
+    { value: "exploring", label: t.form.projectHorizonOptions.exploring },
+    { value: "months3", label: t.form.projectHorizonOptions.months3 },
+    { value: "months6", label: t.form.projectHorizonOptions.months6 },
+    { value: "year", label: t.form.projectHorizonOptions.year },
+  ];
+
+  const contactPreferenceOptions = [
+    { value: "video", label: t.form.contactPreferenceOptions.video },
+    { value: "phone", label: t.form.contactPreferenceOptions.phone },
+    { value: "email", label: t.form.contactPreferenceOptions.email },
+  ];
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -322,20 +322,14 @@ export function ContactSlideOver() {
                 {t.title}
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed mb-3">
-                Cuéntanos cómo es tu flota y en una sesión técnica de 20–30
-                minutos un ingeniero de WINFIN te propondrá la arquitectura
-                Vision360IA más eficiente para tu operación.
+                {t.description}
               </p>
               <div className="flex flex-wrap gap-2 text-[11px] md:text-xs text-slate-500">
-                <span className="px-2.5 py-1 rounded-full bg-white/80 border border-slate-200">
-                  +2.000 vehículos equipados
-                </span>
-                <span className="px-2.5 py-1 rounded-full bg-white/80 border border-slate-200">
-                  Integradores: Indra, GMV, Etra
-                </span>
-                <span className="px-2.5 py-1 rounded-full bg-white/80 border border-slate-200">
-                  Operadores: EMT Madrid, CRTM, ATM…
-                </span>
+                {t.badges.map((badge, index) => (
+                  <span key={index} className="px-2.5 py-1 rounded-full bg-white/80 border border-slate-200">
+                    {badge}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -350,7 +344,7 @@ export function ContactSlideOver() {
                 {/* Bloque 1 · Datos de contacto */}
                 <div className="space-y-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    1. Datos de contacto
+                    1. {t.blocks.contact}
                   </p>
                   <div className="grid gap-4 md:grid-cols-2">
                     {/* Nombre */}
@@ -396,10 +390,10 @@ export function ContactSlideOver() {
                       name="company"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Empresa</FormLabel>
+                          <FormLabel>{t.form.company}</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="Nombre de tu operador / empresa"
+                              placeholder={t.form.companyPlaceholder}
                               {...field}
                             />
                           </FormControl>
@@ -414,10 +408,10 @@ export function ContactSlideOver() {
                       name="role"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Cargo / rol</FormLabel>
+                          <FormLabel>{t.form.role}</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="Ej.: Director de Operaciones, CTO, Responsable de Flota…"
+                              placeholder={t.form.rolePlaceholder}
                               {...field}
                             />
                           </FormControl>
@@ -432,11 +426,11 @@ export function ContactSlideOver() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem className="md:col-span-2">
-                          <FormLabel>Teléfono (opcional)</FormLabel>
+                          <FormLabel>{t.form.phone}</FormLabel>
                           <FormControl>
                             <Input
                               type="tel"
-                              placeholder="Para coordinar más rápido la sesión técnica"
+                              placeholder={t.form.phonePlaceholder}
                               {...field}
                             />
                           </FormControl>
@@ -450,7 +444,7 @@ export function ContactSlideOver() {
                 {/* Bloque 2 · Sobre tu flota */}
                 <div className="space-y-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    2. Sobre tu flota
+                    2. {t.blocks.fleet}
                   </p>
                   <div className="grid gap-4 md:grid-cols-2">
                     {/* Tamaño de flota */}
@@ -459,19 +453,17 @@ export function ContactSlideOver() {
                       name="fleetSize"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Tamaño de flota *</FormLabel>
+                          <FormLabel>{t.form.fleetSize}</FormLabel>
                           <FormControl>
                             <select
                               {...field}
                               className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
-                              <option value="">Selecciona…</option>
-                              <option value="1-20">1–20 vehículos</option>
-                              <option value="21-100">21–100 vehículos</option>
-                              <option value="101-300">
-                                101–300 vehículos
-                              </option>
-                              <option value="300+">Más de 300 vehículos</option>
+                              <option value="">{t.form.fleetSizeOptions.placeholder}</option>
+                              <option value="1-20">{t.form.fleetSizeOptions.option1}</option>
+                              <option value="21-100">{t.form.fleetSizeOptions.option2}</option>
+                              <option value="101-300">{t.form.fleetSizeOptions.option3}</option>
+                              <option value="300+">{t.form.fleetSizeOptions.option4}</option>
                             </select>
                           </FormControl>
                           <FormMessage />
@@ -485,13 +477,13 @@ export function ContactSlideOver() {
                       name="mainInterest"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Interés principal</FormLabel>
+                          <FormLabel>{t.form.mainInterest}</FormLabel>
                           <FormControl>
                             <select
                               {...field}
                               className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
-                              <option value="">Selecciona…</option>
+                              <option value="">{t.form.mainInterestOptions.placeholder}</option>
                               {mainInterestOptions.map((opt) => (
                                 <option key={opt.value} value={opt.value}>
                                   {opt.label}
@@ -512,7 +504,7 @@ export function ContactSlideOver() {
                         const value = field.value || [];
                         return (
                           <FormItem className="md:col-span-2">
-                            <FormLabel>Tipo de vehículos</FormLabel>
+                            <FormLabel>{t.form.vehicleTypes}</FormLabel>
                             <FormControl>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 {vehicleTypeOptions.map((opt) => {
@@ -569,13 +561,13 @@ export function ContactSlideOver() {
                       name="projectHorizon"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Horizonte del proyecto</FormLabel>
+                          <FormLabel>{t.form.projectHorizon}</FormLabel>
                           <FormControl>
                             <select
                               {...field}
                               className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
-                              <option value="">Selecciona…</option>
+                              <option value="">{t.form.projectHorizonOptions.placeholder}</option>
                               {projectHorizonOptions.map((opt) => (
                                 <option key={opt.value} value={opt.value}>
                                   {opt.label}
@@ -594,13 +586,13 @@ export function ContactSlideOver() {
                       name="contactPreference"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Preferencia de contacto</FormLabel>
+                          <FormLabel>{t.form.contactPreference}</FormLabel>
                           <FormControl>
                             <select
                               {...field}
                               className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
-                              <option value="">Selecciona…</option>
+                              <option value="">{t.form.contactPreferenceOptions.placeholder}</option>
                               {contactPreferenceOptions.map((opt) => (
                                 <option key={opt.value} value={opt.value}>
                                   {opt.label}
@@ -708,11 +700,10 @@ export function ContactSlideOver() {
                     {isSubmitting && (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     )}
-                    Enviar y agendar sesión técnica
+                    {isSubmitting ? t.form.submitting : t.form.submitButton}
                   </Button>
                   <p className="mt-3 text-xs text-center text-slate-500">
-                    Tus datos están protegidos. Sin spam. Solo hablamos de
-                    tecnología y casos reales en flotas como la tuya.
+                    {t.form.footerText}
                   </p>
                 </div>
               </form>
