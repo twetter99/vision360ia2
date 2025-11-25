@@ -4,11 +4,13 @@ import { Twitter, Linkedin, Facebook } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/hooks/use-language';
 import { BrandLogo } from '../brand/BrandLogo';
+import { useContactSlideOver } from '@/context/contact-slideover-provider';
 
 export function Footer() {
   const { translations } = useLanguage();
   const t = translations.footer;
   const navLinks = translations.navigationLinks;
+  const { openContactSlideOver } = useContactSlideOver();
 
   const socialLinks = [
     { icon: Twitter, href: '#' },
@@ -40,9 +42,19 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             <h4 className="font-headline font-semibold">{t.quickLinks}</h4>
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-muted-foreground hover:text-foreground">
-                {link.label}
-              </Link>
+              link.href === '#contact' ? (
+                <button
+                  key={link.href}
+                  onClick={openContactSlideOver}
+                  className="text-muted-foreground hover:text-foreground text-left"
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link key={link.href} href={link.href} className="text-muted-foreground hover:text-foreground">
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
           <div className="flex flex-col gap-3">
