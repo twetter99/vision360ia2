@@ -36,20 +36,30 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // This effect runs only on the client
     
-    // 1. Primero, verificar si hay un idioma guardado en localStorage (preferencia explícita del usuario)
-    const storedLang = localStorage.getItem('language') as Language | null;
-    if (storedLang && ['es', 'ca', 'eu'].includes(storedLang)) {
-      setLanguageState(storedLang);
-      setIsInitialized(true);
-      return;
-    }
-
-    // 2. Si no hay preferencia explícita, leer la cookie 'lang' establecida por el middleware
+    // 1. Leer la cookie 'lang' establecida por el middleware (geolocalización)
     const cookieLang = document.cookie
       .split('; ')
       .find(row => row.startsWith('lang='))
       ?.split('=')[1] as Language | undefined;
 
+    // 2. Verificar si hay un idioma guardado en localStorage (preferencia explícita del usuario)
+    const storedLang = localStorage.getItem('language') as Language | null;
+    
+    // 3. Si hay preferencia explícita en localStorage
+    if (storedLang && ['es', 'ca', 'eu'].includes(storedLang)) {
+      setLanguageState(storedLang);
+      
+      // Si el middleware detectó un idioma diferente al almacenado, sugerir cambio
+      if (cookieLang && cookieLang !== storedLang && ['es', 'ca', 'eu'].includes(cookieLang)) {
+        setSuggestedLanguage(cookieLang);
+        setShowBanner(true);
+      }
+      
+      setIsInitialized(true);
+      return;
+    }
+
+    // 4. Si no hay preferencia explícita, usar la cookie del middleware
     if (cookieLang && ['es', 'ca', 'eu'].includes(cookieLang)) {
       setLanguageState(cookieLang);
       // Guardar en localStorage para futuras visitas
@@ -58,7 +68,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    // 3. Fallback al idioma del navegador (como última opción)
+    // 5. Fallback al idioma del navegador (como última opción)
     const browserLang = navigator.language.split('-')[0];
     let detectedLang: Language | null = null;
     if (browserLang === 'ca') {
