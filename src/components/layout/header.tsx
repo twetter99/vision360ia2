@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/hooks/use-language';
@@ -90,7 +90,7 @@ export function Header() {
                   size="icon" 
                   onClick={() => setLanguage(option.code as 'es' | 'ca' | 'eu')}
                   aria-label={`Cambiar a ${option.name}`}
-                  className="h-8 w-8"
+                  className="h-10 w-10 md:h-8 md:w-8"
                 >
                   {option.flag}
                 </Button>
@@ -108,30 +108,35 @@ export function Header() {
             </Button>
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="md:hidden h-10 w-10">
+                  <Menu className="h-6 w-6" />
                   <span className="sr-only">{t.openMenu}</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col gap-6 pt-10">
                   {navigationLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="text-lg font-medium text-foreground/80 transition-colors hover:text-foreground"
-                    >
-                      {link.label}
-                    </Link>
+                    <SheetClose asChild key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-lg font-medium text-foreground/80 transition-colors hover:text-foreground min-h-[44px] flex items-center"
+                      >
+                        {link.label}
+                      </Link>
+                    </SheetClose>
                   ))}
                   <div className="mt-4 flex flex-col gap-4">
-                    <Button variant="outline" onClick={openContactSlideOver}>{t.login}</Button>
-                    <Button 
-                      className="bg-accent text-accent-foreground hover:bg-accent/90"
-                      onClick={openContactSlideOver}
-                    >
-                      {t.getQuote}
-                    </Button>
+                    <SheetClose asChild>
+                      <Button variant="outline" onClick={openContactSlideOver} className="min-h-[44px]">{t.login}</Button>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Button 
+                        className="bg-accent text-accent-foreground hover:bg-accent/90 min-h-[44px]"
+                        onClick={openContactSlideOver}
+                      >
+                        {t.getQuote}
+                      </Button>
+                    </SheetClose>
                   </div>
                 </nav>
               </SheetContent>

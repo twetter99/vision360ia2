@@ -143,13 +143,13 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           </AnimatedSection>
           <AnimatedSection
             as="div"
-            className="mt-10 flex flex-wrap items-center justify-center gap-4"
+            className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 px-4 w-full max-w-md sm:max-w-none mx-auto"
             animation="slide-up"
             delay={0.45}
           >
             <Button 
               size="lg" 
-              className="bg-accent text-accent-foreground shadow-lg transition-transform hover:scale-105 hover:bg-accent/90"
+              className="bg-accent text-accent-foreground shadow-lg transition-transform hover:scale-105 hover:bg-accent/90 min-h-[48px] w-full sm:w-auto"
               onClick={openContactSlideOver}
             >
               {t.mainCta}
@@ -158,7 +158,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white/30 bg-white/10 text-white backdrop-blur-sm shadow-lg transition-transform hover:scale-105 hover:bg-white/20"
+              className="border-white/30 bg-white/10 text-white backdrop-blur-sm shadow-lg transition-transform hover:scale-105 hover:bg-white/20 min-h-[48px] w-full sm:w-auto"
               onClick={handleVideoClick}
             >
               <PlayCircle className="mr-2 h-5 w-5" />

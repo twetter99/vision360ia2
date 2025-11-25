@@ -75,8 +75,8 @@ export function Testimonials({ translations: initialTranslations }: { translatio
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 md:-left-12" />
-          <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 md:-right-12" />
+          <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 md:-left-12 h-10 w-10 md:h-12 md:w-12" />
+          <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 md:-right-12 h-10 w-10 md:h-12 md:w-12" />
         </Carousel>
       </AnimatedSection>
     </SectionWrapper>

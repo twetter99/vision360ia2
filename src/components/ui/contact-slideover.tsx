@@ -341,7 +341,7 @@ export function ContactSlideOver() {
           </div>
 
           {/* Form content - scrollable */}
-          <div className="flex-1 overflow-y-auto px-6 py-6 md:px-8 md:py-7">
+          <div className="flex-1 overflow-y-auto px-6 py-6 md:px-8 md:py-7 pb-safe">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -463,7 +463,7 @@ export function ContactSlideOver() {
                           <FormControl>
                             <select
                               {...field}
-                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               <option value="">Selecciona…</option>
                               <option value="1-20">1–20 vehículos</option>
@@ -489,7 +489,7 @@ export function ContactSlideOver() {
                           <FormControl>
                             <select
                               {...field}
-                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               <option value="">Selecciona…</option>
                               {mainInterestOptions.map((opt) => (
@@ -573,7 +573,7 @@ export function ContactSlideOver() {
                           <FormControl>
                             <select
                               {...field}
-                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               <option value="">Selecciona…</option>
                               {projectHorizonOptions.map((opt) => (
@@ -598,7 +598,7 @@ export function ContactSlideOver() {
                           <FormControl>
                             <select
                               {...field}
-                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               <option value="">Selecciona…</option>
                               {contactPreferenceOptions.map((opt) => (
@@ -698,12 +698,12 @@ export function ContactSlideOver() {
                 </div>
 
                 {/* Footer con botón */}
-                <div className="pt-2">
+                <div className="pt-2 pb-4">
                   <Button
                     type="submit"
                     disabled={isSubmitting}
                     size="lg"
-                    className="w-full"
+                    className="w-full min-h-[48px] text-base font-semibold"
                   >
                     {isSubmitting && (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
