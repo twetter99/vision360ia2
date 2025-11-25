@@ -6,9 +6,14 @@ import { legalTranslations } from '@/lib/legal-translations';
 
 export default function Privacidad() {
   const { language } = useLanguage();
-  const lang = language as keyof typeof legalTranslations;
+  const lang = (language || 'es') as keyof typeof legalTranslations;
   const t = legalTranslations[lang]?.privacidad || legalTranslations.es.privacidad;
   const common = legalTranslations[lang] || legalTranslations.es;
+
+  // Defensive check - ensure translations are loaded
+  if (!t || !t.title) {
+    return null; // or a loading state
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">

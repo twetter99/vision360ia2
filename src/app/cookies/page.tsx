@@ -6,9 +6,14 @@ import { legalTranslations } from '@/lib/legal-translations';
 
 export default function Cookies() {
   const { language } = useLanguage();
-  const lang = language as keyof typeof legalTranslations;
+  const lang = (language || 'es') as keyof typeof legalTranslations;
   const t = legalTranslations[lang]?.cookies || legalTranslations.es.cookies;
   const common = legalTranslations[lang] || legalTranslations.es;
+
+  // Defensive check - ensure translations are loaded
+  if (!t || !t.title) {
+    return null;
+  }
 
   const browserUrls = {
     chrome: 'https://support.google.com/chrome/answer/95647',

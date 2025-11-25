@@ -6,9 +6,14 @@ import { legalTranslations } from '@/lib/legal-translations';
 
 export default function AvisoLegal() {
   const { language } = useLanguage();
-  const lang = language as keyof typeof legalTranslations;
+  const lang = (language || 'es') as keyof typeof legalTranslations;
   const t = legalTranslations[lang]?.avisoLegal || legalTranslations.es.avisoLegal;
   const common = legalTranslations[lang] || legalTranslations.es;
+  
+  // Defensive check - ensure translations are loaded
+  if (!t || !t.title) {
+    return null;
+  }
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
