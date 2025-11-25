@@ -21,7 +21,11 @@ function VideoCard({ vimeoId, thumbnail, onVideoClick }: VideoCardProps) {
   
   return (
     <div
-      className="relative w-full aspect-video rounded-2xl overflow-hidden cursor-pointer group"
+      className="relative w-full aspect-video rounded-2xl overflow-hidden cursor-pointer group
+                 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/30
+                 ring-2 ring-transparent hover:ring-cyan-400/40
+                 hover:-translate-y-2
+                 transition-all duration-300 ease-out"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onVideoClick(vimeoId)}
@@ -39,21 +43,21 @@ function VideoCard({ vimeoId, thumbnail, onVideoClick }: VideoCardProps) {
         src={thumbnail}
         alt="Demo del producto"
         fill
-        className="object-cover transition-transform duration-300 group-hover:scale-105"
+        className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
         sizes="(max-width: 768px) 100vw, 500px"
       />
       
       <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-300 ${
-        isHovered ? 'opacity-80' : 'opacity-60'
+        isHovered ? 'opacity-90' : 'opacity-60'
       }`} />
       
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className={`transition-all duration-300 ${
-          isHovered ? 'scale-110' : 'scale-100'
+        <div className={`transition-all duration-300 ease-out ${
+          isHovered ? 'scale-125' : 'scale-100'
         }`}>
-          <div className="flex items-center gap-3 px-6 py-4 rounded-2xl backdrop-blur-2xl bg-gradient-to-br from-white/15 via-white/10 to-white/5 border border-white/30 shadow-[0_8px_32px_rgba(6,182,212,0.15)]">
-            <PlayCircle className="w-8 h-8 text-white drop-shadow-lg" />
-            <span className="text-white text-sm font-semibold tracking-wide drop-shadow-lg">
+          <div className="flex items-center gap-3 px-6 py-4 rounded-2xl backdrop-blur-2xl bg-gradient-to-br from-white/20 via-white/15 to-white/10 border border-white/40 shadow-[0_8px_32px_rgba(6,182,212,0.15)] group-hover:shadow-[0_12px_48px_rgba(6,182,212,0.45)] group-hover:border-cyan-300/60 transition-all duration-300">
+            <PlayCircle className="w-8 h-8 text-white drop-shadow-lg group-hover:text-cyan-300 transition-colors duration-300" />
+            <span className="text-white text-sm font-semibold tracking-wide drop-shadow-lg group-hover:text-cyan-50 transition-colors duration-300">
               Ver Demo
             </span>
           </div>
