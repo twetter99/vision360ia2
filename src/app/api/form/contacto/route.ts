@@ -260,7 +260,7 @@ async function sendEmail(data: FormData, metadata: any): Promise<boolean> {
       secure: process.env.SMTP_SECURE === 'true', // true para 465, false para otros puertos
       auth: {
         user: process.env.SMTP_USER || 'noreply@vision360ia.com',
-        pass: process.env.SMTP_PASS || '1g5[%ce@5C]l',
+        pass: process.env.SMTP_PASS,
       },
     });
     
@@ -604,14 +604,25 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Manejar OPTIONS para CORS
+// Manejar OPTIONS para CORS (restringido a dominio propio)
 export async function OPTIONS(request: NextRequest) {
+  const allowedOrigins = [
+    'https://vision360ia.com',
+    'https://www.vision360ia.com',
+    process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : '',
+    process.env.NODE_ENV === 'development' ? 'http://localhost:9002' : '',
+  ].filter(Boolean);
+  
+  const origin = request.headers.get('origin') || '';
+  const allowedOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+  
   return new NextResponse(null, {
     status: 200,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': allowedOrigin,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
     },
   });
 }

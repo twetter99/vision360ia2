@@ -62,13 +62,15 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
       <div className="absolute inset-0 overflow-hidden" style={{ transform: `translateY(${parallaxY}px)` }}>
         <Image
           src={heroImage.imageUrl}
-          alt={heroImage.description}
+          alt="Sistema ADAS Vision360IA instalado en flota de transporte - Vista 360 grados con detección inteligente"
           fill
           className="object-cover scale-105"
           data-ai-hint={heroImage.imageHint}
           priority
           quality={85}
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIBAAAgICAgMBAAAAAAAAAAAAAQIDBAARBQYhMUFR/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAaEQACAgMAAAAAAAAAAAAAAAABAgADBBEh/9oADAMBAAIRAxEAPwDPendbhqVhZLM9hwJI4yCqxIRv9z+Y2+cxjCdqrJi4A5P/2Q=="
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/65 to-black/45" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
@@ -121,7 +123,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
               </p>
               <div className="space-y-4 mt-10">
                 <p className="text-base font-medium text-white md:text-lg lg:text-xl">
-                  Con <strong className="font-semibold text-white">Vision360IA</strong>, {t.vision360iaIntro}
+                  {t.withVision360ia || 'Con'} <strong className="font-semibold text-white">Vision360IA</strong>, {t.vision360iaIntro}
                 </p>
                 
                 <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3 mt-4 max-w-4xl mx-auto">
@@ -137,7 +139,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
                 </div>
               </div>
               <p className="text-sm font-normal text-white/90 md:text-base lg:text-lg pt-6">
-                Tecnología <strong className="font-semibold text-white">ADAS potenciada por IA</strong>, {t.adasTech} <strong className="font-semibold text-white">{t.teamAssets}</strong>.
+                {t.adasTechPrefix || 'Tecnología'} <strong className="font-semibold text-white">{t.adasPoweredByAI || 'ADAS potenciada por IA'}</strong>, {t.adasTech} <strong className="font-semibold text-white">{t.teamAssets}</strong>.
               </p>
             </div>
           </AnimatedSection>
