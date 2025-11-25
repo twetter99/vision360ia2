@@ -25,13 +25,13 @@ export default async function Home() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://vision360ia.com/#organization",
+    "@id": "https://www.vision360ia.com/#organization",
     "name": "Vision360IA by WINFIN",
     "alternateName": ["Vision360IA", "WINFIN Instalaciones"],
-    "url": "https://vision360ia.com",
+    "url": "https://www.vision360ia.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://vision360ia.com/logo.png",
+      "url": "https://www.vision360ia.com/logo.png",
       "width": 512,
       "height": 512
     },
@@ -92,17 +92,17 @@ export default async function Home() {
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": "https://vision360ia.com/#product",
+    "@id": "https://www.vision360ia.com/#product",
     "name": "Sistema de Visión Perimetral 360° para Autobuses y Camiones",
     "alternateName": ["Vision 360 Autobus", "Vision Perimetral Bus", "Kit Vision 360 Industrial"],
     "description": "Sistema de visión perimetral 360º con IA para autobuses urbanos, interurbanos, camiones y flotas industriales. Elimina puntos ciegos con cámaras HD ultra gran angular (>180°). Incluye alertas de colisión frontal (FCW), detección de peatones y ciclistas (VRU), aviso de salida de carril (LDW). Compatible 12V y 24V. Homologado GSR R151 (BSIS), R158 (Marcha atrás), R159 (MOIS). Certificación IP69K.",
-    "image": "https://vision360ia.com/images/og-image.jpg",
+    "image": "https://www.vision360ia.com/images/og-image.jpg",
     "sku": "V360IA-PRO",
     "mpn": "VISION360-BUS-2024",
     "brand": {
       "@type": "Brand",
       "name": "Vision360IA",
-      "logo": "https://vision360ia.com/logo.png"
+      "logo": "https://www.vision360ia.com/logo.png"
     },
     "manufacturer": {
       "@type": "Organization",
@@ -145,7 +145,7 @@ export default async function Home() {
       "@type": "Offer",
       "availability": "https://schema.org/InStock",
       "priceCurrency": "EUR",
-      "url": "https://vision360ia.com",
+      "url": "https://www.vision360ia.com",
       "seller": {
         "@type": "Organization",
         "name": "Vision360IA"

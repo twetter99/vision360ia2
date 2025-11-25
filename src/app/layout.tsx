@@ -20,7 +20,7 @@ const inter = Inter({
 
 // ✅ SEO: Metadata global - OPTIMIZADA PARA B2B FLOTAS ESPAÑA
 export const metadata: Metadata = {
-  metadataBase: new URL('https://vision360ia.com'),
+  metadataBase: new URL('https://www.vision360ia.com'),
   title: {
     default: 'Vision360IA | Visión Perimetral 360° para Autobuses y Camiones',
     template: '%s | Vision360IA'
@@ -73,18 +73,18 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://vision360ia.com',
+    canonical: 'https://www.vision360ia.com',
     languages: {
-      'es-ES': 'https://vision360ia.com',
-      'ca-ES': 'https://vision360ia.com',
-      'eu-ES': 'https://vision360ia.com',
+      'es-ES': 'https://www.vision360ia.com',
+      'ca-ES': 'https://www.vision360ia.com',
+      'eu-ES': 'https://www.vision360ia.com',
     },
   },
   openGraph: {
     type: 'website',
     locale: 'es_ES',
     alternateLocale: ['ca_ES', 'eu_ES'],
-    url: 'https://vision360ia.com',
+    url: 'https://www.vision360ia.com',
     siteName: 'Vision360IA',
     title: 'Vision360IA | Sistema ADAS con IA para Flotas',
     description: 'Reduce un 40% los accidentes en tu flota con nuestro sistema ADAS potenciado por IA. Visión 360°, alertas inteligentes y análisis predictivo. +2000 vehículos equipados.',
@@ -143,10 +143,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         
         {/* hreflang para SEO multi-idioma */}
-        <link rel="alternate" hrefLang="es" href="https://vision360ia.com" />
-        <link rel="alternate" hrefLang="ca" href="https://vision360ia.com" />
-        <link rel="alternate" hrefLang="eu" href="https://vision360ia.com" />
-        <link rel="alternate" hrefLang="x-default" href="https://vision360ia.com" />
+        <link rel="alternate" hrefLang="es" href="https://www.vision360ia.com" />
+        <link rel="alternate" hrefLang="ca" href="https://www.vision360ia.com" />
+        <link rel="alternate" hrefLang="eu" href="https://www.vision360ia.com" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.vision360ia.com" />
         
         {/* Google Search Console - DESCOMENTA Y AÑADE TU CÓDIGO */}
         {/* <meta name="google-site-verification" content="TU_CODIGO_AQUI" /> */}

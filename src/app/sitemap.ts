@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://vision360ia.com';
+  const baseUrl = 'https://www.vision360ia.com';
   const currentDate = new Date().toISOString();
 
   return [
