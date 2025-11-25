@@ -124,23 +124,19 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
             <AnimatedSection animation="slide-up" className="space-y-8">
               <div>
                 <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-6">
-                  <span className="text-sm font-semibold text-primary">Análisis IA en acción</span>
+                  <span className="text-sm font-semibold text-primary">{t?.badge}</span>
                 </div>
                 
                 <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-                  Tecnología que protege tu flota
+                  {t?.mainTitle}
                 </h2>
                 
                 <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                  Tres pilares de seguridad integrados en un solo ecosistema: visión completa, alertas inteligentes y análisis predictivo.
+                  {t?.mainDescription}
                 </p>
                 
                 <ul className="space-y-4 mb-10">
-                  {[
-                    'Cámaras 360 con eliminación de puntos ciegos',
-                    'IA que detecta riesgos antes de que ocurran',
-                    'Análisis de conducción para reducir costes',
-                  ].map((item, idx) => (
+                  {(t?.features || []).map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
                         <Check className="w-4 h-4 text-green-600" />
@@ -151,7 +147,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
                 </ul>
                 
                 <Button variant="outline" size="lg" className="group">
-                  Ver todos los casos de uso
+                  {t?.viewAllCases}
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </div>

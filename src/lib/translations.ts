@@ -47,6 +47,15 @@ const baseTranslations = {
     title: 'Sistemas ADAS y Seguridad Vehicular con IA',
     description: 'Integramos hardware de vanguardia en tus vehículos: cámaras de alta definición y sensores robustos, procesados por algoritmos de IA, que analizan el entorno en tiempo real para anticipar peligros, eliminar puntos ciegos y garantizar una protección integral y eficiencia operativa superior.',
     addToCart: 'Más Información',
+    badge: 'Análisis IA en acción',
+    mainTitle: 'Tecnología que protege tu flota',
+    mainDescription: 'Tres pilares de seguridad integrados en un solo ecosistema: visión completa, alertas inteligentes y análisis predictivo.',
+    features: [
+      'Cámaras 360 con eliminación de puntos ciegos',
+      'IA que detecta riesgos antes de que ocurran',
+      'Análisis de conducción para reducir costes',
+    ],
+    viewAllCases: 'Ver todos los casos de uso',
   },
   solutionsSection: {
     eyebrow: 'Soluciones a Medida',
@@ -501,6 +510,15 @@ export const translations = {
       title: 'Tecnologia Dissenyada per Protegir la teva Inversió',
       description: 'Integrem maquinari d\'avantguarda als teus vehicles: càmeres d\'alta definició i sensors robustos, processats per algoritmes d\'IA, que analitzen l\'entorn en temps real per anticipar perills, eliminar punts cecs i garantir una protecció integral i eficiència operativa superior.',
       addToCart: 'Més Informació',
+      badge: 'Anàlisi IA en acció',
+      mainTitle: 'Tecnologia que protegeix la teva flota',
+      mainDescription: 'Tres pilars de seguretat integrats en un sol ecosistema: visió completa, alertes intel·ligents i anàlisi predictiva.',
+      features: [
+        'Càmeres 360 amb eliminació de punts cecs',
+        'IA que detecta riscos abans que passin',
+        'Anàlisi de conducció per reduir costos',
+      ],
+      viewAllCases: "Veure tots els casos d'ús",
     },
     solutionsSection: {
         ...baseTranslations.solutionsSection,
@@ -876,6 +894,15 @@ export const translations = {
       eyebrow: 'Abantaila Nagusiak',
       title: 'Zure Inbertsioa Babesteko Diseinatutako Teknologia',
       description: 'Abangoardiako hardwarea integratzen dugu zure ibilgailuetan: definizio altuko kamerak eta sentsore sendoak, IA algoritmoek prozesatuta, ingurunea denbora errealean aztertzen dutenak arriskuak aurreikusteko, puntu itsuak ezabatzeko eta babes integrala eta eraginkortasun operatibo handiagoa bermatzeko.',
+      badge: 'IA Analisia ekintzan',
+      mainTitle: 'Zure flota babesten duen teknologia',
+      mainDescription: 'Segurtasunaren hiru zutabe ekosistema bakarrean integratuta: ikuspegi osoa, alerta adimentsuak eta analisi prediktiboa.',
+      features: [
+        '360 kamerak puntu itsuak ezabatuz',
+        'IA-k arriskuak gertatzen baino lehen detektatzen ditu',
+        'Gidatze analisia kostuak murrizteko',
+      ],
+      viewAllCases: 'Ikusi erabilera-kasu guztiak',
       addToCart: 'Informazio Gehiago',
     },
     solutionsSection: {
