@@ -148,8 +148,8 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="eu" href="https://www.vision360ia.com" />
         <link rel="alternate" hrefLang="x-default" href="https://www.vision360ia.com" />
         
-        {/* Google Search Console - DESCOMENTA Y AÑADE TU CÓDIGO */}
-        {/* <meta name="google-site-verification" content="TU_CODIGO_AQUI" /> */}
+        {/* Google Search Console */}
+        <meta name="google-site-verification" content="Qq7WtxHJTiP4ZrM5ZK_83vhgNClaQrfpk6RBjMv_ymw" />
       </head>
       <body className="font-body antialiased">
         <ClientLayout>{children}</ClientLayout>
