@@ -99,9 +99,19 @@ export function ContactSlideOver() {
 
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
 
-  // Cargar script de reCAPTCHA v3 (solo en el cliente)
+  // Cargar script de reCAPTCHA v3 (solo en el cliente y en producción)
   useEffect(() => {
     if (typeof window === 'undefined') return;
+
+    // ⚠️ En desarrollo, no cargar reCAPTCHA (localhost no está autorizado por Google)
+    const isDevelopment = process.env.NODE_ENV === 'development' || 
+                          window.location.hostname === 'localhost' ||
+                          window.location.hostname === '127.0.0.1';
+    
+    if (isDevelopment) {
+      console.warn('⚠️ Development mode: reCAPTCHA script not loaded (using dummy token)');
+      return;
+    }
 
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
     if (!siteKey) {
@@ -157,33 +167,43 @@ export function ContactSlideOver() {
       let recaptchaToken = '';
       
       if (typeof window !== 'undefined') {
-        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-        if (siteKey) {
-          try {
-            // Esperar a que grecaptcha esté listo (máximo 5 segundos)
-            const grecaptchaReady = await Promise.race([
-              new Promise<boolean>((resolve) => {
-                if (window.grecaptcha && window.grecaptcha.ready) {
-                  window.grecaptcha.ready(() => resolve(true));
-                } else {
-                  resolve(false);
-                }
-              }),
-              new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000))
-            ]);
-            
-            if (grecaptchaReady && window.grecaptcha) {
-              recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
-              console.log('✅ reCAPTCHA token generado');
-            } else {
-              console.warn('⚠️ reCAPTCHA no está disponible, continuando sin token');
-            }
-          } catch (recaptchaError) {
-            console.error('❌ reCAPTCHA error:', recaptchaError);
-            // Continuar sin token en caso de error de reCAPTCHA
-          }
+        // ⚠️ En desarrollo, usar token dummy
+        const isDevelopment = process.env.NODE_ENV === 'development' || 
+                              window.location.hostname === 'localhost' ||
+                              window.location.hostname === '127.0.0.1';
+        
+        if (isDevelopment) {
+          recaptchaToken = 'dev-bypass-token';
+          console.warn('⚠️ Development mode: using dummy reCAPTCHA token');
         } else {
-          console.warn('⚠️ NEXT_PUBLIC_RECAPTCHA_SITE_KEY no configurada');
+          const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+          if (siteKey) {
+            try {
+              // Esperar a que grecaptcha esté listo (máximo 5 segundos)
+              const grecaptchaReady = await Promise.race([
+                new Promise<boolean>((resolve) => {
+                  if (window.grecaptcha && window.grecaptcha.ready) {
+                    window.grecaptcha.ready(() => resolve(true));
+                  } else {
+                    resolve(false);
+                  }
+                }),
+                new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000))
+              ]);
+              
+              if (grecaptchaReady && window.grecaptcha) {
+                recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
+                console.log('✅ reCAPTCHA token generado');
+              } else {
+                console.warn('⚠️ reCAPTCHA no está disponible, continuando sin token');
+              }
+            } catch (recaptchaError) {
+              console.error('❌ reCAPTCHA error:', recaptchaError);
+              // Continuar sin token en caso de error de reCAPTCHA
+            }
+          } else {
+            console.warn('⚠️ NEXT_PUBLIC_RECAPTCHA_SITE_KEY no configurada');
+          }
         }
       }
 
