@@ -18,33 +18,38 @@ const inter = Inter({
   display: 'swap',
 });
 
-// ✅ SEO: Metadata global - AHORA GOOGLE PUEDE LEERLA
+// ✅ SEO: Metadata global - OPTIMIZADA PARA B2B FLOTAS ESPAÑA
 export const metadata: Metadata = {
   metadataBase: new URL('https://vision360ia.com'),
   title: {
-    default: 'Vision360IA | Sistema ADAS con IA para Flotas - Reduce Accidentes 40%',
-    template: '%s | Vision360IA'
+    default: 'Vision360IA | Sistema ADAS Homologado para Flotas en España',
+    template: '%s | Vision360IA - ADAS para Flotas'
   },
-  description: 'Sistema ADAS con Inteligencia Artificial para flotas de transporte. Visión 360°, alertas de colisión, detección de peatones y ciclistas. +2000 vehículos equipados en España. Solicita demo gratis.',
+  description: 'Líder en sistemas ADAS con IA para flotas de autobuses y camiones en España. Cámaras 360°, alertas de colisión FCW, detección de peatones. Homologado GSR (R151, R158, R159). +2.000 vehículos equipados. EMT Madrid, ATM Barcelona confían en nosotros.',
   keywords: [
+    // Keywords principales (alto volumen)
     'sistema ADAS',
     'ADAS para flotas',
-    'cámaras 360 vehículos',
-    'seguridad flotas transporte',
-    'prevención accidentes flotas',
-    'visión artificial transporte',
-    'IA seguridad vial',
-    'monitorización conductores',
-    'GSR R151 R158 R159',
-    'detección puntos ciegos',
-    'alertas colisión frontal FCW',
-    'sistema ADAS autobús',
-    'sistema ADAS camión',
-    'Vision360',
-    'WINFIN',
     'cámaras 360 autobús',
-    'seguridad activa vehículos',
-    'telemetría flotas'
+    'cámaras 360 camión',
+    // Keywords de intención comercial
+    'sistema ADAS precio',
+    'instalar ADAS flota',
+    'ADAS homologado España',
+    // Keywords técnicos (búsquedas específicas)
+    'GSR R151 BSIS',
+    'GSR R158 marcha atrás',
+    'GSR R159 MOIS',
+    'alertas colisión frontal FCW',
+    'detección puntos ciegos BSD',
+    // Keywords long-tail
+    'sistema seguridad autobús urbano',
+    'cámaras vigilancia flota camiones',
+    'prevención accidentes transporte público',
+    'monitorización conductor IA',
+    // Marca
+    'Vision360IA',
+    'WINFIN sistemas embarcados'
   ],
   authors: [{ name: 'WINFIN Instalaciones S.L.', url: 'https://vision360ia.com' }],
   creator: 'WINFIN',
