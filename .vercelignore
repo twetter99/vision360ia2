@@ -4,9 +4,6 @@
 .env.local
 .env*.local
 
-# Archivos PHP (no funcionan en Vercel)
-public/api/**/*.php
-
 # Directorios de almacenamiento local
 secure_storage/
 storage/
