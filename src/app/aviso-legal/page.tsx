@@ -40,86 +40,80 @@ export default function AvisoLegal() {
           </p>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">1. Objeto del sitio web</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.objeto.title}</h2>
             <p className="text-slate-700 leading-relaxed">
-              El presente sitio web tiene como finalidad ofrecer información sobre los productos y servicios tecnológicos de 
-              WINFIN INSTALACIONES, S.L., incluyendo soluciones embarcadas, IoT, sistemas de visión, análisis de afluencias, 
-              mantenimiento de equipos y cualquier otra actividad descrita en la plataforma.
+              {t.sections.objeto.content}
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">2. Condiciones de uso</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.condiciones.title}</h2>
             <p className="text-slate-700 leading-relaxed mb-4">
-              El usuario se compromete a utilizar este sitio web de forma lícita y conforme a la legislación aplicable, 
-              sin realizar actividades que puedan dañar, inutilizar o afectar al funcionamiento del mismo.
+              {t.sections.condiciones.content}
             </p>
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-              <p className="text-sm font-semibold text-slate-900 mb-2">Queda prohibido:</p>
+              <p className="text-sm font-semibold text-slate-900 mb-2">{t.sections.condiciones.prohibido}</p>
               <ul className="space-y-2 text-slate-700 text-sm">
-                <li>• Introducir malware, scripts maliciosos o cualquier tecnología que comprometa la seguridad.</li>
-                <li>• Copiar o reproducir contenidos sin autorización expresa.</li>
-                <li>• Usar la web con fines fraudulentos.</li>
+                {t.sections.condiciones.items.map((item, i) => (
+                  <li key={i}>• {item}</li>
+                ))}
               </ul>
             </div>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">3. Propiedad intelectual e industrial</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.propiedad.title}</h2>
             <p className="text-slate-700 leading-relaxed mb-4">
-              Todos los contenidos del sitio web (textos, imágenes, logotipos, vídeos, software, diseño, etc.) son propiedad 
-              exclusiva de WINFIN INSTALACIONES, S.L. o de terceros que han autorizado su uso.
+              {t.sections.propiedad.content1}
             </p>
             <p className="text-slate-700 leading-relaxed">
-              Queda prohibida la reproducción total o parcial sin autorización previa y por escrito.
+              {t.sections.propiedad.content2}
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">4. Responsabilidad del titular</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.responsabilidad.title}</h2>
             <p className="text-slate-700 leading-relaxed mb-4">
-              WINFIN INSTALACIONES, S.L. no será responsable de:
+              {t.sections.responsabilidad.content}
             </p>
             <ul className="space-y-2 text-slate-700 mb-4">
-              <li>• Fallos técnicos o interrupciones del servicio.</li>
-              <li>• Daños derivados del uso incorrecto de la web.</li>
-              <li>• Contenido de terceros o enlaces externos.</li>
+              {t.sections.responsabilidad.items.map((item, i) => (
+                <li key={i}>• {item}</li>
+              ))}
             </ul>
             <p className="text-slate-700 leading-relaxed">
-              El titular se reserva el derecho a modificar la información o estructura de la web sin previo aviso.
+              {t.sections.responsabilidad.footer}
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">5. Política de enlaces externos</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.enlaces.title}</h2>
             <p className="text-slate-700 leading-relaxed">
-              Este sitio puede contener enlaces a webs de terceros. WINFIN INSTALACIONES, S.L. no se hace responsable de 
-              los contenidos, políticas o prácticas de dichos sitios.
+              {t.sections.enlaces.content}
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">6. Protección de datos personales</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.proteccion.title}</h2>
             <p className="text-slate-700 leading-relaxed">
-              El tratamiento de los datos personales se regula en la{' '}
+              {t.sections.proteccion.content}{' '}
               <Link href="/privacidad" className="text-primary hover:underline font-medium">
-                Política de Privacidad
+                {t.sections.proteccion.link}
               </Link>
-              , incorporada en este sitio web.
+              {t.sections.proteccion.content2}
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">7. Legislación aplicable y jurisdicción</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.legislacion.title}</h2>
             <p className="text-slate-700 leading-relaxed">
-              Este Aviso Legal se rige por la legislación española. Cualquier conflicto será resuelto en los Juzgados y 
-              Tribunales de Madrid (España), salvo que la normativa disponga lo contrario.
+              {t.sections.legislacion.content}
             </p>
           </section>
 
           <div className="border-t border-slate-200 pt-6 mt-12">
             <p className="text-sm text-slate-500">
-              Última actualización: {new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {common.lastUpdated}: {new Date().toLocaleDateString(language === 'ca' ? 'ca-ES' : language === 'eu' ? 'eu-ES' : 'es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
             </p>
           </div>
         </article>
