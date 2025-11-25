@@ -648,13 +648,10 @@ export function ContactSlideOver() {
                           </FormControl>
                           <div className="space-y-1 text-xs sm:text-sm">
                             <FormLabel className="font-medium text-slate-800">
-                              He leído y acepto la Política de Privacidad
+                              {t.form.privacyLabel} {t.form.privacyLink}
                             </FormLabel>
                             <p className="text-slate-500">
-                              Trataremos tus datos únicamente para responder a
-                              tu consulta sobre Vision360IA y gestionar la
-                              sesión técnica. Puedes ejercer tus derechos en
-                              cualquier momento.
+                              {t.form.footerText}
                             </p>
                           </div>
                         </div>
@@ -679,9 +676,7 @@ export function ContactSlideOver() {
                             />
                           </FormControl>
                           <p>
-                            Quiero recibir casos de éxito y contenido técnico
-                            sobre Vision360IA y proyectos de seguridad en
-                            flotas.
+                            {t.form.marketingLabel}
                           </p>
                         </div>
                       </FormItem>

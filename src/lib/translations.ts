@@ -32,6 +32,15 @@ const baseTranslations = {
     mainCta: 'Solicita demo',
     secondaryCta: 'Ver vídeo 60s',
     trustedBy: 'Con la confianza de las principales flotas',
+    dailyChallenge: 'Cada día, tu flota se enfrenta a lo imprevisible.',
+    vision360iaIntro: 'tus vehículos ven más allá',
+    badges: {
+      detectRisks: 'Detecta riesgos',
+      anticipateCollisions: 'Anticipa colisiones',
+      convertData: 'Convierte datos en seguridad activa',
+    },
+    adasTech: 'diseñada para proteger lo que más importa:',
+    teamAssets: 'tu equipo y tus activos',
   },
   productsSection: {
     eyebrow: 'Ventajas Clave',
@@ -463,6 +472,15 @@ export const translations = {
       mainCta: 'Sol·licita demo',
       secondaryCta: 'Veure vídeo 60s',
       trustedBy: 'Amb la confiança de les principals flotes',
+      dailyChallenge: 'Cada dia, la teva flota s\'enfronta a l\'imprevisible.',
+      vision360iaIntro: 'els teus vehicles veuen més enllà',
+      badges: {
+        detectRisks: 'Detecta riscos',
+        anticipateCollisions: 'Anticipa col·lisions',
+        convertData: 'Converteix dades en seguretat activa',
+      },
+      adasTech: 'dissenyada per protegir el que més importa:',
+      teamAssets: 'el teu equip i els teus actius',
     },
     footer: {
         ...baseTranslations.footer,
@@ -834,6 +852,15 @@ export const translations = {
       mainCta: 'Demo bat eskatu',
       secondaryCta: 'Bideoa ikusi 60s',
       trustedBy: 'Flota nagusien konfiantzarekin',
+      dailyChallenge: 'Egunero, zure flota ezustekoari aurre egiten dio.',
+      vision360iaIntro: 'zure ibilgailuek haratago ikusten dute',
+      badges: {
+        detectRisks: 'Arriskuak detektatzen ditu',
+        anticipateCollisions: 'Talkak aurreikusten ditu',
+        convertData: 'Datuak segurtasun aktibo bihurtzen ditu',
+      },
+      adasTech: 'garrantzitsuena babesteko diseinatua:',
+      teamAssets: 'zure taldea eta zure aktiboak',
     },
     footer: {
         ...baseTranslations.footer,

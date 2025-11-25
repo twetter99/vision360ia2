@@ -117,27 +117,27 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           >
             <div className="space-y-6 text-center">
               <p className="text-lg font-normal text-white/90 md:text-xl lg:text-2xl">
-                Cada día, tu flota se enfrenta a lo imprevisible.
+                {t.dailyChallenge}
               </p>
               <div className="space-y-4 mt-10">
                 <p className="text-base font-medium text-white md:text-lg lg:text-xl">
-                  Con <strong className="font-semibold text-white">Vision360IA</strong>, tus vehículos ven más allá
+                  Con <strong className="font-semibold text-white">Vision360IA</strong>, {t.vision360iaIntro}
                 </p>
                 
                 <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3 mt-4 max-w-4xl mx-auto">
                   <span className="hero-badge inline-flex items-center rounded-full border border-emerald-400/40 bg-gradient-to-br from-emerald-500/25 via-emerald-600/20 to-teal-600/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-md shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-400/30 hover:border-emerald-300/60 hover:from-emerald-500/35 hover:via-emerald-600/30 hover:to-teal-600/35 hover:scale-105 md:px-4 md:py-2 md:text-sm animate-in fade-in zoom-in duration-500 delay-500">
-                    <span className="relative">Detecta riesgos</span>
+                    <span className="relative">{t.badges.detectRisks}</span>
                   </span>
                   <span className="hero-badge inline-flex items-center rounded-full border border-emerald-400/40 bg-gradient-to-br from-emerald-500/25 via-emerald-600/20 to-teal-600/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-md shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-400/30 hover:border-emerald-300/60 hover:from-emerald-500/35 hover:via-emerald-600/30 hover:to-teal-600/35 hover:scale-105 md:px-4 md:py-2 md:text-sm animate-in fade-in zoom-in duration-500 delay-600">
-                    <span className="relative">Anticipa colisiones</span>
+                    <span className="relative">{t.badges.anticipateCollisions}</span>
                   </span>
                   <span className="hero-badge inline-flex items-center rounded-full border border-emerald-400/40 bg-gradient-to-br from-emerald-500/25 via-emerald-600/20 to-teal-600/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-md shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-400/30 hover:border-emerald-300/60 hover:from-emerald-500/35 hover:via-emerald-600/30 hover:to-teal-600/35 hover:scale-105 md:px-4 md:py-2 md:text-sm animate-in fade-in zoom-in duration-500 delay-700">
-                    <span className="relative">Convierte datos en seguridad activa</span>
+                    <span className="relative">{t.badges.convertData}</span>
                   </span>
                 </div>
               </div>
               <p className="text-sm font-normal text-white/90 md:text-base lg:text-lg pt-6">
-                Tecnología <strong className="font-semibold text-white">ADAS potenciada por IA</strong>, diseñada para proteger lo que más importa: <strong className="font-semibold text-white">tu equipo y tus activos</strong>.
+                Tecnología <strong className="font-semibold text-white">ADAS potenciada por IA</strong>, {t.adasTech} <strong className="font-semibold text-white">{t.teamAssets}</strong>.
               </p>
             </div>
           </AnimatedSection>
