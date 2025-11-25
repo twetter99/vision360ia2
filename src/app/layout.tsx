@@ -1,15 +1,8 @@
 
-'use client';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
-import { LanguageProvider } from '@/context/language-provider';
-import { ContactSlideOverProvider } from '@/context/contact-slideover-provider';
-import { ContactSlideOver } from '@/components/ui/contact-slideover';
-import { useLanguage } from '@/hooks/use-language';
-import { useEffect } from 'react';
+import { ClientLayout } from '@/components/layout/client-layout';
+import type { Metadata, Viewport } from 'next';
 
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'],
@@ -17,6 +10,7 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-headline',
   display: 'swap',
 });
+
 const inter = Inter({ 
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
@@ -24,61 +18,107 @@ const inter = Inter({
   display: 'swap',
 });
 
-const AppLayout = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
-  const { language } = useLanguage();
+// ✅ SEO: Metadata global - AHORA GOOGLE PUEDE LEERLA
+export const metadata: Metadata = {
+  metadataBase: new URL('https://vision360ia.com'),
+  title: {
+    default: 'Vision360IA | Sistema ADAS con IA para Flotas - Reduce Accidentes 40%',
+    template: '%s | Vision360IA'
+  },
+  description: 'Sistema ADAS con Inteligencia Artificial para flotas de transporte. Visión 360°, alertas de colisión, detección de peatones y ciclistas. +2000 vehículos equipados en España. Solicita demo gratis.',
+  keywords: [
+    'sistema ADAS',
+    'ADAS para flotas',
+    'cámaras 360 vehículos',
+    'seguridad flotas transporte',
+    'prevención accidentes flotas',
+    'visión artificial transporte',
+    'IA seguridad vial',
+    'monitorización conductores',
+    'GSR R151 R158 R159',
+    'detección puntos ciegos',
+    'alertas colisión frontal FCW',
+    'sistema ADAS autobús',
+    'sistema ADAS camión',
+    'Vision360',
+    'WINFIN',
+    'cámaras 360 autobús',
+    'seguridad activa vehículos',
+    'telemetría flotas'
+  ],
+  authors: [{ name: 'WINFIN Instalaciones S.L.', url: 'https://vision360ia.com' }],
+  creator: 'WINFIN',
+  publisher: 'Vision360IA',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://vision360ia.com',
+    languages: {
+      'es-ES': 'https://vision360ia.com',
+      'ca-ES': 'https://vision360ia.com',
+      'eu-ES': 'https://vision360ia.com',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    alternateLocale: ['ca_ES', 'eu_ES'],
+    url: 'https://vision360ia.com',
+    siteName: 'Vision360IA',
+    title: 'Vision360IA | Sistema ADAS con IA para Flotas',
+    description: 'Reduce un 40% los accidentes en tu flota con nuestro sistema ADAS potenciado por IA. Visión 360°, alertas inteligentes y análisis predictivo. +2000 vehículos equipados.',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Vision360IA - Sistema ADAS con Inteligencia Artificial para flotas de transporte',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Vision360IA | Sistema ADAS con IA para Flotas',
+    description: 'Reduce un 40% los accidentes en tu flota. Visión 360°, alertas inteligentes y análisis IA.',
+    images: ['/images/og-image.jpg'],
+    creator: '@vision360ia',
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180' },
+    ],
+  },
+  manifest: '/manifest.json',
+  category: 'technology',
+};
 
-  // SEO: Actualizar lang del HTML dinámicamente
-  useEffect(() => {
-    document.documentElement.lang = language || 'es';
-  }, [language]);
-
-  return (
-    <html lang={language} className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <head>
-        {/* SEO: Preconnect para recursos externos */}
-        <link rel="preconnect" href="https://player.vimeo.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        
-        {/* SEO: Canonical URL */}
-        <link rel="canonical" href="https://vision360ia.com" />
-        
-        {/* SEO: hreflang para multi-idioma */}
-        <link rel="alternate" hrefLang="es" href="https://vision360ia.com" />
-        <link rel="alternate" hrefLang="ca" href="https://vision360ia.com" />
-        <link rel="alternate" hrefLang="eu" href="https://vision360ia.com" />
-        <link rel="alternate" hrefLang="x-default" href="https://vision360ia.com" />
-        
-        {/* Google Search Console - REEMPLAZAR CON TU CÓDIGO */}
-        {/* <meta name="google-site-verification" content="TU_CODIGO_DE_VERIFICACION_AQUI" /> */}
-        
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="es_ES" />
-        <meta property="og:locale:alternate" content="ca_ES" />
-        <meta property="og:locale:alternate" content="eu_ES" />
-        <meta property="og:site_name" content="Vision360IA" />
-        <meta property="og:image" content="https://vision360ia.com/images/og-image.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://vision360ia.com/images/og-image.jpg" />
-      </head>
-      <body className="font-body antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <Toaster />
-        <ContactSlideOver />
-      </body>
-    </html>
-  );
+// ✅ SEO: Viewport optimizado
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+  ],
 };
 
 export default function RootLayout({
@@ -87,10 +127,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <LanguageProvider>
-      <ContactSlideOverProvider>
-        <AppLayout>{children}</AppLayout>
-      </ContactSlideOverProvider>
-    </LanguageProvider>
+    <html lang="es" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <head>
+        {/* Preconnect para recursos externos - mejora LCP */}
+        <link rel="preconnect" href="https://player.vimeo.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        
+        {/* hreflang para SEO multi-idioma */}
+        <link rel="alternate" hrefLang="es" href="https://vision360ia.com" />
+        <link rel="alternate" hrefLang="ca" href="https://vision360ia.com" />
+        <link rel="alternate" hrefLang="eu" href="https://vision360ia.com" />
+        <link rel="alternate" hrefLang="x-default" href="https://vision360ia.com" />
+        
+        {/* Google Search Console - DESCOMENTA Y AÑADE TU CÓDIGO */}
+        {/* <meta name="google-site-verification" content="TU_CODIGO_AQUI" /> */}
+      </head>
+      <body className="font-body antialiased">
+        <ClientLayout>{children}</ClientLayout>
+      </body>
+    </html>
   );
 }

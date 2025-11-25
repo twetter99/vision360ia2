@@ -1,0 +1,31 @@
+{
+  "name": "Vision360IA - Sistema ADAS con IA",
+  "short_name": "Vision360IA",
+  "description": "Sistema ADAS con Inteligencia Artificial para flotas de transporte. Visión 360°, alertas de colisión y análisis predictivo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1d4ed8",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "es-ES"
+}

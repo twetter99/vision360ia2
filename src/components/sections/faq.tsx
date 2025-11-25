@@ -15,8 +15,30 @@ export function Faq({ translations: initialTranslations }: { translations: Trans
   const t = translations.faqSection || initialTranslations.faqSection;
   const faqs = translations.faqs || initialTranslations.faqs;
 
+  // ✅ SEO: Schema.org FAQPage para Rich Snippets en Google
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <SectionWrapper id="faq" className="bg-card">
+      {/* JSON-LD para FAQPage - Permite que Google muestre FAQs en resultados */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema)
+        }}
+      />
+      
       <SectionHeading
         eyebrow={t.eyebrow}
         title={t.title}
