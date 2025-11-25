@@ -21,7 +21,7 @@ export function Footer() {
   return (
     <footer className="border-t bg-background">
       <div className="container py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
           <div className="flex flex-col items-start gap-4 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2">
               <BrandLogo className="h-7 w-auto" />
@@ -56,12 +56,6 @@ export function Footer() {
                 </Link>
               )
             ))}
-          </div>
-          <div className="flex flex-col gap-3">
-            <h4 className="font-headline font-semibold">{t.company.title}</h4>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">{t.company.about}</Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">{t.company.jobs}</Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">{t.company.press}</Link>
           </div>
           <div className="flex flex-col gap-3">
             <h4 className="font-headline font-semibold">{t.legal.title}</h4>
