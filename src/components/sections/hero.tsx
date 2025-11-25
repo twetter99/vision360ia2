@@ -70,11 +70,8 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           quality={85}
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent" 
-             style={{ height: '65%' }} />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/35 via-black/15 to-transparent" 
-             style={{ height: '20%' }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/35" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/65 to-black/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
       </div>
       <div className="relative z-10 flex h-full flex-col items-center justify-center text-center w-full">
         <div 
@@ -123,7 +120,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
                 Cada día, tu flota se enfrenta a lo imprevisible.
               </p>
               <div className="space-y-4 mt-10">
-                <p className="text-base font-light text-white/85 md:text-lg lg:text-xl">
+                <p className="text-base font-medium text-white md:text-lg lg:text-xl">
                   Con <strong className="font-semibold text-white">Vision360IA</strong>, tus vehículos ven más allá
                 </p>
                 
@@ -139,8 +136,8 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
                   </span>
                 </div>
               </div>
-              <p className="text-sm font-light text-white/75 md:text-base lg:text-lg pt-6">
-                Tecnología <strong className="font-semibold text-white/90">ADAS potenciada por IA</strong>, diseñada para proteger lo que más importa: <strong className="font-semibold text-white/90">tu equipo y tus activos</strong>.
+              <p className="text-sm font-normal text-white/90 md:text-base lg:text-lg pt-6">
+                Tecnología <strong className="font-semibold text-white">ADAS potenciada por IA</strong>, diseñada para proteger lo que más importa: <strong className="font-semibold text-white">tu equipo y tus activos</strong>.
               </p>
             </div>
           </AnimatedSection>
