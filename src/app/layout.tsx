@@ -53,6 +53,9 @@ const AppLayout = ({
         <link rel="alternate" hrefLang="eu" href="https://vision360ia.com" />
         <link rel="alternate" hrefLang="x-default" href="https://vision360ia.com" />
         
+        {/* Google Search Console - REEMPLAZAR CON TU CÓDIGO */}
+        {/* <meta name="google-site-verification" content="TU_CODIGO_DE_VERIFICACION_AQUI" /> */}
+        
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="es_ES" />
