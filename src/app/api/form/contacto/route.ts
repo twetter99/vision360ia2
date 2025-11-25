@@ -237,7 +237,7 @@ async function saveSubmission(data: FormData, metadata: any) {
     );
     
     // Agregar a CSV log
-    const csvLine = `"${metadata.timestamp}","${data.name}","${data.email}","${data.company || ''}","${data.vehicleType}","${metadata.ip}"\n`;
+    const csvLine = `"${metadata.timestamp}","${data.name}","${data.email}","${data.company || ''}","${data.vehicleTypes?.join(', ') || 'No especificado'}","${metadata.ip}"\n`;
     const csvPath = path.join(logsDir, `submissions_${new Date().toISOString().slice(0, 7)}.csv`);
     
     if (!existsSync(csvPath)) {
@@ -418,7 +418,7 @@ async function sendEmail(data: FormData, metadata: any): Promise<boolean> {
       from: `"Vision360 IA - Formulario Web" <${process.env.SMTP_USER || 'noreply@vision360ia.com'}>`,
       to: process.env.MAIL_TO || 'info@vision360ia.com',
       replyTo: data.email, // Permitir responder directamente al cliente
-      subject: `🚗 Nuevo Lead: ${data.name}${data.company ? ` (${data.company})` : ''} - ${data.vehicleType}`,
+      subject: `🚗 Nuevo Lead: ${data.name}${data.company ? ` (${data.company})` : ''} - ${data.vehicleTypes?.[0] || 'Consulta'}`,
       html: htmlContent,
       text: `
 ═══════════════════════════════════════════════
