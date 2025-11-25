@@ -20,7 +20,9 @@ const baseTranslations = {
     },
     legal: {
       title: 'Legal',
+      legalNotice: 'Aviso Legal',
       privacy: 'Política de Privacidad',
+      cookies: 'Cookies',
       terms: 'Términos de Servicio',
     },
     copyright: 'Todos los derechos reservados.',
@@ -499,7 +501,9 @@ export const translations = {
         },
         legal: {
             title: 'Legal',
+            legalNotice: 'Avís Legal',
             privacy: 'Política de Privacitat',
+            cookies: 'Cookies',
             terms: 'Termes de Servei',
         },
         copyright: 'Tots els drets reservats.',
@@ -884,7 +888,9 @@ export const translations = {
         },
         legal: {
             title: 'Legezkoa',
+            legalNotice: 'Lege Oharra',
             privacy: 'Pribatutasun Politika',
+            cookies: 'Cookieak',
             terms: 'Zerbitzu Baldintzak',
         },
         copyright: 'Eskubide guztiak erreserbatuta.',

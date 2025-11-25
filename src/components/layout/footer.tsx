@@ -59,9 +59,9 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-3">
             <h4 className="font-headline font-semibold">{t.legal.title}</h4>
-            <Link href="/aviso-legal" className="text-muted-foreground hover:text-foreground">Aviso Legal</Link>
+            <Link href="/aviso-legal" className="text-muted-foreground hover:text-foreground">{t.legal.legalNotice}</Link>
             <Link href="/privacidad" className="text-muted-foreground hover:text-foreground">{t.legal.privacy}</Link>
-            <Link href="/cookies" className="text-muted-foreground hover:text-foreground">Cookies</Link>
+            <Link href="/cookies" className="text-muted-foreground hover:text-foreground">{t.legal.cookies}</Link>
           </div>
         </div>
         <div className="mt-8 border-t pt-6 text-center text-sm text-muted-foreground">
