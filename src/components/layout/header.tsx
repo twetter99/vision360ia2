@@ -69,16 +69,26 @@ export function Header() {
           </Link>
           <nav className="hidden items-center gap-6 text-sm md:flex">
             {navigationLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  'font-medium text-foreground/60 transition-colors hover:text-foreground',
-                  pathname === link.href && 'text-foreground'
-                )}
-              >
-                {link.label}
-              </Link>
+              link.href === '#contact' ? (
+                <button
+                  key={link.href}
+                  onClick={openContactSlideOver}
+                  className="font-medium text-foreground/60 transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    'font-medium text-foreground/60 transition-colors hover:text-foreground',
+                    pathname === link.href && 'text-foreground'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-2">
@@ -116,14 +126,25 @@ export function Header() {
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col gap-6 pt-10">
                   {navigationLinks.map((link) => (
-                    <SheetClose asChild key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-lg font-medium text-foreground/80 transition-colors hover:text-foreground min-h-[44px] flex items-center"
-                      >
-                        {link.label}
-                      </Link>
-                    </SheetClose>
+                    link.href === '#contact' ? (
+                      <SheetClose asChild key={link.href}>
+                        <button
+                          onClick={openContactSlideOver}
+                          className="text-lg font-medium text-foreground/80 transition-colors hover:text-foreground min-h-[44px] flex items-center text-left"
+                        >
+                          {link.label}
+                        </button>
+                      </SheetClose>
+                    ) : (
+                      <SheetClose asChild key={link.href}>
+                        <Link
+                          href={link.href}
+                          className="text-lg font-medium text-foreground/80 transition-colors hover:text-foreground min-h-[44px] flex items-center"
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetClose>
+                    )
                   ))}
                   <div className="mt-4 flex flex-col gap-4">
                     <SheetClose asChild>

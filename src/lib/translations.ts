@@ -357,7 +357,6 @@ export const translations = {
   es: {
     ...baseTranslations,
     navigationLinks: [
-      { href: '#products', label: 'Producto' },
       { href: '#faq', label: 'FAQs' },
       { href: '#contact', label: 'Contacto' },
     ],
@@ -715,7 +714,6 @@ export const translations = {
       },
     ],
     navigationLinks: [
-        { href: '#products', label: 'Producte' },
         { href: '#faq', label: 'FAQs' },
         { href: '#contact', label: 'Contacte' },
     ],
@@ -1092,7 +1090,6 @@ export const translations = {
       },
     ],
     navigationLinks: [
-        { href: '#products', label: 'Produktua' },
         { href: '#faq', label: 'FAQs' },
         { href: '#contact', label: 'Kontaktua' },
     ],
