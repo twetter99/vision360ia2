@@ -68,6 +68,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
           data-ai-hint={heroImage.imageHint}
           priority
           quality={85}
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent" 
              style={{ height: '65%' }} />

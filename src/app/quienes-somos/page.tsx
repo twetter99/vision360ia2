@@ -46,6 +46,7 @@ export default function AboutUsPage() {
             className="object-cover"
             data-ai-hint="team collaboration"
             priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
