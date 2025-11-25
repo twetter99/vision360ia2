@@ -3,15 +3,22 @@ import Link from 'next/link';
 import { ArrowLeft, Cookie } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
 import { legalTranslations } from '@/lib/legal-translations';
+import { useEffect, useState } from 'react';
 
 export default function Cookies() {
   const { language } = useLanguage();
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const lang = (language || 'es') as keyof typeof legalTranslations;
   const t = legalTranslations[lang]?.cookies || legalTranslations.es.cookies;
   const common = legalTranslations[lang] || legalTranslations.es;
 
-  // Defensive check - ensure translations are loaded
-  if (!t || !t.title) {
+  // Wait for client hydration to avoid SSR mismatch
+  if (!isClient || !t || !t.title) {
     return null;
   }
 
