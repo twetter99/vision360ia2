@@ -2,6 +2,7 @@
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
 import { ClientLayout } from '@/components/layout/client-layout';
+import { GoogleAnalytics } from '@/components/analytics/google-analytics';
 import type { Metadata, Viewport } from 'next';
 
 const spaceGrotesk = Space_Grotesk({ 
@@ -152,6 +153,7 @@ export default function RootLayout({
         <meta name="google-site-verification" content="Qq7WtxHJTiP4ZrM5ZK_83vhgNClaQrfpk6RBjMv_ymw" />
       </head>
       <body className="font-body antialiased">
+        <GoogleAnalytics />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
