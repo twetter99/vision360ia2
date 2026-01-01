@@ -8,12 +8,12 @@ import { translations } from '@/lib/translations';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sistema Visión 360° IA para Flotas Profesionales',
-  description: 'Visión perimetral 360° con IA para autobuses y camiones. Elimina puntos ciegos, detecta VRU y cumple normativa GSR. Solicita dossier técnico.',
-  keywords: ['vision perimetral bus', 'vision 360 autobus', 'sistema vision 360 homologado autobus', 'proveedor vision perimetral flotas', 'instalacion camaras 360 autobus', 'ADAS autobus', 'sistema vision perimetral flotas', 'cumplimiento GSR R151 R158 R159'],
+  title: 'Sistemas ADAS para Flotas: Autobuses, Camiones e Industriales',
+  description: 'Proveedor de sistemas ADAS con visión perimetral 360° para flotas profesionales. Elimina puntos ciegos, protección VRU, cumple GSR. Solicita dossier.',
+  keywords: ['sistemas ADAS flotas', 'sistemas ADAS vehiculos industriales', 'sistemas ADAS camiones', 'ADAS autobuses', 'vision perimetral ADAS', 'proveedor ADAS España', 'instalacion ADAS flotas', 'ADAS transporte pesado'],
   openGraph: {
-    title: 'Visión Perimetral 360° con IA para Autobuses | Vision360IA',
-    description: 'Sistema de visión 360° con IA para flotas profesionales. Elimina puntos ciegos, homologado GSR. Protección VRU certificada.',
+    title: 'Sistemas ADAS y Visión 360° para Flotas | Vision360IA',
+    description: 'Proveedor de sistemas ADAS con visión perimetral 360° para autobuses, camiones y flotas industriales. Homologado GSR.',
   },
 }
 

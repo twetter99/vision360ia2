@@ -23,35 +23,35 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.vision360ia.com'),
   title: {
-    default: 'Visión Perimetral 360° con IA para Autobuses | Vision360IA',
+    default: 'Sistemas ADAS y Visión Perimetral 360° con IA | Vision360IA',
     template: '%s | Vision360IA'
   },
-  description: 'Sistema de visión 360° con IA que elimina puntos ciegos en autobuses y flotas. Homologado GSR R151/R158/R159. Protección VRU certificada para tu flota.',
+  description: 'Sistemas ADAS con visión perimetral 360° para autobuses, camiones y flotas industriales. Elimina puntos ciegos, cumple GSR. Solicita dossier técnico.',
   keywords: [
-    // Keywords EXACTAS de búsqueda (prioridad máxima)
+    // Keywords ADAS (prioridad máxima - alto volumen)
+    'sistemas ADAS flotas',
+    'sistemas ADAS vehiculos industriales',
+    'sistemas ADAS camiones',
+    'sistemas ADAS autobuses',
+    'ADAS transporte pesado',
+    'proveedor sistemas ADAS España',
+    'instalacion ADAS flotas',
+    // Keywords Visión Perimetral (término técnico)
     'vision perimetral bus',
     'vision 360 autobus',
-    'vision 360 perimetral autobuses urbanos',
-    'sistema vision 360 bus industrial',
-    'camaras 360 autobus',
     'vision perimetral camion',
-    // Keywords secundarias (alto volumen)
-    'sistema ADAS autobus',
-    'ADAS para flotas',
-    'cámaras perimetrales bus',
-    'sistema vision perimetral 12V 24V',
-    // Keywords técnicos (normativa)
+    'camaras 360 autobus',
+    'vision perimetral flotas industriales',
+    // Keywords combinadas
+    'sistema ADAS vision 360',
+    'ADAS eliminar puntos ciegos',
+    'vision perimetral ADAS autobus',
+    // Keywords normativa GSR
     'GSR R151 BSIS',
     'GSR R158 marcha atrás',
     'GSR R159 MOIS',
     'homologacion GSR autobus',
-    'cumplimiento GSR R151 R158 R159',
-    // Keywords long-tail comerciales
-    'sistema vision 360 homologado autobus',
-    'proveedor vision perimetral flotas',
-    'instalacion camaras 360 autobus',
-    'eliminar puntos ciegos autobus',
-    'vision perimetral transporte publico',
+    'cumplimiento GSR flotas',
     // Marca
     'Vision360IA',
     'WINFIN'
@@ -89,8 +89,8 @@ export const metadata: Metadata = {
     alternateLocale: ['ca_ES', 'eu_ES'],
     url: 'https://www.vision360ia.com',
     siteName: 'Vision360IA',
-    title: 'Vision360IA | Sistema ADAS con IA para Flotas',
-    description: 'Reduce un 40% los accidentes en tu flota con nuestro sistema ADAS potenciado por IA. Visión 360°, alertas inteligentes y análisis predictivo. +2000 vehículos equipados.',
+    title: 'Sistemas ADAS y Visión Perimetral 360° | Vision360IA',
+    description: 'Sistemas ADAS con visión 360° para autobuses, camiones y flotas industriales. Elimina puntos ciegos y cumple normativa GSR.',
     images: [
       {
         url: '/images/og-image.jpg',
