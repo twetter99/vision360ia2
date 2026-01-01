@@ -234,6 +234,11 @@ const baseTranslations = {
       submitting: 'Enviando...',
       footerText: 'Tus datos están protegidos. Sin spam. Solo hablamos de tecnología y casos reales en flotas como la tuya.',
       sendButton: 'Hablar con un Experto →',
+      pdfDownload: {
+        title: '¿Prefieres leer primero?',
+        description: 'Descarga nuestra presentación con especificaciones técnicas completas.',
+        orFillForm: 'o completa el formulario',
+      },
     },
     toast: {
       title: '¡Mensaje Enviado!',
@@ -666,6 +671,11 @@ export const translations = {
             submitting: 'Enviant...',
             footerText: 'Les teves dades estan protegides. Sense spam. Només parlem de tecnologia i casos reals en flotes com la teva.',
             sendButton: 'Parlar amb un Expert →',
+            pdfDownload: {
+              title: 'Prefereixes llegir primer?',
+              description: 'Descarrega la nostra presentació amb especificacions tècniques completes.',
+              orFillForm: 'o completa el formulari',
+            },
         },
         toast: {
             title: 'Missatge Enviat!',
@@ -1056,6 +1066,11 @@ export const translations = {
             submitting: 'Bidaltzen...',
             footerText: 'Zure datuak babestuak daude. Spam-ik gabe. Teknologiaz eta flota errealetan gertaturikoz bakarrik hitz egiten dugu.',
             sendButton: 'Adituarekin Hitz Egin →',
+            pdfDownload: {
+              title: 'Lehenik irakurri nahi duzu?',
+              description: 'Deskargatu gure aurkezpena zehaztapen tekniko osoekin.',
+              orFillForm: 'edo bete formularioa',
+            },
         },
         toast: {
             title: 'Mezua Bidalita!',

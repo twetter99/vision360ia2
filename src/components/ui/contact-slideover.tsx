@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Loader2, X } from "lucide-react";
+import { Loader2, X, FileText, Download } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
@@ -248,6 +248,40 @@ export function ContactSlideOver() {
 
           {/* Form content */}
           <div className="flex-1 overflow-y-auto px-6 py-5">
+            {/* Card de descarga PDF */}
+            <a
+              href="/pdf/Presentacion_V360.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="group flex items-start gap-4 p-4 mb-6 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 hover:border-primary/40 transition-all duration-200"
+            >
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <FileText className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-slate-900 mb-0.5">
+                  {t.form.pdfDownload?.title || '¿Prefieres leer primero?'}
+                </p>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {t.form.pdfDownload?.description || 'Descarga nuestra presentación con especificaciones técnicas completas.'}
+                </p>
+              </div>
+              <Download className="w-4 h-4 text-primary flex-shrink-0 mt-1 group-hover:translate-y-0.5 transition-transform" />
+            </a>
+
+            {/* Separador */}
+            <div className="relative mb-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-slate-200"></div>
+              </div>
+              <div className="relative flex justify-center text-xs">
+                <span className="px-3 bg-white text-slate-400">
+                  {t.form.pdfDownload?.orFillForm || 'o completa el formulario'}
+                </span>
+              </div>
+            </div>
+
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
