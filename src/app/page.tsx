@@ -8,12 +8,12 @@ import { translations } from '@/lib/translations';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Visión Perimetral 360° para Autobuses y Camiones | Sistema Vision360IA',
-  description: 'Sistema de visión perimetral 360º con IA para autobuses urbanos, camiones y flotas industriales. Elimina puntos ciegos, cumple GSR R151/R158/R159. Instalación 12/24V. +2.000 vehículos: EMT Madrid, ATM Barcelona. Solicita demo.',
-  keywords: ['vision perimetral bus', 'vision 360 autobus', 'vision 360 perimetral autobuses urbanos', 'sistema vision 360 bus industrial', 'camaras 360 autobus', 'vision perimetral camion', 'ADAS autobus', 'sistema vision perimetral flotas'],
+  title: 'Sistema Visión 360° IA para Flotas Profesionales',
+  description: 'Visión perimetral 360° con IA para autobuses y camiones. Elimina puntos ciegos, detecta VRU y cumple normativa GSR. Solicita dossier técnico.',
+  keywords: ['vision perimetral bus', 'vision 360 autobus', 'sistema vision 360 homologado autobus', 'proveedor vision perimetral flotas', 'instalacion camaras 360 autobus', 'ADAS autobus', 'sistema vision perimetral flotas', 'cumplimiento GSR R151 R158 R159'],
   openGraph: {
-    title: 'Visión Perimetral 360° para Autobuses y Camiones | Vision360IA',
-    description: 'Sistema de visión 360º con IA para autobuses y camiones. Elimina puntos ciegos, homologado GSR. +2.000 vehículos en EMT Madrid, ATM Barcelona.',
+    title: 'Visión Perimetral 360° con IA para Autobuses | Vision360IA',
+    description: 'Sistema de visión 360° con IA para flotas profesionales. Elimina puntos ciegos, homologado GSR. Protección VRU certificada.',
   },
 }
 

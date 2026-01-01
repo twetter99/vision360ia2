@@ -23,10 +23,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.vision360ia.com'),
   title: {
-    default: 'Vision360IA | Visión Perimetral 360° para Autobuses y Camiones',
+    default: 'Visión Perimetral 360° con IA para Autobuses | Vision360IA',
     template: '%s | Vision360IA'
   },
-  description: 'Sistema de visión perimetral 360° con IA para autobuses urbanos, interurbanos, camiones y flotas industriales. Cámaras HD con eliminación de puntos ciegos, alertas FCW/LDW/VRU. Homologado GSR R151, R158, R159. Compatible 12V y 24V. +2.000 vehículos equipados en EMT Madrid, ATM Barcelona, Lurraldebus.',
+  description: 'Sistema de visión 360° con IA que elimina puntos ciegos en autobuses y flotas. Homologado GSR R151/R158/R159. Protección VRU certificada para tu flota.',
   keywords: [
     // Keywords EXACTAS de búsqueda (prioridad máxima)
     'vision perimetral bus',
@@ -45,9 +45,11 @@ export const metadata: Metadata = {
     'GSR R158 marcha atrás',
     'GSR R159 MOIS',
     'homologacion GSR autobus',
-    // Keywords long-tail
-    'kit vision 360 autobus urbano',
-    'sistema camaras 360 grados camion',
+    'cumplimiento GSR R151 R158 R159',
+    // Keywords long-tail comerciales
+    'sistema vision 360 homologado autobus',
+    'proveedor vision perimetral flotas',
+    'instalacion camaras 360 autobus',
     'eliminar puntos ciegos autobus',
     'vision perimetral transporte publico',
     // Marca
