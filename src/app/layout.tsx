@@ -23,10 +23,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.vision360ia.com'),
   title: {
-    default: 'Sistemas ADAS y Visión Perimetral 360° con IA | Vision360IA',
+    default: 'Sistemas ADAS y Visión Perimetral 360° para Flotas | Vision360IA',
     template: '%s | Vision360IA'
   },
-  description: 'Sistemas ADAS con visión perimetral 360° para autobuses, camiones y flotas industriales. Elimina puntos ciegos, cumple GSR. Solicita dossier técnico.',
+  description: 'Sistemas ADAS con visión perimetral 360° para autobuses y flotas profesionales. Eliminación de puntos ciegos, protección VRU y cumplimiento GSR.',
   keywords: [
     // Keywords ADAS (prioridad máxima - alto volumen)
     'sistemas ADAS flotas',
@@ -42,9 +42,11 @@ export const metadata: Metadata = {
     'vision perimetral camion',
     'camaras 360 autobus',
     'vision perimetral flotas industriales',
+    'vision perimetral 360 ADAS',
     // Keywords combinadas
     'sistema ADAS vision 360',
     'ADAS eliminar puntos ciegos',
+    'eliminacion puntos ciegos flotas',
     'vision perimetral ADAS autobus',
     // Keywords normativa GSR
     'GSR R151 BSIS',
