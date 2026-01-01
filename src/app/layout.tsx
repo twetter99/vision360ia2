@@ -2,7 +2,7 @@
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
 import { ClientLayout } from '@/components/layout/client-layout';
-import { GoogleAnalytics } from '@/components/analytics/google-analytics';
+import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/analytics/google-tag-manager';
 import type { Metadata, Viewport } from 'next';
 
 const spaceGrotesk = Space_Grotesk({ 
@@ -141,7 +141,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://player.vimeo.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         
         {/* hreflang para SEO multi-idioma */}
         <link rel="alternate" hrefLang="es" href="https://www.vision360ia.com" />
@@ -153,7 +153,8 @@ export default function RootLayout({
         <meta name="google-site-verification" content="Qq7WtxHJTiP4ZrM5ZK_83vhgNClaQrfpk6RBjMv_ymw" />
       </head>
       <body className="font-body antialiased">
-        <GoogleAnalytics />
+        <GoogleTagManager />
+        <GoogleTagManagerNoscript />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
