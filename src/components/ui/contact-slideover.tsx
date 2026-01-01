@@ -20,24 +20,18 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
 
+// ✅ Schema simplificado: solo campos esenciales
 const formSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
   email: z.string().email("Dirección de correo electrónico no válida."),
   company: z.string().optional(),
-  role: z.string().optional(),
   phone: z.string().optional(),
-  fleetSize: z.string().min(1, "Por favor, selecciona el tamaño de tu flota."),
-  vehicleTypes: z.array(z.string()).optional(),
-  mainInterest: z.string().optional(),
-  projectHorizon: z.string().optional(),
-  contactPreference: z.string().optional(),
   message: z.string().min(10, "El mensaje debe tener al menos 10 caracteres."),
   privacyAccepted: z
     .boolean()
     .refine((val) => val === true, {
       message: "Debes aceptar la Política de Privacidad para continuar.",
     }),
-  marketingOptIn: z.boolean().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -49,51 +43,15 @@ export function ContactSlideOver() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Opciones del formulario con traducciones
-  const vehicleTypeOptions = [
-    { value: "urban", label: t.form.vehicleTypeOptions.urban },
-    { value: "intercity", label: t.form.vehicleTypeOptions.intercity },
-    { value: "trucks", label: t.form.vehicleTypeOptions.trucks },
-    { value: "industrial", label: t.form.vehicleTypeOptions.industrial },
-  ];
-
-  const mainInterestOptions = [
-    { value: "vision360", label: t.form.mainInterestOptions.vision360 },
-    { value: "driverMonitoring", label: t.form.mainInterestOptions.driverMonitoring },
-    { value: "analytics", label: t.form.mainInterestOptions.analytics },
-    { value: "integration", label: t.form.mainInterestOptions.integration },
-    { value: "pilot", label: t.form.mainInterestOptions.pilot },
-  ];
-
-  const projectHorizonOptions = [
-    { value: "exploring", label: t.form.projectHorizonOptions.exploring },
-    { value: "months3", label: t.form.projectHorizonOptions.months3 },
-    { value: "months6", label: t.form.projectHorizonOptions.months6 },
-    { value: "year", label: t.form.projectHorizonOptions.year },
-  ];
-
-  const contactPreferenceOptions = [
-    { value: "video", label: t.form.contactPreferenceOptions.video },
-    { value: "phone", label: t.form.contactPreferenceOptions.phone },
-    { value: "email", label: t.form.contactPreferenceOptions.email },
-  ];
-
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
       company: "",
-      role: "",
       phone: "",
-      fleetSize: "",
-      vehicleTypes: [],
-      mainInterest: "",
-      projectHorizon: "",
-      contactPreference: "",
       message: "",
       privacyAccepted: false,
-      marketingOptIn: false,
     },
   });
 
@@ -103,7 +61,6 @@ export function ContactSlideOver() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // ⚠️ En desarrollo, no cargar reCAPTCHA (localhost no está autorizado por Google)
     const isDevelopment = process.env.NODE_ENV === 'development' || 
                           window.location.hostname === 'localhost' ||
                           window.location.hostname === '127.0.0.1';
@@ -119,21 +76,15 @@ export function ContactSlideOver() {
       return;
     }
 
-    // Verificar si el script ya está cargado
     if (document.querySelector(`script[src*="recaptcha/api.js"]`)) {
       return;
     }
 
-    // Inyectar script de reCAPTCHA
     const script = document.createElement('script');
     script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
-
-    return () => {
-      // No removemos el script para evitar problemas de recarga
-    };
   }, []);
 
   // Bloquear scroll del body cuando el slide-over está abierto
@@ -163,23 +114,20 @@ export function ContactSlideOver() {
     setIsSubmitting(true);
 
     try {
-      // 🔐 OBTENER TOKEN DE RECAPTCHA v3 ANTES DE ENVIAR
+      // 🔐 OBTENER TOKEN DE RECAPTCHA v3
       let recaptchaToken = '';
       
       if (typeof window !== 'undefined') {
-        // ⚠️ En desarrollo, usar token dummy
         const isDevelopment = process.env.NODE_ENV === 'development' || 
                               window.location.hostname === 'localhost' ||
                               window.location.hostname === '127.0.0.1';
         
         if (isDevelopment) {
           recaptchaToken = 'dev-bypass-token';
-          console.warn('⚠️ Development mode: using dummy reCAPTCHA token');
         } else {
           const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
           if (siteKey) {
             try {
-              // Esperar a que grecaptcha esté listo (máximo 5 segundos)
               const grecaptchaReady = await Promise.race([
                 new Promise<boolean>((resolve) => {
                   if (window.grecaptcha && window.grecaptcha.ready) {
@@ -193,52 +141,26 @@ export function ContactSlideOver() {
               
               if (grecaptchaReady && window.grecaptcha) {
                 recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
-                console.log('✅ reCAPTCHA token generado');
-              } else {
-                console.warn('⚠️ reCAPTCHA no está disponible, continuando sin token');
               }
             } catch (recaptchaError) {
               console.error('❌ reCAPTCHA error:', recaptchaError);
-              // Continuar sin token en caso de error de reCAPTCHA
             }
-          } else {
-            console.warn('⚠️ NEXT_PUBLIC_RECAPTCHA_SITE_KEY no configurada');
           }
         }
       }
 
-      // Preparar datos completos para enviar
+      // Preparar datos para enviar
       const payload = {
-        // Datos básicos de contacto
         name: values.name,
         email: values.email,
         company: values.company || undefined,
-        role: values.role || undefined,
         phone: values.phone || undefined,
-        
-        // Información de flota
-        fleetSize: values.fleetSize || undefined,
-        vehicleTypes: values.vehicleTypes && values.vehicleTypes.length > 0 
-          ? values.vehicleTypes 
-          : undefined,
-        
-        // Detalles del proyecto
-        mainInterest: values.mainInterest || undefined,
-        projectHorizon: values.projectHorizon || undefined,
-        contactPreference: values.contactPreference || undefined,
-        
-        // Mensaje y legal
-        message: values.message || undefined,
+        message: values.message,
         privacyAccepted: values.privacyAccepted,
-        marketingOptIn: values.marketingOptIn || false,
-        
-        // Metadata
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         formLoadTime,
-        token: recaptchaToken, // 🔐 Token de reCAPTCHA
+        token: recaptchaToken,
       };
-
-      console.log('📤 Enviando formulario completo:', payload);
 
       const response = await fetch("/api/form/contacto", {
         method: "POST",
@@ -249,20 +171,18 @@ export function ContactSlideOver() {
       const data = await response.json();
 
       if (!response.ok) {
-        // Mostrar el mensaje específico del servidor
         const errorMessage = data.message || data.error || "Error al enviar el formulario";
         toast({
           title: "Error",
           description: errorMessage,
           variant: "destructive",
         });
-        return; // Salir sin lanzar excepción
+        return;
       }
 
       toast({
         title: "Solicitud recibida",
-        description:
-          "Un ingeniero de Vision360IA analizará tu caso en menos de 24h.",
+        description: "Un ingeniero de Vision360IA analizará tu caso en menos de 24h.",
       });
       form.reset();
       closeContactSlideOver();
@@ -270,8 +190,7 @@ export function ContactSlideOver() {
       console.error("Error:", error);
       toast({
         title: "Error de conexión",
-        description:
-          "Por favor, inténtalo de nuevo o escríbenos a info@vision360ia.com",
+        description: "Por favor, inténtalo de nuevo o escríbenos a info@vision360ia.com",
         variant: "destructive",
       });
     } finally {
@@ -283,7 +202,7 @@ export function ContactSlideOver() {
 
   return (
     <>
-      {/* Overlay con backdrop blur */}
+      {/* Overlay */}
       <div
         className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 transition-opacity duration-300"
         onClick={closeContactSlideOver}
@@ -292,415 +211,189 @@ export function ContactSlideOver() {
 
       {/* Slide-over panel */}
       <div
-        className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-xl md:max-w-3xl"
+        className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-md"
         role="dialog"
         aria-modal="true"
         aria-labelledby="slideover-title"
       >
         <div
-          className="h-full bg-white/90 backdrop-blur-xl rounded-l-3xl shadow-2xl flex flex-col animate-in slide-in-from-right duration-300 border border-slate-100"
+          className="h-full bg-white/95 backdrop-blur-xl rounded-l-2xl shadow-2xl flex flex-col animate-in slide-in-from-right duration-300 border border-slate-100"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="relative px-6 py-6 md:px-8 md:py-7 border-b border-slate-200 bg-gradient-to-br from-slate-50/90 via-white to-slate-100/80">
+          <div className="relative px-6 py-5 border-b border-slate-200 bg-gradient-to-br from-slate-50/90 via-white to-slate-100/80">
             <button
               onClick={closeContactSlideOver}
-              className="absolute top-5 right-5 p-2 rounded-full hover:bg-slate-100 transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 transition-colors"
               aria-label="Cerrar"
             >
               <X className="h-5 w-5 text-slate-600" />
             </button>
 
-            <div className="md:pr-16">
-              <p className="text-xs md:text-sm font-semibold text-primary uppercase tracking-[0.16em] mb-2">
+            <div className="pr-10">
+              <p className="text-xs font-semibold text-primary uppercase tracking-[0.16em] mb-1">
                 {t.eyebrow}
               </p>
               <h2
                 id="slideover-title"
-                className="text-2xl md:text-3xl font-semibold text-slate-900 mb-3"
+                className="text-xl font-semibold text-slate-900 mb-2"
               >
-                {t.title}
+                Solicita información
               </h2>
-              <p className="text-sm text-slate-600 leading-relaxed mb-3">
-                {t.description}
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Cuéntanos qué necesitas y te contactamos en menos de 24h.
               </p>
-              <div className="flex flex-wrap gap-2 text-[11px] md:text-xs text-slate-500">
-                {t.badges.map((badge, index) => (
-                  <span key={index} className="px-2.5 py-1 rounded-full bg-white/80 border border-slate-200">
-                    {badge}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
 
-          {/* Form content - scrollable */}
-          <div className="flex-1 overflow-y-auto px-6 py-6 md:px-8 md:py-7 pb-safe">
+          {/* Form content */}
+          <div className="flex-1 overflow-y-auto px-6 py-5">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
+                className="space-y-5"
               >
-                {/* Bloque 1 · Datos de contacto */}
-                <div className="space-y-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    1. {t.blocks.contact}
-                  </p>
-                  <div className="grid gap-4 md:grid-cols-2">
-                    {/* Nombre */}
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.form.name}</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder={t.form.namePlaceholder}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                {/* Nombre */}
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t.form.name} *</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder={t.form.namePlaceholder}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                    {/* Email */}
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.form.email}</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="email"
-                              placeholder={t.form.emailPlaceholder}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                {/* Email */}
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t.form.email} *</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder={t.form.emailPlaceholder}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                    {/* Empresa */}
-                    <FormField
-                      control={form.control}
-                      name="company"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.form.company}</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder={t.form.companyPlaceholder}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    {/* Rol */}
-                    <FormField
-                      control={form.control}
-                      name="role"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.form.role}</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder={t.form.rolePlaceholder}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    {/* Teléfono */}
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem className="md:col-span-2">
-                          <FormLabel>{t.form.phone}</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="tel"
-                              placeholder={t.form.phonePlaceholder}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </div>
-
-                {/* Bloque 2 · Sobre tu flota */}
-                <div className="space-y-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    2. {t.blocks.fleet}
-                  </p>
-                  <div className="grid gap-4 md:grid-cols-2">
-                    {/* Tamaño de flota */}
-                    <FormField
-                      control={form.control}
-                      name="fleetSize"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.form.fleetSize}</FormLabel>
-                          <FormControl>
-                            <select
-                              {...field}
-                              className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                              <option value="">{t.form.fleetSizeOptions.placeholder}</option>
-                              <option value="1-20">{t.form.fleetSizeOptions.option1}</option>
-                              <option value="21-100">{t.form.fleetSizeOptions.option2}</option>
-                              <option value="101-300">{t.form.fleetSizeOptions.option3}</option>
-                              <option value="300+">{t.form.fleetSizeOptions.option4}</option>
-                            </select>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    {/* Interés principal */}
-                    <FormField
-                      control={form.control}
-                      name="mainInterest"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.form.mainInterest}</FormLabel>
-                          <FormControl>
-                            <select
-                              {...field}
-                              className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                              <option value="">{t.form.mainInterestOptions.placeholder}</option>
-                              {mainInterestOptions.map((opt) => (
-                                <option key={opt.value} value={opt.value}>
-                                  {opt.label}
-                                </option>
-                              ))}
-                            </select>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    {/* Tipo de vehículos */}
-                    <FormField
-                      control={form.control}
-                      name="vehicleTypes"
-                      render={({ field }) => {
-                        const value = field.value || [];
-                        return (
-                          <FormItem className="md:col-span-2">
-                            <FormLabel>{t.form.vehicleTypes}</FormLabel>
-                            <FormControl>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                {vehicleTypeOptions.map((opt) => {
-                                  const checked = value.includes(opt.value);
-                                  return (
-                                    <label
-                                      key={opt.value}
-                                      className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm hover:border-slate-400 transition-colors cursor-pointer"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        className="h-4 w-4 rounded border-slate-300"
-                                        value={opt.value}
-                                        checked={checked}
-                                        onChange={(e) => {
-                                          if (e.target.checked) {
-                                            field.onChange([
-                                              ...value,
-                                              opt.value,
-                                            ]);
-                                          } else {
-                                            field.onChange(
-                                              value.filter(
-                                                (v: string) =>
-                                                  v !== opt.value
-                                              )
-                                            );
-                                          }
-                                        }}
-                                      />
-                                      <span>{opt.label}</span>
-                                    </label>
-                                  );
-                                })}
-                              </div>
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        );
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Bloque 3 · Contexto del proyecto */}
-                <div className="space-y-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    3. Tu proyecto
-                  </p>
-                  <div className="grid gap-4 md:grid-cols-2">
-                    {/* Horizonte del proyecto */}
-                    <FormField
-                      control={form.control}
-                      name="projectHorizon"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.form.projectHorizon}</FormLabel>
-                          <FormControl>
-                            <select
-                              {...field}
-                              className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                              <option value="">{t.form.projectHorizonOptions.placeholder}</option>
-                              {projectHorizonOptions.map((opt) => (
-                                <option key={opt.value} value={opt.value}>
-                                  {opt.label}
-                                </option>
-                              ))}
-                            </select>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    {/* Preferencia de contacto */}
-                    <FormField
-                      control={form.control}
-                      name="contactPreference"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.form.contactPreference}</FormLabel>
-                          <FormControl>
-                            <select
-                              {...field}
-                              className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                              <option value="">{t.form.contactPreferenceOptions.placeholder}</option>
-                              {contactPreferenceOptions.map((opt) => (
-                                <option key={opt.value} value={opt.value}>
-                                  {opt.label}
-                                </option>
-                              ))}
-                            </select>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    {/* Mensaje */}
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem className="md:col-span-2">
-                          <FormLabel>{t.form.message}</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              rows={4}
-                              placeholder={
-                                t.form.messagePlaceholder ??
-                                "Cuéntanos brevemente la situación actual, retos y objetivos del proyecto…"
-                              }
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </div>
-
-                {/* Bloque 4 · Legal */}
-                <div className="space-y-3">
-                  {/* Privacidad obligatoria */}
+                {/* Teléfono y Empresa en una fila */}
+                <div className="grid grid-cols-2 gap-3">
                   <FormField
                     control={form.control}
-                    name="privacyAccepted"
+                    name="phone"
                     render={({ field }) => (
-                      <FormItem className="space-y-2">
-                        <div className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50/60 px-3 py-2.5">
-                          <FormControl>
-                            <input
-                              type="checkbox"
-                              checked={field.value}
-                              onChange={field.onChange}
-                              className="mt-1 h-4 w-4 rounded border-slate-300"
-                            />
-                          </FormControl>
-                          <div className="space-y-1 text-xs sm:text-sm">
-                            <FormLabel className="font-medium text-slate-800">
-                              {t.form.privacyLabel} {t.form.privacyLink}
-                            </FormLabel>
-                            <p className="text-slate-500">
-                              {t.form.footerText}
-                            </p>
-                          </div>
-                        </div>
+                      <FormItem>
+                        <FormLabel>{t.form.phone}</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            placeholder="+34..."
+                            {...field}
+                          />
+                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
 
-                  {/* Marketing opcional */}
                   <FormField
                     control={form.control}
-                    name="marketingOptIn"
+                    name="company"
                     render={({ field }) => (
                       <FormItem>
-                        <div className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
-                          <FormControl>
-                            <input
-                              type="checkbox"
-                              checked={field.value}
-                              onChange={field.onChange}
-                              className="mt-1 h-4 w-4 rounded border-slate-300"
-                            />
-                          </FormControl>
-                          <p>
-                            {t.form.marketingLabel}
-                          </p>
-                        </div>
+                        <FormLabel>{t.form.company}</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Tu empresa"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
 
-                {/* Footer con botón */}
-                <div className="pt-2 pb-4">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    size="lg"
-                    className="w-full min-h-[48px] text-base font-semibold"
-                  >
-                    {isSubmitting && (
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    )}
-                    {isSubmitting ? t.form.submitting : t.form.submitButton}
-                  </Button>
-                  <p className="mt-3 text-xs text-center text-slate-500">
-                    {t.form.footerText}
-                  </p>
-                </div>
+                {/* Mensaje */}
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t.form.message} *</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          rows={3}
+                          placeholder="¿Qué tipo de vehículos tienes? ¿Cuántos? ¿Qué problema quieres resolver?"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Privacidad */}
+                <FormField
+                  control={form.control}
+                  name="privacyAccepted"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50/60 px-3 py-2.5">
+                        <FormControl>
+                          <input
+                            type="checkbox"
+                            checked={field.value}
+                            onChange={field.onChange}
+                            className="mt-0.5 h-4 w-4 rounded border-slate-300"
+                          />
+                        </FormControl>
+                        <div className="text-xs text-slate-600">
+                          <span>{t.form.privacyLabel} </span>
+                          <a 
+                            href="/privacidad" 
+                            target="_blank" 
+                            className="text-primary underline hover:no-underline"
+                          >
+                            {t.form.privacyLink}
+                          </a>
+                        </div>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Botón enviar */}
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  size="lg"
+                  className="w-full min-h-[48px] text-base font-semibold"
+                >
+                  {isSubmitting && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  {isSubmitting ? t.form.submitting : "Enviar solicitud"}
+                </Button>
+
+                <p className="text-[11px] text-center text-slate-400">
+                  Sin spam. Solo ingenieros hablando de tecnología.
+                </p>
               </form>
             </Form>
           </div>
