@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Loader2, X, FileText, Download } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
@@ -180,9 +180,15 @@ export function ContactSlideOver() {
         return;
       }
 
+      // 📄 DESCARGA AUTOMÁTICA DEL PDF
+      const downloadLink = document.createElement('a');
+      downloadLink.href = '/pdf/Presentacion_V360.pdf';
+      downloadLink.download = 'Vision360_Documentacion_Tecnica.pdf';
+      downloadLink.click();
+
       toast({
-        title: "Solicitud recibida",
-        description: "Un ingeniero de Vision360IA analizará tu caso en menos de 24h.",
+        title: t.toast?.downloadSuccess?.title || "¡Documentación enviada!",
+        description: t.toast?.downloadSuccess?.description || "Tu PDF se está descargando. Un ingeniero te contactará en menos de 24h.",
       });
       form.reset();
       closeContactSlideOver();
@@ -238,53 +244,16 @@ export function ContactSlideOver() {
                 id="slideover-title"
                 className="text-xl font-semibold text-slate-900 mb-2"
               >
-                Solicita información
+                {t.form.slideoverTitle || 'Descarga la documentación técnica'}
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Cuéntanos qué necesitas y te contactamos en menos de 24h.
+                {t.form.slideoverSubtitle || 'Completa el formulario y recibe el dossier completo con especificaciones.'}
               </p>
             </div>
           </div>
 
           {/* Form content */}
           <div className="flex-1 overflow-y-auto px-6 py-5">
-            {/* Card de descarga PDF - Destacado */}
-            <a
-              href="/pdf/Presentacion_V360.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className="group flex items-start gap-4 p-5 mb-6 rounded-xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 hover:from-primary/10 hover:via-primary/15 hover:to-primary/10 hover:border-primary/50 transition-all duration-200 shadow-sm hover:shadow-md"
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center group-hover:bg-primary/25 transition-colors">
-                <FileText className="w-6 h-6 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-base font-semibold text-slate-900 mb-1">
-                  {t.form.pdfDownload?.title || 'Documentación técnica completa'}
-                </p>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  {t.form.pdfDownload?.description || 'Descarga el dossier con especificaciones, arquitectura y requisitos de instalación.'}
-                </p>
-              </div>
-              <div className="flex-shrink-0 flex items-center gap-1 text-primary font-medium text-sm group-hover:gap-2 transition-all">
-                <span className="hidden sm:inline">{t.form.pdfDownload?.downloadText || 'Descargar'}</span>
-                <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
-              </div>
-            </a>
-
-            {/* Separador */}
-            <div className="relative mb-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200"></div>
-              </div>
-              <div className="relative flex justify-center text-xs">
-                <span className="px-3 bg-white text-slate-400">
-                  {t.form.pdfDownload?.orFillForm || 'o completa el formulario'}
-                </span>
-              </div>
-            </div>
-
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
