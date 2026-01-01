@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://www.vision360ia.com',
+    canonical: './',
     languages: {
       'es-ES': 'https://www.vision360ia.com',
       'ca-ES': 'https://www.vision360ia.com',
