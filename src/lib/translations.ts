@@ -4,7 +4,7 @@ import { findImage } from './placeholder-images';
 const baseTranslations = {
   header: {
     login: 'Iniciar Sesión',
-    getQuote: 'Pedir Presupuesto',
+    getQuote: 'Dossier técnico',
     openMenu: 'Abrir Menú',
     changeLanguage: 'Cambiar idioma',
   },
@@ -31,7 +31,7 @@ const baseTranslations = {
     title: 'Visión Perimetral 360º con IA para Autobuses y Camiones',
     subtitle: 'Sistema de visión 360° que reduce un 40% los accidentes en flotas',
     description: 'Cada día, tu flota se enfrenta a lo imprevisible. Con **Vision360IA**, tus vehículos ven más allá: detectan riesgos, anticipan colisiones y convierten datos en seguridad activa. Tecnología **ADAS potenciada por IA**, diseñada para proteger lo que más importa: **tu equipo y tus activos**.',
-    mainCta: 'Descargar documentación',
+    mainCta: 'Dossier técnico',
     secondaryCta: 'Ver vídeo 60s',
     trustedBy: 'Con la confianza de las principales flotas',
     dailyChallenge: 'Elimina los puntos ciegos en autobuses urbanos, interurbanos y camiones.',
@@ -476,7 +476,7 @@ export const translations = {
     ...baseTranslations,
     header: {
       login: 'Iniciar Sessió',
-      getQuote: 'Demanar Pressupost',
+      getQuote: 'Dossier tècnic',
       openMenu: 'Obrir Menú',
       changeLanguage: 'Canviar idioma',
     },
@@ -485,7 +485,7 @@ export const translations = {
       title: 'Control 360° amb IA: Redueix Riscos, Maximitza Eficiència.',
       subtitle: '-40% d\'incidents en flotes en 6 mesos.',
       description: 'Cada dia, la teva flota s\'enfronta a l\'imprevisible. Amb Vision360IA, els teus vehicles veuen més enllà: detecten riscos, anticipen col·lisions i converteixen dades en seguretat activa. Tecnologia ADAS potenciada per IA, dissenyada per protegir el que més importa: el teu equip i els teus actius.',
-      mainCta: 'Descarregar documentació',
+      mainCta: 'Dossier tècnic',
       secondaryCta: 'Veure vídeo 60s',
       trustedBy: 'Amb la confiança de les principals flotes',
       dailyChallenge: 'Cada dia, la teva flota s\'enfronta a l\'imprevisible.',
@@ -872,7 +872,7 @@ export const translations = {
     ...baseTranslations,
     header: {
         login: 'Saioa Hasi',
-        getQuote: 'Aurrekontua Eskatu',
+        getQuote: 'Dossier teknikoa',
         openMenu: 'Menua Ireki',
         changeLanguage: 'Hizkuntza Aldatu',
     },
@@ -881,7 +881,7 @@ export const translations = {
       title: '360° Kontrola IA-rekin: Arriskuak Murriztu, Eraginkortasuna Maximizatu.',
       subtitle: '-40% istripu flotetan 6 hilabetetan.',
       description: 'Egunero, zure flota ezustekoari aurre egiten dio. Vision360IA-rekin, zure ibilgailuek haratago ikusten dute: arriskuak detektatzen dituzte, talkak aurreikusten dituzte eta datuak segurtasun aktibo bihurtzen dituzte. IA-k bultzatutako ADAS teknologia, garrantzitsuena babesteko diseinatua: zure taldea eta zure aktiboak.',
-      mainCta: 'Dokumentazioa deskargatu',
+      mainCta: 'Dossier teknikoa',
       secondaryCta: 'Bideoa ikusi 60s',
       trustedBy: 'Flota nagusien konfiantzarekin',
       dailyChallenge: 'Egunero, zure flota ezustekoari aurre egiten dio.',
