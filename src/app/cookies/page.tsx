@@ -101,7 +101,7 @@ export default function Cookies() {
                 </p>
                 <div className="mt-3 bg-slate-50 rounded p-3 space-y-1">
                   <p className="text-xs font-semibold text-slate-700">{t.sections.tipos.analiticas.providers}</p>
-                  {t.sections.tipos.analiticas.list.map((provider, i) => (
+                  {t.sections.tipos.analiticas.list.map((provider: string, i: number) => (
                     <p key={i} className="text-xs font-mono text-slate-600">• {provider}</p>
                   ))}
                 </div>
@@ -116,7 +116,7 @@ export default function Cookies() {
                   {t.sections.tipos.terceros.consent}
                 </p>
                 <div className="mt-3 space-y-2">
-                  {t.sections.tipos.terceros.providers.map((provider, i) => (
+                  {t.sections.tipos.terceros.providers.map((provider: { name: string; description: string }, i: number) => (
                     <div key={i} className="bg-slate-50 rounded p-3">
                       <p className="text-xs font-semibold text-slate-700">{provider.name}</p>
                       <p className="text-xs text-slate-600">{provider.description}</p>
@@ -134,7 +134,7 @@ export default function Cookies() {
             </p>
             <div className="bg-white border border-slate-200 rounded-lg p-4">
               <ul className="space-y-2 text-slate-700">
-                {t.sections.configuracion.options.map((option, i) => (
+                {t.sections.configuracion.options.map((option: string, i: number) => (
                   <li key={i} className="flex items-center gap-2">
                     <span className={i === 0 ? 'text-green-600' : i === 1 ? 'text-red-600' : 'text-blue-600'}>
                       {i === 0 ? '✓' : i === 1 ? '✗' : '⚙'}
@@ -207,7 +207,7 @@ export default function Cookies() {
                   </tr>
                 </thead>
                 <tbody>
-                  {t.sections.detalle.cookies.map((cookie, i) => (
+                  {t.sections.detalle.cookies.map((cookie: { name: string; provider: string; purpose: string; duration: string }, i: number) => (
                     <tr key={i} className={i % 2 === 0 ? '' : 'bg-slate-50'}>
                       <td className="border border-slate-300 p-2 font-mono text-xs">{cookie.name}</td>
                       <td className="border border-slate-300 p-2">{cookie.provider}</td>

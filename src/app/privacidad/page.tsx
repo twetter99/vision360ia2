@@ -89,7 +89,7 @@ export default function Privacidad() {
             </div>
             <p className="text-slate-700 leading-relaxed mb-4">{t.sections.finalidades.intro}</p>
             <ul className="space-y-2 text-slate-700">
-              {t.sections.finalidades.items.map((item, i) => (
+              {t.sections.finalidades.items.map((item: string, i: number) => (
                 <li key={i}>✓ {item}</li>
               ))}
             </ul>
@@ -99,7 +99,7 @@ export default function Privacidad() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.baseLegal.title}</h2>
             <p className="text-slate-700 leading-relaxed mb-4">{t.sections.baseLegal.intro}</p>
             <div className="space-y-3">
-              {t.sections.baseLegal.items.map((item, i) => (
+              {t.sections.baseLegal.items.map((item: { title: string; content: string }, i: number) => (
                 <div key={i} className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                   <div>
@@ -117,7 +117,7 @@ export default function Privacidad() {
               {t.sections.conservacion.intro}
             </p>
             <ul className="space-y-2 text-slate-700 mt-4">
-              {t.sections.conservacion.items.map((item, i) => (
+              {t.sections.conservacion.items.map((item: string, i: number) => (
                 <li key={i}>• {item}</li>
               ))}
             </ul>
@@ -130,7 +130,7 @@ export default function Privacidad() {
             </p>
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
               <ul className="space-y-1 text-slate-700 text-sm">
-                {t.sections.comunicacion.providers.map((provider, i) => (
+                {t.sections.comunicacion.providers.map((provider: string, i: number) => (
                   <li key={i}>• {provider}</li>
                 ))}
               </ul>
@@ -147,7 +147,7 @@ export default function Privacidad() {
               {t.sections.transferencias.intro}
             </p>
             <ul className="space-y-2 text-slate-700 mt-4">
-              {t.sections.transferencias.items.map((item, i) => (
+              {t.sections.transferencias.items.map((item: string, i: number) => (
                 <li key={i}>• {item}</li>
               ))}
             </ul>
@@ -166,7 +166,7 @@ export default function Privacidad() {
               {t.sections.derechos.intro2}
             </p>
             <div className="grid md:grid-cols-2 gap-3">
-              {t.sections.derechos.rights.map((right, i) => (
+              {t.sections.derechos.rights.map((right: { title: string; description: string }, i: number) => (
                 <div key={i} className="bg-white border border-slate-200 rounded-lg p-3">
                   <p className="font-semibold text-slate-900 text-sm">✓ {right.title}</p>
                   <p className="text-xs text-slate-600">{right.description}</p>

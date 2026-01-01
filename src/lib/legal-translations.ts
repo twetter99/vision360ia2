@@ -58,126 +58,6 @@ export const legalTranslations = {
         },
       },
     },
-  },
-  ca: {
-    backToHome: 'Tornar a l\'inici',
-    lastUpdated: 'Última actualització',
-    avisoLegal: {
-      title: 'Avís Legal',
-      subtitle: 'Condicions d\'ús del lloc web',
-      titular: {
-        title: 'Titular del lloc web',
-        company: 'WINFIN INSTALACIONES, S.L.',
-        cif: 'B05393632',
-        address: 'C/ Moreras, 1 N 66, 28350 Ciempozuelos (Madrid), Espanya',
-      },
-      intro: 'L\'accés i ús d\'aquest lloc web atribueix la condició d\'usuari i implica l\'acceptació plena d\'aquest Avís Legal. Si no hi està conforme, ha d\'abstenir-se d\'utilitzar-lo.',
-      sections: {
-        objeto: {
-          title: '1. Objecte del lloc web',
-          content: 'El present lloc web té com a finalitat oferir informació sobre els productes i serveis tecnològics de WINFIN INSTALACIONES, S.L., incloent solucions embarcades, IoT, sistemes de visió, anàlisi d\'afluències, manteniment d\'equips i qualsevol altra activitat descrita a la plataforma.',
-        },
-        condiciones: {
-          title: '2. Condicions d\'ús',
-          content: 'L\'usuari es compromet a utilitzar aquest lloc web de forma lícita i conforme a la legislació aplicable, sense realitzar activitats que puguin danyar, inutilitzar o afectar el funcionament del mateix.',
-          prohibido: 'Queda prohibit:',
-          items: [
-            'Introduir malware, scripts maliciosos o qualsevol tecnologia que comprometi la seguretat.',
-            'Copiar o reproduir continguts sense autorització expressa.',
-            'Usar el web amb fins fraudulents.',
-          ],
-        },
-        propiedad: {
-          title: '3. Propietat intel·lectual i industrial',
-          content1: 'Tots els continguts del lloc web (textos, imatges, logotips, vídeos, programari, disseny, etc.) són propietat exclusiva de WINFIN INSTALACIONES, S.L. o de tercers que han autoritzat el seu ús.',
-          content2: 'Queda prohibida la reproducció total o parcial sense autorització prèvia i per escrit.',
-        },
-        responsabilidad: {
-          title: '4. Responsabilitat del titular',
-          content: 'WINFIN INSTALACIONES, S.L. no serà responsable de:',
-          items: [
-            'Errors tècnics o interrupcions del servei.',
-            'Danys derivats de l\'ús incorrecte del web.',
-            'Contingut de tercers o enllaços externs.',
-          ],
-          footer: 'El titular es reserva el dret a modificar la informació o estructura del web sense avís previ.',
-        },
-        enlaces: {
-          title: '5. Política d\'enllaços externs',
-          content: 'Aquest lloc pot contenir enllaços a webs de tercers. WINFIN INSTALACIONES, S.L. no es fa responsable dels continguts, polítiques o pràctiques d\'aquests llocs.',
-        },
-        proteccion: {
-          title: '6. Protecció de dades personals',
-          content: 'El tractament de les dades personals es regula a la',
-          link: 'Política de Privacitat',
-          content2: ', incorporada en aquest lloc web.',
-        },
-        legislacion: {
-          title: '7. Legislació aplicable i jurisdicció',
-          content: 'Aquest Avís Legal es regeix per la legislació espanyola. Qualsevol conflicte serà resolt als Jutjats i Tribunals de Madrid (Espanya), llevat que la normativa disposi el contrari.',
-        },
-      },
-    },
-  },
-  eu: {
-    backToHome: 'Hasierara itzuli',
-    lastUpdated: 'Azken eguneratzea',
-    avisoLegal: {
-      title: 'Lege Oharra',
-      subtitle: 'Webgunearen erabilera baldintzak',
-      titular: {
-        title: 'Webgunearen titularra',
-        company: 'WINFIN INSTALACIONES, S.L.',
-        cif: 'B05393632',
-        address: 'C/ Moreras, 1 N 66, 28350 Ciempozuelos (Madrid), Espainia',
-      },
-      intro: 'Webgune honetara sartzeak eta erabiltzeak erabiltzaile-izaera ematen du eta Lege Ohar honen onarpen osoa dakar. Ez badago ados, ez erabili.',
-      sections: {
-        objeto: {
-          title: '1. Webgunearen xedea',
-          content: 'Webgune honek WINFIN INSTALACIONES, S.L. enpresaren produktu eta zerbitzu teknologikoen informazioa eskaintzea du helburu, besteak beste, soluzio txertatuak, IoT, ikuskera-sistemak, jende-fluxuen analisia, ekipoen mantentze-lanak eta plataforman deskribatutako beste edozein jarduera.',
-        },
-        condiciones: {
-          title: '2. Erabilera baldintzak',
-          content: 'Erabiltzaileak webgune hau modu legezkoan eta aplikagarria den araudiari jarraituz erabiltzeko konpromisoa hartzen du, haren funtzionamendua kaltetu, erabilezin egin edo eragiten duten jarduerarik egin gabe.',
-          prohibido: 'Debekatuta dago:',
-          items: [
-            'Malwarea, script kaltegarriak edo segurtasuna arriskuan jarr dezakeen edozein teknologia sartzea.',
-            'Edukiak kopiatzea edo erreproduzitzea baimenik gabe.',
-            'Weba iruzurreko helburuetarako erabiltzea.',
-          ],
-        },
-        propiedad: {
-          title: '3. Jabetza intelektuala eta industriala',
-          content1: 'Webgunearen eduki guztiak (testuak, irudiak, logotipoak, bideoak, softwarea, diseinua, etab.) WINFIN INSTALACIONES, S.L. enpresaren edo haren erabilera baimendu duten hirugarrenen jabetza esklusiboak dira.',
-          content2: 'Debekatuta dago erreprodukzio osoa edo partziala aurretiko baimenik eta idatzizko baimen gabe.',
-        },
-        responsabilidad: {
-          title: '4. Titularraren erantzukizuna',
-          content: 'WINFIN INSTALACIONES, S.L. ez da erantzule izango honako hauetaz:',
-          items: [
-            'Akats teknikoak edo zerbitzuaren etenak.',
-            'Webaren erabilera okerretik eratorritako kalteak.',
-            'Hirugarrenen edukia edo kanpoko estekak.',
-          ],
-          footer: 'Titularrak eskubidea du webaren informazioa edo egitura aldatzeko aurretik jakinarazi gabe.',
-        },
-        enlaces: {
-          title: '5. Kanpo esteken politika',
-          content: 'Gune honek hirugarrenen webetarako estekak izan ditzake. WINFIN INSTALACIONES, S.L. ez da erantzule izango gune horien edukien, politiken edo praktiken gainean.',
-        },
-        proteccion: {
-          title: '6. Datu pertsonalen babesa',
-          content: 'Datu pertsonalen tratamendua',
-          link: 'Pribatutasun Politikan',
-          content2: ' araututzen da, webgune honetan txertatuta dagoena.',
-        },
-        legislacion: {
-          title: '7. Aplikagarria den legeria eta jurisdikzioa',
-          content: 'Lege Ohar hau Espainiako legeriaren arabera arautzen da. Gatazka oro Madrilgo (Espainia) Epaitegi eta Auzitegiek ebatziko dute, araudiak bestela xedatzen ez badu.',
-        },
-      },
-    },
     privacidad: {
       title: 'Política de Privacidad',
       subtitle: 'En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD)',
@@ -532,7 +412,7 @@ export const legalTranslations = {
     },
     privacidad: {
       title: 'Pribatutasun Politika',
-      subtitle: '(EB) 2016/679 Erregelamenduaren (DBEO) eta 3/2018 Lege Organikoa (DBJLO) betetzearen ondorioz',
+      subtitle: '(EB) 2016/679 Erregelamenduaren (DBEO) eta 3/2018 Lege Organikoaren (LOPDGDD) arabera',
       titular: {
         title: 'Tratamenduaren arduraduna',
         company: 'WINFIN INSTALACIONES, S.L.',
@@ -542,60 +422,60 @@ export const legalTranslations = {
       },
       sections: {
         datos: {
-          title: '1. Bildutzen ditugun datuak',
+          title: '1. Biltzen ditugun datuak',
           intro: 'Gunearen erabileraren arabera, honako hauek bildu ditzakegu:',
           types: {
             formulario: { badge: '📝 Formularioko datuak', content: 'Izena, emaila, enpresa, telefonoa, kargua, flotari buruzko informazioa.' },
             tecnicos: { badge: '💻 Datu teknikoak', content: 'IP helbidea, nabigatzailea, gailua, hizkuntza, gutxi gorabeherako kokapena.' },
-            navegacion: { badge: '📊 Nabigazio datuak', content: 'Bisitatutako orriak, saioaren iraupena, edukiarekin izandako interakzioak.' },
-            terceros: { badge: '🔗 Hirugarrenen zerbitzuak', content: 'Vimeo, Google Analytics, Firebase, Vercel erabiltzetik eratorritako datuak.' },
+            navegacion: { badge: '📊 Nabigazio datuak', content: 'Bisitatutako orrialdeak, saioko denbora, edukiarekin interakzioak.' },
+            terceros: { badge: '🔗 Hirugarrenen zerbitzuak', content: 'Vimeo, Google Analytics, Firebase, Vercel erabiltzean sortutako datuak.' },
           },
         },
         finalidades: {
           title: '2. Tratamenduaren helburuak',
           intro: 'Datuak honako hauetarako erabiltzen dira:',
-          items: ['Kontaktu-formularioaren bidez jasotako kontsultak edo eskaerak kudeatzeko', 'Gure zerbitzuekin zerikusia duten merkataritza-komunikazioak (baimena emanez gero soilik)', 'Analitika, neurtzea eta webaren errendimenduaren hobekuntza', 'Gunearen segurtasuna eta iruzurraren prebentzioa', 'Kontratu edo kontratu aurreko harreman kudeaketa'],
+          items: ['Kontaktu formularioaren bidez jasotako kontsultak edo eskaerak kudeatzeko', 'Gure zerbitzuekin lotutako komunikazio komertzialak (bakarrik baimenarekin)', 'Analitika, webaren errendimenduaren neurketa eta hobekuntza', 'Gunearen segurtasuna eta iruzurraren prebentzioa', 'Harreman kontratatuak edo kontratu aurreko harremanak kudeatzeko'],
         },
         baseLegal: {
-          title: '3. Oinarri legala',
+          title: '3. Oinarri juridikoa',
           intro: 'Tratamenduaren arabera:',
           items: [
-            { title: 'Erabiltzailearen baimena', content: 'Formularioak, newsletterrak, cookie analitikoak' },
+            { title: 'Erabiltzailearen baimena', content: 'Formularioak, newsletter-ak, cookie analitikoak' },
             { title: 'Interes legitimoa', content: 'Gunearen segurtasuna, oinarrizko analitika teknikoa' },
-            { title: 'Kontratu bat betetzea', content: 'Zerbitzu profesionalen ematea' },
-            { title: 'Betebehar legalen betetzea', content: 'Fakturak, kontabilitatea, zergen kontserbazioa' },
+            { title: 'Kontratu baten exekuzioa', content: 'Zerbitzu profesionalen prestazioa' },
+            { title: 'Lege betebeharren betetzea', content: 'Fakturazioa, kontabilitatea, kontserbazio fiskala' },
           ],
         },
         conservacion: {
           title: '4. Datuen kontserbazioa',
-          intro: 'Datuak gordeko dira:',
-          items: ['Harreman komertzial edo kontraktualik dagoen bitartean', 'Ezabatzeko eskatzen ez den bitartean', 'Aplikagarriak diren lege-epeen arabera (fakturak, kontabilitate betebeharrak, etab.)'],
+          intro: 'Datuak honela gordeko dira:',
+          items: ['Harreman komertziala edo kontratupekoa dagoen bitartean', 'Haien ezabatzea eskatzen ez den bitartean', 'Aplikagarri diren lege-epeen arabera (fakturazioa, kontabilitate betebeharrak, etab.)'],
         },
         comunicacion: {
           title: '5. Datuen komunikazioa hirugarrenei',
-          intro: 'Datuak WINFIN INSTALACIONES, S.L. erabiltzen duen teknologia-hornitzaileekin partekatu daitezke:',
+          intro: 'Datuak WINFIN INSTALACIONES, S.L. enpresak erabiltzen dituen hornitzaile teknologikoekin partekatu daitezke:',
           providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting eta analitika)', 'Vimeo (bideoen erreprodukzioa)', 'Email eta biltegiratze zerbitzuak'],
-          footer: 'Guztiek DBEOren araberako berme egokiekin betetzen dute.',
-          noSale: 'Ez dira datuak hirugarrenei saltzen inolako baldintzapean.',
+          footer: 'Guztiek DBEO-aren araberako berme egokiak betetzen dituzte.',
+          noSale: 'Datuak ez dira hirugarrenei saltzen inola ere.',
         },
         transferencias: {
           title: '6. Nazioarteko transferentziak',
-          intro: 'Hornitzaile batzuk EEz kanpoan daudenean, DBEOren betetzea bermatu egiten da honako hauen bidez:',
-          items: ['Klausula kontratual estandarrak (KKE)', 'Segurtasun eta zifratzearen neurri tekniko gehigarriak'],
+          intro: 'Hornitzaile batzuk EBtik kanpo daudenean, DBEO-aren betetzea bermatzen da honako hauen bidez:',
+          items: ['Klausula kontratual estandarrak (SCC)', 'Segurtasun eta zifratzeko neurri tekniko osagarriak'],
         },
         derechos: {
           title: '7. Erabiltzailearen eskubideak',
-          intro: 'Honako eskubide hauek gauzatu ditzakezu emailez',
-          intro2: ', zure identitatea frogatuz:',
+          intro: 'Hurrengo eskubideak egikaritu ditzakezu emailez hona',
+          intro2: ', zure nortasuna egiaztatuz:',
           rights: [
-            { title: 'Sarbide eskubidea', description: 'Zure gaineko zein datu ditugun jakiteko' },
-            { title: 'Zuzentzeko eskubidea', description: 'Datu okerrak edo osatu gabeak zuzentzeko' },
-            { title: 'Ezabatzeko eskubidea', description: 'Zure datuen ezabapena eskatzeko' },
-            { title: 'Aurka egiteko eskubidea', description: 'Zure datuen tratamenduari aurka egiteko' },
-            { title: 'Mugatzeko eskubidea', description: 'Tratamendua kasu batzuetan mugatzeko' },
-            { title: 'Eramangarritasun eskubidea', description: 'Zure datuak formatu egituratuetan jasotzeko' },
+            { title: 'Sarbide eskubidea', description: 'Zuri buruz ditugun datuak ezagutzea' },
+            { title: 'Zuzentzeko eskubidea', description: 'Datu okerrak edo osatugabeak zuzentzea' },
+            { title: 'Ezabatzeko eskubidea', description: 'Zure datuen ezabatzea eskatzea' },
+            { title: 'Aurka egiteko eskubidea', description: 'Zure datuen tratamenduaren aurka egitea' },
+            { title: 'Mugatzeko eskubidea', description: 'Tratamendua kasu jakinetan mugatzea' },
+            { title: 'Eramangarritasun eskubidea', description: 'Zure datuak formatu egituratuan jasotzea' },
           ],
-          authority: { label: 'Kontrol-agintaritza:', text: 'Halaber, eskubidea duzu honen aurrean erreklamatzeko', linkText: 'DBBA (Datuen Babesaren Espainiako Agentzia)' },
+          authority: { label: 'Kontrol agintaritza:', text: 'Honako honen aurrean erreklamatzeko eskubidea ere baduzu', linkText: 'AEPD (Espainiako Datuen Babeserako Agentzia)' },
         },
         seguridad: {
           title: '8. Datuen segurtasuna',
