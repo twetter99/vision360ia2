@@ -248,26 +248,29 @@ export function ContactSlideOver() {
 
           {/* Form content */}
           <div className="flex-1 overflow-y-auto px-6 py-5">
-            {/* Card de descarga PDF */}
+            {/* Card de descarga PDF - Destacado */}
             <a
               href="/pdf/Presentacion_V360.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download
-              className="group flex items-start gap-4 p-4 mb-6 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 hover:border-primary/40 transition-all duration-200"
+              className="group flex items-start gap-4 p-5 mb-6 rounded-xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 hover:from-primary/10 hover:via-primary/15 hover:to-primary/10 hover:border-primary/50 transition-all duration-200 shadow-sm hover:shadow-md"
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <FileText className="w-5 h-5 text-primary" />
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center group-hover:bg-primary/25 transition-colors">
+                <FileText className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-slate-900 mb-0.5">
-                  {t.form.pdfDownload?.title || '¿Prefieres leer primero?'}
+                <p className="text-base font-semibold text-slate-900 mb-1">
+                  {t.form.pdfDownload?.title || 'Documentación técnica completa'}
                 </p>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {t.form.pdfDownload?.description || 'Descarga nuestra presentación con especificaciones técnicas completas.'}
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {t.form.pdfDownload?.description || 'Descarga el dossier con especificaciones, arquitectura y requisitos de instalación.'}
                 </p>
               </div>
-              <Download className="w-4 h-4 text-primary flex-shrink-0 mt-1 group-hover:translate-y-0.5 transition-transform" />
+              <div className="flex-shrink-0 flex items-center gap-1 text-primary font-medium text-sm group-hover:gap-2 transition-all">
+                <span className="hidden sm:inline">{t.form.pdfDownload?.downloadText || 'Descargar'}</span>
+                <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
+              </div>
             </a>
 
             {/* Separador */}

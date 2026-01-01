@@ -235,9 +235,10 @@ const baseTranslations = {
       footerText: 'Tus datos están protegidos. Sin spam. Solo hablamos de tecnología y casos reales en flotas como la tuya.',
       sendButton: 'Hablar con un Experto →',
       pdfDownload: {
-        title: '¿Prefieres leer primero?',
-        description: 'Descarga nuestra presentación con especificaciones técnicas completas.',
+        title: 'Documentación técnica completa',
+        description: 'Descarga el dossier con especificaciones, arquitectura y requisitos de instalación.',
         orFillForm: 'o completa el formulario',
+        downloadText: 'Descargar',
       },
     },
     toast: {
@@ -672,9 +673,10 @@ export const translations = {
             footerText: 'Les teves dades estan protegides. Sense spam. Només parlem de tecnologia i casos reals en flotes com la teva.',
             sendButton: 'Parlar amb un Expert →',
             pdfDownload: {
-              title: 'Prefereixes llegir primer?',
-              description: 'Descarrega la nostra presentació amb especificacions tècniques completes.',
+              title: 'Documentació tècnica completa',
+              description: 'Descarrega el dossier amb especificacions, arquitectura i requisits d\'instal·lació.',
               orFillForm: 'o completa el formulari',
+              downloadText: 'Descarregar',
             },
         },
         toast: {
@@ -1067,9 +1069,10 @@ export const translations = {
             footerText: 'Zure datuak babestuak daude. Spam-ik gabe. Teknologiaz eta flota errealetan gertaturikoz bakarrik hitz egiten dugu.',
             sendButton: 'Adituarekin Hitz Egin →',
             pdfDownload: {
-              title: 'Lehenik irakurri nahi duzu?',
-              description: 'Deskargatu gure aurkezpena zehaztapen tekniko osoekin.',
+              title: 'Dokumentazio tekniko osoa',
+              description: 'Deskargatu dossierra zehaztapenekin, arkitekturarekin eta instalazio-baldintzekin.',
               orFillForm: 'edo bete formularioa',
+              downloadText: 'Deskargatu',
             },
         },
         toast: {
