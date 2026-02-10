@@ -57,7 +57,7 @@ export function ContactSlideOver() {
 
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
 
-  // Cargar script de reCAPTCHA Enterprise (solo en el cliente y en producción)
+  // Cargar script de reCAPTCHA v3 (solo en el cliente y en producción)
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -70,10 +70,10 @@ export function ContactSlideOver() {
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
     if (!siteKey) return;
 
-    if (document.querySelector(`script[src*="recaptcha/enterprise.js"]`)) return;
+    if (document.querySelector(`script[src*="recaptcha/api.js"]`)) return;
 
     const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/enterprise.js?render=${siteKey}`;
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
@@ -106,7 +106,7 @@ export function ContactSlideOver() {
     setIsSubmitting(true);
 
     try {
-      // 🔐 OBTENER TOKEN DE RECAPTCHA Enterprise
+      // 🔐 OBTENER TOKEN DE RECAPTCHA v3
       let recaptchaToken = '';
       
       if (typeof window !== 'undefined') {
@@ -123,8 +123,8 @@ export function ContactSlideOver() {
             try {
               const grecaptchaReady = await Promise.race([
                 new Promise<boolean>((resolve) => {
-                  if (window.grecaptcha?.enterprise?.ready) {
-                    window.grecaptcha.enterprise.ready(() => resolve(true));
+                  if (window.grecaptcha?.ready) {
+                    window.grecaptcha.ready(() => resolve(true));
                   } else {
                     resolve(false);
                   }
@@ -132,8 +132,8 @@ export function ContactSlideOver() {
                 new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000))
               ]);
               
-              if (grecaptchaReady && window.grecaptcha?.enterprise) {
-                recaptchaToken = await window.grecaptcha.enterprise.execute(siteKey, { action: 'submit' });
+              if (grecaptchaReady && window.grecaptcha) {
+                recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
               }
             } catch (recaptchaError) {
               console.error('reCAPTCHA error:', recaptchaError);
