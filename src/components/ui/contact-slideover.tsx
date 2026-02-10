@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Loader2, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
 
@@ -56,8 +56,10 @@ export function ContactSlideOver() {
   });
 
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
+  const turnstileWidgetId = useRef<string | null>(null);
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
 
-  // Cargar script de reCAPTCHA v3 (solo en el cliente y en producción)
+  // Cargar script de Cloudflare Turnstile (solo en el cliente y en producción)
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -67,17 +69,49 @@ export function ContactSlideOver() {
     
     if (isDevelopment) return;
 
-    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
     if (!siteKey) return;
 
-    if (document.querySelector(`script[src*="recaptcha/api.js"]`)) return;
+    if (document.querySelector(`script[src*="challenges.cloudflare.com"]`)) return;
 
     const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
   }, []);
+
+  // Renderizar widget Turnstile cuando el slide-over se abre
+  const renderTurnstile = useCallback(() => {
+    if (typeof window === 'undefined' || !(window as any).turnstile) return;
+    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+    if (!siteKey || !turnstileContainerRef.current) return;
+
+    // Limpiar widget anterior
+    if (turnstileWidgetId.current) {
+      try { (window as any).turnstile.remove(turnstileWidgetId.current); } catch {}
+      turnstileWidgetId.current = null;
+    }
+
+    turnstileWidgetId.current = (window as any).turnstile.render(turnstileContainerRef.current, {
+      sitekey: siteKey,
+      execution: 'execute',
+      appearance: 'interaction-only',
+      size: 'flexible',
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    // Esperar a que el script de Turnstile esté cargado
+    const interval = setInterval(() => {
+      if ((window as any).turnstile) {
+        renderTurnstile();
+        clearInterval(interval);
+      }
+    }, 200);
+    return () => clearInterval(interval);
+  }, [isOpen, renderTurnstile]);
 
   // Bloquear scroll del body cuando el slide-over está abierto
   useEffect(() => {
@@ -106,8 +140,8 @@ export function ContactSlideOver() {
     setIsSubmitting(true);
 
     try {
-      // 🔐 OBTENER TOKEN DE RECAPTCHA v3
-      let recaptchaToken = '';
+      // 🔐 OBTENER TOKEN DE CLOUDFLARE TURNSTILE
+      let turnstileToken = '';
       
       if (typeof window !== 'undefined') {
         const isDevelopment = process.env.NODE_ENV === 'development' || 
@@ -115,29 +149,30 @@ export function ContactSlideOver() {
                               window.location.hostname === '127.0.0.1';
         
         if (isDevelopment) {
-          recaptchaToken = 'dev-bypass-token';
-        } else {
-          const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-          
-          if (siteKey) {
-            try {
-              const grecaptchaReady = await Promise.race([
-                new Promise<boolean>((resolve) => {
-                  if (window.grecaptcha?.ready) {
-                    window.grecaptcha.ready(() => resolve(true));
-                  } else {
-                    resolve(false);
-                  }
-                }),
-                new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000))
-              ]);
-              
-              if (grecaptchaReady && window.grecaptcha) {
-                recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
-              }
-            } catch (recaptchaError) {
-              console.error('reCAPTCHA error:', recaptchaError);
-            }
+          turnstileToken = 'dev-bypass-token';
+        } else if ((window as any).turnstile && turnstileWidgetId.current) {
+          try {
+            // Ejecutar el challenge invisible
+            (window as any).turnstile.execute(turnstileContainerRef.current);
+            
+            // Esperar a que el token esté disponible (máx 10s)
+            const token = await new Promise<string>((resolve, reject) => {
+              let attempts = 0;
+              const check = setInterval(() => {
+                const t = (window as any).turnstile.getResponse(turnstileWidgetId.current);
+                if (t) {
+                  clearInterval(check);
+                  resolve(t);
+                }
+                if (++attempts > 50) { // 50 * 200ms = 10s
+                  clearInterval(check);
+                  reject(new Error('Turnstile timeout'));
+                }
+              }, 200);
+            });
+            turnstileToken = token;
+          } catch (turnstileError) {
+            console.error('Turnstile error:', turnstileError);
           }
         }
       }
@@ -152,7 +187,7 @@ export function ContactSlideOver() {
         privacyAccepted: values.privacyAccepted,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         formLoadTime,
-        token: recaptchaToken,
+        token: turnstileToken,
       };
 
       const response = await fetch("/api/form/contacto", {
@@ -376,6 +411,9 @@ export function ContactSlideOver() {
                     </FormItem>
                   )}
                 />
+
+                {/* Contenedor invisible de Cloudflare Turnstile */}
+                <div ref={turnstileContainerRef} className="hidden" />
 
                 {/* Botón enviar */}
                 <Button

@@ -57,13 +57,13 @@ interface FormData {
   token?: string; // 🔐 Token de reCAPTCHA v3
 }
 
-// 🔐 Interfaz para la respuesta de Google reCAPTCHA v3
-interface RecaptchaVerifyResponse {
+// 🔐 Interfaz para la respuesta de Cloudflare Turnstile
+interface TurnstileVerifyResponse {
   success: boolean;
   challenge_ts?: string;
   hostname?: string;
-  score?: number;
   action?: string;
+  cdata?: string;
   'error-codes'?: string[];
 }
 
@@ -72,55 +72,50 @@ interface ValidationError {
   error: string;
 }
 
-// 🔐 FUNCIÓN: Validar token de reCAPTCHA v3 con Google (MODO ESTRICTO)
-async function validateRecaptcha(token: string): Promise<boolean> {
+// 🔐 FUNCIÓN: Validar token de Cloudflare Turnstile (MODO ESTRICTO)
+async function validateTurnstile(token: string): Promise<boolean> {
   try {
-    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+    const secretKey = process.env.TURNSTILE_SECRET_KEY;
     
-    // ⚠️ MODO DESARROLLO: Siempre permitir (localhost no está autorizado en Google)
+    // ⚠️ MODO DESARROLLO: Siempre permitir
     if (process.env.NODE_ENV === 'development') {
       return true;
     }
     
     if (!secretKey) {
-      console.error('reCAPTCHA secret key not configured - BLOCKING submission');
+      console.error('Turnstile secret key not configured - BLOCKING submission');
       return false;
     }
     
     if (!token) {
-      console.warn('No reCAPTCHA token provided - BLOCKING submission');
+      console.warn('No Turnstile token provided - BLOCKING submission');
       return false;
     }
     
-    // Verificar con Google siteverify
-    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    // Verificar con Cloudflare Siteverify
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
-      body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(token)}`,
+      body: JSON.stringify({
+        secret: secretKey,
+        response: token,
+      }),
     });
     
-    const data: RecaptchaVerifyResponse = await response.json();
+    const data: TurnstileVerifyResponse = await response.json();
     
     if (!data.success) {
-      console.error('reCAPTCHA verification failed:', data['error-codes']);
+      console.error('Turnstile verification failed:', data['error-codes']);
       return false;
     }
     
-    // reCAPTCHA v3 devuelve un score de 0.0 a 1.0
-    // 0.0 = muy probable bot, 1.0 = muy probable humano
-    const minScore = 0.5;
-    if (data.score !== undefined && data.score < minScore) {
-      console.warn(`reCAPTCHA score too low: ${data.score} (min: ${minScore})`);
-      return false;
-    }
-    
-    console.log(`reCAPTCHA validated. Score: ${data.score}, Action: ${data.action}`);
+    console.log(`Turnstile validated. Hostname: ${data.hostname}, Action: ${data.action}`);
     return true;
     
   } catch (error) {
-    console.error('reCAPTCHA validation error:', error);
+    console.error('Turnstile validation error:', error);
     return false; // En caso de error de red, BLOQUEAR por seguridad
   }
 }
@@ -497,15 +492,15 @@ export async function POST(request: NextRequest) {
     const { token, ...formDataRaw } = rawData; // 🔐 Extraer token de reCAPTCHA
     const data = sanitizeData(formDataRaw);
     
-    // 🔐 VALIDAR RECAPTCHA ANTES DE PROCESAR
-    const isRecaptchaValid = await validateRecaptcha(token);
+    // 🔐 VALIDAR TURNSTILE ANTES DE PROCESAR
+    const isTurnstileValid = await validateTurnstile(token);
     
-    if (!isRecaptchaValid) {
-      console.warn('reCAPTCHA validation failed for IP:', ip);
+    if (!isTurnstileValid) {
+      console.warn('Turnstile validation failed for IP:', ip);
       return NextResponse.json(
         {
           ok: false,
-          error: 'reCAPTCHA validation failed',
+          error: 'Turnstile validation failed',
           message: 'Verificación de seguridad fallida. Por favor, recarga la página e inténtalo de nuevo.'
         },
         { status: 400 }
