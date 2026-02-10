@@ -57,7 +57,7 @@ export function ContactSlideOver() {
 
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
 
-  // Cargar script de reCAPTCHA v3 (solo en el cliente y en producción)
+  // Cargar script de reCAPTCHA Enterprise (solo en el cliente y en producción)
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -65,31 +65,17 @@ export function ContactSlideOver() {
                           window.location.hostname === 'localhost' ||
                           window.location.hostname === '127.0.0.1';
     
-    if (isDevelopment) {
-      console.warn('⚠️ Development mode: reCAPTCHA script not loaded (using dummy token)');
-      return;
-    }
+    if (isDevelopment) return;
 
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-    console.log('🔐 reCAPTCHA siteKey:', siteKey ? `${siteKey.substring(0, 10)}...` : 'NOT SET');
-    
-    if (!siteKey) {
-      console.warn('reCAPTCHA site key not configured');
-      return;
-    }
+    if (!siteKey) return;
 
-    if (document.querySelector(`script[src*="recaptcha/api.js"]`)) {
-      console.log('🔐 reCAPTCHA script already loaded');
-      return;
-    }
+    if (document.querySelector(`script[src*="recaptcha/enterprise.js"]`)) return;
 
-    console.log('🔐 Loading reCAPTCHA script...');
     const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+    script.src = `https://www.google.com/recaptcha/enterprise.js?render=${siteKey}`;
     script.async = true;
     script.defer = true;
-    script.onload = () => console.log('🔐 reCAPTCHA script loaded successfully');
-    script.onerror = () => console.error('❌ reCAPTCHA script failed to load');
     document.head.appendChild(script);
   }, []);
 
@@ -120,7 +106,7 @@ export function ContactSlideOver() {
     setIsSubmitting(true);
 
     try {
-      // 🔐 OBTENER TOKEN DE RECAPTCHA v3
+      // 🔐 OBTENER TOKEN DE RECAPTCHA Enterprise
       let recaptchaToken = '';
       
       if (typeof window !== 'undefined') {
@@ -128,21 +114,17 @@ export function ContactSlideOver() {
                               window.location.hostname === 'localhost' ||
                               window.location.hostname === '127.0.0.1';
         
-        console.log('🔐 Submit - isDevelopment:', isDevelopment);
-        console.log('🔐 Submit - grecaptcha available:', !!window.grecaptcha);
-        
         if (isDevelopment) {
           recaptchaToken = 'dev-bypass-token';
         } else {
           const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-          console.log('🔐 Submit - siteKey:', siteKey ? `${siteKey.substring(0, 10)}...` : 'NOT SET');
           
           if (siteKey) {
             try {
               const grecaptchaReady = await Promise.race([
                 new Promise<boolean>((resolve) => {
-                  if (window.grecaptcha && window.grecaptcha.ready) {
-                    window.grecaptcha.ready(() => resolve(true));
+                  if (window.grecaptcha?.enterprise?.ready) {
+                    window.grecaptcha.enterprise.ready(() => resolve(true));
                   } else {
                     resolve(false);
                   }
@@ -150,20 +132,15 @@ export function ContactSlideOver() {
                 new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000))
               ]);
               
-              console.log('🔐 Submit - grecaptchaReady:', grecaptchaReady);
-              
-              if (grecaptchaReady && window.grecaptcha) {
-                recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
-                console.log('🔐 Submit - token obtained:', recaptchaToken ? 'YES' : 'NO');
+              if (grecaptchaReady && window.grecaptcha?.enterprise) {
+                recaptchaToken = await window.grecaptcha.enterprise.execute(siteKey, { action: 'submit' });
               }
             } catch (recaptchaError) {
-              console.error('❌ reCAPTCHA error:', recaptchaError);
+              console.error('reCAPTCHA error:', recaptchaError);
             }
           }
         }
       }
-      
-      console.log('🔐 Final token to send:', recaptchaToken ? `${recaptchaToken.substring(0, 20)}...` : 'EMPTY');
 
       // Preparar datos para enviar
       const payload = {
