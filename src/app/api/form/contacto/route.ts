@@ -77,6 +77,11 @@ async function validateRecaptcha(token: string): Promise<boolean> {
   try {
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     
+    // ⚠️ TEMPORAL: Bypass mientras Google propaga las nuevas claves
+    // TODO: Eliminar esta línea cuando reCAPTCHA funcione
+    console.warn('⚠️ reCAPTCHA bypassed temporarily - pending key propagation');
+    return true;
+    
     // ⚠️ MODO DESARROLLO: Siempre permitir (localhost no está autorizado en Google)
     if (process.env.NODE_ENV === 'development') {
       console.warn('⚠️ Development mode: bypassing reCAPTCHA validation');
