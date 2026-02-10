@@ -70,3 +70,6 @@ Desktop.ini
 
 # Logs genéricos
 *.log
+
+# Documentos de seguridad internos
+SECURITY_CLEANUP.md
