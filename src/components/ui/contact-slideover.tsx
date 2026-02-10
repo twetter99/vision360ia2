@@ -58,9 +58,8 @@ export function ContactSlideOver() {
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
   const turnstileToken = useRef<string>('');
   const turnstileWidgetId = useRef<string | null>(null);
-  const turnstileContainerRef = useRef<HTMLDivElement>(null);
 
-  // Cargar script de Cloudflare Turnstile
+  // Cargar script de Cloudflare Turnstile (solo defer, sin async - según docs oficiales)
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const isDevelopment = process.env.NODE_ENV === 'development' || 
@@ -71,7 +70,6 @@ export function ContactSlideOver() {
 
     const script = document.createElement('script');
     script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-    script.async = true;
     script.defer = true;
     document.head.appendChild(script);
   }, []);
@@ -79,70 +77,66 @@ export function ContactSlideOver() {
   // Renderizar widget cuando el slide-over se abre
   useEffect(() => {
     if (!isOpen) return;
-    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-    if (!siteKey) {
-      console.warn('[Turnstile] No site key found');
-      return;
-    }
+    
+    // DEBUG: Usar test key de Cloudflare para diagnosticar si el problema es la clave
+    // Test key "1x00000000000000000000AA" siempre pasa - si funciona, el problema es tu sitekey real
+    const siteKey = '1x00000000000000000000AA'; // TEST KEY - cambiar a process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY cuando funcione
+    
     const isDev = process.env.NODE_ENV === 'development' ||
                   (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));
     if (isDev) return;
 
-    // Esperar a que la animación del slide-over termine (300ms) antes de renderizar
+    // Esperar a que el slide-over esté completamente visible
     const renderTimeout = setTimeout(() => {
       const interval = setInterval(() => {
-        if (!(window as any).turnstile || !turnstileContainerRef.current) {
-          console.log('[Turnstile] Waiting for script/container...', {
-            turnstile: !!(window as any).turnstile,
-            container: !!turnstileContainerRef.current
-          });
+        if (!(window as any).turnstile) {
+          console.log('[Turnstile] Waiting for script...');
           return;
         }
+        
+        const container = document.getElementById('turnstile-container');
+        if (!container) {
+          console.log('[Turnstile] Waiting for container...');
+          return;
+        }
+        
         clearInterval(interval);
 
-        // Limpiar widget anterior
+        // Limpiar widget anterior si existe
         if (turnstileWidgetId.current) {
           try { (window as any).turnstile.remove(turnstileWidgetId.current); } catch {}
           turnstileWidgetId.current = null;
           turnstileToken.current = '';
         }
 
-        console.log('[Turnstile] Rendering widget...', {
-          containerWidth: turnstileContainerRef.current?.offsetWidth,
-          containerHeight: turnstileContainerRef.current?.offsetHeight,
-          siteKey: siteKey.substring(0, 10) + '...'
+        console.log('[Turnstile] Rendering...', {
+          containerSize: `${container.offsetWidth}x${container.offsetHeight}`,
+          siteKey
         });
 
-        try {
-          turnstileWidgetId.current = (window as any).turnstile.render(turnstileContainerRef.current, {
-            sitekey: siteKey,
-            size: 'normal',
-            appearance: 'always',
-            theme: 'light',
-            callback: (token: string) => {
-              console.log('[Turnstile] Token received');
-              turnstileToken.current = token;
-            },
-            'error-callback': (error: any) => {
-              console.error('[Turnstile] Error:', error);
-              turnstileToken.current = '';
-            },
-            'expired-callback': () => {
-              console.log('[Turnstile] Token expired, resetting...');
-              turnstileToken.current = '';
-              if (turnstileWidgetId.current) {
-                try { (window as any).turnstile.reset(turnstileWidgetId.current); } catch {}
-              }
-            },
-          });
-          console.log('[Turnstile] Widget rendered, ID:', turnstileWidgetId.current);
-        } catch (err) {
-          console.error('[Turnstile] Render failed:', err);
-        }
+        // Render siguiendo EXACTAMENTE la documentación de Cloudflare
+        turnstileWidgetId.current = (window as any).turnstile.render('#turnstile-container', {
+          sitekey: siteKey,
+          callback: function(token: string) {
+            console.log('[Turnstile] ✅ Token received');
+            turnstileToken.current = token;
+          },
+          'error-callback': function(errorCode: number) {
+            console.error('[Turnstile] ❌ Error:', errorCode);
+            turnstileToken.current = '';
+            return true; // Indica que manejamos el error
+          },
+          'expired-callback': function() {
+            console.log('[Turnstile] Token expired');
+            turnstileToken.current = '';
+          },
+        });
+        
+        console.log('[Turnstile] Widget ID:', turnstileWidgetId.current);
       }, 500);
 
       return () => clearInterval(interval);
-    }, 500);
+    }, 600);
 
     return () => clearTimeout(renderTimeout);
   }, [isOpen]);
@@ -425,11 +419,7 @@ export function ContactSlideOver() {
                 />
 
                 {/* Cloudflare Turnstile - verificación anti-spam */}
-                <div 
-                  ref={turnstileContainerRef} 
-                  className="flex justify-center items-center w-full min-h-[70px]"
-                  id="turnstile-container"
-                />
+                <div id="turnstile-container" style={{ minHeight: '65px', minWidth: '300px' }} className="flex justify-center" />
 
                 {/* Botón enviar */}
                 <Button
