@@ -71,19 +71,25 @@ export function ContactSlideOver() {
     }
 
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    console.log('🔐 reCAPTCHA siteKey:', siteKey ? `${siteKey.substring(0, 10)}...` : 'NOT SET');
+    
     if (!siteKey) {
       console.warn('reCAPTCHA site key not configured');
       return;
     }
 
     if (document.querySelector(`script[src*="recaptcha/api.js"]`)) {
+      console.log('🔐 reCAPTCHA script already loaded');
       return;
     }
 
+    console.log('🔐 Loading reCAPTCHA script...');
     const script = document.createElement('script');
     script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
     script.async = true;
     script.defer = true;
+    script.onload = () => console.log('🔐 reCAPTCHA script loaded successfully');
+    script.onerror = () => console.error('❌ reCAPTCHA script failed to load');
     document.head.appendChild(script);
   }, []);
 
@@ -122,10 +128,15 @@ export function ContactSlideOver() {
                               window.location.hostname === 'localhost' ||
                               window.location.hostname === '127.0.0.1';
         
+        console.log('🔐 Submit - isDevelopment:', isDevelopment);
+        console.log('🔐 Submit - grecaptcha available:', !!window.grecaptcha);
+        
         if (isDevelopment) {
           recaptchaToken = 'dev-bypass-token';
         } else {
           const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+          console.log('🔐 Submit - siteKey:', siteKey ? `${siteKey.substring(0, 10)}...` : 'NOT SET');
+          
           if (siteKey) {
             try {
               const grecaptchaReady = await Promise.race([
@@ -139,8 +150,11 @@ export function ContactSlideOver() {
                 new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000))
               ]);
               
+              console.log('🔐 Submit - grecaptchaReady:', grecaptchaReady);
+              
               if (grecaptchaReady && window.grecaptcha) {
                 recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit' });
+                console.log('🔐 Submit - token obtained:', recaptchaToken ? 'YES' : 'NO');
               }
             } catch (recaptchaError) {
               console.error('❌ reCAPTCHA error:', recaptchaError);
@@ -148,6 +162,8 @@ export function ContactSlideOver() {
           }
         }
       }
+      
+      console.log('🔐 Final token to send:', recaptchaToken ? `${recaptchaToken.substring(0, 20)}...` : 'EMPTY');
 
       // Preparar datos para enviar
       const payload = {
