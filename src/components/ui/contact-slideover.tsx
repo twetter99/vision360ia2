@@ -94,9 +94,9 @@ export function ContactSlideOver() {
 
       // 🕵️ Recoger honeypots
       const honeypotFields = {
-        website: (document.getElementById('_website') as HTMLInputElement)?.value || '',
-        address: (document.getElementById('_address') as HTMLInputElement)?.value || '',
-        url: (document.getElementById('_url') as HTMLInputElement)?.value || '',
+        website: (document.getElementById('_hp_fax') as HTMLInputElement)?.value || '',
+        address: (document.getElementById('_hp_title') as HTMLInputElement)?.value || '',
+        url: (document.getElementById('_hp_org') as HTMLInputElement)?.value || '',
       };
 
       // Preparar datos para enviar
@@ -337,12 +337,12 @@ export function ContactSlideOver() {
 
                 {/* 🕵️ Honeypots anti-bot - invisibles para usuarios reales */}
                 <div aria-hidden="true" tabIndex={-1} style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
-                  <label htmlFor="_website">Website</label>
-                  <input type="text" id="_website" name="website" autoComplete="off" tabIndex={-1} />
-                  <label htmlFor="_address">Address</label>
-                  <input type="text" id="_address" name="address" autoComplete="off" tabIndex={-1} />
-                  <label htmlFor="_url">URL</label>
-                  <input type="text" id="_url" name="url" autoComplete="off" tabIndex={-1} />
+                  <label htmlFor="_hp_fax">Fax number</label>
+                  <input type="text" id="_hp_fax" name="fax_number" autoComplete="nope" tabIndex={-1} />
+                  <label htmlFor="_hp_title">Title</label>
+                  <input type="text" id="_hp_title" name="job_title_2" autoComplete="nope" tabIndex={-1} />
+                  <label htmlFor="_hp_org">Organization</label>
+                  <input type="text" id="_hp_org" name="org_url" autoComplete="nope" tabIndex={-1} />
                 </div>
 
                 {/* Botón enviar */}
