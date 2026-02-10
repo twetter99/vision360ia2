@@ -57,26 +57,9 @@ interface FormData {
   token?: string; // 🔐 Token de reCAPTCHA v3
 }
 
-// 🔐 Interfaz para la respuesta de Google reCAPTCHA Enterprise
+// 🔐 Interfaz para la respuesta de Google reCAPTCHA v3
 interface RecaptchaVerifyResponse {
-  tokenProperties?: {
-    valid: boolean;
-    hostname?: string;
-    action?: string;
-    createTime?: string;
-  };
-  riskAnalysis?: {
-    score?: number;
-    reasons?: string[];
-  };
-  event?: {
-    token: string;
-    siteKey: string;
-    expectedAction?: string;
-  };
-  name?: string;
-  // Campos legacy (siteverify)
-  success?: boolean;
+  success: boolean;
   challenge_ts?: string;
   hostname?: string;
   score?: number;
@@ -89,67 +72,27 @@ interface ValidationError {
   error: string;
 }
 
-// 🔐 FUNCIÓN: Validar token de reCAPTCHA Enterprise con Google
+// 🔐 FUNCIÓN: Validar token de reCAPTCHA v3 con Google (MODO ESTRICTO)
 async function validateRecaptcha(token: string): Promise<boolean> {
   try {
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
     
-    // ⚠️ MODO DESARROLLO: Siempre permitir
+    // ⚠️ MODO DESARROLLO: Siempre permitir (localhost no está autorizado en Google)
     if (process.env.NODE_ENV === 'development') {
       return true;
     }
     
     if (!secretKey) {
-      console.warn('reCAPTCHA secret key not configured');
-      return true;
+      console.error('reCAPTCHA secret key not configured - BLOCKING submission');
+      return false;
     }
     
     if (!token) {
-      console.warn('No reCAPTCHA token provided - allowing while key is being configured');
-      return true; // Permitir sin token hasta que la clave sea válida
+      console.warn('No reCAPTCHA token provided - BLOCKING submission');
+      return false;
     }
     
-    // Intentar primero con Enterprise API (createAssessment)
-    const projectId = process.env.RECAPTCHA_PROJECT_ID;
-    
-    if (projectId) {
-      // Enterprise API con Cloud endpoint
-      const response = await fetch(
-        `https://recaptchaenterprise.googleapis.com/v1/projects/${projectId}/assessments?key=${secretKey}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            event: {
-              token,
-              siteKey,
-              expectedAction: 'submit',
-            },
-          }),
-        }
-      );
-      
-      const data: RecaptchaVerifyResponse = await response.json();
-      
-      if (!data.tokenProperties?.valid) {
-        console.error('reCAPTCHA Enterprise token invalid:', data);
-        return false;
-      }
-      
-      const score = data.riskAnalysis?.score ?? 0;
-      const minScore = 0.5;
-      
-      if (score < minScore) {
-        console.warn(`reCAPTCHA Enterprise score too low: ${score} (min: ${minScore})`);
-        return false;
-      }
-      
-      console.log(`reCAPTCHA Enterprise validated. Score: ${score}`);
-      return true;
-    }
-    
-    // Fallback: siteverify endpoint (funciona con Enterprise keys + secret key)
+    // Verificar con Google siteverify
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: {
@@ -162,21 +105,23 @@ async function validateRecaptcha(token: string): Promise<boolean> {
     
     if (!data.success) {
       console.error('reCAPTCHA verification failed:', data['error-codes']);
-      return true; // Permitir temporalmente hasta que la clave sea válida
+      return false;
     }
     
+    // reCAPTCHA v3 devuelve un score de 0.0 a 1.0
+    // 0.0 = muy probable bot, 1.0 = muy probable humano
     const minScore = 0.5;
     if (data.score !== undefined && data.score < minScore) {
       console.warn(`reCAPTCHA score too low: ${data.score} (min: ${minScore})`);
       return false;
     }
     
-    console.log(`reCAPTCHA validated successfully. Score: ${data.score}`);
+    console.log(`reCAPTCHA validated. Score: ${data.score}, Action: ${data.action}`);
     return true;
     
   } catch (error) {
     console.error('reCAPTCHA validation error:', error);
-    return true; // Permitir en caso de error de red
+    return false; // En caso de error de red, BLOQUEAR por seguridad
   }
 }
 
