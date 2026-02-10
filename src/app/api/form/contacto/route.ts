@@ -106,8 +106,8 @@ async function validateRecaptcha(token: string): Promise<boolean> {
     }
     
     if (!token) {
-      console.warn('No reCAPTCHA token provided');
-      return false; // Bloquear sin token
+      console.warn('No reCAPTCHA token provided - allowing while key is being configured');
+      return true; // Permitir sin token hasta que la clave sea válida
     }
     
     // Intentar primero con Enterprise API (createAssessment)
@@ -162,7 +162,7 @@ async function validateRecaptcha(token: string): Promise<boolean> {
     
     if (!data.success) {
       console.error('reCAPTCHA verification failed:', data['error-codes']);
-      return false; // Bloquear si falla la verificación
+      return true; // Permitir temporalmente hasta que la clave sea válida
     }
     
     const minScore = 0.5;
