@@ -72,52 +72,11 @@ interface ValidationError {
   error: string;
 }
 
-// 🔐 FUNCIÓN: Validar token de Cloudflare Turnstile (MODO ESTRICTO)
+// ⚠️ TURNSTILE DESACTIVADO TEMPORALMENTE - Siempre permite el envío
+// TODO: Reactivar cuando se resuelva el problema de recepción de leads
 async function validateTurnstile(token: string): Promise<boolean> {
-  try {
-    // ⚠️ MODO DESARROLLO: Siempre permitir
-    if (process.env.NODE_ENV === 'development') {
-      return true;
-    }
-    
-    const secretKey = process.env.TURNSTILE_SECRET_KEY;
-    
-    if (!secretKey) {
-      console.error('Turnstile secret key not configured - BLOCKING submission');
-      return false;
-    }
-    
-    if (!token) {
-      console.warn('No Turnstile token provided - BLOCKING submission');
-      return false;
-    }
-    
-    // Verificar con Cloudflare Siteverify
-    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        secret: secretKey,
-        response: token,
-      }),
-    });
-    
-    const data: TurnstileVerifyResponse = await response.json();
-    
-    if (!data.success) {
-      console.error('Turnstile verification failed:', data['error-codes']);
-      return false;
-    }
-    
-    console.log(`Turnstile validated. Hostname: ${data.hostname}, Action: ${data.action}`);
-    return true;
-    
-  } catch (error) {
-    console.error('Turnstile validation error:', error);
-    return false; // En caso de error de red, BLOQUEAR por seguridad
-  }
+  console.log('⚠️ Turnstile validation DISABLED - allowing submission');
+  return true;
 }
 
 // Validación de campos

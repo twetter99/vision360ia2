@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Loader2, X } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
 
@@ -56,92 +56,11 @@ export function ContactSlideOver() {
   });
 
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
-  const turnstileToken = useRef<string>('');
-  const turnstileWidgetId = useRef<string | null>(null);
 
-  // Cargar script de Cloudflare Turnstile (solo defer, sin async - según docs oficiales)
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const isDevelopment = process.env.NODE_ENV === 'development' || 
-                          window.location.hostname === 'localhost' ||
-                          window.location.hostname === '127.0.0.1';
-    if (isDevelopment) return;
-    if (document.querySelector(`script[src*="challenges.cloudflare.com"]`)) return;
+  // ⚠️ TURNSTILE DESACTIVADO TEMPORALMENTE
+  // TODO: Reactivar Cloudflare Turnstile cuando se resuelva el problema de leads
 
-    const script = document.createElement('script');
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-    script.defer = true;
-    document.head.appendChild(script);
-  }, []);
-
-  // Renderizar widget cuando el slide-over se abre
-  useEffect(() => {
-    if (!isOpen) return;
-    
-    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-    if (!siteKey) {
-      console.warn('[Turnstile] No site key configured');
-      return;
-    }
-    
-    const isDev = process.env.NODE_ENV === 'development' ||
-                  (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));
-    if (isDev) return;
-
-    // Esperar a que el slide-over esté completamente visible
-    const renderTimeout = setTimeout(() => {
-      const interval = setInterval(() => {
-        if (!(window as any).turnstile) {
-          console.log('[Turnstile] Waiting for script...');
-          return;
-        }
-        
-        const container = document.getElementById('turnstile-container');
-        if (!container) {
-          console.log('[Turnstile] Waiting for container...');
-          return;
-        }
-        
-        clearInterval(interval);
-
-        // Limpiar widget anterior si existe
-        if (turnstileWidgetId.current) {
-          try { (window as any).turnstile.remove(turnstileWidgetId.current); } catch {}
-          turnstileWidgetId.current = null;
-          turnstileToken.current = '';
-        }
-
-        console.log('[Turnstile] Rendering...', {
-          containerSize: `${container.offsetWidth}x${container.offsetHeight}`,
-          siteKey
-        });
-
-        // Render siguiendo EXACTAMENTE la documentación de Cloudflare
-        turnstileWidgetId.current = (window as any).turnstile.render('#turnstile-container', {
-          sitekey: siteKey,
-          callback: function(token: string) {
-            console.log('[Turnstile] ✅ Token received');
-            turnstileToken.current = token;
-          },
-          'error-callback': function(errorCode: number) {
-            console.error('[Turnstile] ❌ Error:', errorCode);
-            turnstileToken.current = '';
-            return true; // Indica que manejamos el error
-          },
-          'expired-callback': function() {
-            console.log('[Turnstile] Token expired');
-            turnstileToken.current = '';
-          },
-        });
-        
-        console.log('[Turnstile] Widget ID:', turnstileWidgetId.current);
-      }, 500);
-
-      return () => clearInterval(interval);
-    }, 600);
-
-    return () => clearTimeout(renderTimeout);
-  }, [isOpen]);
+  // ⚠️ TURNSTILE WIDGET DESACTIVADO TEMPORALMENTE
 
   // Bloquear scroll del body cuando el slide-over está abierto
   useEffect(() => {
@@ -170,20 +89,8 @@ export function ContactSlideOver() {
     setIsSubmitting(true);
 
     try {
-      // 🔐 TOKEN DE CLOUDFLARE TURNSTILE
-      let token = '';
-      
-      if (typeof window !== 'undefined') {
-        const isDevelopment = process.env.NODE_ENV === 'development' || 
-                              window.location.hostname === 'localhost' ||
-                              window.location.hostname === '127.0.0.1';
-        
-        if (isDevelopment) {
-          token = 'dev-bypass-token';
-        } else {
-          token = turnstileToken.current || '';
-        }
-      }
+      // ⚠️ TURNSTILE DESACTIVADO TEMPORALMENTE
+      const token = 'turnstile-disabled';
 
       // Preparar datos para enviar
       const payload = {
@@ -420,8 +327,7 @@ export function ContactSlideOver() {
                   )}
                 />
 
-                {/* Cloudflare Turnstile - verificación anti-spam */}
-                <div id="turnstile-container" style={{ minHeight: '65px', minWidth: '300px' }} className="flex justify-center" />
+                {/* ⚠️ Cloudflare Turnstile DESACTIVADO TEMPORALMENTE */}
 
                 {/* Botón enviar */}
                 <Button
