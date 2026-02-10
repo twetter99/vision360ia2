@@ -14,12 +14,12 @@ Ve a tu proyecto en Vercel → **Settings** → **Environment Variables** y agre
 
 | Variable | Valor | Entornos |
 |----------|-------|----------|
-| `SMTP_HOST` | `mail.vision360ia.com` | Production, Preview, Development |
+| `SMTP_HOST` | `mail.tudominio.com` | Production, Preview, Development |
 | `SMTP_PORT` | `587` | Production, Preview, Development |
 | `SMTP_SECURE` | `false` | Production, Preview, Development |
-| `SMTP_USER` | `noreply@vision360ia.com` | Production, Preview, Development |
-| `SMTP_PASS` | `1g5[%ce@5C]l` | Production, Preview, Development |
-| `MAIL_TO` | `info@vision360ia.com` | Production, Preview, Development |
+| `SMTP_USER` | `noreply@tudominio.com` | Production, Preview, Development |
+| `SMTP_PASS` | `TU_CONTRASEÑA_SMTP` | Production, Preview, Development |
+| `MAIL_TO` | `info@tudominio.com` | Production, Preview, Development |
 
 ### Desde CLI (alternativo):
 
@@ -34,13 +34,13 @@ vercel env add SMTP_SECURE production
 # Ingresa: false
 
 vercel env add SMTP_USER production
-# Ingresa: noreply@vision360ia.com
+# Ingresa: tu usuario SMTP
 
 vercel env add SMTP_PASS production
-# Ingresa: 1g5[%ce@5C]l
+# Ingresa: tu contraseña SMTP
 
 vercel env add MAIL_TO production
-# Ingresa: info@vision360ia.com
+# Ingresa: tu email de destino
 ```
 
 ## 📦 Paso 2: Deploy desde GitHub

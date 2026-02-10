@@ -103,10 +103,10 @@ Nuevas variables de entorno añadidas:
 
 ```bash
 # Clave pública (visible en el cliente)
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LfoFxcsAAAAAJFJ1kj2TiCbeuzmLpTJo9XcOfAw
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=tu_site_key_aqui
 
 # Clave secreta (solo en servidor)
-RECAPTCHA_SECRET_KEY=6LfoFxcsAAAAAJWapK3iiUYhqQ3pkK_IZfaacp6H
+RECAPTCHA_SECRET_KEY=tu_secret_key_aqui
 ```
 
 **IMPORTANTE**: En Vercel, estas variables deben configurarse en:
