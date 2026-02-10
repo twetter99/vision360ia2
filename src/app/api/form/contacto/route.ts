@@ -252,16 +252,37 @@ async function saveSubmission(data: FormData, metadata: any) {
 // Enviar email
 async function sendEmail(data: FormData, metadata: any): Promise<boolean> {
   try {
+    // 📊 Log configuración SMTP (sin password)
+    console.log('📧 SMTP Config:', {
+      host: process.env.SMTP_HOST || 'mail.vision360ia.com',
+      port: process.env.SMTP_PORT || '587',
+      secure: process.env.SMTP_SECURE === 'true',
+      user: process.env.SMTP_USER || 'noreply@vision360ia.com',
+      passConfigured: !!process.env.SMTP_PASS,
+      mailTo: process.env.MAIL_TO || 'info@vision360ia.com',
+    });
+
     // Configurar transporte SMTP
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'mail.vision360ia.com',
       port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_SECURE === 'true', // true para 465, false para otros puertos
+      secure: process.env.SMTP_SECURE === 'true',
       auth: {
         user: process.env.SMTP_USER || 'noreply@vision360ia.com',
         pass: process.env.SMTP_PASS,
       },
+      connectionTimeout: 10000, // 10 seg timeout
+      greetingTimeout: 10000,
     });
+
+    // Verificar conexión SMTP antes de enviar
+    try {
+      await transporter.verify();
+      console.log('✅ SMTP connection verified successfully');
+    } catch (verifyError) {
+      console.error('❌ SMTP connection FAILED:', verifyError);
+      return false;
+    }
     
     // Email HTML mejorado con toda la información del formulario
     const htmlContent = `
@@ -457,10 +478,11 @@ ${metadata.utm.source ? `UTM: ${metadata.utm.source} / ${metadata.utm.medium} / 
 ═══════════════════════════════════════════════
       `,
     });
-    
+
+    console.log('✅ Email enviado correctamente a:', process.env.MAIL_TO || 'info@vision360ia.com');
     return true;
   } catch (error) {
-    console.error('Email error:', error);
+    console.error('❌ Email error completo:', error);
     return false;
   }
 }
