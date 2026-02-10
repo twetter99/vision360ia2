@@ -412,8 +412,8 @@ export function ContactSlideOver() {
                   )}
                 />
 
-                {/* Contenedor invisible de Cloudflare Turnstile */}
-                <div ref={turnstileContainerRef} className="hidden" />
+                {/* Contenedor de Cloudflare Turnstile (debe ser visible para funcionar) */}
+                <div ref={turnstileContainerRef} style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} />
 
                 {/* Botón enviar */}
                 <Button
