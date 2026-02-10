@@ -80,44 +80,71 @@ export function ContactSlideOver() {
   useEffect(() => {
     if (!isOpen) return;
     const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-    if (!siteKey) return;
+    if (!siteKey) {
+      console.warn('[Turnstile] No site key found');
+      return;
+    }
     const isDev = process.env.NODE_ENV === 'development' ||
                   (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));
     if (isDev) return;
 
-    const interval = setInterval(() => {
-      if (!(window as any).turnstile || !turnstileContainerRef.current) return;
-      clearInterval(interval);
+    // Esperar a que la animación del slide-over termine (300ms) antes de renderizar
+    const renderTimeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        if (!(window as any).turnstile || !turnstileContainerRef.current) {
+          console.log('[Turnstile] Waiting for script/container...', {
+            turnstile: !!(window as any).turnstile,
+            container: !!turnstileContainerRef.current
+          });
+          return;
+        }
+        clearInterval(interval);
 
-      // Limpiar widget anterior
-      if (turnstileWidgetId.current) {
-        try { (window as any).turnstile.remove(turnstileWidgetId.current); } catch {}
-        turnstileWidgetId.current = null;
-        turnstileToken.current = '';
-      }
-
-      turnstileWidgetId.current = (window as any).turnstile.render(turnstileContainerRef.current, {
-        sitekey: siteKey,
-        size: 'flexible',
-        appearance: 'always',
-        theme: 'light',
-        callback: (token: string) => {
-          turnstileToken.current = token;
-        },
-        'error-callback': () => {
+        // Limpiar widget anterior
+        if (turnstileWidgetId.current) {
+          try { (window as any).turnstile.remove(turnstileWidgetId.current); } catch {}
+          turnstileWidgetId.current = null;
           turnstileToken.current = '';
-        },
-        'expired-callback': () => {
-          turnstileToken.current = '';
-          // Auto-reset para obtener nuevo token
-          if (turnstileWidgetId.current) {
-            try { (window as any).turnstile.reset(turnstileWidgetId.current); } catch {}
-          }
-        },
-      });
-    }, 300);
+        }
 
-    return () => clearInterval(interval);
+        console.log('[Turnstile] Rendering widget...', {
+          containerWidth: turnstileContainerRef.current?.offsetWidth,
+          containerHeight: turnstileContainerRef.current?.offsetHeight,
+          siteKey: siteKey.substring(0, 10) + '...'
+        });
+
+        try {
+          turnstileWidgetId.current = (window as any).turnstile.render(turnstileContainerRef.current, {
+            sitekey: siteKey,
+            size: 'normal',
+            appearance: 'always',
+            theme: 'light',
+            callback: (token: string) => {
+              console.log('[Turnstile] Token received');
+              turnstileToken.current = token;
+            },
+            'error-callback': (error: any) => {
+              console.error('[Turnstile] Error:', error);
+              turnstileToken.current = '';
+            },
+            'expired-callback': () => {
+              console.log('[Turnstile] Token expired, resetting...');
+              turnstileToken.current = '';
+              if (turnstileWidgetId.current) {
+                try { (window as any).turnstile.reset(turnstileWidgetId.current); } catch {}
+              }
+            },
+          });
+          console.log('[Turnstile] Widget rendered, ID:', turnstileWidgetId.current);
+        } catch (err) {
+          console.error('[Turnstile] Render failed:', err);
+        }
+      }, 500);
+
+      return () => clearInterval(interval);
+    }, 500);
+
+    return () => clearTimeout(renderTimeout);
   }, [isOpen]);
 
   // Bloquear scroll del body cuando el slide-over está abierto
@@ -398,7 +425,11 @@ export function ContactSlideOver() {
                 />
 
                 {/* Cloudflare Turnstile - verificación anti-spam */}
-                <div ref={turnstileContainerRef} className="flex justify-center" />
+                <div 
+                  ref={turnstileContainerRef} 
+                  className="flex justify-center items-center w-full min-h-[70px]"
+                  id="turnstile-container"
+                />
 
                 {/* Botón enviar */}
                 <Button
