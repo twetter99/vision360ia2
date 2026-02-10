@@ -73,14 +73,18 @@ interface ValidationError {
 }
 
 // 🔐 FUNCIÓN: Validar token de reCAPTCHA v3 con Google
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function validateRecaptcha(token: string): Promise<boolean> {
+  // ⚠️ TEMPORAL: Bypass mientras Google propaga las nuevas claves
+  // TODO: Eliminar este bloque cuando reCAPTCHA funcione
+  console.warn('⚠️ reCAPTCHA bypassed temporarily - pending key propagation');
+  return true;
+}
+
+/* CÓDIGO ORIGINAL - DESCOMENTAR CUANDO RECAPTCHA FUNCIONE
 async function validateRecaptcha(token: string): Promise<boolean> {
   try {
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-    
-    // ⚠️ TEMPORAL: Bypass mientras Google propaga las nuevas claves
-    // TODO: Eliminar esta línea cuando reCAPTCHA funcione
-    console.warn('⚠️ reCAPTCHA bypassed temporarily - pending key propagation');
-    return true;
     
     // ⚠️ MODO DESARROLLO: Siempre permitir (localhost no está autorizado en Google)
     if (process.env.NODE_ENV === 'development') {
@@ -132,6 +136,7 @@ async function validateRecaptcha(token: string): Promise<boolean> {
     return false; // Fallar en caso de error de red
   }
 }
+*/
 
 // Validación de campos
 function validateFormData(data: FormData): ValidationError | null {
