@@ -78,9 +78,11 @@ export function ContactSlideOver() {
   useEffect(() => {
     if (!isOpen) return;
     
-    // DEBUG: Usar test key de Cloudflare para diagnosticar si el problema es la clave
-    // Test key "1x00000000000000000000AA" siempre pasa - si funciona, el problema es tu sitekey real
-    const siteKey = '1x00000000000000000000AA'; // TEST KEY - cambiar a process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY cuando funcione
+    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+    if (!siteKey) {
+      console.warn('[Turnstile] No site key configured');
+      return;
+    }
     
     const isDev = process.env.NODE_ENV === 'development' ||
                   (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));

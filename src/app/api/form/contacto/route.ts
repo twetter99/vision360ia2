@@ -80,11 +80,7 @@ async function validateTurnstile(token: string): Promise<boolean> {
       return true;
     }
     
-    // 🔑 DEBUG: Usar test secret key para diagnóstico con test sitekey
-    // Test secret key "1x0000000000000000000000000000000AA" acepta dummy tokens
-    // Cambiar a process.env.TURNSTILE_SECRET_KEY cuando se confirme que funciona
-    const secretKey = '1x0000000000000000000000000000000AA'; // TEST SECRET KEY
-    // const secretKey = process.env.TURNSTILE_SECRET_KEY;
+    const secretKey = process.env.TURNSTILE_SECRET_KEY;
     
     if (!secretKey) {
       console.error('Turnstile secret key not configured - BLOCKING submission');
