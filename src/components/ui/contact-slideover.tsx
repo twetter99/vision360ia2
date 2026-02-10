@@ -336,7 +336,7 @@ export function ContactSlideOver() {
                 />
 
                 {/* 🕵️ Honeypots anti-bot - invisibles para usuarios reales */}
-                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, height: 0, overflow: 'hidden', tabIndex: -1 }}>
+                <div aria-hidden="true" tabIndex={-1} style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
                   <label htmlFor="_website">Website</label>
                   <input type="text" id="_website" name="website" autoComplete="off" tabIndex={-1} />
                   <label htmlFor="_address">Address</label>
