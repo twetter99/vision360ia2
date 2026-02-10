@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Loader2, X } from "lucide-react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
 
@@ -56,22 +56,17 @@ export function ContactSlideOver() {
   });
 
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
+  const turnstileToken = useRef<string>('');
   const turnstileWidgetId = useRef<string | null>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
 
-  // Cargar script de Cloudflare Turnstile (solo en el cliente y en producción)
+  // Cargar script de Cloudflare Turnstile
   useEffect(() => {
     if (typeof window === 'undefined') return;
-
     const isDevelopment = process.env.NODE_ENV === 'development' || 
                           window.location.hostname === 'localhost' ||
                           window.location.hostname === '127.0.0.1';
-    
     if (isDevelopment) return;
-
-    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-    if (!siteKey) return;
-
     if (document.querySelector(`script[src*="challenges.cloudflare.com"]`)) return;
 
     const script = document.createElement('script');
@@ -81,37 +76,49 @@ export function ContactSlideOver() {
     document.head.appendChild(script);
   }, []);
 
-  // Renderizar widget Turnstile cuando el slide-over se abre
-  const renderTurnstile = useCallback(() => {
-    if (typeof window === 'undefined' || !(window as any).turnstile) return;
-    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-    if (!siteKey || !turnstileContainerRef.current) return;
-
-    // Limpiar widget anterior
-    if (turnstileWidgetId.current) {
-      try { (window as any).turnstile.remove(turnstileWidgetId.current); } catch {}
-      turnstileWidgetId.current = null;
-    }
-
-    turnstileWidgetId.current = (window as any).turnstile.render(turnstileContainerRef.current, {
-      sitekey: siteKey,
-      execution: 'execute',
-      appearance: 'interaction-only',
-      size: 'flexible',
-    });
-  }, []);
-
+  // Renderizar widget cuando el slide-over se abre
   useEffect(() => {
     if (!isOpen) return;
-    // Esperar a que el script de Turnstile esté cargado
+    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+    if (!siteKey) return;
+    const isDev = process.env.NODE_ENV === 'development' ||
+                  (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));
+    if (isDev) return;
+
     const interval = setInterval(() => {
-      if ((window as any).turnstile) {
-        renderTurnstile();
-        clearInterval(interval);
+      if (!(window as any).turnstile || !turnstileContainerRef.current) return;
+      clearInterval(interval);
+
+      // Limpiar widget anterior
+      if (turnstileWidgetId.current) {
+        try { (window as any).turnstile.remove(turnstileWidgetId.current); } catch {}
+        turnstileWidgetId.current = null;
+        turnstileToken.current = '';
       }
-    }, 200);
+
+      turnstileWidgetId.current = (window as any).turnstile.render(turnstileContainerRef.current, {
+        sitekey: siteKey,
+        size: 'flexible',
+        appearance: 'always',
+        theme: 'light',
+        callback: (token: string) => {
+          turnstileToken.current = token;
+        },
+        'error-callback': () => {
+          turnstileToken.current = '';
+        },
+        'expired-callback': () => {
+          turnstileToken.current = '';
+          // Auto-reset para obtener nuevo token
+          if (turnstileWidgetId.current) {
+            try { (window as any).turnstile.reset(turnstileWidgetId.current); } catch {}
+          }
+        },
+      });
+    }, 300);
+
     return () => clearInterval(interval);
-  }, [isOpen, renderTurnstile]);
+  }, [isOpen]);
 
   // Bloquear scroll del body cuando el slide-over está abierto
   useEffect(() => {
@@ -140,8 +147,8 @@ export function ContactSlideOver() {
     setIsSubmitting(true);
 
     try {
-      // 🔐 OBTENER TOKEN DE CLOUDFLARE TURNSTILE
-      let turnstileToken = '';
+      // 🔐 TOKEN DE CLOUDFLARE TURNSTILE
+      let token = '';
       
       if (typeof window !== 'undefined') {
         const isDevelopment = process.env.NODE_ENV === 'development' || 
@@ -149,31 +156,9 @@ export function ContactSlideOver() {
                               window.location.hostname === '127.0.0.1';
         
         if (isDevelopment) {
-          turnstileToken = 'dev-bypass-token';
-        } else if ((window as any).turnstile && turnstileWidgetId.current) {
-          try {
-            // Ejecutar el challenge invisible
-            (window as any).turnstile.execute(turnstileContainerRef.current);
-            
-            // Esperar a que el token esté disponible (máx 10s)
-            const token = await new Promise<string>((resolve, reject) => {
-              let attempts = 0;
-              const check = setInterval(() => {
-                const t = (window as any).turnstile.getResponse(turnstileWidgetId.current);
-                if (t) {
-                  clearInterval(check);
-                  resolve(t);
-                }
-                if (++attempts > 50) { // 50 * 200ms = 10s
-                  clearInterval(check);
-                  reject(new Error('Turnstile timeout'));
-                }
-              }, 200);
-            });
-            turnstileToken = token;
-          } catch (turnstileError) {
-            console.error('Turnstile error:', turnstileError);
-          }
+          token = 'dev-bypass-token';
+        } else {
+          token = turnstileToken.current || '';
         }
       }
 
@@ -187,7 +172,7 @@ export function ContactSlideOver() {
         privacyAccepted: values.privacyAccepted,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         formLoadTime,
-        token: turnstileToken,
+        token: token,
       };
 
       const response = await fetch("/api/form/contacto", {
@@ -412,8 +397,8 @@ export function ContactSlideOver() {
                   )}
                 />
 
-                {/* Contenedor de Cloudflare Turnstile (debe ser visible para funcionar) */}
-                <div ref={turnstileContainerRef} style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} />
+                {/* Cloudflare Turnstile - verificación anti-spam */}
+                <div ref={turnstileContainerRef} className="flex justify-center" />
 
                 {/* Botón enviar */}
                 <Button
