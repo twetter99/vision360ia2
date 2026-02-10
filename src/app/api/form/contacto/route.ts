@@ -48,7 +48,9 @@ interface FormData {
   marketingOptIn?: boolean;
   
   // Metadata
-  website?: string; // honeypot
+  website?: string; // honeypot 1
+  address?: string; // honeypot 2
+  url?: string;     // honeypot 3
   formLoadTime?: number;
   pageUrl?: string;
   utm_source?: string;
@@ -79,6 +81,39 @@ async function validateTurnstile(token: string): Promise<boolean> {
   return true;
 }
 
+// 🚫 Lista de dominios de email desechables/temporales
+const DISPOSABLE_EMAIL_DOMAINS = new Set([
+  'mailinator.com', 'tempmail.com', 'throwaway.email', 'guerrillamail.com',
+  'yopmail.com', 'sharklasers.com', 'guerrillamailblock.com', 'grr.la',
+  'dispostable.com', 'maildrop.cc', 'mailnesia.com', 'tempail.com',
+  'temp-mail.org', 'fakeinbox.com', 'trashmail.com', 'trashmail.me',
+  'trashmail.net', 'getnada.com', 'mohmal.com', 'minutemail.com',
+  'emailondeck.com', 'mailcatch.com', 'meltmail.com', 'harakirimail.com',
+  '10minutemail.com', 'tempinbox.com', 'burnermail.io', 'crazymailing.com',
+  'discard.email', 'discardmail.com', 'disposableemailaddresses.emailmiser.com',
+  'drdrb.net', 'emailisvalid.com', 'emkei.cz', 'filzmail.com',
+  'getairmail.com', 'fasttrackmedia.co.uk', 'guerrillamail.info',
+  'guerrillamail.net', 'guerrillamail.org', 'guerrillamail.de',
+  'hulapla.de', 'jetable.org', 'kasmail.com', 'koszmail.pl',
+  'kurzepost.de', 'mail-temporaire.fr', 'mailexpire.com', 'mailforspam.com',
+  'mailin8r.com', 'mailinator2.com', 'mailmetrash.com', 'mailmoat.com',
+  'mailnull.com', 'mailshell.com', 'mailsiphon.com', 'mailzilla.com',
+  'nomail.xl.cx', 'nospam.ze.tc', 'owlpic.com', 'proxymail.eu',
+  'rcpt.at', 'reallymymail.com', 'recode.me', 'regbypass.com',
+  'safetymail.info', 'spambox.us', 'spamcero.com', 'spamcorptastic.com',
+  'spamfree24.org', 'spamgourmet.com', 'spamhole.com', 'spamify.com',
+  'spaminator.de', 'spaml.com', 'tempomail.fr', 'thankdog.net',
+  'thisisnotmyrealemail.com', 'trash-mail.at', 'trashymail.com',
+  'wegwerfmail.de', 'wegwerfmail.net', 'wh4f.org', 'willhackforfood.biz',
+  'willselfdestruct.com', 'wronghead.com', 'zehnminutenmail.de',
+]);
+
+// 🔗 Detectar exceso de enlaces en el mensaje
+function countLinks(text: string): number {
+  const urlPattern = /https?:\/\/|www\.|\.[a-z]{2,}\//gi;
+  return (text.match(urlPattern) || []).length;
+}
+
 // Validación de campos
 function validateFormData(data: FormData): ValidationError | null {
   // Nombre requerido
@@ -92,9 +127,20 @@ function validateFormData(data: FormData): ValidationError | null {
     return { field: 'email', error: 'Por favor, ingresa un email válido' };
   }
   
+  // 🚫 Bloquear dominios de email desechables
+  const emailDomain = data.email.split('@')[1]?.toLowerCase();
+  if (emailDomain && DISPOSABLE_EMAIL_DOMAINS.has(emailDomain)) {
+    return { field: 'email', error: 'Por favor, usa un email corporativo o personal válido' };
+  }
+  
   // Longitud máxima de mensaje
   if (data.message && data.message.length > 2000) {
     return { field: 'message', error: 'El mensaje no puede exceder 2000 caracteres' };
+  }
+  
+  // 🔗 Bloquear mensajes con demasiados enlaces (spam típico)
+  if (data.message && countLinks(data.message) > 2) {
+    return { field: 'message', error: 'El mensaje contiene demasiados enlaces' };
   }
   
   // Todo lo demás es opcional
@@ -127,8 +173,10 @@ function sanitizeData(data: any): FormData {
     privacyAccepted: Boolean(data.privacyAccepted),
     marketingOptIn: Boolean(data.marketingOptIn),
     
-    // Metadata
+    // Metadata & honeypots
     website: data.website,
+    address: data.address,
+    url: data.url,
     formLoadTime: data.formLoadTime,
     pageUrl: data.pageUrl,
     utm_source: data.utm_source,
@@ -466,9 +514,10 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Verificar honeypot
-    if (data.website) {
-      // Bot detectado - responder con éxito para engañar
+    // 🕵️ Verificar honeypots (multi-honeypot: cualquier campo relleno = bot)
+    if (data.website || data.address || data.url) {
+      console.warn(`🤖 Bot detectado (honeypot) - IP: ${ip}`);
+      // Responder con éxito para engañar al bot
       return NextResponse.json({
         ok: true,
         message: 'Solicitud recibida'

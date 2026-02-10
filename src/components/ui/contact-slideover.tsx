@@ -92,6 +92,13 @@ export function ContactSlideOver() {
       // ⚠️ TURNSTILE DESACTIVADO TEMPORALMENTE
       const token = 'turnstile-disabled';
 
+      // 🕵️ Recoger honeypots
+      const honeypotFields = {
+        website: (document.getElementById('_website') as HTMLInputElement)?.value || '',
+        address: (document.getElementById('_address') as HTMLInputElement)?.value || '',
+        url: (document.getElementById('_url') as HTMLInputElement)?.value || '',
+      };
+
       // Preparar datos para enviar
       const payload = {
         name: values.name,
@@ -103,6 +110,7 @@ export function ContactSlideOver() {
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         formLoadTime,
         token: token,
+        ...honeypotFields,
       };
 
       const response = await fetch("/api/form/contacto", {
@@ -327,7 +335,15 @@ export function ContactSlideOver() {
                   )}
                 />
 
-                {/* ⚠️ Cloudflare Turnstile DESACTIVADO TEMPORALMENTE */}
+                {/* 🕵️ Honeypots anti-bot - invisibles para usuarios reales */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, height: 0, overflow: 'hidden', tabIndex: -1 }}>
+                  <label htmlFor="_website">Website</label>
+                  <input type="text" id="_website" name="website" autoComplete="off" tabIndex={-1} />
+                  <label htmlFor="_address">Address</label>
+                  <input type="text" id="_address" name="address" autoComplete="off" tabIndex={-1} />
+                  <label htmlFor="_url">URL</label>
+                  <input type="text" id="_url" name="url" autoComplete="off" tabIndex={-1} />
+                </div>
 
                 {/* Botón enviar */}
                 <Button
