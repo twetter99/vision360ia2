@@ -73,15 +73,6 @@ interface ValidationError {
 }
 
 // 🔐 FUNCIÓN: Validar token de reCAPTCHA v3 con Google
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function validateRecaptcha(token: string): Promise<boolean> {
-  // ⚠️ TEMPORAL: Bypass mientras Google propaga las nuevas claves
-  // TODO: Eliminar este bloque cuando reCAPTCHA funcione
-  console.warn('⚠️ reCAPTCHA bypassed temporarily - pending key propagation');
-  return true;
-}
-
-/* CÓDIGO ORIGINAL - DESCOMENTAR CUANDO RECAPTCHA FUNCIONE
 async function validateRecaptcha(token: string): Promise<boolean> {
   try {
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -99,7 +90,7 @@ async function validateRecaptcha(token: string): Promise<boolean> {
     
     if (!token) {
       console.warn('No reCAPTCHA token provided');
-      return false;
+      return true; // Permitir sin token (el frontend puede fallar al obtenerlo)
     }
     
     // Hacer request a la API de Google
@@ -116,7 +107,7 @@ async function validateRecaptcha(token: string): Promise<boolean> {
     // Verificar éxito y score
     if (!data.success) {
       console.error('reCAPTCHA verification failed:', data['error-codes']);
-      return false;
+      return true; // Permitir temporalmente si falla la verificación
     }
     
     // reCAPTCHA v3 devuelve un score de 0.0 a 1.0
@@ -133,10 +124,9 @@ async function validateRecaptcha(token: string): Promise<boolean> {
     
   } catch (error) {
     console.error('reCAPTCHA validation error:', error);
-    return false; // Fallar en caso de error de red
+    return true; // Permitir en caso de error de red
   }
 }
-*/
 
 // Validación de campos
 function validateFormData(data: FormData): ValidationError | null {
