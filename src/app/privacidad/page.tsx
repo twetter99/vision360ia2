@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { ArrowLeft, Shield, Lock, Eye, FileText } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Shield, Lock, Eye, FileText } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
 import { legalTranslations } from '@/lib/legal-translations';
 import { useEffect, useState } from 'react';

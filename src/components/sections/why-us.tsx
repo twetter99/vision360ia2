@@ -18,6 +18,7 @@ export function WhyUs({
   const { openContactSlideOver } = useContactSlideOver();
   const t = translations.whyWinfinSection || initialTranslations.whyWinfinSection;
   const cards = translations.whyWinfinCards || initialTranslations.whyWinfinCards;
+  const localPresence = 'localPresence' in t ? t.localPresence : undefined;
   const implementationPhases = [
     {
       step: '01',
@@ -137,9 +138,11 @@ export function WhyUs({
                   <p className="mt-3 text-base font-medium leading-relaxed text-white/92 md:text-lg">
                     Si tu flota opera en entorno urbano o maniobras criticas, revisamos la tipologia del vehiculo y proponemos una implantacion ajustada a su geometria real.
                   </p>
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-white/68 md:text-[0.96rem]">
-                    {t.localPresence}
-                  </p>
+                  {localPresence ? (
+                    <p className="mt-3 max-w-2xl text-sm leading-6 text-white/68 md:text-[0.96rem]">
+                      {localPresence}
+                    </p>
+                  ) : null}
                 </div>
                 <div className="flex w-full max-w-[28rem] flex-col gap-3 lg:max-w-[24rem] lg:items-end xl:max-w-[30rem]">
                   <div className="flex w-full flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
