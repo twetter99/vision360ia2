@@ -5,6 +5,7 @@ interface Window {
       sitekey: string;
       callback?: (token: string) => void;
       'error-callback'?: (error: Error) => void;
+      'expired-callback'?: () => void;
       execution?: 'render' | 'execute';
       appearance?: 'always' | 'execute' | 'interaction-only';
       size?: 'normal' | 'flexible' | 'compact';

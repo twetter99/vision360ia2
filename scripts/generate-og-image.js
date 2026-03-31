@@ -7,7 +7,7 @@ const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
 
-const INPUT_IMAGE = path.join(__dirname, '../public/images/header.jpg');
+const INPUT_IMAGE = path.join(__dirname, '../public/images/imagen_header_v4.jpg');
 const OUTPUT_IMAGE = path.join(__dirname, '../public/images/og-image.jpg');
 
 // Dimensiones estándar para Open Graph (Facebook, LinkedIn, etc.)

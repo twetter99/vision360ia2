@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Loader2, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
 
@@ -42,6 +42,13 @@ export function ContactSlideOver() {
   const t = translations.contactSection;
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileError, setTurnstileError] = useState<string | null>(null);
+  const widgetContainerRef = useRef<HTMLDivElement | null>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  const isTurnstileRequired = process.env.NODE_ENV === "production";
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -57,10 +64,41 @@ export function ContactSlideOver() {
 
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
 
-  // ⚠️ TURNSTILE DESACTIVADO TEMPORALMENTE
-  // TODO: Reactivar Cloudflare Turnstile cuando se resuelva el problema de leads
+  const resetTurnstile = () => {
+    setTurnstileToken("");
 
-  // ⚠️ TURNSTILE WIDGET DESACTIVADO TEMPORALMENTE
+    if (widgetIdRef.current && typeof window !== "undefined" && window.turnstile) {
+      window.turnstile.reset(widgetIdRef.current);
+    }
+  };
+
+  const renderTurnstile = () => {
+    if (!isTurnstileRequired || !isOpen || !widgetContainerRef.current || !siteKey) {
+      return;
+    }
+
+    if (typeof window === "undefined" || !window.turnstile || widgetIdRef.current) {
+      return;
+    }
+
+    widgetIdRef.current = window.turnstile.render(widgetContainerRef.current, {
+      sitekey: siteKey,
+      size: "flexible",
+      theme: "light",
+      callback: (token: string) => {
+        setTurnstileToken(token);
+        setTurnstileError(null);
+      },
+      "error-callback": () => {
+        setTurnstileToken("");
+        setTurnstileError("No hemos podido validar la comprobación anti-spam. Recarga la página e inténtalo de nuevo.");
+      },
+      "expired-callback": () => {
+        setTurnstileToken("");
+        setTurnstileError("La comprobación anti-spam ha caducado. Vuelve a validarla antes de enviar.");
+      },
+    });
+  };
 
   // Bloquear scroll del body cuando el slide-over está abierto
   useEffect(() => {
@@ -68,11 +106,57 @@ export function ContactSlideOver() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      setTurnstileError(null);
+
+      if (widgetIdRef.current && typeof window !== "undefined" && window.turnstile) {
+        window.turnstile.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+      }
+
+      setTurnstileToken("");
     }
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen || !isTurnstileRequired) {
+      return;
+    }
+
+    if (!siteKey) {
+      setTurnstileError("Falta configurar Cloudflare Turnstile para este entorno.");
+      return;
+    }
+
+    if (window.turnstile) {
+      renderTurnstile();
+      return;
+    }
+
+    const existingScript = document.querySelector<HTMLScriptElement>('script[data-turnstile="true"]');
+
+    if (existingScript) {
+      existingScript.addEventListener("load", renderTurnstile, { once: true });
+      return () => existingScript.removeEventListener("load", renderTurnstile);
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    script.async = true;
+    script.defer = true;
+    script.dataset.turnstile = "true";
+    script.addEventListener("load", renderTurnstile, { once: true });
+    script.addEventListener("error", () => {
+      setTurnstileError("No hemos podido cargar la verificación anti-spam. Recarga la página e inténtalo de nuevo.");
+    }, { once: true });
+    document.head.appendChild(script);
+
+    return () => {
+      script.removeEventListener("load", renderTurnstile);
+    };
+  }, [isOpen, isTurnstileRequired, siteKey]);
 
   // Cerrar con tecla Escape
   useEffect(() => {
@@ -86,12 +170,18 @@ export function ContactSlideOver() {
   }, [isOpen, closeContactSlideOver]);
 
   async function onSubmit(values: FormData) {
+    if (isTurnstileRequired && !turnstileToken) {
+      toast({
+        title: "Verificación pendiente",
+        description: "Completa la comprobación anti-spam antes de enviar el formulario.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // ⚠️ TURNSTILE DESACTIVADO TEMPORALMENTE
-      const token = 'turnstile-disabled';
-
       // 🕵️ Recoger honeypots
       const honeypotFields = {
         website: (document.getElementById('_hp_fax') as HTMLInputElement)?.value || '',
@@ -109,7 +199,7 @@ export function ContactSlideOver() {
         privacyAccepted: values.privacyAccepted,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         formLoadTime,
-        token: token,
+        token: turnstileToken,
         ...honeypotFields,
       };
 
@@ -128,23 +218,19 @@ export function ContactSlideOver() {
           description: errorMessage,
           variant: "destructive",
         });
+        resetTurnstile();
         return;
       }
 
-      // 📄 DESCARGA AUTOMÁTICA DEL PDF
-      const downloadLink = document.createElement('a');
-      downloadLink.href = '/pdf/Presentacion_V360.pdf';
-      downloadLink.download = 'Vision360_Documentacion_Tecnica.pdf';
-      downloadLink.click();
-
       toast({
         title: t.toast?.downloadSuccess?.title || "¡Documentación enviada!",
-        description: t.toast?.downloadSuccess?.description || "Tu PDF se está descargando. Un ingeniero te contactará en menos de 24h.",
+        description: t.toast?.downloadSuccess?.description || "Hemos recibido tu solicitud. Te responderemos por correo con la información técnica.",
       });
       form.reset();
       closeContactSlideOver();
     } catch (error) {
       console.error("Error:", error);
+      resetTurnstile();
       toast({
         title: "Error de conexión",
         description: "Por favor, inténtalo de nuevo o escríbenos a info@vision360ia.com",
@@ -195,10 +281,10 @@ export function ContactSlideOver() {
                 id="slideover-title"
                 className="text-xl font-semibold text-slate-900 mb-2"
               >
-                {t.form.slideoverTitle || 'Descarga la documentación técnica'}
+                {t.form.slideoverTitle || 'Solicita información técnica'}
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
-                {t.form.slideoverSubtitle || 'Completa el formulario y recibe el dossier completo con especificaciones.'}
+                {t.form.slideoverSubtitle || 'Completa el formulario y te responderemos por correo con la información técnica y los siguientes pasos.'}
               </p>
             </div>
           </div>
@@ -345,10 +431,19 @@ export function ContactSlideOver() {
                   <input type="text" id="_hp_org" name="org_url" autoComplete="nope" tabIndex={-1} />
                 </div>
 
+                {isTurnstileRequired && (
+                  <div className="space-y-2">
+                    <div ref={widgetContainerRef} className="min-h-[65px]" />
+                    {turnstileError && (
+                      <p className="text-xs text-red-600">{turnstileError}</p>
+                    )}
+                  </div>
+                )}
+
                 {/* Botón enviar */}
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || (isTurnstileRequired && !turnstileToken)}
                   size="lg"
                   className="w-full min-h-[48px] text-base font-semibold"
                 >

@@ -3,17 +3,18 @@ import { Contact } from '@/components/sections/contact';
 import { Faq } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
 import { ProductShowcase } from '@/components/sections/product-showcase';
+import { Solutions } from '@/components/sections/solutions';
 import { WhyUs } from '@/components/sections/why-us';
 import { translations } from '@/lib/translations';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sistemas ADAS para Flotas: Autobuses, Camiones e Industriales',
-  description: 'Proveedor de sistemas ADAS con visión perimetral 360° para flotas profesionales. Elimina puntos ciegos, protección VRU, cumple GSR. Solicita dossier.',
+  title: 'ADAS para flotas con cámaras 360° y detección de peatones | Vision360IA',
+  description: 'Sistema de cámaras 360° con detección de peatones y ciclistas para autobuses, camiones y vehículos municipales. Reduce puntos ciegos, mejora seguridad urbana y facilita cumplimiento GSR.',
   keywords: ['sistemas ADAS flotas', 'sistemas ADAS vehiculos industriales', 'sistemas ADAS camiones', 'ADAS autobuses', 'vision perimetral ADAS', 'proveedor ADAS España', 'instalacion ADAS flotas', 'ADAS transporte pesado'],
   openGraph: {
-    title: 'Sistemas ADAS y Visión 360° para Flotas | Vision360IA',
-    description: 'Proveedor de sistemas ADAS con visión perimetral 360° para autobuses, camiones y flotas industriales. Homologado GSR.',
+    title: 'Visión 360° inteligente para flotas urbanas | Vision360IA',
+    description: 'Reduce accidentes en maniobras urbanas con cámaras 360°, detección de peatones y ciclistas y solución ADAS para autobuses, camiones y vehículos municipales.',
   },
 }
 
@@ -35,39 +36,70 @@ export default async function Home() {
       "width": 512,
       "height": 512
     },
-    "description": "Empresa española líder en sistemas ADAS con Inteligencia Artificial para flotas de transporte. Especialistas en cámaras 360°, alertas de colisión y monitorización de conductores. Más de 20 años de experiencia y +2.000 vehículos equipados.",
+    "description": "Empresa española especializada en sistemas ADAS y cámaras 360° para autobuses, camiones y vehículos municipales. Ayudamos a reducir puntos ciegos, mejorar seguridad urbana y desplegar soluciones sobre flotas profesionales con más de 20 años de experiencia y +2.000 vehículos instalados.",
     "foundingDate": "2003",
     "founder": {
       "@type": "Organization",
       "name": "WINFIN Instalaciones S.L."
     },
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "WINFIN Instalaciones S.L.",
+      "url": "https://www.winfin.es"
+    },
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Madrid",
-      "addressRegion": "Comunidad de Madrid",
+      "streetAddress": "Moreras, 1, N 65 y 66",
+      "postalCode": "28350",
+      "addressLocality": "Ciempozuelos",
+      "addressRegion": "Madrid",
       "addressCountry": "ES"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "40.4168",
-      "longitude": "-3.7038"
     },
     "contactPoint": [
       {
         "@type": "ContactPoint",
+        "telephone": "+34 914 520 406",
         "email": "info@vision360ia.com",
         "contactType": "sales",
         "areaServed": "ES",
-        "availableLanguage": ["Spanish", "Catalan", "Basque"]
+        "availableLanguage": ["Spanish"]
       },
       {
         "@type": "ContactPoint",
-        "email": "soporte@vision360ia.com",
+        "telephone": "+34 943 284 721",
+        "email": "info@vision360ia.com",
         "contactType": "technical support",
         "areaServed": "ES"
       }
     ],
+    "location": [
+      {
+        "@type": "Place",
+        "name": "Oficina y taller Madrid",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Moreras, 1, N 65 y 66",
+          "postalCode": "28350",
+          "addressLocality": "Ciempozuelos",
+          "addressRegion": "Madrid",
+          "addressCountry": "ES"
+        }
+      },
+      {
+        "@type": "Place",
+        "name": "Oficina y taller Donostia / San Sebastián",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "P. Mikeletegui, 56, of 314",
+          "postalCode": "20009",
+          "addressLocality": "Donostia / San Sebastián",
+          "addressRegion": "Guipúzcoa",
+          "addressCountry": "ES"
+        }
+      }
+    ],
     "sameAs": [
+      "https://www.winfin.es",
       "https://www.linkedin.com/company/winfin"
     ],
     "knowsAbout": [
@@ -77,7 +109,7 @@ export default async function Home() {
       "Seguridad en flotas",
       "Transporte público"
     ],
-    "slogan": "Reduce un 40% los accidentes en tu flota",
+    "slogan": "Elimina puntos ciegos y reduce accidentes en maniobras urbanas",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
       "minValue": 10,
@@ -94,8 +126,8 @@ export default async function Home() {
     "@type": "Product",
     "@id": "https://www.vision360ia.com/#product",
     "name": "Sistema de Visión Perimetral 360° para Autobuses y Camiones",
-    "alternateName": ["Vision 360 Autobus", "Vision Perimetral Bus", "Kit Vision 360 Industrial"],
-    "description": "Sistema de visión perimetral 360º con IA para autobuses urbanos, interurbanos, camiones y flotas industriales. Elimina puntos ciegos con cámaras HD ultra gran angular (>180°). Incluye alertas de colisión frontal (FCW), detección de peatones y ciclistas (VRU), aviso de salida de carril (LDW). Compatible 12V y 24V. Homologado GSR R151 (BSIS), R158 (Marcha atrás), R159 (MOIS). Certificación IP69K.",
+    "alternateName": ["Vision 360 Autobus", "Vision Perimetral Bus", "Kit Vision 360 Industrial", "ADAS Anti Atropellos Peatones", "Cámaras Visión Artificial Flotas"],
+    "description": "Sistema de cámaras 360° con detección de peatones y ciclistas para autobuses, camiones, vehículos municipales e industriales. Reduce puntos ciegos, mejora la seguridad en maniobras urbanas y facilita cumplimiento GSR con una solución profesional compatible con flotas de 12V y 24V.",
     "image": "https://www.vision360ia.com/images/og-image.jpg",
     "sku": "V360IA-PRO",
     "mpn": "VISION360-BUS-2024",
@@ -176,6 +208,113 @@ export default async function Home() {
     ]
   };
   
+  const officeSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.vision360ia.com/#madrid-office",
+      "name": "WINFIN Madrid - Oficina y taller",
+      "description": "Oficina y taller propio de WINFIN para implantación e integración de sistemas ADAS y visión perimetral sobre flota profesional.",
+      "url": "https://www.vision360ia.com/quienes-somos",
+      "telephone": "+34 914 520 406",
+      "email": "info@vision360ia.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Moreras, 1, N 65 y 66",
+        "postalCode": "28350",
+        "addressLocality": "Ciempozuelos",
+        "addressRegion": "Madrid",
+        "addressCountry": "ES"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "España"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.vision360ia.com/#donostia-office",
+      "name": "WINFIN Donostia / San Sebastián - Oficina y taller",
+      "description": "Oficina y taller propio de WINFIN en Donostia / San Sebastián para soporte comercial, implantación técnica e integración embarcada en proyectos sobre flota profesional.",
+      "url": "https://www.vision360ia.com/quienes-somos",
+      "telephone": "+34 943 284 721",
+      "email": "info@vision360ia.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "P. Mikeletegui, 56, of 314",
+        "postalCode": "20009",
+        "addressLocality": "Donostia / San Sebastián",
+        "addressRegion": "Guipúzcoa",
+        "addressCountry": "ES"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "España"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+  ];
+
+  const videoSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Visión Perimetral 360° para Autobuses y Camiones - Demo",
+      "description": "Demostración del sistema de visión perimetral 360° de Vision360IA: cámaras HD con visión artificial que eliminan puntos ciegos en autobuses y camiones.",
+      "thumbnailUrl": "https://www.vision360ia.com/images/winfin_vision360ia_1.jpg",
+      "uploadDate": "2024-01-15",
+      "contentUrl": "https://vimeo.com/1133755711",
+      "embedUrl": "https://player.vimeo.com/video/1133755711",
+      "duration": "PT2M",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vision360IA"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "ADAS Anti-Atropellos: Detección de Peatones y Ciclistas con IA",
+      "description": "Sistema ADAS con alertas inteligentes para detección de peatones y ciclistas (VRU), colisión frontal (FCW) y salida de carril (LDW) mediante cámaras con visión artificial.",
+      "thumbnailUrl": "https://www.vision360ia.com/images/winfin_vision360ia_2.jpg",
+      "uploadDate": "2024-01-15",
+      "contentUrl": "https://vimeo.com/1133755727",
+      "embedUrl": "https://player.vimeo.com/video/1133755727",
+      "duration": "PT2M",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vision360IA"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Gestión de Flotas con Análisis IA y Reportes",
+      "description": "Plataforma de análisis de flota con IA: evaluación de conductores, reconstrucción de eventos críticos y KPIs en tiempo real para flotas de autobuses, camiones y vehículos industriales.",
+      "thumbnailUrl": "https://www.vision360ia.com/images/winfin_vision360ia_3.jpg",
+      "uploadDate": "2024-01-15",
+      "contentUrl": "https://vimeo.com/1133755748",
+      "embedUrl": "https://player.vimeo.com/video/1133755748",
+      "duration": "PT2M",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vision360IA"
+      }
+    }
+  ];
+
   return (
     <>
       {/* JSON-LD Schema Markup para SEO */}
@@ -191,9 +330,28 @@ export default async function Home() {
           __html: JSON.stringify(productSchema)
         }}
       />
+      {officeSchemas.map((schema, i) => (
+        <script
+          key={`office-schema-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema)
+          }}
+        />
+      ))}
+      {videoSchemas.map((schema, i) => (
+        <script
+          key={`video-schema-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema)
+          }}
+        />
+      ))}
       
       <div className="flex flex-col">
         <Hero translations={defaultTranslations} />
+        <Solutions />
         <WhyUs translations={defaultTranslations} />
         <ProductShowcase translations={defaultTranslations} />
         <Faq translations={defaultTranslations} />

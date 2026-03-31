@@ -74,11 +74,61 @@ interface ValidationError {
   error: string;
 }
 
-// ⚠️ TURNSTILE DESACTIVADO TEMPORALMENTE - Siempre permite el envío
-// TODO: Reactivar cuando se resuelva el problema de recepción de leads
-async function validateTurnstile(token: string): Promise<boolean> {
-  console.log('⚠️ Turnstile validation DISABLED - allowing submission');
-  return true;
+const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+
+async function validateTurnstile(token: string | undefined, ip?: string): Promise<boolean> {
+  if (process.env.NODE_ENV !== 'production') {
+    return true;
+  }
+
+  if (!token) {
+    console.warn('Turnstile token missing');
+    return false;
+  }
+
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+
+  if (!secretKey) {
+    console.error('TURNSTILE_SECRET_KEY is not configured');
+    return false;
+  }
+
+  const body = new URLSearchParams({
+    secret: secretKey,
+    response: token,
+  });
+
+  if (ip && ip !== 'unknown') {
+    body.append('remoteip', ip);
+  }
+
+  try {
+    const response = await fetch(TURNSTILE_VERIFY_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: body.toString(),
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      console.error('Turnstile verify request failed with status:', response.status);
+      return false;
+    }
+
+    const result = await response.json() as TurnstileVerifyResponse;
+
+    if (!result.success) {
+      console.warn('Turnstile verification rejected:', result['error-codes']);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Turnstile verification error:', error);
+    return false;
+  }
 }
 
 // 🚫 Lista de dominios de email desechables/temporales
@@ -522,7 +572,7 @@ export async function POST(request: NextRequest) {
     const data = sanitizeData(formDataRaw);
     
     // 🔐 VALIDAR TURNSTILE ANTES DE PROCESAR
-    const isTurnstileValid = await validateTurnstile(token);
+    const isTurnstileValid = await validateTurnstile(token, ip);
     
     if (!isTurnstileValid) {
       console.warn('Turnstile validation failed for IP:', ip);

@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { ArrowLeft, Cookie } from 'lucide-react';
+import { ArrowLeft, Cookie, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
 import { legalTranslations } from '@/lib/legal-translations';
 import { useEffect, useState } from 'react';
@@ -38,45 +38,63 @@ export default function Cookies() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      <div className="container max-w-4xl mx-auto px-4 py-12">
-        <Link 
-          href="/" 
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {common.backToHome}
-        </Link>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.12),transparent_26%),linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)]">
+      <div className="container mx-auto max-w-5xl px-4 py-12 md:py-16">
+        <article className="max-w-none">
+          <div className="rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
+            <Link 
+              href="/" 
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              {common.backToHome}
+            </Link>
 
-        <article className="prose prose-slate max-w-none">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
-              <Cookie className="w-6 h-6 text-amber-600" />
-            </div>
-            <div>
-              <h1 className="text-4xl font-bold text-slate-900 mb-0">{t.title}</h1>
+            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+              <div>
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-700 md:text-xs">
+                  <Cookie className="h-4 w-4" />
+                  Consentimiento y medición
+                </div>
+                <h1 className="font-headline text-4xl font-semibold tracking-[-0.035em] text-slate-950 md:text-5xl">{t.title}</h1>
+                <p className="mt-4 max-w-2xl text-lg leading-relaxed tracking-[-0.015em] text-slate-600">{t.subtitle}</p>
+              </div>
+
+              <div className="elevated-card rounded-[1.75rem] border border-white/70 p-5 md:p-6">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Documentos relacionados</p>
+                <div className="grid gap-3">
+                  <Link href="/aviso-legal" className="interactive-tile flex items-center justify-between rounded-2xl border border-slate-200/80 bg-slate-50/90 px-4 py-4 text-slate-700">
+                    <span>Aviso Legal</span>
+                    <ArrowRight className="h-4 w-4 text-slate-400" />
+                  </Link>
+                  <Link href="/privacidad" className="interactive-tile flex items-center justify-between rounded-2xl border border-slate-200/80 bg-slate-50/90 px-4 py-4 text-slate-700">
+                    <span>Política de Privacidad</span>
+                    <ArrowRight className="h-4 w-4 text-slate-400" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-          <p className="text-lg text-slate-600 mb-8">{t.subtitle}</p>
 
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-8">
+          <div className="mt-8 space-y-6">
+          <div className="rounded-[1.75rem] border border-amber-200 bg-amber-50 p-6 shadow-[var(--shadow-soft)] md:p-8">
             <p className="text-slate-700 leading-relaxed">
               {t.intro}
             </p>
           </div>
 
-          <section className="mb-10">
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.que.title}</h2>
             <p className="text-slate-700 leading-relaxed">
               {t.sections.que.content}
             </p>
           </section>
 
-          <section className="mb-10">
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.tipos.title}</h2>
             
             <div className="space-y-6">
-              <div className="bg-white border-l-4 border-green-500 rounded-lg p-5">
+              <div className="interactive-tile bg-white border-l-4 border-green-500 rounded-[1.25rem] p-5">
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{t.sections.tipos.tecnicas.badge}</h3>
                 <p className="text-slate-700 text-sm mb-3">
                   {t.sections.tipos.tecnicas.description}
@@ -91,7 +109,7 @@ export default function Cookies() {
                 </div>
               </div>
 
-              <div className="bg-white border-l-4 border-blue-500 rounded-lg p-5">
+              <div className="interactive-tile bg-white border-l-4 border-blue-500 rounded-[1.25rem] p-5">
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{t.sections.tipos.analiticas.badge}</h3>
                 <p className="text-slate-700 text-sm mb-3">
                   {t.sections.tipos.analiticas.description}
@@ -107,7 +125,7 @@ export default function Cookies() {
                 </div>
               </div>
 
-              <div className="bg-white border-l-4 border-purple-500 rounded-lg p-5">
+              <div className="interactive-tile bg-white border-l-4 border-purple-500 rounded-[1.25rem] p-5">
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{t.sections.tipos.terceros.badge}</h3>
                 <p className="text-slate-700 text-sm mb-3">
                   {t.sections.tipos.terceros.description}
@@ -117,7 +135,7 @@ export default function Cookies() {
                 </p>
                 <div className="mt-3 space-y-2">
                   {t.sections.tipos.terceros.providers.map((provider: { name: string; description: string }, i: number) => (
-                    <div key={i} className="bg-slate-50 rounded p-3">
+                    <div key={i} className="interactive-tile bg-slate-50 rounded-[1rem] p-3">
                       <p className="text-xs font-semibold text-slate-700">{provider.name}</p>
                       <p className="text-xs text-slate-600">{provider.description}</p>
                     </div>
@@ -127,12 +145,12 @@ export default function Cookies() {
             </div>
           </section>
 
-          <section className="mb-10">
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.configuracion.title}</h2>
             <p className="text-slate-700 leading-relaxed mb-4">
               {t.sections.configuracion.intro}
             </p>
-            <div className="bg-white border border-slate-200 rounded-lg p-4">
+            <div className="bg-white border border-slate-200 rounded-[1.25rem] p-4">
               <ul className="space-y-2 text-slate-700">
                 {t.sections.configuracion.options.map((option: string, i: number) => (
                   <li key={i} className="flex items-center gap-2">
@@ -149,7 +167,7 @@ export default function Cookies() {
             </p>
           </section>
 
-          <section className="mb-10">
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.desactivar.title}</h2>
             <p className="text-slate-700 leading-relaxed mb-4">
               {t.sections.desactivar.intro}
@@ -159,7 +177,7 @@ export default function Cookies() {
                 href={browserUrls.chrome} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white border border-slate-200 rounded-lg p-4 hover:border-primary transition-colors"
+                className="interactive-tile bg-white border border-slate-200 rounded-[1.25rem] p-4 hover:border-primary transition-colors"
               >
                 <p className="font-semibold text-slate-900">{t.sections.desactivar.browsers[0].name}</p>
                 <p className="text-xs text-slate-600">{t.sections.desactivar.browsers[0].text}</p>
@@ -168,7 +186,7 @@ export default function Cookies() {
                 href={browserUrls.firefox} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white border border-slate-200 rounded-lg p-4 hover:border-primary transition-colors"
+                className="interactive-tile bg-white border border-slate-200 rounded-[1.25rem] p-4 hover:border-primary transition-colors"
               >
                 <p className="font-semibold text-slate-900">{t.sections.desactivar.browsers[1].name}</p>
                 <p className="text-xs text-slate-600">{t.sections.desactivar.browsers[1].text}</p>
@@ -177,7 +195,7 @@ export default function Cookies() {
                 href={browserUrls.safari} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white border border-slate-200 rounded-lg p-4 hover:border-primary transition-colors"
+                className="interactive-tile bg-white border border-slate-200 rounded-[1.25rem] p-4 hover:border-primary transition-colors"
               >
                 <p className="font-semibold text-slate-900">{t.sections.desactivar.browsers[2].name}</p>
                 <p className="text-xs text-slate-600">{t.sections.desactivar.browsers[2].text}</p>
@@ -186,7 +204,7 @@ export default function Cookies() {
                 href={browserUrls.edge} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white border border-slate-200 rounded-lg p-4 hover:border-primary transition-colors"
+                className="interactive-tile bg-white border border-slate-200 rounded-[1.25rem] p-4 hover:border-primary transition-colors"
               >
                 <p className="font-semibold text-slate-900">{t.sections.desactivar.browsers[3].name}</p>
                 <p className="text-xs text-slate-600">{t.sections.desactivar.browsers[3].text}</p>
@@ -194,7 +212,7 @@ export default function Cookies() {
             </div>
           </section>
 
-          <section className="mb-10">
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.detalle.title}</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-sm border-collapse">
@@ -220,14 +238,14 @@ export default function Cookies() {
             </div>
           </section>
 
-          <section className="mb-10">
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.sections.cambios.title}</h2>
             <p className="text-slate-700 leading-relaxed">
               {t.sections.cambios.content}
             </p>
           </section>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-5 mb-10">
+          <div className="bg-blue-50 border border-blue-200 rounded-[1.75rem] p-5">
             <p className="text-sm text-slate-700">
               <strong>{t.sections.contacto.label}</strong> {t.sections.contacto.text}{' '}
               <a href="mailto:info@vision360ia.com" className="text-primary hover:underline font-medium">
@@ -236,10 +254,11 @@ export default function Cookies() {
             </p>
           </div>
 
-          <div className="border-t border-slate-200 pt-6 mt-12">
+          <div className="border-t border-slate-200 pt-6 mt-2">
             <p className="text-sm text-slate-500">
               {common.lastUpdated}: {new Date().toLocaleDateString(language === 'ca' ? 'ca-ES' : language === 'eu' ? 'eu-ES' : 'es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
             </p>
+          </div>
           </div>
         </article>
       </div>

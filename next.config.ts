@@ -3,6 +3,7 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
+  allowedDevOrigins: ['127.0.0.1'],
   typescript: {
     ignoreBuildErrors: false,
   },
@@ -65,6 +66,7 @@ const nextConfig: NextConfig = {
   },
   
   images: {
+    qualities: [75, 85],
     remotePatterns: [
       {
         protocol: 'https',

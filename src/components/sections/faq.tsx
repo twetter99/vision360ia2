@@ -44,18 +44,20 @@ export function Faq({ translations: initialTranslations }: { translations: Trans
         title={t.title}
         description={t.description}
       />
-      <Accordion type="single" collapsible className="mx-auto max-w-3xl">
-        {faqs.map((faq, index) => (
-          <AccordionItem key={faq.id} value={`item-${index + 1}`}>
-            <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-base text-muted-foreground text-justify">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <div className="mx-auto max-w-4xl rounded-[2rem] border border-white/70 bg-white/88 p-4 shadow-[var(--shadow-soft)] backdrop-blur-sm md:p-6">
+        <Accordion type="single" collapsible className="mx-auto max-w-3xl space-y-3">
+          {faqs.map((faq, index) => (
+            <AccordionItem key={faq.id} value={`item-${index + 1}`} className="rounded-2xl border border-slate-200/80 bg-slate-50/70 px-5 data-[state=open]:bg-white">
+              <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-base text-muted-foreground text-justify">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
     </SectionWrapper>
   );
 }

@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "hero",
-      "description": "futuristic ADAS interface for vehicle safety",
-      "imageUrl": "/images/header.jpg",
-      "imageHint": "automotive interface"
+      "description": "bus with AI detection overlays for pedestrians and cyclists in urban night scene",
+      "imageUrl": "/images/imagen_header_v4.jpg",
+      "imageHint": "smart bus safety"
     },
     {
       "id": "product1",

@@ -1,13 +1,13 @@
 
-import { Space_Grotesk, Inter } from 'next/font/google';
+import { Sora, Inter } from 'next/font/google';
 import './globals.css';
 import { ClientLayout } from '@/components/layout/client-layout';
 import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/analytics/google-tag-manager';
 import type { Metadata, Viewport } from 'next';
 
-const spaceGrotesk = Space_Grotesk({ 
+const sora = Sora({ 
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
+  weight: ['600', '700', '800'],
   variable: '--font-headline',
   display: 'swap',
 });
@@ -79,16 +79,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: './',
-    languages: {
-      'es-ES': 'https://www.vision360ia.com',
-      'ca-ES': 'https://www.vision360ia.com',
-      'eu-ES': 'https://www.vision360ia.com',
-    },
   },
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    alternateLocale: ['ca_ES', 'eu_ES'],
     url: 'https://www.vision360ia.com',
     siteName: 'Vision360IA',
     title: 'Sistemas ADAS y Visión Perimetral 360° | Vision360IA',
@@ -139,19 +133,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="es" className={`${sora.variable} ${inter.variable}`}>
       <head>
         {/* Preconnect para recursos externos - mejora LCP */}
         <link rel="preconnect" href="https://player.vimeo.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        
-        {/* hreflang para SEO multi-idioma */}
-        <link rel="alternate" hrefLang="es" href="https://www.vision360ia.com" />
-        <link rel="alternate" hrefLang="ca" href="https://www.vision360ia.com" />
-        <link rel="alternate" hrefLang="eu" href="https://www.vision360ia.com" />
-        <link rel="alternate" hrefLang="x-default" href="https://www.vision360ia.com" />
         
         {/* Google Search Console */}
         <meta name="google-site-verification" content="Qq7WtxHJTiP4ZrM5ZK_83vhgNClaQrfpk6RBjMv_ymw" />

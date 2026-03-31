@@ -3,6 +3,7 @@
 import Script from 'next/script';
 
 const GTM_ID = 'GTM-NNR2F4HG';
+const isProduction = process.env.NODE_ENV === 'production';
 
 /**
  * Google Tag Manager - Script principal
@@ -10,6 +11,10 @@ const GTM_ID = 'GTM-NNR2F4HG';
  * GA4 (G-EH61TW7769) se configura dentro de GTM, no aquí
  */
 export function GoogleTagManager() {
+  if (!isProduction) {
+    return null;
+  }
+
   return (
     <Script
       id="gtm-script"
@@ -32,6 +37,10 @@ export function GoogleTagManager() {
  * Debe colocarse inmediatamente después de <body>
  */
 export function GoogleTagManagerNoscript() {
+  if (!isProduction) {
+    return null;
+  }
+
   return (
     <noscript>
       <iframe

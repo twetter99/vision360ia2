@@ -142,7 +142,7 @@ export const legalTranslations = {
         },
         tipos: {
           title: '2. Tipos de cookies que usamos',
-          tecnicas: { badge: '🟢 Cookies técnicas (obligatorias)', description: 'Necesarias para que la web funcione correctamente. Permiten la navegación básica y el uso de funcionalidades esenciales.', noConsent: 'No requieren consentimiento según la normativa vigente.', example: 'Ejemplo: Sesión de usuario, idioma seleccionado, consentimiento de cookies' },
+          tecnicas: { badge: '🟢 Cookies técnicas (obligatorias)', description: 'Necesarias para que la web funcione correctamente. Permiten la navegación básica y el uso de funcionalidades esenciales.', noConsent: 'No requieren consentimiento según la normativa vigente.', example: 'Ejemplo: Sesión de usuario, preferencias de cookies y seguridad básica del sitio' },
           analiticas: { badge: '🔵 Cookies analíticas', description: 'Permiten medir y analizar el comportamiento de los usuarios para mejorar el sitio web.', consent: '⚠️ Requieren consentimiento previo', providers: 'Proveedores:', list: ['Google Analytics', 'Vercel Analytics', 'Firebase Analytics'] },
           terceros: { badge: '🟣 Cookies de terceros', description: 'Proveedores externos que integran funcionalidades en nuestro sitio.', consent: '⚠️ Requieren consentimiento previo', providers: [{ name: 'Vimeo (reproducción de vídeos)', description: 'Cookies de reproducción y estadísticas de visionado' }, { name: 'Google (servicios cloud y analítica)', description: 'Cookies de rendimiento y medición' }] },
         },
@@ -161,7 +161,6 @@ export const legalTranslations = {
           title: '5. Detalle de cookies utilizadas',
           headers: { cookie: 'Cookie', proveedor: 'Proveedor', finalidad: 'Finalidad', duracion: 'Duración' },
           cookies: [
-            { name: 'lang', provider: 'Vision360IA', purpose: 'Idioma seleccionado', duration: '1 año' },
             { name: 'cookie_consent', provider: 'Vision360IA', purpose: 'Preferencias de cookies', duration: '1 año' },
             { name: '_ga', provider: 'Google Analytics', purpose: 'Identificador de usuario', duration: '2 años' },
             { name: 'vuid', provider: 'Vimeo', purpose: 'Reproducción de vídeos', duration: '2 años' },

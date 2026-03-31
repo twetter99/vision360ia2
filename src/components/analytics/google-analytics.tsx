@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, Suspense } from 'react';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
+const isProduction = process.env.NODE_ENV === 'production';
 
 // Componente interno que usa useSearchParams (requiere Suspense)
 function GoogleAnalyticsTracker() {
@@ -26,7 +27,7 @@ function GoogleAnalyticsTracker() {
 }
 
 export function GoogleAnalytics() {
-  if (!GA_MEASUREMENT_ID) {
+  if (!GA_MEASUREMENT_ID || !isProduction) {
     return null;
   }
 

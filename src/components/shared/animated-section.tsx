@@ -27,33 +27,30 @@ export function AnimatedSection({
   style,
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLElement>(null);
-  // Mantenemos las opciones ajustadas del IntersectionObserver
   const isInView = useInView(ref, { once, rootMargin: '0px', threshold: 0.1 });
 
-  // Clases base para la transición
-  const baseTransitionClasses = 'transition-all duration-600 ease-out';
+  const baseTransitionClasses =
+    'will-change-transform transition-[opacity,transform,filter] duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none';
 
-  // Clases para el estado inicial (invisible, y movido si es slide-up)
   const initialClasses = cn(
-    'opacity-0',
-    animation === 'slide-up' && 'translate-y-[30px]' // Empieza 30px más abajo
+    'opacity-0 motion-reduce:opacity-100',
+    animation === 'slide-up' && 'translate-y-8 motion-reduce:translate-y-0'
   );
 
-  // Clases para el estado final (visible, en posición original)
   const finalClasses = 'opacity-100 translate-y-0';
 
   return (
     <Component
       ref={ref}
       className={cn(
-        baseTransitionClasses, // Aplica siempre las propiedades de transición
-        initialClasses,        // Aplica siempre el estado inicial
-        isInView && finalClasses, // Aplica el estado final SOLO cuando está en vista
+        baseTransitionClasses,
+        initialClasses,
+        isInView && finalClasses,
         className
       )}
       style={{
-        transitionDelay: `${delay}s`, // Usa transition-delay para el escalonamiento
-        ...style, // Permite estilos adicionales
+        transitionDelay: `${delay}s`,
+        ...style,
       }}
     >
       {children}
