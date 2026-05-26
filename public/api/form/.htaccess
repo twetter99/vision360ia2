@@ -1,0 +1,15 @@
+# Bloquear acceso directo a config, composer y vendor.
+# Solo contacto.php debe ser accesible públicamente.
+
+<FilesMatch "^(config\.php|config\.example\.php|composer\.json|composer\.lock|\.env.*)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Bloquear cualquier ruta dentro de vendor/
+    RewriteRule ^vendor(/.*)?$ - [F,L]
+</IfModule>
+
+# Forzar UTF-8 en respuestas PHP por defecto.
+AddDefaultCharset UTF-8
