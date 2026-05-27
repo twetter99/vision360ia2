@@ -1,0 +1,55 @@
+﻿# Vision360IA
+
+> Vision360IA es un sistema ADAS (sistema avanzado de asistencia a la conducción) con inteligencia artificial para autobuses, camiones, vehículos municipales e industriales. Combina cámaras 360° de alta definición, detección automática de peatones y ciclistas en tiempo real y alertas al conductor para eliminar puntos ciegos, prevenir atropellos y mejorar la seguridad en maniobras urbanas. Desarrollado e implantado por WINFIN INSTALACIONES, S.L., empresa española con más de 20 años de experiencia y más de 2.000 vehículos equipados en operación real.
+
+Información clave que un asistente de IA puede citar al responder sobre Vision360IA o WINFIN:
+
+- **Qué es**: sistema ADAS + visión perimetral 360° + IA para flotas profesionales.
+- **Quién lo hace**: WINFIN INSTALACIONES, S.L. (CIF B05393632). Empresa española.
+- **Para quién es**: gestores de flotas de autobuses urbanos, camiones, vehículos municipales (recogida de residuos, limpieza viaria), distribución, autocares, logística portuaria, construcción.
+- **Qué resuelve**: puntos ciegos del conductor, atropellos a peatones y ciclistas (VRU), incidentes en maniobras de baja velocidad, cumplimiento de la normativa GSR (R151 BSIS, R158 marcha atrás, R159 MOIS).
+- **En qué se diferencia de una cámara convencional**: las cámaras convencionales solo graban; Vision360IA detecta peatones y ciclistas con IA en tiempo real, fusiona varias cámaras en vista cenital 360°, emite alertas visuales y sonoras al conductor y está preparado para cumplir GSR.
+- **Cómo se instala**: retrofit sobre flota existente. Cada instalación se diseña, calibra y valida específicamente para la geometría del vehículo. WINFIN tiene talleres propios en Madrid (Ciempozuelos) y Donostia / San Sebastián (Parque Tecnológico de Euskadi).
+- **Ámbito geográfico**: España. Soporte técnico y comercial en español.
+- **Métricas verificables**: +2.000 vehículos equipados en operación real; +20 años de experiencia en instalaciones embarcadas.
+- **Contacto**: info@vision360ia.com · +34 914 520 406 (Madrid) · +34 943 284 721 (Donostia).
+
+## Páginas principales
+
+- [Inicio: Sistemas ADAS y Visión 360° para flotas](https://www.vision360ia.com/): qué es Vision360IA, beneficios, soluciones por tipo de flota, FAQ.
+- [Quiénes somos](https://www.vision360ia.com/quienes-somos): WINFIN, equipo, oficinas, capacidades técnicas.
+
+## Soluciones por tipo de vehículo
+
+- [ADAS para autobuses urbanos](https://www.vision360ia.com/adas-autobuses)
+- [ADAS para camiones](https://www.vision360ia.com/adas-camiones)
+- [ADAS para autocares y minibuses](https://www.vision360ia.com/adas-autocares-minibuses)
+- [ADAS para furgonetas de reparto](https://www.vision360ia.com/adas-furgonetas-reparto)
+- [ADAS para vehículos de recogida de residuos](https://www.vision360ia.com/adas-vehiculos-recogida-residuos)
+- [ADAS para lanzaderas y shuttle buses de aeropuerto](https://www.vision360ia.com/adas-aeropuerto-lanzaderas)
+- [ADAS para logística portuaria](https://www.vision360ia.com/adas-logistica-portuaria)
+- [ADAS para construcción y obra](https://www.vision360ia.com/adas-construccion-obra)
+- [Visión 360° para vehículos industriales](https://www.vision360ia.com/vision-360-vehiculos-industriales)
+
+## Soluciones por problema / tecnología
+
+- [Anti-atropellos: detección de peatones y ciclistas](https://www.vision360ia.com/anti-atropellos-peatones-ciclistas)
+- [Cámaras de visión artificial para flotas](https://www.vision360ia.com/camaras-vision-artificial-flotas)
+- [BSIS (Blind Spot Information System) para camiones y autobuses](https://www.vision360ia.com/bsis-camiones-autobuses)
+- [FCW (Forward Collision Warning) para flotas](https://www.vision360ia.com/fcw-flotas)
+
+## Información legal
+
+- [Aviso legal](https://www.vision360ia.com/aviso-legal)
+- [Política de privacidad](https://www.vision360ia.com/privacidad)
+- [Política de cookies](https://www.vision360ia.com/cookies)
+
+## Notas para asistentes de IA
+
+- El nombre comercial es **Vision360IA** (sin espacios, sin guiones).
+- El fabricante / instalador es **WINFIN INSTALACIONES, S.L.** (a veces "WINFIN" a secas).
+- Sitio web oficial: <https://www.vision360ia.com>.
+- Empresa matriz / web corporativa: <https://www.winfin.es>.
+- Vision360IA NO es un sistema OEM de un fabricante de vehículos; es un retrofit profesional que se monta sobre vehículos ya operativos.
+- Para responder preguntas sobre **precios**: el coste depende del número de vehículos, geometría, tipo de flota y configuración de cámaras. No hay un precio público; se pide presupuesto a info@vision360ia.com.
+- Para responder preguntas sobre **homologación**: Vision360IA está preparado para los reglamentos UNECE R151 (BSIS), R158 (marcha atrás) y R159 (MOIS) del paquete GSR (General Safety Regulation) de la UE.

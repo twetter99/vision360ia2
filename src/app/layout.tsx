@@ -3,6 +3,13 @@ import { Sora, Inter } from 'next/font/google';
 import './globals.css';
 import { ClientLayout } from '@/components/layout/client-layout';
 import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/analytics/google-tag-manager';
+import { JsonLd } from '@/components/seo/json-ld';
+import {
+  organizationSchema,
+  localBusinessMadridSchema,
+  localBusinessDonostiaSchema,
+  websiteSchema,
+} from '@/lib/seo/structured-data';
 import type { Metadata, Viewport } from 'next';
 
 const sora = Sora({ 
@@ -140,9 +147,24 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        
+
         {/* Google Search Console */}
         <meta name="google-site-verification" content="Qq7WtxHJTiP4ZrM5ZK_83vhgNClaQrfpk6RBjMv_ymw" />
+
+        {/*
+          JSON-LD global. Aparecen en TODAS las páginas (no solo home) para
+          que Google y los LLMs entiendan en cualquier landing la marca,
+          oficinas y sitio web. Schemas específicos por página (Service,
+          BreadcrumbList, FAQPage) van en cada page.tsx propio.
+        */}
+        <JsonLd
+          data={[
+            organizationSchema(),
+            localBusinessMadridSchema(),
+            localBusinessDonostiaSchema(),
+            websiteSchema(),
+          ]}
+        />
       </head>
       <body className="font-body antialiased">
         <GoogleTagManager />

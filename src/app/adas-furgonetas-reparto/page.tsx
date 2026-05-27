@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SupportPage } from '@/components/sections/support-page';
 
 export const metadata: Metadata = {
-  title: 'ADAS para furgonetas de reparto con visión 360° | Vision360IA',
+  title: 'ADAS para furgonetas de reparto con visión 360°',
   description: 'Mejora maniobras, reparto urbano y seguridad operativa con visión 360°, cámaras IA y ADAS para furgonetas de reparto y flotas ligeras.',
   keywords: ['ADAS furgonetas reparto', 'visión 360 furgonetas', 'cámaras IA furgonetas', 'seguridad reparto urbano', 'ADAS flotas ligeras'],
   alternates: {

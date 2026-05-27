@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SupportPage } from '@/components/sections/support-page';
 
 export const metadata: Metadata = {
-  title: 'ADAS para aeropuerto y lanzaderas con visión 360° | Vision360IA',
+  title: 'ADAS para aeropuerto y lanzaderas con visión 360°',
   description: 'Solución ADAS con visión 360°, detección VRU y cámaras inteligentes para shuttle buses, lanzaderas, minibuses y operación en terminales aeroportuarias.',
   keywords: ['ADAS aeropuerto', 'lanzaderas aeropuerto', 'visión 360 shuttle bus', 'ADAS minibuses aeropuerto', 'seguridad terminales aeropuerto'],
   alternates: {

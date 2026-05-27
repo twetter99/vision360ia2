@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SupportPage } from '@/components/sections/support-page';
 
 export const metadata: Metadata = {
-  title: 'Sistema BSIS para camiones y autobuses | Vision360IA',
+  title: 'Sistema BSIS para camiones y autobuses',
   description: 'Qué es un sistema BSIS, cuándo aplica en camiones y autobuses y cómo se integra con visión 360°, protección VRU y cumplimiento GSR en flotas profesionales.',
   keywords: ['sistema BSIS', 'BSIS camiones', 'BSIS autobuses', 'R151 BSIS', 'protección VRU camiones', 'GSR camiones autobuses'],
   alternates: {

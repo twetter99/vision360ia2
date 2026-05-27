@@ -50,7 +50,7 @@ const sharedRelatedLinks = {
 export const solutionPages: Record<string, SolutionPageEntry> = {
   'adas-autobuses': {
     metadata: {
-      title: 'ADAS para autobuses con cámaras 360° y detección VRU | Vision360IA',
+      title: 'ADAS para autobuses con cámaras 360° y detección VRU',
       description: 'Reduce puntos ciegos y accidentes en autobuses urbanos e interurbanos con cámaras 360°, detección de peatones y ciclistas y solución preparada para cumplimiento GSR en flotas profesionales.',
       keywords: ['ADAS autobuses', 'ADAS autobuses urbanos', 'visión 360 autobuses', 'anti atropellos autobuses', 'cámaras visión artificial autobuses', 'GSR autobuses', 'puntos ciegos autobuses'],
       openGraph: {
@@ -264,7 +264,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'adas-camiones': {
     metadata: {
-      title: 'ADAS para camiones con cámaras 360° y alertas VRU | Vision360IA',
+      title: 'ADAS para camiones con cámaras 360° y alertas VRU',
       description: 'Reduce puntos ciegos y riesgo de siniestro en camiones y transporte pesado con cámaras 360°, detección de peatones y ciclistas y solución preparada para retrofit y cumplimiento GSR.',
       keywords: ['ADAS camiones', 'ADAS transporte pesado', 'visión 360 camiones', 'cámaras visión artificial camiones', 'anti atropellos camiones', 'puntos ciegos camiones', 'GSR camiones'],
       openGraph: {
@@ -402,7 +402,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'anti-atropellos-peatones-ciclistas': {
     metadata: {
-      title: 'Sistema anti-atropellos con detección de peatones y ciclistas | Vision360IA',
+      title: 'Sistema anti-atropellos con detección de peatones y ciclistas',
       description: 'Reduce riesgo de atropello en autobuses, camiones y flotas urbanas con detección de peatones y ciclistas, alertas en tiempo real y solución preparada para cumplimiento GSR.',
       keywords: ['anti atropellos peatones', 'detección peatones ciclistas', 'ADAS VRU', 'sistema anti atropellos vehículos', 'protección usuarios vulnerables vía', 'alerta peatones camiones', 'detección ciclistas autobuses'],
       openGraph: {
@@ -513,7 +513,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'camaras-vision-artificial-flotas': {
     metadata: {
-      title: 'Cámaras de visión artificial para flotas y operación inteligente | Vision360IA',
+      title: 'Cámaras de visión artificial para flotas y operación inteligente',
       description: 'Convierte vídeo en decisiones operativas con cámaras de visión artificial para flotas: detección de peatones, análisis de conducción, eventos en tiempo real e integración con gestión de flota.',
       keywords: ['cámaras visión artificial flotas', 'visión artificial vehículos', 'cámaras IA transporte', 'cámaras inteligentes flotas', 'visión por computador vehículos', 'análisis vídeo flotas', 'cámaras HD camiones'],
       openGraph: {
@@ -626,7 +626,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'adas-vehiculos-recogida-residuos': {
     metadata: {
-      title: 'ADAS para recogida de residuos con protección de operarios | Vision360IA',
+      title: 'ADAS para recogida de residuos con protección de operarios',
       description: 'Reduce riesgo en vehículos de recogida de residuos con visión 360°, detección de operarios, peatones y ciclistas y solución diseñada para maniobras urbanas de baja velocidad.',
       keywords: ['ADAS recogida residuos', 'visión 360 camión basura', 'ADAS RSU', 'cámaras vehículos recogida', 'anti atropellos recogida residuos', 'seguridad operarios recogida', 'ADAS vehículos municipales'],
       openGraph: {
@@ -736,7 +736,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'vision-360-vehiculos-industriales': {
     metadata: {
-      title: 'Visión 360° para vehículos industriales y maquinaria pesada | Vision360IA',
+      title: 'Visión 360° para vehículos industriales y maquinaria pesada',
       description: 'Reduce puntos ciegos y riesgo persona-máquina con visión 360° para vehículos industriales, obra y maquinaria pesada. Cámaras robustas, detección inteligente y despliegue sobre parque real.',
       keywords: ['visión 360 vehículos industriales', 'cámaras maquinaria pesada', 'ADAS vehículos industriales', 'visión perimetral construcción', 'seguridad vehículos obra', 'cámaras excavadora', 'anticolisión maquinaria'],
       openGraph: {

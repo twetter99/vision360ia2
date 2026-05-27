@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SupportPage } from '@/components/sections/support-page';
 
 export const metadata: Metadata = {
-  title: 'ADAS para autocares y minibuses con visión 360° | Vision360IA',
+  title: 'ADAS para autocares y minibuses con visión 360°',
   description: 'Solución ADAS con visión 360°, detección de peatones y protección VRU para autocares, minibuses, lanzaderas y transporte de viajeros con maniobras críticas.',
   keywords: ['ADAS autocares', 'ADAS minibuses', 'visión 360 autocares', 'detección peatones minibuses', 'seguridad lanzaderas aeropuerto', 'sistema ADAS transporte viajeros'],
   alternates: {

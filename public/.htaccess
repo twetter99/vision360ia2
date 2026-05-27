@@ -59,7 +59,23 @@
 </IfModule>
 
 # ---------------------------------------------------------------------
-# 3) Compresión
+# 3) Charset por defecto UTF-8 (importante para .txt como llms.txt)
+#    Sin esto Safari interpreta .txt como ISO-8859-1 y los acentos
+#    aparecen como "más" → "mÃ¡s".
+#    En SiteGround (nginx delante de Apache) hay que forzar el header
+#    explícitamente porque AddDefaultCharset no se propaga.
+# ---------------------------------------------------------------------
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .txt .html .css .js .json .xml .svg
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.txt$">
+        Header set Content-Type "text/plain; charset=utf-8"
+    </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 4) Compresión
 # ---------------------------------------------------------------------
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
