@@ -91,7 +91,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
       eyebrow: 'Captacion y deteccion',
       modalDescription: 'Camara 1080P con sensor CMOS 1/2.9, optica de mas de 170° y vision nocturna de 3 a 5 metros, diseñada para captacion perimetral en maniobras criticas y operacion exterior exigente.',
       modalSpecs: '1080P • CMOS 1/2.9 • >170° • IP69K • ISO 16750-3 • -20°C a +70°C',
-      image: '/images/producto/detalle_camara_vision360.jpg',
+      image: '/images/producto/detalle_camara_vision360.webp',
       alt: 'Despiece tecnico de la camara Vision360 con lente, iluminacion infrarroja, sensor y carcasa.',
     },
     {
@@ -99,7 +99,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
       eyebrow: 'Procesamiento y conectividad',
       modalDescription: 'Unidad basada en ARM Cortex-A7 dual core con IA integrada y capacidad aproximada de 2 TOPS, preparada para gestionar hasta 6 camaras 1080P, visualizacion panoramica 2D/3D, codificacion H.264, almacenamiento ampliable y conectividad 4G, WiFi y GPS para operacion conectada de flota.',
       modalSpecs: 'ARM Cortex-A7 • 2 TOPS • hasta 6 camaras • H.264 • 4G/WiFi/GPS • 8-32V',
-      image: '/images/producto/detalle_cpu_vision360.jpg',
+      image: '/images/producto/detalle_cpu_vision360.webp',
       alt: 'Despiece tecnico de la unidad central Vision360 con placa principal, conectores, almacenamiento y cableado.',
     },
     {
@@ -107,7 +107,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
       eyebrow: 'Interfaz en cabina',
       modalDescription: 'Monitor tactil capacitivo de 1024x600 con brillo de 600 cd/m², visualizacion de hasta 4 camaras simultaneas y triggers de activacion automatica para presentar al conductor la informacion relevante en cada maniobra sin añadir complejidad operativa.',
       modalSpecs: '1024x600 • 4 camaras • tactil capacitivo • 600 cd/m² • 10-32V',
-      image: '/images/producto/detalle_monitor_vision360.jpg',
+      image: '/images/producto/detalle_monitor_vision360.webp',
       alt: 'Despiece tecnico del monitor Vision360 con pantalla, carcasa, soporte y mando de control.',
     },
     {
@@ -115,7 +115,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
       eyebrow: 'Robustez de instalacion',
       modalDescription: 'Cableado automotriz de 4 pines con conductor de cobre puro, compatible con señal AHD y CVBS, preparado para alimentacion de 12 a 24V y para entornos de trabajo con vibracion, suciedad y exigencia termica continua.',
       modalSpecs: '4 pines • cobre puro • AHD/CVBS • 12-24V • -20°C a +80°C',
-      image: '/images/producto/detalle_manguera_vision360.jpg',
+      image: '/images/producto/detalle_manguera_vision360.webp',
       alt: 'Detalle tecnico del cableado Vision360 con conectores circulares, recubrimiento y esquema de conexion.',
     },
   ];
