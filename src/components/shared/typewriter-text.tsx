@@ -123,8 +123,15 @@ export function TypewriterRotator({
           {line}
         </span>
       ))}
+      {/*
+       * items-start (NO items-center): cuando la frase corta de 1 línea se
+       * centraría verticalmente en una celda dimensionada para 3 líneas,
+       * Chrome cuenta el "salto vertical" como CLS al rotar. Alineando al
+       * top todas las frases empiezan en la misma baseline superior; las
+       * más largas se extienden hacia abajo sin mover su punto de anclaje.
+       */}
       <span
-        className={`col-start-1 row-start-1 flex items-center ${contentClassName}`}
+        className={`col-start-1 row-start-1 flex items-start ${contentClassName}`}
       >
         <span>
           {currentLine.slice(0, charCount)}
