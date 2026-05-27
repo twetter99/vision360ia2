@@ -12,18 +12,33 @@ import {
 } from '@/lib/seo/structured-data';
 import type { Metadata, Viewport } from 'next';
 
-const sora = Sora({ 
+// Notas sobre display:
+//   - 'swap'    → muestra fallback inmediatamente, cambia a la fuente real
+//                  cuando llega. Provoca FOUT y CLS al cambiar las métricas.
+//   - 'fallback'→ muestra fallback inmediatamente, da 100ms a la fuente real;
+//                  si no llega, descarta. SIN cambio posterior → sin CLS.
+//   - 'optional'→ similar a 'fallback' pero solo carga la real si cae en cache.
+//
+// Elegimos 'fallback' como compromiso: usuarios con buena conexión ven Sora
+// e Inter en la primera carga (lo común en banda ancha); el resto ven el
+// fallback ajustado y NO sufren CLS por swap posterior.
+//
+// adjustFontFallback (true por defecto en Next 14+) ajusta las métricas
+// del fallback (system-ui) a las de Sora/Inter para minimizar el shift.
+const sora = Sora({
   subsets: ['latin'],
   weight: ['600', '700', '800'],
   variable: '--font-headline',
-  display: 'swap',
+  display: 'fallback',
+  adjustFontFallback: true,
 });
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-body',
-  display: 'swap',
+  display: 'fallback',
+  adjustFontFallback: true,
 });
 
 // ✅ SEO: Metadata global - OPTIMIZADA PARA B2B FLOTAS ESPAÑA
