@@ -123,7 +123,7 @@ export function Solutions() {
             Selecciona tu tipo de flota
           </p>
           <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-center md:text-[15px]">
-            Cada tipologia exige una implantacion distinta. Accede a la solucion especifica para autobuses, camiones, viajeros, industria, RSU o reparto.
+            Cada tipología exige una implantación distinta. Accede a la solución específica para autobuses, camiones, viajeros, industria, RSU o reparto.
           </p>
         </div>
 
@@ -239,7 +239,7 @@ export function Solutions() {
                       href={solution.href}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all duration-300 hover:gap-3"
                     >
-                      <span>Ver solucion</span>
+                      <span>Ver solución</span>
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </Link>
                   </div>

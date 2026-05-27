@@ -1,4 +1,5 @@
 
+import { AeoContext } from '@/components/sections/aeo-context';
 import { Contact } from '@/components/sections/contact';
 import { Faq } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
@@ -165,6 +166,13 @@ export default async function Home() {
 
       <div className="flex flex-col">
         <Hero translations={defaultTranslations} />
+        {/*
+         * Bloque AEO (Answer Engine Optimization): contenido server-side
+         * estructurado en 5 sub-secciones (definición, audiencia, problema,
+         * diferencia, por qué WINFIN). Inyectado después del Hero para que
+         * Google, Bing y los LLMs lo encuentren temprano en el HTML.
+         */}
+        <AeoContext />
         <Solutions />
         <WhyUs translations={defaultTranslations} />
         <ProductShowcase translations={defaultTranslations} />
