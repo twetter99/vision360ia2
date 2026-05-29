@@ -35,7 +35,7 @@ const sharedRelatedLinks = {
   autobuses: { href: '/adas-autobuses', label: 'ADAS para Autobuses' },
   camiones: { href: '/adas-camiones', label: 'ADAS para Camiones' },
   antiAtropellos: { href: '/anti-atropellos-peatones-ciclistas', label: 'Sistema Anti-Atropellos' },
-  camaras: { href: '/camaras-vision-artificial-flotas', label: 'Cámaras con Visión Artificial' },
+  camaras: { href: '/camaras-vision-artificial-flotas', label: 'Cámaras 360 para flotas' },
   vision360: { href: '/vision-360-vehiculos-industriales', label: 'Visión 360° Vehículos Industriales' },
   residuos: { href: '/adas-vehiculos-recogida-residuos', label: 'ADAS Recogida de Residuos' },
   bsis: { href: '/bsis-camiones-autobuses', label: 'Sistema BSIS para Camiones y Autobuses' },
@@ -510,17 +510,17 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'camaras-vision-artificial-flotas': {
     metadata: {
-      title: 'Cámaras de visión artificial para flotas y operación inteligente',
-      description: 'Convierte vídeo en decisiones operativas con cámaras de visión artificial para flotas: detección de peatones, análisis de conducción, eventos en tiempo real e integración con gestión de flota.',
-      keywords: ['cámaras visión artificial flotas', 'visión artificial vehículos', 'cámaras IA transporte', 'cámaras inteligentes flotas', 'visión por computador vehículos', 'análisis vídeo flotas', 'cámaras HD camiones'],
+      title: 'Cámaras 360 de seguridad para camiones, autobuses y flotas',
+      description: 'Cámaras 360 de seguridad y visión artificial para camiones, autobuses y vehículos industriales: visión perimetral, detección de peatones y ciclistas y eliminación de puntos ciegos. Instaladas y calibradas por WINFIN sobre tu flota.',
+      keywords: ['cámaras 360 camiones', 'cámaras 360 autobuses', 'cámaras para camiones', 'cámaras para autobuses', 'cámaras seguridad flota', 'cámaras visión artificial flotas', 'cámaras visión perimetral vehículos', 'cámaras 360 vehículos industriales'],
       openGraph: {
-        title: 'Visión artificial aplicada a flotas | Vision360IA',
-        description: 'Cámaras inteligentes para detectar riesgos, analizar conducción y convertir eventos en decisiones útiles para seguridad y operación.',
+        title: 'Cámaras 360 de seguridad para camiones, autobuses y flotas | Vision360IA',
+        description: 'Cámaras 360 con visión perimetral y detección por IA para eliminar puntos ciegos en camiones, autobuses y vehículos industriales.',
       },
       alternates: { canonical: 'https://www.vision360ia.com/camaras-vision-artificial-flotas' },
     },
     page: {
-      breadcrumbLabel: 'Cámaras con Visión Artificial',
+      breadcrumbLabel: 'Cámaras 360 para flotas',
       schemas: [
         {
           '@context': 'https://schema.org',
@@ -552,8 +552,8 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
       hero: {
         badge: 'Visión Artificial',
         badgeIcon: Camera,
-        title: 'Convierte vídeo en decisiones operativas para tu flota',
-        description: 'Cámaras de visión artificial para detectar riesgos, analizar conducción y enviar eventos útiles a operación, seguridad y gestión de flota.',
+        title: 'Cámaras 360 de seguridad para camiones, autobuses y flotas',
+        description: 'Cámaras 360 con visión perimetral y visión artificial que eliminan puntos ciegos, detectan peatones y ciclistas y convierten el vídeo en alertas útiles para la seguridad y la operación de tu flota.',
         highlights: ['Detección de personas y objetos', 'Análisis de conducción y fatiga', 'Integración cloud y FMS', 'Procesamiento local sin internet'],
         primaryCtaLabel: 'Ver si encaja en mi flota',
         secondaryCtaLabel: 'Ver demostración en vídeo',
