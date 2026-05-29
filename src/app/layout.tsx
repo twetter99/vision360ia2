@@ -3,20 +3,42 @@ import { Sora, Inter } from 'next/font/google';
 import './globals.css';
 import { ClientLayout } from '@/components/layout/client-layout';
 import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/analytics/google-tag-manager';
+import { JsonLd } from '@/components/seo/json-ld';
+import {
+  organizationSchema,
+  localBusinessMadridSchema,
+  localBusinessDonostiaSchema,
+  websiteSchema,
+} from '@/lib/seo/structured-data';
 import type { Metadata, Viewport } from 'next';
 
-const sora = Sora({ 
+// Notas sobre display:
+//   - 'swap'    → muestra fallback inmediatamente, cambia a la fuente real
+//                  cuando llega. Provoca FOUT y CLS al cambiar las métricas.
+//   - 'fallback'→ muestra fallback inmediatamente, da 100ms a la fuente real;
+//                  si no llega, descarta. SIN cambio posterior → sin CLS.
+//   - 'optional'→ similar a 'fallback' pero solo carga la real si cae en cache.
+//
+// Elegimos 'fallback' como compromiso: usuarios con buena conexión ven Sora
+// e Inter en la primera carga (lo común en banda ancha); el resto ven el
+// fallback ajustado y NO sufren CLS por swap posterior.
+//
+// adjustFontFallback (true por defecto en Next 14+) ajusta las métricas
+// del fallback (system-ui) a las de Sora/Inter para minimizar el shift.
+const sora = Sora({
   subsets: ['latin'],
   weight: ['600', '700', '800'],
   variable: '--font-headline',
-  display: 'swap',
+  display: 'fallback',
+  adjustFontFallback: true,
 });
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-body',
-  display: 'swap',
+  display: 'fallback',
+  adjustFontFallback: true,
 });
 
 // ✅ SEO: Metadata global - OPTIMIZADA PARA B2B FLOTAS ESPAÑA
@@ -140,9 +162,24 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        
+
         {/* Google Search Console */}
         <meta name="google-site-verification" content="Qq7WtxHJTiP4ZrM5ZK_83vhgNClaQrfpk6RBjMv_ymw" />
+
+        {/*
+          JSON-LD global. Aparecen en TODAS las páginas (no solo home) para
+          que Google y los LLMs entiendan en cualquier landing la marca,
+          oficinas y sitio web. Schemas específicos por página (Service,
+          BreadcrumbList, FAQPage) van en cada page.tsx propio.
+        */}
+        <JsonLd
+          data={[
+            organizationSchema(),
+            localBusinessMadridSchema(),
+            localBusinessDonostiaSchema(),
+            websiteSchema(),
+          ]}
+        />
       </head>
       <body className="font-body antialiased">
         <GoogleTagManager />

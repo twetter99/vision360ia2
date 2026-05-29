@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 @layer base {
+  /*
+   * Evita scroll horizontal en viewports muy estrechos (<320px) o cuando
+   * algún hijo desborda por paddings ancho (px-6 + container fijo).
+   * `overflow-x: clip` no rompe position:fixed/sticky (a diferencia de
+   * `overflow-x: hidden`). Soportado en >95% de navegadores modernos.
+   */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   h1,
   h2,
   h3,

@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SupportPage } from '@/components/sections/support-page';
 
 export const metadata: Metadata = {
-  title: 'Sistema FCW para flotas y vehículos industriales | Vision360IA',
+  title: 'Sistema FCW para flotas y vehículos industriales',
   description: 'Qué es FCW, cómo ayuda a reducir riesgo de colisión frontal y cómo se integra con visión artificial, ADAS y operación de flotas profesionales.',
   keywords: ['sistema FCW', 'FCW flotas', 'alerta colisión frontal', 'ADAS FCW camiones', 'FCW autobuses', 'cámaras IA colisión frontal'],
   alternates: {

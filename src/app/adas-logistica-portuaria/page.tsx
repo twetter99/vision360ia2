@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SupportPage } from '@/components/sections/support-page';
 
 export const metadata: Metadata = {
-  title: 'ADAS para logística portuaria y patios con visión 360° | Vision360IA',
+  title: 'ADAS para logística portuaria y patios con visión 360°',
   description: 'Visión 360°, cámaras inteligentes y prevención de maniobra para logística portuaria, patios, muelles, portacontenedores y tráfico mixto en entorno portuario.',
   keywords: ['ADAS logística portuaria', 'visión 360 puerto', 'seguridad portacontenedores', 'cámaras patio portuario', 'ADAS muelles y patios'],
   alternates: {

@@ -6,13 +6,18 @@ import { ContactFormButton } from '@/components/shared/contact-form-button';
 import { translations } from '@/lib/translations';
 
 export const metadata: Metadata = {
-  title: 'Quiénes somos | WINFIN y Vision360IA',
+  title: 'Quiénes somos | WINFIN',
   description:
     'Conoce a WINFIN y Vision360IA: ingeniería, integración embarcada, instalación y validación de sistemas ADAS, visión 360° y detección inteligente para flotas profesionales.',
+  alternates: {
+    canonical: '/quienes-somos',
+  },
   openGraph: {
     title: 'Quiénes somos | WINFIN y Vision360IA',
     description:
       'Ingeniería, implantación y experiencia real en autobuses, camiones y vehículos industriales para desplegar sistemas ADAS con criterio técnico.',
+    url: 'https://www.vision360ia.com/quienes-somos',
+    type: 'website',
   },
 };
 

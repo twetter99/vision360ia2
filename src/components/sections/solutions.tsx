@@ -18,7 +18,7 @@ const solutions = [
     implementationTitle: 'Implantacion',
     implementation: 'Se adapta a longitud, puertas, zonas de parada y geometria del autobus para validar cobertura antes del despliegue en flota.',
     href: '/adas-autobuses',
-    image: '/images/adas_bus.png',
+    image: '/images/adas_bus.webp',
     accent: 'from-sky-500 to-blue-600',
     badge: 'Autobuses',
   },
@@ -30,7 +30,7 @@ const solutions = [
     implementationTitle: 'Implantacion',
     implementation: 'La arquitectura cambia segun rigido, tractora o articulado y se calibra sobre maniobras reales de ciudad y entorno logistico.',
     href: '/adas-camiones',
-    image: '/images/adas_camion.png',
+    image: '/images/adas_camion.webp',
     accent: 'from-indigo-500 to-sky-500',
     badge: 'Camiones',
   },
@@ -42,7 +42,7 @@ const solutions = [
     implementationTitle: 'Implantacion',
     implementation: 'Se define segun longitud del vehiculo, tipo de servicio y entorno de parada para no tratarlo como un autobus urbano generico.',
     href: '/adas-autocares-minibuses',
-    image: '/images/adas_bus.png',
+    image: '/images/adas_bus.webp',
     accent: 'from-cyan-500 to-sky-600',
     badge: 'Viajeros',
   },
@@ -54,7 +54,7 @@ const solutions = [
     implementationTitle: 'Implantacion',
     implementation: 'Se diseña con fijaciones, cableado y calibracion preparados para vibracion, suciedad, agua a presion y geometria irregular.',
     href: '/vision-360-vehiculos-industriales',
-    image: '/images/adas_vi.png',
+    image: '/images/adas_vi.webp',
     accent: 'from-amber-400 to-orange-500',
     badge: 'Industrial',
   },
@@ -66,7 +66,7 @@ const solutions = [
     implementationTitle: 'Implantacion',
     implementation: 'La cobertura se ajusta a carrozado, zonas de operario y maniobra real para validar seguridad antes del despliegue masivo.',
     href: '/adas-vehiculos-recogida-residuos',
-    image: '/images/adas_rs.png',
+    image: '/images/adas_rs.webp',
     accent: 'from-emerald-500 to-green-600',
     badge: 'RSU',
   },
@@ -123,7 +123,7 @@ export function Solutions() {
             Selecciona tu tipo de flota
           </p>
           <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-center md:text-[15px]">
-            Cada tipologia exige una implantacion distinta. Accede a la solucion especifica para autobuses, camiones, viajeros, industria, RSU o reparto.
+            Cada tipología exige una implantación distinta. Accede a la solución específica para autobuses, camiones, viajeros, industria, RSU o reparto.
           </p>
         </div>
 
@@ -239,7 +239,7 @@ export function Solutions() {
                       href={solution.href}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all duration-300 hover:gap-3"
                     >
-                      <span>Ver solucion</span>
+                      <span>Ver solución</span>
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </Link>
                   </div>

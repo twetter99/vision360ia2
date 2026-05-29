@@ -37,6 +37,9 @@ export function TypewriterRotator({
 
   const currentLine = lines[lineIndex] || '';
 
+  // Calcula a-priori en SSR el contenido visible (sin animación) para que
+  // el HTML inicial ya tenga una línea y el grid mida la celda correcta.
+
   useEffect(() => {
     if (isDone || isPaused) return;
 
@@ -92,13 +95,44 @@ export function TypewriterRotator({
     return () => clearTimeout(timeout);
   }, [charCount, isDeleting, isPaused, isDone, currentLine.length, lineIndex, lines.length, loop, typingSpeed, deletingSpeed, pauseAfterType, pauseAfterDelete]);
 
-  // Find the longest line for reserving height
-  const longestLine = lines.reduce((a, b) => (a.length > b.length ? a : b), '');
-
+  /*
+   * Reserva de espacio con CSS Grid (anti-CLS).
+   *
+   * Problema previo: usábamos un único <span> invisible con la línea de más
+   * caracteres como referencia. Falla cuando otra línea tiene MENOS caracteres
+   * pero envuelve a más líneas en el viewport actual (palabras anchas, ancho
+   * de contenedor variable, font-stretch), provocando layout shift al rotar.
+   *
+   * Solución: meter TODAS las líneas en la misma celda de grid (col-start-1
+   * row-start-1). El contenedor toma automáticamente las dimensiones de la
+   * línea más grande tanto en alto como en ancho, sin importar el orden de
+   * rotación ni el viewport. Solo la línea con animación es visible; el
+   * resto reserva espacio invisibly.
+   */
   return (
-    <div className={`relative ${className}`} style={style}>
-      <span className="invisible block" aria-hidden="true">{longestLine}</span>
-      <span className={`absolute inset-0 flex items-center ${contentClassName}`}>
+    <div
+      className={`grid grid-cols-1 grid-rows-1 ${className}`}
+      style={style}
+    >
+      {lines.map((line, i) => (
+        <span
+          key={`reserve-${i}`}
+          aria-hidden="true"
+          className="invisible col-start-1 row-start-1"
+        >
+          {line}
+        </span>
+      ))}
+      {/*
+       * items-start (NO items-center): cuando la frase corta de 1 línea se
+       * centraría verticalmente en una celda dimensionada para 3 líneas,
+       * Chrome cuenta el "salto vertical" como CLS al rotar. Alineando al
+       * top todas las frases empiezan en la misma baseline superior; las
+       * más largas se extienden hacia abajo sin mover su punto de anclaje.
+       */}
+      <span
+        className={`col-start-1 row-start-1 flex items-start ${contentClassName}`}
+      >
         <span>
           {currentLine.slice(0, charCount)}
           <span

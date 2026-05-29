@@ -73,3 +73,12 @@ Desktop.ini
 
 # Documentos de seguridad internos
 SECURITY_CLEANUP.md
+
+# Backend PHP del formulario (credenciales + dependencias)
+public/api/form/config.php
+public/api/form/vendor/
+public/api/form/composer.lock
+
+# Estado del deploy (NO commitear - contiene IPs, snapshots, anotaciones)
+.deploy-state.md
+deploy-staging/

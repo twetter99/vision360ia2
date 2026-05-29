@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { heroData } from '@/lib/data';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
-import { TypewriterRotator } from '@/components/shared/typewriter-text';
 
 export function Hero({ translations: initialTranslations }: { translations: Translation['es'] }) {
   const { translations } = useLanguage();
@@ -35,13 +34,6 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
   const opacity = scrollY < fadeThreshold ? 1 : Math.max(0, 1 - (scrollY - fadeThreshold) / 400);
   const blur = scrollY < fadeThreshold ? 0 : Math.min(10, (scrollY - fadeThreshold) / 50);
   const parallaxY = scrollY < fadeThreshold ? scrollY * 0.5 : fadeThreshold * 0.5;
-  const heroLines = [
-    'Vision 360° con IA',
-    'ADAS para vehiculos industriales',
-    'Deteccion de peatones con IA',
-    'Eliminacion de puntos ciegos',
-    'Menos incidentes, mas control',
-  ];
 
   return (
     <section 
@@ -83,29 +75,37 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
             transition: 'filter 0.3s ease-out, opacity 0.3s ease-out',
           }}
         >
-          {/* H1 semántico oculto para SEO — visible para crawlers y screen readers */}
-          <h1 className="sr-only">{t.title}</h1>
-
+          {/*
+           * H1 estático visible (antes era un TypewriterRotator que rotaba 5
+           * frases y provocaba CLS continuo). Cambio recomendado por la
+           * auditoría SEO/AEO: un H1 estable y keyword-rich da:
+           *   - SEO: señal estable a Google.
+           *   - AEO: los LLMs (Claude/ChatGPT/Perplexity) leen un mensaje
+           *     coherente al primer crawl, no una rotación parcial.
+           *   - UX: el mensaje se entiende desde el primer instante, no
+           *     hay que esperar 3-4 s a que termine de teclear.
+           *   - CWV: cero layout shifts en el Hero.
+           */}
           <div className="mx-auto max-w-6xl">
             <div className="max-w-[20rem] px-4 py-6 text-left sm:max-w-[28rem] sm:px-6 sm:py-8 md:max-w-[36rem] lg:max-w-[54rem] lg:px-0 lg:py-0">
               <div className="max-w-[18rem] sm:max-w-[26rem] md:max-w-[34rem] lg:max-w-[38rem]">
-                <TypewriterRotator
-                  lines={heroLines}
-                  typingSpeed={34}
-                  deletingSpeed={18}
-                  pauseAfterType={1800}
-                  pauseAfterDelete={220}
-                  loop={true}
+                <h1
                   className="font-headline font-bold tracking-[-0.05em] text-white drop-shadow-[0_18px_48px_rgba(2,6,23,0.72)]"
-                  contentClassName="justify-start"
                   style={{
                     fontSize: 'clamp(1.7rem, 7.4vw, 5rem)',
                     lineHeight: '1.02',
                   }}
-                />
+                >
+                  {t.title}
+                </h1>
+                {t.subtitle && (
+                  <p
+                    className="mt-5 max-w-[18rem] text-base leading-relaxed text-slate-100/90 drop-shadow-[0_8px_24px_rgba(2,6,23,0.55)] sm:max-w-[26rem] sm:text-lg md:max-w-[34rem] md:text-xl lg:max-w-[38rem]"
+                  >
+                    {t.subtitle}
+                  </p>
+                )}
               </div>
-
-
             </div>
           </div>
         </div>

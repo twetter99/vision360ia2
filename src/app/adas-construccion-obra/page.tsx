@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SupportPage } from '@/components/sections/support-page';
 
 export const metadata: Metadata = {
-  title: 'ADAS para construcción y obra con visión 360° | Vision360IA',
+  title: 'ADAS para construcción y obra con visión 360°',
   description: 'Visión 360°, maniobra crítica y protección persona-máquina para excavadoras, dumpers, palas cargadoras y vehículos de obra en entorno severo.',
   keywords: ['ADAS construcción', 'visión 360 obra', 'seguridad maquinaria obra', 'cámaras excavadoras', 'ADAS dumpers y palas cargadoras'],
   alternates: {

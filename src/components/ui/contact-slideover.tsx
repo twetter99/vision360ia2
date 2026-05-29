@@ -203,7 +203,7 @@ export function ContactSlideOver() {
         ...honeypotFields,
       };
 
-      const response = await fetch("/api/form/contacto", {
+      const response = await fetch("/api/form/contacto.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

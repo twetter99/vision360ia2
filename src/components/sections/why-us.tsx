@@ -109,7 +109,7 @@ export function WhyUs({
               <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/80 bg-[linear-gradient(180deg,rgba(241,245,249,0.78),rgba(255,255,255,0.96))] p-3 shadow-[0_24px_55px_rgba(15,23,42,0.08)] md:p-5">
                 <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] bg-slate-100">
                   <Image
-                    src="/images/fases_instalacion_vision360.png"
+                    src="/images/fases_instalacion_vision360.webp"
                     alt="Proceso de implantacion de Vision360IA: analisis del vehiculo, diseño de instalacion, montaje profesional y calibracion final."
                     fill
                     priority={false}
