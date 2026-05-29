@@ -109,11 +109,8 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
           description: 'Sistema ADAS para autobuses con cámaras 360°, detección de peatones y ciclistas y arquitectura preparada para mejorar seguridad urbana y facilitar cumplimiento GSR en flotas profesionales.',
           brand: { '@type': 'Brand', name: 'Vision360IA' },
           category: 'Sistemas ADAS para Autobuses',
-          offers: {
-            '@type': 'Offer',
-            availability: 'https://schema.org/InStock',
-            priceCurrency: 'EUR',
-          },
+          // Sin `offers`: producto B2B cotizado por proyecto, sin precio
+          // público. Evita el error "Falta price" de Merchant listings.
         },
       ],
       theme: {

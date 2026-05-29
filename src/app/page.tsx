@@ -101,15 +101,12 @@ export default async function Home() {
         value: 'FCW, LDW, VRU, BSD',
       },
     ],
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'EUR',
-      url: SITE_URL,
-      seller: { '@id': ORGANIZATION_ID },
-      itemCondition: 'https://schema.org/NewCondition',
-      warranty: '2 años de garantía',
-    },
+    // Nota: NO incluimos `offers` con precio. Vision360IA es un sistema B2B
+    // que se cotiza por proyecto (depende de flota, vehículo, instalación),
+    // no tiene precio público fijo. Un `offers` sin `price` genera el error
+    // crítico "Falta el campo price" en Google Merchant listings, y poner un
+    // precio falso engañaría a Google y al usuario. Un Product sin offers
+    // sigue siendo válido en Schema.org y mantiene marca, fabricante y specs.
   };
 
   // VideoObject schemas para los 3 vídeos Vimeo de demo del producto.
