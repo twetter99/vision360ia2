@@ -24,6 +24,8 @@ export function Footer() {
     { href: '/anti-atropellos-peatones-ciclistas', label: 'Anti-Atropellos' },
     { href: '/vision-360-vehiculos-industriales', label: 'Vehículos Industriales' },
     { href: '/camaras-vision-artificial-flotas', label: 'Visión Artificial' },
+    { href: '/vision-360-maquinaria-agricola', label: 'Maquinaria Agrícola' },
+    { href: '/vision-360-maquinaria-obras-publicas', label: 'Maquinaria de Obra' },
     { href: '/deteccion-angulos-muertos', label: 'Detección de ángulos muertos' },
     { href: '/normativa-gsr-flotas', label: 'Normativa GSR' },
     { href: '/que-es-vision-360-vehiculos', label: 'Qué es la visión 360°' },

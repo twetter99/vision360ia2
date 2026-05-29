@@ -98,6 +98,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/vision-360-maquinaria-agricola`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/vision-360-maquinaria-obras-publicas`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     // Servicios WINFIN
     {
       url: `${baseUrl}/instalacion-equipos-embarcados-flotas`,
