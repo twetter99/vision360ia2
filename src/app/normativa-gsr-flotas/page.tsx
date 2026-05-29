@@ -39,6 +39,8 @@ const schemas = [
     about: ['GSR', 'R151', 'R158', 'R159', 'BSIS', 'MOIS', 'seguridad vial', 'flotas'],
     author: { '@id': ORGANIZATION_ID },
     publisher: { '@id': ORGANIZATION_ID },
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-29',
     inLanguage: 'es-ES',
   },
 ];
@@ -46,7 +48,7 @@ const schemas = [
 export default function NormativaGsrFlotasPage() {
   return (
     <SupportPage
-      title="Normativa GSR para flotas: qué exige y cómo preparar tus vehículos"
+      title="Normativa GSR para flotas: qué implica y cómo preparar tus vehículos"
       description="La GSR (General Safety Regulation) de la UE introduce sistemas de seguridad obligatorios en vehículos nuevos, con reglamentos como R151 (BSIS), R158 (marcha atrás) y R159 (MOIS). Esta guía explica de forma clara qué son, a quién afectan y cómo una solución de visión 360° y detección por IA ayuda a las flotas a prepararse."
       eyebrow="NORMATIVA"
       breadcrumbLabel="Normativa GSR para flotas"
@@ -67,7 +69,7 @@ export default function NormativaGsrFlotasPage() {
           eyebrow: 'Qué es',
           title: 'Qué es la normativa GSR',
           paragraphs: [
-            'La GSR (General Safety Regulation, Reglamento (UE) 2019/2144) es el marco europeo que hace obligatorios una serie de sistemas avanzados de seguridad en los vehículos nuevos que se comercializan en la Unión Europea. Su objetivo es reducir los accidentes y, en particular, proteger a los usuarios vulnerables de la vía (peatones y ciclistas).',
+            'La GSR (General Safety Regulation, Reglamento (UE) 2019/2144) es el marco europeo que introduce, de forma progresiva, una serie de sistemas avanzados de seguridad como equipamiento obligatorio en los vehículos nuevos que se comercializan en la Unión Europea. Su objetivo es reducir los accidentes y, en particular, proteger a los usuarios vulnerables de la vía (peatones y ciclistas).',
             'La GSR se apoya en reglamentos técnicos UNECE que definen cómo deben comportarse esos sistemas. Para flotas de vehículos pesados —autobuses y camiones, sobre todo— los más relevantes son R151, R158 y R159.',
           ],
         },

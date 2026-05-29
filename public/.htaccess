@@ -115,6 +115,13 @@ AddCharset UTF-8 .txt .html .css .js .json .xml .svg
     <FilesMatch "\.html$">
         Header set Cache-Control "no-cache, must-revalidate"
     </FilesMatch>
+
+    # Sitemap, robots y llms.txt cambian al añadir/editar páginas. NO deben
+    # cachearse 180 días como un asset estático, o Google/usuarios verían
+    # versiones obsoletas. Cache corto (1 h) + revalidación.
+    <FilesMatch "^(sitemap\.xml|robots\.txt|llms\.txt)$">
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </FilesMatch>
 </IfModule>
 
 # ---------------------------------------------------------------------

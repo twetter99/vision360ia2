@@ -38,6 +38,8 @@ const schemas = [
     about: ['visión 360', 'visión perimetral', 'cámaras vehículo', 'vista cenital', 'seguridad vial'],
     author: { '@id': ORGANIZATION_ID },
     publisher: { '@id': ORGANIZATION_ID },
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-29',
     inLanguage: 'es-ES',
   },
 ];
@@ -66,7 +68,7 @@ export default function QueEsVision360VehiculosPage() {
           eyebrow: 'Definición',
           title: 'Definición de visión 360° en vehículos',
           paragraphs: [
-            'La visión 360° en vehículos industriales es una tecnología de seguridad que utiliza entre cuatro y ocho cámaras de alta definición montadas alrededor del vehículo (frontal, laterales y trasera) para generar una vista cenital unificada del entorno inmediato. Esa vista aérea elimina los puntos ciegos del conductor y le permite ver personas, objetos y obstáculos que serían invisibles con los espejos retrovisores convencionales.',
+            'La visión 360° en vehículos industriales es una tecnología de seguridad que utiliza habitualmente cuatro cámaras de alta definición —ampliables hasta ocho en vehículos grandes o articulados— montadas alrededor del vehículo (frontal, laterales y trasera) para generar una vista cenital unificada del entorno inmediato. Esa vista aérea elimina los puntos ciegos del conductor y le permite ver personas, objetos y obstáculos que serían invisibles con los espejos retrovisores convencionales.',
             'Se utiliza principalmente en autobuses urbanos, camiones de distribución, vehículos de recogida de residuos, maquinaria y vehículos industriales, y es especialmente útil en maniobras de baja velocidad: giros, marcha atrás, salidas de parada y operaciones de carga y descarga.',
           ],
         },

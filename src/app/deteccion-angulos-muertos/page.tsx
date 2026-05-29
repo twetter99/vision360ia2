@@ -39,6 +39,8 @@ const schemas = [
     about: ['ángulos muertos', 'punto ciego', 'BSD', 'seguridad vial', 'camiones', 'autobuses'],
     author: { '@id': ORGANIZATION_ID },
     publisher: { '@id': ORGANIZATION_ID },
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-29',
     inLanguage: 'es-ES',
   },
 ];
