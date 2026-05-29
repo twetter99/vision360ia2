@@ -98,6 +98,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    // Servicios WINFIN
+    {
+      url: `${baseUrl}/instalacion-equipos-embarcados-flotas`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/mantenimiento-sistemas-seguridad-flotas`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     // Legales
     {
       url: `${baseUrl}/aviso-legal`,
