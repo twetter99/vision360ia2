@@ -52,6 +52,7 @@ export default function MantenimientoSistemasSeguridadPage() {
       description="Un sistema de seguridad solo cumple su función si está operativo el día que ocurre el incidente. WINFIN mantiene cámaras 360°, detección por IA y equipos embarcados con revisión preventiva, recalibración y soporte técnico, para que tu flota no quede expuesta por un equipo desajustado o averiado."
       eyebrow="SERVICIO"
       breadcrumbLabel="Mantenimiento de sistemas de seguridad"
+      breadcrumbCategory="Servicios"
       schemas={schemas}
       primarySolution={{
         href: '/instalacion-equipos-embarcados-flotas',

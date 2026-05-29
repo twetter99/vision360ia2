@@ -36,6 +36,9 @@ type SupportPageProps = {
   description: string;
   eyebrow: string;
   breadcrumbLabel: string;
+  /** Nivel intermedio del breadcrumb. Por defecto "Recursos" (páginas
+   * técnicas como BSIS/FCW). Las páginas de servicio pasan "Servicios". */
+  breadcrumbCategory?: string;
   schemas?: Record<string, unknown>[];
   primarySolution?: PrimarySolutionLink;
   intro: {
@@ -58,7 +61,7 @@ type SupportPageProps = {
   };
 };
 
-export function SupportPage({ title, description, eyebrow, breadcrumbLabel, schemas = [], primarySolution, intro, sections, faq, cta }: SupportPageProps) {
+export function SupportPage({ title, description, eyebrow, breadcrumbLabel, breadcrumbCategory = 'Recursos', schemas = [], primarySolution, intro, sections, faq, cta }: SupportPageProps) {
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -72,7 +75,7 @@ export function SupportPage({ title, description, eyebrow, breadcrumbLabel, sche
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Recursos',
+        name: breadcrumbCategory,
       },
       {
         '@type': 'ListItem',
@@ -112,7 +115,7 @@ export function SupportPage({ title, description, eyebrow, breadcrumbLabel, sche
           <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-slate-500">
             <Link href="/" className="transition-colors hover:text-slate-950">Inicio</Link>
             <span className="text-slate-300">/</span>
-            <span>Recursos</span>
+            <span>{breadcrumbCategory}</span>
             <span className="text-slate-300">/</span>
             <span className="font-medium text-slate-700">{breadcrumbLabel}</span>
           </nav>

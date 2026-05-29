@@ -87,6 +87,7 @@ export default function InstalacionEquiposEmbarcadosPage() {
       description="En sistemas de seguridad para flotas, una buena instalación es la diferencia entre cubrir el riesgo real o dejar zonas ciegas sin proteger. WINFIN diseña, instala, calibra y valida cada equipo embarcado sobre la geometría concreta de cada vehículo, con talleres propios e ingeniería de integración."
       eyebrow="SERVICIO"
       breadcrumbLabel="Instalación de equipos embarcados"
+      breadcrumbCategory="Servicios"
       schemas={schemas}
       primarySolution={{
         href: '/vision-360-vehiculos-industriales',
