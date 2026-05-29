@@ -31,6 +31,8 @@ export function Header() {
     { href: '/vision-360-vehiculos-industriales', label: 'Vehículos Industriales' },
     { href: '/camaras-vision-artificial-flotas', label: 'Visión Artificial' },
     { href: '/adas-vehiculos-recogida-residuos', label: 'Recogida de Residuos' },
+    { href: '/instalacion-equipos-embarcados-flotas', label: 'Instalación de equipos' },
+    { href: '/mantenimiento-sistemas-seguridad-flotas', label: 'Mantenimiento' },
   ];
 
   useEffect(() => {

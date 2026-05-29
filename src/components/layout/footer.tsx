@@ -14,6 +14,8 @@ export function Footer() {
   const businessLinks = [
     { href: '/quienes-somos', label: 'Quiénes somos' },
     { href: '/#why-winfin', label: 'Capacidades' },
+    { href: '/instalacion-equipos-embarcados-flotas', label: 'Instalación' },
+    { href: '/mantenimiento-sistemas-seguridad-flotas', label: 'Mantenimiento' },
     { href: '/#faq', label: 'FAQs' },
   ];
   const solutionLinks = [
@@ -22,6 +24,9 @@ export function Footer() {
     { href: '/anti-atropellos-peatones-ciclistas', label: 'Anti-Atropellos' },
     { href: '/vision-360-vehiculos-industriales', label: 'Vehículos Industriales' },
     { href: '/camaras-vision-artificial-flotas', label: 'Visión Artificial' },
+    { href: '/deteccion-angulos-muertos', label: 'Detección de ángulos muertos' },
+    { href: '/normativa-gsr-flotas', label: 'Normativa GSR' },
+    { href: '/que-es-vision-360-vehiculos', label: 'Qué es la visión 360°' },
   ];
   const rinCertificateHref = '/Certificados%20Empresa/RIN%20Titulo.pdf';
   const ministryLogoHref = '/Certificados%20Empresa/ministerio-1.png';
@@ -101,7 +106,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3 rounded-[1.75rem] border border-white/10 bg-white/5 p-5 backdrop-blur-sm md:p-6">
-            <h4 className="font-headline text-sm font-semibold uppercase tracking-[0.2em] text-white/70">Soluciones</h4>
+            <h4 className="font-headline text-sm font-semibold uppercase tracking-[0.2em] text-white/70">Soluciones y recursos</h4>
             {solutionLinks.map((link) => (
               <Link key={link.href} href={link.href} className="min-h-[40px] text-slate-300 transition-colors hover:text-white">
                 {link.label}
