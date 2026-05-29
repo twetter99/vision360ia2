@@ -61,7 +61,7 @@ export default function Vision360MaquinariaObrasPublicasPage() {
           'Si buscas la solución general para vehículos y maquinaria en construcción y obra, esta es la página principal.',
       }}
       intro={{
-        badge: 'Maquinaria de obra',
+        badge: 'Maquinaria de obras públicas',
         highlights: ['Excavadoras y palas', 'Dumpers y compactadoras', 'Detección de operarios', 'Giro y marcha atrás'],
       }}
       sections={[
