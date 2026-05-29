@@ -507,6 +507,36 @@ export const translations = {
         question: '¿De qué depende el coste de implantación?',
         answer: 'El coste depende del número de vehículos, el tipo de flota, la complejidad de instalación, la configuración de cámaras y detección, y el nivel de ajuste e integración necesario. Por eso lo correcto es hacer una evaluación técnica antes de dar una propuesta cerrada.',
       },
+      {
+        id: 'faq9',
+        question: '¿Qué es Vision360IA exactamente?',
+        answer: 'Vision360IA es un sistema ADAS con inteligencia artificial que combina cámaras 360°, detección de peatones y ciclistas en tiempo real y alertas al conductor para autobuses, camiones, vehículos municipales e industriales. Lo desarrolla e instala WINFIN, empresa española con más de 20 años de experiencia y más de 2.000 vehículos equipados.',
+      },
+      {
+        id: 'faq10',
+        question: '¿Cuánto tiempo lleva instalar el sistema en un vehículo?',
+        answer: 'Depende del tipo de vehículo, del número de cámaras y de la complejidad de la integración. Lo definimos en el análisis previo para que sepas con antelación el tiempo de taller de cada unidad y puedas planificar la operación de tu flota. En flotas grandes se trabaja por lotes para minimizar la inmovilización.',
+      },
+      {
+        id: 'faq11',
+        question: '¿Funciona de noche y con lluvia?',
+        answer: 'Las cámaras están preparadas para trabajar en condiciones de poca luz y meteorología adversa. El rendimiento real depende del modelo de cámara y de la instalación; en entornos de muy baja visibilidad se diseña una configuración específica para mantener la cobertura.',
+      },
+      {
+        id: 'faq12',
+        question: '¿Necesita conexión a internet para funcionar?',
+        answer: 'No. La visión 360° y las alertas al conductor funcionan de forma autónoma en el vehículo, sin depender de conexión. La conectividad (4G/WiFi) solo es necesaria si se quieren funciones adicionales como telemetría, descarga remota de eventos o gestión de flota.',
+      },
+      {
+        id: 'faq13',
+        question: '¿Es compatible con el sistema de gestión de flota (FMS) que ya tengo?',
+        answer: 'En muchos casos sí. La integración con sistemas de gestión de flota, GPS o grabación se valora según la configuración de cada flota y los equipos existentes. Lo revisamos en el análisis técnico previo para definir el nivel de integración posible.',
+      },
+      {
+        id: 'faq14',
+        question: '¿Hay subvenciones o ayudas para instalar sistemas de seguridad en flotas?',
+        answer: 'Según el momento y la comunidad autónoma pueden existir ayudas a la seguridad vial, la renovación de flota o la prevención de riesgos laborales. La disponibilidad cambia con el tiempo; conviene verificar las convocatorias vigentes. Podemos orientarte sobre la documentación técnica del sistema para ese tipo de trámites.',
+      },
     ],
   },
   ca: {
