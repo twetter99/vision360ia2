@@ -104,13 +104,17 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
         },
         {
           '@context': 'https://schema.org',
-          '@type': 'Product',
+          // Service en vez de Product: solución B2B sin precio público ni
+          // reviews verificables. Google exige a un Product offers/review/
+          // aggregateRating; un Service no.
+          '@type': 'Service',
           name: 'Sistema ADAS para Autobuses - Vision360IA',
+          serviceType: 'Sistema ADAS y visión 360° para autobuses',
           description: 'Sistema ADAS para autobuses con cámaras 360°, detección de peatones y ciclistas y arquitectura preparada para mejorar seguridad urbana y facilitar cumplimiento GSR en flotas profesionales.',
           brand: { '@type': 'Brand', name: 'Vision360IA' },
+          provider: { '@id': 'https://www.vision360ia.com/#organization' },
+          areaServed: { '@type': 'Country', name: 'España' },
           category: 'Sistemas ADAS para Autobuses',
-          // Sin `offers`: producto B2B cotizado por proyecto, sin precio
-          // público. Evita el error "Falta price" de Merchant listings.
         },
       ],
       theme: {

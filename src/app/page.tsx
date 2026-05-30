@@ -53,9 +53,14 @@ export default async function Home() {
   // como producto B2B con sus propiedades técnicas, GSR, garantía, etc.).
   const productSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    // Usamos Service (no Product): Vision360IA es una solución/servicio B2B
+    // que se cotiza por proyecto, sin precio público ni reviews verificables.
+    // Google exige a un Product al menos offers/review/aggregateRating; un
+    // Service no, y describe mejor lo que se ofrece (sistema + instalación).
+    '@type': 'Service',
     '@id': `${SITE_URL}/#product`,
     name: 'Sistema de Visión Perimetral 360° para Autobuses y Camiones',
+    serviceType: 'Sistema ADAS y visión perimetral 360° para flotas',
     alternateName: [
       'Vision 360 Autobús',
       'Visión Perimetral Bus',
@@ -66,14 +71,13 @@ export default async function Home() {
     description:
       'Sistema de cámaras 360° con detección de peatones y ciclistas para autobuses, camiones, vehículos municipales e industriales. Reduce puntos ciegos, mejora la seguridad en maniobras urbanas y facilita cumplimiento GSR con una solución profesional compatible con flotas de 12V y 24V.',
     image: `${SITE_URL}/images/og-image.jpg`,
-    sku: 'V360IA-PRO',
-    mpn: 'VISION360-BUS-2024',
     brand: {
       '@type': 'Brand',
       name: 'Vision360IA',
       logo: `${SITE_URL}/logo.png`,
     },
-    manufacturer: { '@id': ORGANIZATION_ID },
+    provider: { '@id': ORGANIZATION_ID },
+    areaServed: { '@type': 'Country', name: 'España' },
     category:
       'Sistemas de Visión Perimetral 360 para Autobuses y Camiones',
     additionalProperty: [
