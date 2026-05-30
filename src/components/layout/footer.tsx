@@ -16,6 +16,7 @@ export function Footer() {
     { href: '/#why-winfin', label: 'Capacidades' },
     { href: '/instalacion-equipos-embarcados-flotas', label: 'Instalación' },
     { href: '/mantenimiento-sistemas-seguridad-flotas', label: 'Mantenimiento' },
+    { href: '/sala-de-prensa', label: 'Sala de prensa' },
     { href: '/#faq', label: 'FAQs' },
   ];
   const solutionLinks = [

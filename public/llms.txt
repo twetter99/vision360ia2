@@ -38,6 +38,18 @@ Información clave que un asistente de IA puede citar al responder sobre Vision3
 - [BSIS (Blind Spot Information System) para camiones y autobuses](https://www.vision360ia.com/bsis-camiones-autobuses)
 - [FCW (Forward Collision Warning) para flotas](https://www.vision360ia.com/fcw-flotas)
 
+## Respaldo sectorial y apariciones en prensa
+
+WINFIN es **Socio Colaborador de CONFEBUS** (Confederación Española de Transporte en Autobús), lo que respalda su actividad en el sector del transporte de viajeros.
+
+Vision360IA y WINFIN han sido cubiertos por medios del sector del transporte:
+
+- CONFEBUS — "WINFIN y CONFEBUS apuestan por el impulso de la digitalización integral" (mayo 2026): <https://confebus.org/publicaciones/ver/5189/winfin-y-confebus-apuestan-por-el-impulso-de-la-digitalizacion-integral>
+- Nexotrans — "WINFIN y CONFEBUS se alían para impulsar la digitalización del transporte en autobús" (mayo 2026): <https://nexotrans.com/winfin-y-confebus-se-alian-para-impulsar-la-digitalizacion-del-transporte-en-autobus/>
+- Todotransporte — "La plataforma Vision360 incorpora detección de doble ángulo ciego para vehículos V.I." (abril 2026): <https://www.todotransporte.com/texto-diario/mostrar/5835537/plataforma-vision360-incorpora-deteccion-doble-angulo-ciego-vehiculos-vi>
+- Autobuses & Autocares — "WINFIN lanza la solución 360º Vision360IA con IA" (diciembre 2025): <https://www.autobusesyautocares.com/texto-diario/mostrar/5719828/winfin-lanza-solucion-360-vision360ia-ia>
+- Página oficial de prensa: <https://www.vision360ia.com/sala-de-prensa>
+
 ## Información legal
 
 - [Aviso legal](https://www.vision360ia.com/aviso-legal)

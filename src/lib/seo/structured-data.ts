@@ -78,6 +78,13 @@ export function organizationSchema() {
       'https://www.winfin.es',
       'https://www.linkedin.com/company/winfin',
     ],
+    // WINFIN es Socio Colaborador de CONFEBUS (Confederación Española de
+    // Transporte en Autobús). Señal de autoridad y pertenencia sectorial.
+    memberOf: {
+      '@type': 'Organization',
+      name: 'CONFEBUS · Confederación Española de Transporte en Autobús',
+      url: 'https://confebus.org',
+    },
     knowsAbout: [
       'Sistemas ADAS',
       'Visión perimetral 360°',

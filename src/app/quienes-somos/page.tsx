@@ -229,6 +229,50 @@ export default function AboutPage() {
           </div>
         </div>
 
+        <div className="mx-auto mt-6 max-w-6xl overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.92))] p-6 shadow-[var(--shadow-soft)] backdrop-blur-sm md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Pertenencia sectorial</div>
+              <h3 className="mt-3 font-headline text-2xl font-semibold tracking-[-0.03em] text-slate-950 md:text-3xl">
+                Socio Colaborador de CONFEBUS
+              </h3>
+              <p className="mt-4 text-base leading-relaxed text-slate-600 md:text-lg">
+                WINFIN es Socio Colaborador de CONFEBUS, la Confederación Española de Transporte en Autobús, con la que colabora para impulsar la digitalización integral y la seguridad en el sector del transporte de viajeros. Una pertenencia que respalda nuestra actividad y experiencia en flotas de autobús y autocar.
+              </p>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href="https://confebus.org"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-50"
+                >
+                  Ver CONFEBUS
+                </a>
+                <Link
+                  href="/sala-de-prensa"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-50"
+                >
+                  Ver sala de prensa
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center">
+              <div className="flex w-full max-w-[20rem] flex-col items-center rounded-[1.75rem] border border-sky-200/70 bg-white px-6 py-8 text-center shadow-[0_18px_45px_rgba(15,23,42,0.06)]">
+                <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/80 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-700">
+                  Socio Colaborador
+                </div>
+                <div className="mt-4 font-headline text-3xl font-semibold tracking-[-0.04em] text-slate-950">
+                  CONFEBUS
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-500">
+                  Confederación Española de Transporte en Autobús
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="mx-auto mt-6 max-w-6xl rounded-[2rem] border border-white/70 bg-white/88 p-6 shadow-[var(--shadow-soft)] backdrop-blur-sm md:p-8">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
