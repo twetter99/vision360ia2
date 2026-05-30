@@ -19,6 +19,11 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-30',
+    author: { '@id': 'https://www.vision360ia.com/#organization' },
+    publisher: { '@id': 'https://www.vision360ia.com/#organization' },
     headline: 'ADAS para furgonetas de reparto',
     description: 'Guía de apoyo para búsquedas relacionadas con reparto urbano, última milla y flotas ligeras con visión 360° y cámaras IA.',
     about: ['furgonetas de reparto', 'última milla', 'visión 360', 'cámaras IA', 'ADAS'],

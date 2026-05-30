@@ -19,6 +19,11 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-30',
+    author: { '@id': 'https://www.vision360ia.com/#organization' },
+    publisher: { '@id': 'https://www.vision360ia.com/#organization' },
     headline: 'ADAS para logística portuaria',
     description: 'Guía sobre visión 360° y prevención de maniobra en portacontenedores, patios, muelles y entorno portuario.',
     about: ['logística portuaria', 'portacontenedores', 'muelles', 'patios', 'visión 360'],

@@ -33,6 +33,7 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
     headline: 'Detección de ángulos muertos en camiones y autobuses',
     description:
       'Guía sobre los ángulos muertos en vehículos pesados, su relación con los atropellos y cómo eliminarlos con visión 360° y detección por IA.',

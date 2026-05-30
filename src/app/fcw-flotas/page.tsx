@@ -19,6 +19,11 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-30',
+    author: { '@id': 'https://www.vision360ia.com/#organization' },
+    publisher: { '@id': 'https://www.vision360ia.com/#organization' },
     headline: 'Sistema FCW para flotas y vehículos industriales',
     description: 'Guía explicativa sobre la alerta de colisión frontal, su aplicación en flotas y su integración con ADAS y visión artificial.',
     about: ['FCW', 'alerta de colisión frontal', 'ADAS', 'flotas', 'visión artificial'],

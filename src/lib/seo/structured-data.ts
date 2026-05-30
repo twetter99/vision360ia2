@@ -231,3 +231,42 @@ export function faqPageSchema(
     })),
   };
 }
+
+/**
+ * Article COMPLETO con todos los campos que Google exige/recomienda para
+ * resultados enriquecidos de artículo: headline, image, datePublished,
+ * dateModified, author y publisher. Centralizado aquí para que ninguna
+ * página genere un Article incompleto (causa habitual de errores en GSC).
+ *
+ * - image: por defecto la OG image de marca (existe y es válida). Se puede
+ *   pasar una específica por página.
+ * - author/publisher: referencian la Organization global por @id.
+ * - fechas: ISO 8601 (YYYY-MM-DD). Pasar como string para no usar Date()
+ *   (no disponible en algunos contextos de build estático determinista).
+ */
+export function articleSchema(opts: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  dateModified?: string;
+  image?: string;
+  about?: ReadonlyArray<string>;
+}) {
+  const img = opts.image ?? `${SITE_URL}/images/og-image.jpg`;
+  const url = opts.url.startsWith('http') ? opts.url : `${SITE_URL}${opts.url}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: opts.headline,
+    description: opts.description,
+    image: [img],
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    inLanguage: 'es-ES',
+    ...(opts.about ? { about: [...opts.about] } : {}),
+  };
+}

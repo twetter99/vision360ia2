@@ -32,6 +32,7 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
     headline: 'Qué es la visión 360° en vehículos: definición, funcionamiento y usos',
     description:
       'Guía educativa sobre la visión perimetral 360° en vehículos industriales: qué es, cómo funciona, componentes, ventajas y diferencias con una cámara convencional.',

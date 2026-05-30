@@ -19,6 +19,11 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-30',
+    author: { '@id': 'https://www.vision360ia.com/#organization' },
+    publisher: { '@id': 'https://www.vision360ia.com/#organization' },
     headline: 'ADAS para aeropuerto y lanzaderas',
     description: 'Guía sobre visión 360° y protección VRU en shuttle buses, lanzaderas y operación aeroportuaria.',
     about: ['aeropuerto', 'lanzaderas', 'shuttle bus', 'visión 360', 'ADAS'],

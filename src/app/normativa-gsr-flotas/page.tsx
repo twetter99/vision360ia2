@@ -33,6 +33,7 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
     headline: 'Normativa GSR para flotas: qué es y cómo afecta (R151, R158, R159)',
     description:
       'Guía explicativa sobre la General Safety Regulation (GSR) de la UE y los reglamentos UNECE R151, R158 y R159 aplicados a flotas profesionales.',

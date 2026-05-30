@@ -19,6 +19,11 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-30',
+    author: { '@id': 'https://www.vision360ia.com/#organization' },
+    publisher: { '@id': 'https://www.vision360ia.com/#organization' },
     headline: 'ADAS para autocares y minibuses',
     description: 'Guía explicativa sobre cómo aplicar visión 360° y protección VRU a autocares, minibuses y lanzaderas.',
     about: ['autocares', 'minibuses', 'lanzaderas', 'visión 360', 'ADAS'],

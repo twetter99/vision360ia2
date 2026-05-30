@@ -19,6 +19,11 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    image: ['https://www.vision360ia.com/images/og-image.jpg'],
+    datePublished: '2026-05-29',
+    dateModified: '2026-05-30',
+    author: { '@id': 'https://www.vision360ia.com/#organization' },
+    publisher: { '@id': 'https://www.vision360ia.com/#organization' },
     headline: 'Sistema BSIS para camiones y autobuses',
     description: 'Guía explicativa sobre BSIS, normativa R151 y su aplicación en operaciones con camiones y autobuses.',
     about: ['BSIS', 'R151', 'GSR', 'VRU', 'camiones', 'autobuses'],
