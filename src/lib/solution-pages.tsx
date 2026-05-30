@@ -37,6 +37,7 @@ const sharedRelatedLinks = {
   antiAtropellos: { href: '/anti-atropellos-peatones-ciclistas', label: 'Sistema Anti-Atropellos' },
   camaras: { href: '/camaras-vision-artificial-flotas', label: 'Cámaras 360 para flotas' },
   vision360: { href: '/vision-360-vehiculos-industriales', label: 'Visión 360° Vehículos Industriales' },
+  angulosMuertos: { href: '/deteccion-angulos-muertos', label: 'Detección de Ángulos Muertos' },
   residuos: { href: '/adas-vehiculos-recogida-residuos', label: 'ADAS Recogida de Residuos' },
   bsis: { href: '/bsis-camiones-autobuses', label: 'Sistema BSIS para Camiones y Autobuses' },
   fcw: { href: '/fcw-flotas', label: 'Sistema FCW para Flotas' },
@@ -52,7 +53,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     metadata: {
       title: 'ADAS para autobuses con cámaras 360° y detección VRU',
       description: 'Reduce puntos ciegos y accidentes en autobuses urbanos e interurbanos con cámaras 360°, detección de peatones y ciclistas y solución preparada para cumplimiento GSR en flotas profesionales.',
-      keywords: ['ADAS autobuses', 'ADAS autobuses urbanos', 'visión 360 autobuses', 'anti atropellos autobuses', 'cámaras visión artificial autobuses', 'GSR autobuses', 'puntos ciegos autobuses'],
+      keywords: ['ADAS autobuses', 'ADAS autobuses urbanos', 'visión 360 autobuses', 'cámaras 360 autobuses', 'cámaras seguridad autobús', 'sistema antiatropello autobús', 'detección peatones autobús', 'ángulos muertos autobús', 'punto ciego autobús', 'BSIS autobús', 'anti atropellos autobuses', 'GSR autobuses', 'cámaras visión artificial autobuses'],
       openGraph: {
         title: 'Seguridad 360° para flotas de autobuses | Vision360IA',
         description: 'Solución ADAS para autobuses que reduce puntos ciegos, protege a peatones y ciclistas y facilita operación segura en entornos urbanos complejos.',
@@ -259,7 +260,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
         title: 'Protege tu flota de autobuses con visión 360° inteligente',
         description: 'Solicita una sesión técnica para revisar riesgos, tipología de servicio y la configuración más eficaz para tu operación.',
         primaryCtaLabel: 'Ver si encaja en mi flota',
-        relatedLinks: [sharedRelatedLinks.autocares, sharedRelatedLinks.aeropuerto, sharedRelatedLinks.antiAtropellos, sharedRelatedLinks.bsis, sharedRelatedLinks.fcw],
+        relatedLinks: [sharedRelatedLinks.camaras, sharedRelatedLinks.antiAtropellos, sharedRelatedLinks.angulosMuertos, sharedRelatedLinks.bsis, sharedRelatedLinks.autocares],
       },
     },
   },
@@ -267,7 +268,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     metadata: {
       title: 'ADAS para camiones con cámaras 360° y alertas VRU',
       description: 'Reduce puntos ciegos y riesgo de siniestro en camiones y transporte pesado con cámaras 360°, detección de peatones y ciclistas y solución preparada para retrofit y cumplimiento GSR.',
-      keywords: ['ADAS camiones', 'ADAS transporte pesado', 'visión 360 camiones', 'cámaras visión artificial camiones', 'anti atropellos camiones', 'puntos ciegos camiones', 'GSR camiones'],
+      keywords: ['ADAS camiones', 'ADAS transporte pesado', 'visión 360 camiones', 'cámaras 360 camiones', 'cámaras seguridad camión', 'cámara punto ciego camión', 'sistema antiatropello camión', 'detección peatones ciclistas camión', 'ángulos muertos camión', 'BSIS camiones', 'anti atropellos camiones', 'puntos ciegos camiones', 'GSR camiones'],
       openGraph: {
         title: 'Seguridad 360° para camiones y transporte pesado | Vision360IA',
         description: 'Solución ADAS para camiones que reduce puntos ciegos, mejora maniobras urbanas y facilita despliegue sobre flotas profesionales.',
@@ -397,7 +398,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
         title: 'Protege tu flota de camiones con visión 360° inteligente',
         description: 'Solicita una sesión técnica para revisar geometría del vehículo, riesgos operativos y la configuración más eficaz para tu flota.',
         primaryCtaLabel: 'Ver si encaja en mi flota',
-        relatedLinks: [sharedRelatedLinks.autobuses, sharedRelatedLinks.construccion, sharedRelatedLinks.portuaria, sharedRelatedLinks.bsis, sharedRelatedLinks.fcw],
+        relatedLinks: [sharedRelatedLinks.camaras, sharedRelatedLinks.antiAtropellos, sharedRelatedLinks.angulosMuertos, sharedRelatedLinks.bsis, sharedRelatedLinks.construccion],
       },
     },
   },
