@@ -9,7 +9,11 @@ export const metadata: Metadata = {
     'Qué son los ángulos muertos en vehículos pesados, por qué provocan atropellos y cómo eliminarlos con visión 360° y detección de peatones y ciclistas por IA en camiones, autobuses y flotas.',
   keywords: [
     'detección ángulos muertos',
+    'detección de ciclistas ángulo muerto autobús',
+    'ángulo muerto ciclista autobús',
+    'detección peatones ciclistas ángulo muerto',
     'ángulos muertos camión',
+    'sistema de ángulo muerto para camiones',
     'punto ciego camión',
     'punto ciego autobús',
     'eliminar ángulos muertos vehículo',

@@ -53,7 +53,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     metadata: {
       title: 'ADAS para autobuses con cámaras 360° y detección VRU',
       description: 'Reduce puntos ciegos y accidentes en autobuses urbanos e interurbanos con cámaras 360°, detección de peatones y ciclistas y solución preparada para cumplimiento GSR en flotas profesionales.',
-      keywords: ['ADAS autobuses', 'ADAS autobuses urbanos', 'visión 360 autobuses', 'cámaras 360 autobuses', 'cámaras seguridad autobús', 'sistema antiatropello autobús', 'detección peatones autobús', 'ángulos muertos autobús', 'punto ciego autobús', 'BSIS autobús', 'anti atropellos autobuses', 'GSR autobuses', 'cámaras visión artificial autobuses'],
+      keywords: ['ADAS para autobuses', 'ADAS autobuses', 'ADAS autobuses urbanos', 'visión 360 autobuses', 'cámaras 360 para autobuses', 'cámaras 360 autobuses', 'cámaras seguridad autobús', 'sistema antiatropello autobús', 'detección de peatones para autobuses', 'detección peatones autobús', 'ángulos muertos autobús', 'punto ciego autobús', 'BSIS autobús', 'anti atropellos autobuses', 'GSR autobuses', 'ADAS retrofit flotas', 'cámaras visión artificial autobuses'],
       openGraph: {
         title: 'Seguridad 360° para flotas de autobuses | Vision360IA',
         description: 'Solución ADAS para autobuses que reduce puntos ciegos, protege a peatones y ciclistas y facilita operación segura en entornos urbanos complejos.',
@@ -137,7 +137,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
       hero: {
         badge: 'ADAS para flotas de autobuses',
         badgeIcon: Bus,
-        title: 'Reduce puntos ciegos y maniobras de riesgo en tu flota de autobuses',
+        title: 'ADAS para autobuses: reduce puntos ciegos y maniobras de riesgo en tu flota',
         description: 'Sistema de cámaras 360° con detección inteligente de peatones y ciclistas para autobuses urbanos e interurbanos. Diseñado para mejorar seguridad, reducir incidentes y facilitar cumplimiento sin penalizar la operación.',
         highlights: ['Paradas frecuentes en entorno urbano', 'Exposición continua a peatones y ciclistas', 'Giros con ángulo muerto crítico', 'Operación intensiva con presión de servicio'],
         primaryCtaLabel: 'Solicitar información técnica',
@@ -268,7 +268,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     metadata: {
       title: 'ADAS para camiones con cámaras 360° y alertas VRU',
       description: 'Reduce puntos ciegos y riesgo de siniestro en camiones y transporte pesado con cámaras 360°, detección de peatones y ciclistas y solución preparada para retrofit y cumplimiento GSR.',
-      keywords: ['ADAS camiones', 'ADAS transporte pesado', 'visión 360 camiones', 'cámaras 360 camiones', 'cámaras seguridad camión', 'cámara punto ciego camión', 'sistema antiatropello camión', 'detección peatones ciclistas camión', 'ángulos muertos camión', 'BSIS camiones', 'anti atropellos camiones', 'puntos ciegos camiones', 'GSR camiones'],
+      keywords: ['ADAS camiones', 'ADAS para camiones', 'ADAS transporte pesado', 'visión 360 camiones', 'cámaras 360 camiones', 'cámaras seguridad camión', 'cámara punto ciego camión', 'sistema de ángulo muerto para camiones', 'sistema antiatropello camión', 'detección peatones ciclistas camión', 'ángulos muertos camión', 'BSIS camiones', 'anti atropellos camiones', 'puntos ciegos camiones', 'GSR camiones', 'ADAS retrofit flotas'],
       openGraph: {
         title: 'Seguridad 360° para camiones y transporte pesado | Vision360IA',
         description: 'Solución ADAS para camiones que reduce puntos ciegos, mejora maniobras urbanas y facilita despliegue sobre flotas profesionales.',
@@ -406,7 +406,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     metadata: {
       title: 'Sistema anti-atropellos con detección de peatones y ciclistas',
       description: 'Reduce riesgo de atropello en autobuses, camiones y flotas urbanas con detección de peatones y ciclistas, alertas en tiempo real y solución preparada para cumplimiento GSR.',
-      keywords: ['anti atropellos peatones', 'detección peatones ciclistas', 'ADAS VRU', 'sistema anti atropellos vehículos', 'protección usuarios vulnerables vía', 'alerta peatones camiones', 'detección ciclistas autobuses'],
+      keywords: ['anti atropellos peatones', 'detección peatones ciclistas', 'ADAS VRU', 'sistema anti atropellos vehículos', 'sistema anti atropello autobuses', 'sistema antiatropello autobuses', 'detección de peatones para autobuses', 'protección usuarios vulnerables vía', 'alerta peatones camiones', 'detección ciclistas autobuses'],
       openGraph: {
         title: 'Protección VRU para flotas urbanas | Vision360IA',
         description: 'Solución anti-atropellos para autobuses, camiones y vehículos municipales que ayuda a prevenir incidentes con peatones y ciclistas en maniobras críticas.',
@@ -446,7 +446,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
       hero: {
         badge: 'Protección VRU',
         badgeIcon: ShieldAlert,
-        title: 'Reduce el riesgo de atropello en maniobras urbanas con detección VRU inteligente',
+        title: 'Sistema anti-atropellos para autobuses y camiones: detección de peatones y ciclistas en tiempo real',
         description: 'Sistema anti-atropellos para autobuses, camiones y flotas urbanas que detecta peatones y ciclistas en tiempo real y alerta al conductor antes de que la maniobra termine en incidente.',
         highlights: ['Giro a la derecha en ciudad', 'Marcha atrás con visibilidad limitada', 'Arranque en parada y zonas de carga', 'Convivencia con peatones y ciclistas'],
         primaryCtaLabel: 'Ver si encaja en mi flota',
@@ -515,12 +515,12 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'camaras-vision-artificial-flotas': {
     metadata: {
-      title: 'Cámaras 360 de seguridad para camiones, autobuses y flotas',
-      description: 'Cámaras 360 de seguridad y visión artificial para camiones, autobuses y vehículos industriales: visión perimetral, detección de peatones y ciclistas y eliminación de puntos ciegos. Instaladas y calibradas por WINFIN sobre tu flota.',
-      keywords: ['cámaras 360 camiones', 'cámaras 360 autobuses', 'cámaras para camiones', 'cámaras para autobuses', 'cámaras seguridad flota', 'cámaras visión artificial flotas', 'cámaras visión perimetral vehículos', 'cámaras 360 vehículos industriales'],
+      title: 'Cámaras con inteligencia artificial 360° para camiones, autobuses y flotas',
+      description: 'Cámaras con inteligencia artificial y visión 360° para camiones, autobuses y vehículos industriales: visión perimetral, detección de peatones y ciclistas y eliminación de puntos ciegos. Instaladas y calibradas por WINFIN sobre tu flota.',
+      keywords: ['cámaras con inteligencia artificial para flotas', 'cámaras IA flotas', 'cámaras inteligencia artificial camiones', 'cámaras 360 camiones', 'cámaras 360 autobuses', 'cámaras para camiones', 'cámaras para autobuses', 'cámaras seguridad flota', 'cámaras visión artificial flotas', 'visión perimetral 360 autobuses', 'cámaras visión perimetral vehículos', 'cámaras 360 vehículos industriales'],
       openGraph: {
-        title: 'Cámaras 360 de seguridad para camiones, autobuses y flotas | Vision360IA',
-        description: 'Cámaras 360 con visión perimetral y detección por IA para eliminar puntos ciegos en camiones, autobuses y vehículos industriales.',
+        title: 'Cámaras con inteligencia artificial 360° para camiones, autobuses y flotas | Vision360IA',
+        description: 'Cámaras 360 con visión perimetral e inteligencia artificial para eliminar puntos ciegos y detectar peatones y ciclistas en camiones, autobuses y vehículos industriales.',
       },
       alternates: { canonical: 'https://www.vision360ia.com/camaras-vision-artificial-flotas' },
     },
@@ -557,8 +557,8 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
       hero: {
         badge: 'Visión Artificial',
         badgeIcon: Camera,
-        title: 'Cámaras 360 de seguridad para camiones, autobuses y flotas',
-        description: 'Cámaras 360 con visión perimetral y visión artificial que eliminan puntos ciegos, detectan peatones y ciclistas y convierten el vídeo en alertas útiles para la seguridad y la operación de tu flota.',
+        title: 'Cámaras con inteligencia artificial y visión 360° para camiones, autobuses y flotas',
+        description: 'Cámaras 360 con visión perimetral e inteligencia artificial (IA) que eliminan puntos ciegos, detectan peatones y ciclistas y convierten el vídeo en alertas útiles para la seguridad y la operación de tu flota.',
         highlights: ['Detección de personas y objetos', 'Análisis de conducción y fatiga', 'Integración cloud y FMS', 'Procesamiento local sin internet'],
         primaryCtaLabel: 'Ver si encaja en mi flota',
         secondaryCtaLabel: 'Ver demostración en vídeo',
@@ -780,7 +780,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
       hero: {
         badge: 'Vehículos industriales',
         badgeIcon: HardHat,
-        title: 'Reduce riesgo persona-máquina con visión 360° para vehículos industriales',
+        title: 'Sistema de visión 360° para vehículos industriales: reduce el riesgo persona-máquina',
         description: 'Solución de visión 360° para maquinaria pesada, obra y vehículos industriales que mejora la maniobra, reduce puntos ciegos y ayuda a proteger a las personas en entorno severo.',
         highlights: ['Excavadoras y palas cargadoras', 'Carretillas y grúas móviles', 'Vehículos municipales y portuarios', 'Operación en obra, patio y nave'],
         primaryCtaLabel: 'Ver si encaja en mi flota',
