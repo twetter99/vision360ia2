@@ -76,6 +76,10 @@ export function SupportPage({ title, description, eyebrow, breadcrumbLabel, brea
         '@type': 'ListItem',
         position: 2,
         name: breadcrumbCategory,
+        // Google exige `item` (URL) en los niveles intermedios del
+        // BreadcrumbList. Apuntamos a la sección de soluciones de la home
+        // (igual que solution-page.tsx), que lista toda la oferta.
+        item: 'https://www.vision360ia.com/#solutions',
       },
       {
         '@type': 'ListItem',
