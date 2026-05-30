@@ -194,6 +194,12 @@ export function Header() {
               >
                 {t.getQuote}
               </Button>
+              <Button
+                className="flex h-10 rounded-full bg-accent px-4 text-sm font-semibold text-accent-foreground shadow-[0_12px_28px_rgba(245,158,11,0.24)] hover:bg-accent/90 md:hidden"
+                onClick={openContactSlideOver}
+              >
+                Contacto
+              </Button>
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon" className={cn(

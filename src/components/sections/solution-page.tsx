@@ -437,6 +437,26 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
           </div>
         </SectionWrapper>
 
+        <SectionWrapper className="max-w-5xl bg-transparent px-6 py-4 md:px-6 md:py-6">
+          <div className="flex flex-col items-center gap-5 rounded-[2rem] border border-amber-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,251,235,0.92))] p-6 text-center shadow-[var(--shadow-soft)] backdrop-blur-md md:flex-row md:justify-between md:gap-8 md:p-8 md:text-left">
+            <div>
+              <h2 className="font-headline text-2xl font-semibold tracking-[-0.03em] text-slate-950 md:text-3xl">
+                ¿Encaja en tu flota? Te lo decimos sin compromiso
+              </h2>
+              <p className="mt-2 text-base leading-relaxed text-slate-600">
+                Cuéntanos tus vehículos y maniobras y te preparamos una evaluación técnica con la configuración recomendada. Respuesta en 24-48 h.
+              </p>
+            </div>
+            <ContactFormButton
+              size="lg"
+              className={`min-h-[54px] shrink-0 rounded-full px-7 ${data.theme.primaryButton}`}
+            >
+              Solicitar evaluación técnica
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </ContactFormButton>
+          </div>
+        </SectionWrapper>
+
         {data.detailSection ? (
           <SectionWrapper className="max-w-7xl bg-transparent px-6 py-16 md:px-6 md:py-20">
             <div className="rounded-[2rem] border border-white/70 bg-white/88 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">

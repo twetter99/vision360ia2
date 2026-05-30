@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/footer';
 import { LanguageProvider } from '@/context/language-provider';
 import { ContactSlideOverProvider } from '@/context/contact-slideover-provider';
 import { ContactSlideOver } from '@/components/ui/contact-slideover';
+import { FloatingCta } from '@/components/shared/floating-cta';
 import { CookieBanner } from '@/components/ui/cookie-banner';
 
 // Layout cliente con todos los providers y componentes interactivos
@@ -18,6 +19,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
         <Footer />
         <Toaster />
         <ContactSlideOver />
+        <FloatingCta />
         <CookieBanner />
       </ContactSlideOverProvider>
     </LanguageProvider>
