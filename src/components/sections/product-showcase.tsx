@@ -193,9 +193,9 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
     {
       vimeoId: '1197096751',
       thumbnail: '/images/demo-vision360-5.jpg',
-      productName: 'Vision360IA: detección y alerta en maniobra',
-      tag: 'Prevención',
-      summary: 'Demostración real del sistema avisando al conductor cuando detecta un usuario vulnerable u obstáculo en una maniobra crítica.',
+      productName: 'Vision360IA: visión perimetral 360° con 4 cámaras simultáneas',
+      tag: '360° perimetral',
+      summary: 'Demostración de Vision360IA con las cuatro cámaras perimetrales activas a la vez (frontal, trasera, lateral derecha e izquierda), cubriendo el entorno completo del vehículo con detección IA en tiempo real en todos los ángulos.',
       metric: 'Demo 05',
     },
   ];
