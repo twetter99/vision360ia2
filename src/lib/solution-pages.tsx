@@ -515,7 +515,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'camaras-vision-artificial-flotas': {
     metadata: {
-      title: 'Cámaras con inteligencia artificial 360° para camiones, autobuses y flotas',
+      title: 'Cámaras con inteligencia artificial para flotas',
       description: 'Cámaras con inteligencia artificial y visión 360° para camiones, autobuses y vehículos industriales: visión perimetral, detección de peatones y ciclistas y eliminación de puntos ciegos. Instaladas y calibradas por WINFIN sobre tu flota.',
       keywords: ['cámaras con inteligencia artificial para flotas', 'cámaras IA flotas', 'cámaras inteligencia artificial camiones', 'cámaras 360 camiones', 'cámaras 360 autobuses', 'cámaras para camiones', 'cámaras para autobuses', 'cámaras seguridad flota', 'cámaras visión artificial flotas', 'visión perimetral 360 autobuses', 'cámaras visión perimetral vehículos', 'cámaras 360 vehículos industriales'],
       openGraph: {
