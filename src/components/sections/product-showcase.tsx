@@ -321,7 +321,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
                         <button
                           type="button"
                           onClick={() => openArchitectureDetail(index)}
-                          className="mt-4 inline-flex items-center gap-2 self-start text-sm font-semibold text-primary transition-all duration-300 hover:gap-3"
+                          className="mt-3 inline-flex min-h-[44px] items-center gap-2 self-start py-1 text-sm font-semibold text-primary transition-all duration-300 hover:gap-3"
                         >
                           <span>Ver detalle tecnico</span>
                           <ArrowRight className="h-4 w-4" />

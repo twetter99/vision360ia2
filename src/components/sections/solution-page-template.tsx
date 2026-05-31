@@ -158,7 +158,7 @@ export function SolutionPageTemplate({ content }: { content: SolutionPageContent
                   {hero.badge}
                 </div>
 
-                <h1 className="max-w-4xl font-headline text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-white md:text-6xl">
+                <h1 className="max-w-4xl font-headline text-4xl font-semibold leading-[1.1] tracking-[-0.05em] text-white md:text-6xl md:leading-[1.02]">
                   {hero.title}
                 </h1>
 

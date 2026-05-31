@@ -60,7 +60,7 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/84 via-slate-950/34 to-slate-950/48" />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/88 via-slate-950/42 to-slate-950/26" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_52%,rgba(56,189,248,0.12),rgba(15,23,42,0.12)_28%,rgba(15,23,42,0.56)_100%)]" />
-        <div className="absolute left-0 top-0 h-[44%] w-[86%] bg-[radial-gradient(circle_at_top_left,rgba(2,6,23,0.88),rgba(2,6,23,0.76)_32%,rgba(2,6,23,0.34)_62%,rgba(2,6,23,0)_100%)] md:h-[34%] md:w-[48%]" />
+        <div className="absolute left-0 top-0 h-[44%] w-[86%] bg-[radial-gradient(circle_at_top_left,rgba(2,6,23,0.88),rgba(2,6,23,0.76)_32%,rgba(2,6,23,0.34)_62%,rgba(2,6,23,0)_100%)] md:h-[62%] md:w-[60%]" />
         <div className="hero-mesh absolute inset-0 opacity-55" />
         <div className="absolute left-[8%] top-[18%] h-40 w-40 rounded-full bg-sky-400/10 blur-3xl" />
         <div className="absolute bottom-[14%] right-[12%] h-48 w-48 rounded-full bg-sky-300/10 blur-3xl" />
@@ -93,14 +93,15 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
                   className="font-headline font-bold tracking-[-0.05em] text-white drop-shadow-[0_18px_48px_rgba(2,6,23,0.72)]"
                   style={{
                     fontSize: 'clamp(1.7rem, 7.4vw, 5rem)',
-                    lineHeight: '1.02',
+                    lineHeight: '1.08',
+                    textShadow: '0 2px 18px rgba(2,6,23,0.85), 0 1px 4px rgba(2,6,23,0.85)',
                   }}
                 >
                   {t.title}
                 </h1>
                 {t.subtitle && (
                   <p
-                    className="mt-5 max-w-[18rem] text-base leading-relaxed text-slate-100/90 drop-shadow-[0_8px_24px_rgba(2,6,23,0.55)] sm:max-w-[26rem] sm:text-lg md:max-w-[34rem] md:text-xl lg:max-w-[38rem]"
+                    className="mt-5 max-w-[18rem] text-base leading-relaxed text-slate-100/90 drop-shadow-[0_8px_24px_rgba(2,6,23,0.55)] [text-shadow:0_1px_10px_rgba(2,6,23,0.85)] sm:max-w-[26rem] sm:text-lg md:max-w-[34rem] md:text-xl lg:max-w-[38rem]"
                   >
                     {t.subtitle}
                   </p>

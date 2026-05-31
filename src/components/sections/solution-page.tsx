@@ -284,7 +284,7 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                   {data.hero.badge}
                 </div>
 
-                <h1 className="max-w-4xl font-headline text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-slate-950 md:text-6xl">
+                <h1 className="max-w-4xl font-headline text-4xl font-semibold leading-[1.1] tracking-[-0.05em] text-slate-950 md:text-6xl md:leading-[1.02]">
                   {data.hero.title}
                 </h1>
                 <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 md:text-xl">

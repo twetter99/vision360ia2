@@ -234,10 +234,10 @@ export function Solutions() {
                     </div>
                   </div>
 
-                  <div className="mt-8 flex items-center gap-3">
+                  <div className="mt-7 flex items-center gap-3">
                     <Link
                       href={solution.href}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all duration-300 hover:gap-3"
+                      className="inline-flex min-h-[44px] items-center gap-2 py-1 text-sm font-semibold text-primary transition-all duration-300 hover:gap-3"
                     >
                       <span>Ver solución</span>
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

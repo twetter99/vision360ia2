@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Cookie } from 'lucide-react';
+import { useContactSlideOver } from '@/context/contact-slideover-provider';
 
 const COOKIE_CONSENT_KEY = 'vision360ia-cookie-consent';
 const COOKIE_CONSENT_VERSION = '1.0'; // Incrementar si cambia la política
@@ -30,6 +31,10 @@ export function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(defaultPreferences);
+  // Cuando el formulario de contacto está abierto, ocultamos el banner: en
+  // móvil tapaba el botón "Enviar" + la casilla de privacidad + Turnstile,
+  // impidiendo enviar el formulario a un visitante nuevo (pérdida de leads).
+  const { isOpen: isContactOpen } = useContactSlideOver();
 
   useEffect(() => {
     // Verificar si ya existe consentimiento
@@ -89,7 +94,7 @@ export function CookieBanner() {
     saveConsent(preferences);
   };
 
-  if (!isVisible) return null;
+  if (!isVisible || isContactOpen) return null;
 
   return (
     <div 
