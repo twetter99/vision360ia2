@@ -478,6 +478,11 @@ export const translations = {
         answer: 'Sí. La solución está pensada como retrofit para flotas, por lo que puede implantarse en vehículos ya operativos. La viabilidad depende del tipo de vehículo, su configuración y las necesidades de cobertura, instalación e integración.',
       },
       {
+        id: 'faqPrecio',
+        question: '¿Cuánto cuesta un sistema de visión 360° con IA para una flota?',
+        answer: 'Como referencia orientativa, una implantación profesional con cámaras 360° e inteligencia artificial parte desde 2.500 € + IVA por vehículo en proyectos de flota, con configuraciones habituales entre 2.500 € y 4.500 € + IVA por vehículo. El precio final depende del tipo de vehículo, el número de cámaras, la integración, el cableado y la calibración.',
+      },
+      {
         id: 'faq3',
         question: '¿Sirve para camiones, furgonetas, autobuses y otros vehículos industriales?',
         answer: 'Sí, siempre que se estudie cada caso. Estas soluciones pueden adaptarse a distintos tipos de flota, pero la configuración correcta depende del uso del vehículo, geometría, maniobras habituales y nivel de cobertura que se necesite en operación real.',

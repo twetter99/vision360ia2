@@ -237,6 +237,23 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
     ],
   };
 
+  // FAQPage generado desde el FAQ VISIBLE (única fuente de verdad): así el
+  // schema coincide SIEMPRE con lo que ve y rastrea el usuario, como exige
+  // Google. Quitamos cualquier FAQPage escrito a mano en data.schemas para
+  // no duplicarlo ni desalinearlo del contenido visible.
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: data.faq.items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
+  const nonFaqSchemas = data.schemas.filter(
+    (schema) => (schema as { '@type'?: string })['@type'] !== 'FAQPage',
+  );
+
   return (
     <>
       <script
@@ -244,7 +261,7 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      {data.schemas.map((schema, index) => (
+      {[...nonFaqSchemas, faqSchema].map((schema, index) => (
         <script
           key={`solution-schema-${index}`}
           type="application/ld+json"
@@ -512,7 +529,7 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
         <SectionWrapper id="faq" className="max-w-5xl bg-transparent px-6 py-20 md:px-6">
           <div className="rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
             <SectionHeading eyebrow={data.faq.eyebrow} title={data.faq.title} className="mb-10 max-w-4xl" />
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible defaultValue="faq-0" className="space-y-4">
               {data.faq.items.map((faq, index) => (
                 <AccordionItem
                   key={faq.question}
