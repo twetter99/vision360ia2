@@ -114,45 +114,71 @@ export default async function Home() {
     // sigue siendo válido en Schema.org y mantiene marca, fabricante y specs.
   };
 
-  // VideoObject schemas para los 3 vídeos Vimeo de demo del producto.
+  // VideoObject schemas de los 5 vídeos de demostración reales (Vimeo).
   const videoSchemas = [
     {
       '@context': 'https://schema.org',
       '@type': 'VideoObject',
-      name: 'Visión Perimetral 360° para Autobuses y Camiones - Demo',
+      name: 'Vision360IA: visión 360° con IA para flotas',
       description:
-        'Demostración del sistema de visión perimetral 360° de Vision360IA: cámaras HD con visión artificial que eliminan puntos ciegos en autobuses y camiones.',
-      thumbnailUrl: `${SITE_URL}/images/winfin_vision360ia_1.jpg`,
-      uploadDate: '2024-01-15',
-      contentUrl: 'https://vimeo.com/1133755711',
-      embedUrl: 'https://player.vimeo.com/video/1133755711',
-      duration: 'PT2M',
+        'Presentación de Vision360IA: visión perimetral 360° con inteligencia artificial para autobuses, camiones y vehículos industriales. Elimina puntos ciegos y detecta peatones, ciclistas y vehículos en tiempo real.',
+      thumbnailUrl: `${SITE_URL}/images/demo-vision360-1.jpg`,
+      uploadDate: '2026-05-31',
+      contentUrl: 'https://vimeo.com/1197096755',
+      embedUrl: 'https://player.vimeo.com/video/1197096755',
+      duration: 'PT59S',
       publisher: { '@id': ORGANIZATION_ID },
     },
     {
       '@context': 'https://schema.org',
       '@type': 'VideoObject',
-      name: 'ADAS Anti-Atropellos: Detección de Peatones y Ciclistas con IA',
+      name: 'Vision360IA: inteligencia y seguridad en tiempo real',
       description:
-        'Sistema ADAS con alertas inteligentes para detección de peatones y ciclistas (VRU), colisión frontal (FCW) y salida de carril (LDW) mediante cámaras con visión artificial.',
-      thumbnailUrl: `${SITE_URL}/images/winfin_vision360ia_2.jpg`,
-      uploadDate: '2024-01-15',
-      contentUrl: 'https://vimeo.com/1133755727',
-      embedUrl: 'https://player.vimeo.com/video/1133755727',
-      duration: 'PT2M',
+        'El sistema procesa el entorno del vehículo en tiempo real con IA embarcada y genera alertas de seguridad al conductor en maniobras y zonas de riesgo.',
+      thumbnailUrl: `${SITE_URL}/images/demo-vision360-2.jpg`,
+      uploadDate: '2026-05-31',
+      contentUrl: 'https://vimeo.com/1197096750',
+      embedUrl: 'https://player.vimeo.com/video/1197096750',
+      duration: 'PT32S',
       publisher: { '@id': ORGANIZATION_ID },
     },
     {
       '@context': 'https://schema.org',
       '@type': 'VideoObject',
-      name: 'Gestión de Flotas con Análisis IA y Reportes',
+      name: 'Vision360IA en conducción real',
       description:
-        'Plataforma de análisis de flota con IA: evaluación de conductores, reconstrucción de eventos críticos y KPIs en tiempo real para flotas de autobuses, camiones y vehículos industriales.',
-      thumbnailUrl: `${SITE_URL}/images/winfin_vision360ia_3.jpg`,
-      uploadDate: '2024-01-15',
-      contentUrl: 'https://vimeo.com/1133755748',
-      embedUrl: 'https://player.vimeo.com/video/1133755748',
-      duration: 'PT2M',
+        'Funcionamiento de Vision360IA durante la conducción real: visión 360° y detección del entorno en circulación. No es render ni simulación.',
+      thumbnailUrl: `${SITE_URL}/images/demo-vision360-3.jpg`,
+      uploadDate: '2026-05-31',
+      contentUrl: 'https://vimeo.com/1197096752',
+      embedUrl: 'https://player.vimeo.com/video/1197096752',
+      duration: 'PT30S',
+      publisher: { '@id': ORGANIZATION_ID },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: 'Vision360IA analiza el entorno del vehículo en tiempo real',
+      description:
+        'Cómo el sistema detecta y clasifica peatones, ciclistas, vehículos y obstáculos alrededor del vehículo en tiempo real para anticipar el riesgo en maniobra.',
+      thumbnailUrl: `${SITE_URL}/images/demo-vision360-4.jpg`,
+      uploadDate: '2026-05-31',
+      contentUrl: 'https://vimeo.com/1197096749',
+      embedUrl: 'https://player.vimeo.com/video/1197096749',
+      duration: 'PT22S',
+      publisher: { '@id': ORGANIZATION_ID },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: 'Vision360IA: detección y alerta en maniobra',
+      description:
+        'Demostración real del sistema avisando al conductor cuando detecta un usuario vulnerable u obstáculo en una maniobra crítica.',
+      thumbnailUrl: `${SITE_URL}/images/demo-vision360-5.jpg`,
+      uploadDate: '2026-05-31',
+      contentUrl: 'https://vimeo.com/1197096751',
+      embedUrl: 'https://player.vimeo.com/video/1197096751',
+      duration: 'PT20S',
       publisher: { '@id': ORGANIZATION_ID },
     },
   ];

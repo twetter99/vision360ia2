@@ -154,31 +154,49 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
   }, []);
 
   
-  // Datos de los videos con IDs reales de Vimeo
+  // Vídeos de demostración reales (Vimeo). Títulos/resúmenes provisionales:
+  // describen capacidades del sistema; afinar según el escenario concreto de
+  // cada clip. Miniaturas alojadas en local para rendimiento.
   const videoCards = [
     {
-      vimeoId: (Array.isArray(products) ? products[0]?.vimeoId : undefined) || '1133755711',
-      thumbnail: (Array.isArray(products) ? products[0]?.videoPoster : undefined) || '/images/winfin_vision360ia_1.jpg',
-      productName: (Array.isArray(products) ? products[0]?.name : undefined) || 'Calculo de distancias en tiempo real',
-      tag: (Array.isArray(products) ? products[0]?.demoTag : undefined) || 'Visión 360°',
-      summary: (Array.isArray(products) ? products[0]?.demoSummary : undefined) || 'Detección de vehículos y cálculo de distancia con ADAS 360°. Vista frontal y cenital del vehículo con análisis en tiempo real.',
-      metric: 'Caso 01',
+      vimeoId: '1197096755',
+      thumbnail: '/images/demo-vision360-1.jpg',
+      productName: 'Vision360IA: visión 360° con IA para flotas',
+      tag: 'Vídeo general',
+      summary: 'Presentación de Vision360IA: visión perimetral 360° con inteligencia artificial para autobuses, camiones y vehículos industriales. Elimina puntos ciegos y detecta peatones, ciclistas y vehículos en tiempo real.',
+      metric: 'Demo 01',
     },
     {
-      vimeoId: (Array.isArray(products) ? products[1]?.vimeoId : undefined) || '1133755727',
-      thumbnail: (Array.isArray(products) ? products[1]?.videoPoster : undefined) || '/images/winfin_vision360ia_2.jpg',
-      productName: (Array.isArray(products) ? products[1]?.name : undefined) || 'ADAS anti-atropellos con detección de peatones y ciclistas',
-      tag: (Array.isArray(products) ? products[1]?.demoTag : undefined) || 'Protección VRU',
-      summary: (Array.isArray(products) ? products[1]?.demoSummary : undefined) || 'Alertas anticipadas con IA para prevenir atropellos y reducir exposición al siniestro en ciudad.',
-      metric: 'Caso 02',
+      vimeoId: '1197096750',
+      thumbnail: '/images/demo-vision360-2.jpg',
+      productName: 'Vision360IA: inteligencia y seguridad en tiempo real',
+      tag: 'Tiempo real',
+      summary: 'El sistema procesa el entorno del vehículo en tiempo real con IA embarcada y genera alertas de seguridad al conductor en maniobras y zonas de riesgo.',
+      metric: 'Demo 02',
     },
     {
-      vimeoId: (Array.isArray(products) ? products[2]?.vimeoId : undefined) || '1133755748',
-      thumbnail: (Array.isArray(products) ? products[2]?.videoPoster : undefined) || '/images/winfin_vision360ia_3.jpg',
-      productName: (Array.isArray(products) ? products[2]?.name : undefined) || 'Analítica de flota para reducir riesgo y mejorar operación',
-      tag: (Array.isArray(products) ? products[2]?.demoTag : undefined) || 'Analítica',
-      summary: (Array.isArray(products) ? products[2]?.demoSummary : undefined) || 'Eventos, vídeo y patrones de conducción convertidos en decisiones para seguridad, mantenimiento y eficiencia.',
-      metric: 'Caso 03',
+      vimeoId: '1197096752',
+      thumbnail: '/images/demo-vision360-3.jpg',
+      productName: 'Vision360IA en conducción real',
+      tag: 'Conducción real',
+      summary: 'Funcionamiento de Vision360IA durante la conducción real: visión 360° y detección del entorno en circulación. No es render ni simulación.',
+      metric: 'Demo 03',
+    },
+    {
+      vimeoId: '1197096749',
+      thumbnail: '/images/demo-vision360-4.jpg',
+      productName: 'Vision360IA analiza el entorno del vehículo en tiempo real',
+      tag: 'Detección IA',
+      summary: 'Cómo el sistema detecta y clasifica peatones, ciclistas, vehículos y obstáculos alrededor del vehículo en tiempo real para anticipar el riesgo en maniobra.',
+      metric: 'Demo 04',
+    },
+    {
+      vimeoId: '1197096751',
+      thumbnail: '/images/demo-vision360-5.jpg',
+      productName: 'Vision360IA: detección y alerta en maniobra',
+      tag: 'Prevención',
+      summary: 'Demostración real del sistema avisando al conductor cuando detecta un usuario vulnerable u obstáculo en una maniobra crítica.',
+      metric: 'Demo 05',
     },
   ];
   
@@ -354,7 +372,7 @@ export function ProductShowcase({ translations: initialTranslations }: { transla
               {openVideoModal && (
                 <>
                   <iframe
-                    src={`https://player.vimeo.com/video/${openVideoModal}?autoplay=1&loop=0&byline=0&title=0&portrait=0`}
+                    src={`https://player.vimeo.com/video/${openVideoModal}?autoplay=1&loop=0&byline=0&title=0&portrait=0&dnt=1`}
                     className="absolute top-0 left-0 w-full h-full"
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture"

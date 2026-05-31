@@ -318,7 +318,7 @@ const productSpecs = {
     description: 'Solución de visión 360° diseñada para reducir puntos ciegos, mejorar maniobras urbanas y dar más control al conductor en autobuses, camiones y vehículos municipales. Genera una vista cenital unificada en tiempo real y puede implantarse sobre flota existente sin romper la operación.',
     demoTag: 'Visión 360°',
     demoSummary: 'Detección de vehículos y cálculo de distancia con ADAS 360°. Vista frontal y cenital del vehículo con análisis en tiempo real.',
-    vimeoId: '1133755711',
+    vimeoId: '1197096755',
     videoPoster: '/images/winfin_vision360ia_1.jpg',
     specs: [
         'Reduce puntos ciegos en giros, salidas y maniobras urbanas.',
@@ -337,7 +337,7 @@ const productSpecs = {
     description: 'Sistema ADAS orientado a prevenir atropellos en maniobras urbanas y entornos mixtos. Detecta peatones y ciclistas en zonas críticas del vehículo y activa alertas útiles para que el conductor reaccione antes de que el riesgo termine en incidente.',
     demoTag: 'Protección VRU',
     demoSummary: 'Alertas anticipadas con IA para prevenir atropellos y reducir exposición al siniestro en ciudad.',
-    vimeoId: '1133755727',
+    vimeoId: '1197096750',
     videoPoster: '/images/winfin_vision360ia_2.jpg',
     specs: [
       'Detecta peatones y ciclistas en zonas donde se concentran los atropellos.',
@@ -354,7 +354,7 @@ const productSpecs = {
     description: 'Plataforma de analítica para gestores de flota que convierte eventos, vídeo y datos de conducción en decisiones accionables. Ayuda a identificar patrones de riesgo, priorizar formación, reducir costes operativos y mejorar seguridad, mantenimiento y eficiencia.',
     demoTag: 'Analítica',
     demoSummary: 'Eventos, vídeo y patrones de conducción convertidos en decisiones para seguridad, mantenimiento y eficiencia.',
-    vimeoId: '1133755748',
+    vimeoId: '1197096752',
     videoPoster: '/images/winfin_vision360ia_3.jpg',
     specs: [
       'Detecta patrones de riesgo repetidos y ayuda a priorizar acciones.',
