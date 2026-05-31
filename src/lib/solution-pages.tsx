@@ -148,7 +148,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
         panelIcon: Users,
         stats: [
           { value: '+2.000', label: 'vehículos instalados' },
-          { value: '40%', label: 'menos incidentes en maniobra' },
+          { value: 'Hasta 40%', label: 'reducción potencial en maniobra' },
           { value: 'GSR', label: 'R151, R158 y R159' },
         ],
         gains: [
@@ -387,7 +387,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
         variant: 'chips',
         items: ['Rígidos', 'Tractoras', 'Articulados', 'Frigoríficos', 'Obra', 'Distribución', 'Portacontenedores', 'Retrofit'],
       },
-      metrics: { eyebrow: 'Impacto operativo', title: 'Impacto directo en seguridad y continuidad de servicio', items: [{ value: '40%', label: 'menos incidentes' }, { value: '+2.000', label: 'vehículos equipados' }, { value: '2 años', label: 'garantía completa' }, { value: '< 1 min', label: 'calibración automática' }] },
+      metrics: { eyebrow: 'Impacto operativo', title: 'Impacto directo en seguridad y continuidad de servicio', items: [{ value: 'Hasta 40%', label: 'reducción potencial' }, { value: '+2.000', label: 'vehículos equipados' }, { value: '2 años', label: 'garantía completa' }, { value: '< 1 min', label: 'calibración automática' }] },
       faq: {
         eyebrow: 'FAQ para gestores',
         title: 'Preguntas frecuentes sobre seguridad 360° en camiones',

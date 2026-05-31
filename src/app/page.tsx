@@ -1,6 +1,7 @@
 
 import { AeoContext } from '@/components/sections/aeo-context';
 import { Contact } from '@/components/sections/contact';
+import { DemoValidation } from '@/components/shared/demo-validation';
 import { Faq } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
 import { ProductShowcase } from '@/components/sections/product-showcase';
@@ -177,6 +178,7 @@ export default async function Home() {
         <Solutions />
         <WhyUs translations={defaultTranslations} />
         <ProductShowcase translations={defaultTranslations} />
+        <DemoValidation />
         <Faq translations={defaultTranslations} />
         <Contact />
       </div>

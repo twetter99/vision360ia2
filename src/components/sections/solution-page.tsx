@@ -5,6 +5,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AnimatedSection } from '@/components/shared/animated-section';
 import { ContactFormButton } from '@/components/shared/contact-form-button';
+import { DemoValidation } from '@/components/shared/demo-validation';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionWrapper } from '@/components/shared/section-wrapper';
 import { Button } from '@/components/ui/button';
@@ -523,8 +524,13 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                 </AnimatedSection>
               ))}
             </div>
+            <p className="mt-6 text-center text-xs leading-5 text-white/55">
+              Cifras orientativas: reducción potencial según configuración, uso, entorno operativo y datos de explotación de cada flota. Las cifras de reducción de incidentes se presentan como estimación.
+            </p>
           </div>
         </SectionWrapper>
+
+        <DemoValidation />
 
         <SectionWrapper id="faq" className="max-w-5xl bg-transparent px-6 py-20 md:px-6">
           <div className="rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
