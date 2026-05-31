@@ -82,3 +82,4 @@ public/api/form/composer.lock
 # Estado del deploy (NO commitear - contiene IPs, snapshots, anotaciones)
 .deploy-state.md
 deploy-staging/
+.gstack/
