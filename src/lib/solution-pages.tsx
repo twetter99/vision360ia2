@@ -51,7 +51,7 @@ const sharedRelatedLinks = {
 export const solutionPages: Record<string, SolutionPageEntry> = {
   'adas-autobuses': {
     metadata: {
-      title: 'ADAS para autobuses con cámaras 360° y detección VRU',
+      title: 'Sistema ADAS para autobuses con cámaras 360° e IA',
       description: 'Reduce puntos ciegos y accidentes en autobuses urbanos e interurbanos con cámaras 360°, detección de peatones y ciclistas y solución preparada para cumplimiento GSR en flotas profesionales.',
       keywords: ['ADAS para autobuses', 'ADAS autobuses', 'ADAS autobuses urbanos', 'visión 360 autobuses', 'cámaras 360 para autobuses', 'cámaras 360 autobuses', 'cámaras seguridad autobús', 'sistema antiatropello autobús', 'detección de peatones para autobuses', 'detección peatones autobús', 'ángulos muertos autobús', 'punto ciego autobús', 'BSIS autobús', 'anti atropellos autobuses', 'GSR autobuses', 'ADAS retrofit flotas', 'cámaras visión artificial autobuses'],
       openGraph: {
@@ -137,8 +137,8 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
       hero: {
         badge: 'ADAS para flotas de autobuses',
         badgeIcon: Bus,
-        title: 'ADAS para autobuses: reduce puntos ciegos y maniobras de riesgo en tu flota',
-        description: 'Sistema de cámaras 360° con detección inteligente de peatones y ciclistas para autobuses urbanos e interurbanos. Diseñado para mejorar seguridad, reducir incidentes y facilitar cumplimiento sin penalizar la operación.',
+        title: 'Sistema ADAS para autobuses urbanos e interurbanos',
+        description: 'Vision360IA es un sistema ADAS para autobuses basado en cámaras 360°, detección inteligente de peatones y ciclistas y alertas al conductor que cubre los puntos ciegos en maniobras urbanas. Reduce incidentes sin penalizar la operación.',
         highlights: ['Paradas frecuentes en entorno urbano', 'Exposición continua a peatones y ciclistas', 'Giros con ángulo muerto crítico', 'Operación intensiva con presión de servicio'],
         primaryCtaLabel: 'Solicitar información técnica',
         secondaryCtaLabel: 'Ver demostración en vídeo',
@@ -266,7 +266,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   },
   'adas-camiones': {
     metadata: {
-      title: 'ADAS para camiones con cámaras 360° y alertas VRU',
+      title: 'Sistema ADAS para camiones con cámaras 360° e IA',
       description: 'Reduce puntos ciegos y riesgo de siniestro en camiones y transporte pesado con cámaras 360°, detección de peatones y ciclistas y solución preparada para retrofit y cumplimiento GSR.',
       keywords: ['ADAS camiones', 'ADAS para camiones', 'ADAS transporte pesado', 'visión 360 camiones', 'cámaras 360 camiones', 'cámaras seguridad camión', 'cámara punto ciego camión', 'sistema de ángulo muerto para camiones', 'sistema antiatropello camión', 'detección peatones ciclistas camión', 'ángulos muertos camión', 'BSIS camiones', 'anti atropellos camiones', 'puntos ciegos camiones', 'GSR camiones', 'ADAS retrofit flotas'],
       openGraph: {
@@ -324,8 +324,8 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
       hero: {
         badge: 'ADAS para transporte pesado',
         badgeIcon: Truck,
-        title: 'Reduce puntos ciegos y riesgo de siniestro en tu flota de camiones',
-        description: 'Sistema de cámaras 360° con detección inteligente de peatones y ciclistas para camiones, rígidos, tractoras y articulados. Diseñado para mejorar maniobras, reducir incidentes y facilitar implantación sobre flota real.',
+        title: 'Sistema ADAS para camiones, rígidos, tractoras y articulados',
+        description: 'Vision360IA es un sistema ADAS para camiones basado en cámaras 360°, detección de peatones y ciclistas y alertas al conductor. Reduce puntos ciegos y riesgo de siniestro en rígidos, tractoras y articulados.',
         highlights: ['Ángulos muertos de gran tamaño', 'Tractoras, rígidos y articulados', 'Convivencia con peatones y ciclistas', 'Maniobras críticas en muelles y ciudad'],
         primaryCtaLabel: 'Solicitar información técnica',
         secondaryCtaLabel: 'Ver demostración en vídeo',
@@ -446,7 +446,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
       hero: {
         badge: 'Protección VRU',
         badgeIcon: ShieldAlert,
-        title: 'Sistema anti-atropellos para autobuses y camiones: detección de peatones y ciclistas en tiempo real',
+        title: 'Sistema antiatropellos para autobuses y camiones con detección de peatones y ciclistas',
         description: 'Sistema anti-atropellos para autobuses, camiones y flotas urbanas que detecta peatones y ciclistas en tiempo real y alerta al conductor antes de que la maniobra termine en incidente.',
         highlights: ['Giro a la derecha en ciudad', 'Marcha atrás con visibilidad limitada', 'Arranque en parada y zonas de carga', 'Convivencia con peatones y ciclistas'],
         primaryCtaLabel: 'Ver si encaja en mi flota',
