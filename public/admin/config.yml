@@ -5,7 +5,7 @@ backend:
   name: github
   repo: twetter99/vision360ia2
   branch: main
-  # base_url: https://TU-PROXY-OAUTH   # <-- Fase 2: OAuth App de GitHub + proxy
+  base_url: https://vision360-cms-auth.twetter.workers.dev
 
 # Las imágenes subidas en el editor se guardan aquí y se referencian con public_folder
 media_folder: "public/images/noticias"
