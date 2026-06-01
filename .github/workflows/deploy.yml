@@ -1,0 +1,60 @@
+name: Build & Deploy a SiteGround
+
+# Auto-publicación: al hacer push a main (incluye lo que publica el CMS),
+# reconstruye la web estática y la sube por FTP a SiteGround.
+#
+# SEGURIDAD (constraints del proyecto):
+#  - El uploader (.github/scripts/ftp_upload.py) SOLO SUBE, nunca borra → no
+#    toca api/form/config.php (SMTP) ni api/form/vendor/ (PHPMailer).
+#  - Se elimina out/api/form/config.php antes de subir (el real vive en el server).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-siteground
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build (static export)
+        env:
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+        run: npm run build
+
+      - name: Post-build (chunks + índice de /noticias + limpiar config local)
+        run: |
+          # Bug conocido de output:export → faltan chunks en out/_next/static
+          cp -R .next/static/. out/_next/static/
+          # nginx sirve el directorio /noticias/, no noticias.html → ponemos el
+          # índice dentro de la carpeta y quitamos el .html para no duplicar.
+          if [ -f out/noticias.html ]; then
+            mkdir -p out/noticias
+            cp out/noticias.html out/noticias/index.html
+            rm -f out/noticias.html
+          fi
+          # El config.php real vive SOLO en el servidor (gitignored). No subir el local.
+          rm -f out/api/form/config.php
+
+      - name: Deploy por FTP (solo subida, nunca borra)
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: python3 .github/scripts/ftp_upload.py out /vision360ia.com/public_html --workers 4

@@ -17,6 +17,7 @@ export function Footer() {
     { href: '/instalacion-equipos-embarcados-flotas', label: 'Instalación' },
     { href: '/mantenimiento-sistemas-seguridad-flotas', label: 'Mantenimiento' },
     { href: '/precio-sistema-adas-flotas', label: 'Precio' },
+    { href: '/noticias', label: 'Noticias' },
     { href: '/sala-de-prensa', label: 'Sala de prensa' },
     { href: '/#faq', label: 'FAQs' },
   ];
