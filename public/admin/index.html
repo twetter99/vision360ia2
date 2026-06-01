@@ -4,6 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
+    <!-- El proxy OAuth (Cloudflare Worker) valida el dominio por la cabecera
+         Referer. nginx de SiteGround IGNORA el Referrer-Policy del .htaccess, así
+         que lo forzamos aquí (el navegador siempre respeta el meta-referrer).
+         "origin" envía https://www.vision360ia.com/ -> el Worker da 302 y el
+         login "Sign in with GitHub" funciona en Safari y Chrome sin pegar token. -->
+    <meta name="referrer" content="origin" />
     <title>Gestor de noticias · Vision360IA</title>
     <!-- SiteGround bloquea .yml (403). Servimos la config como .txt y se la
          indicamos a Sveltia con este link (mecanismo cms-config-url). -->
