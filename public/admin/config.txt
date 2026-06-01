@@ -4,7 +4,7 @@
 backend:
   name: github
   repo: twetter99/vision360ia2
-  branch: main
+  branch: feature/noticias-cms
   base_url: https://vision360-cms-auth.twetter.workers.dev
   # site_domain fija el site_id que se envía al proxy OAuth (si no, en local
   # Sveltia manda un site_id por defecto que el Worker rechaza). Así el origen
