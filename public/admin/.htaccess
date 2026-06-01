@@ -5,10 +5,16 @@
 
 <IfModule mod_headers.c>
   Header always unset Content-Security-Policy
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://*.githubusercontent.com https://vision360-cms-auth.twetter.workers.dev; frame-src 'self' https://vision360-cms-auth.twetter.workers.dev; worker-src 'self' blob:; child-src 'self' blob:; form-action 'self' https://github.com https://vision360-cms-auth.twetter.workers.dev; base-uri 'self';"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://*.githubusercontent.com https://github.com https://unpkg.com https://vision360-cms-auth.twetter.workers.dev; frame-src 'self' https://vision360-cms-auth.twetter.workers.dev; worker-src 'self' blob:; child-src 'self' blob:; form-action 'self' https://github.com https://vision360-cms-auth.twetter.workers.dev; base-uri 'self';"
 
   # El login abre una ventana emergente; quitamos el DENY heredado por si acaso.
   Header always unset X-Frame-Options
+
+  # Referer permisivo SOLO en /admin: el proxy OAuth valida por Referer, y la
+  # política global (strict-origin-when-cross-origin) puede no enviarlo en el
+  # popup. unsafe-url garantiza que se envíe el origen. (No afecta al resto.)
+  Header always unset Referrer-Policy
+  Header always set Referrer-Policy "unsafe-url"
 </IfModule>
 
 # No indexar el panel
