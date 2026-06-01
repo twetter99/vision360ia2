@@ -1,0 +1,17 @@
+# CSP específica para /admin (Sveltia CMS). Solo afecta a esta carpeta:
+# si algo falla aquí, NO afecta al resto del sitio.
+# Relajamos respecto a la global para permitir que el CMS hable con GitHub y
+# con el proxy OAuth. El bundle de Sveltia está auto-alojado (script 'self').
+
+<IfModule mod_headers.c>
+  Header always unset Content-Security-Policy
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://*.githubusercontent.com https://vision360-cms-auth.twetter.workers.dev; frame-src 'self' https://vision360-cms-auth.twetter.workers.dev; worker-src 'self' blob:; child-src 'self' blob:; form-action 'self' https://github.com https://vision360-cms-auth.twetter.workers.dev; base-uri 'self';"
+
+  # El login abre una ventana emergente; quitamos el DENY heredado por si acaso.
+  Header always unset X-Frame-Options
+</IfModule>
+
+# No indexar el panel
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>

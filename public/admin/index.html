@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Gestor de noticias · Vision360IA</title>
+    <!-- SiteGround bloquea .yml (403). Servimos la config como .txt y se la
+         indicamos a Sveltia con este link (mecanismo cms-config-url). -->
+    <link href="config.txt" type="text/yaml" rel="cms-config-url" />
   </head>
   <body>
     <!-- Sveltia CMS (no es WordPress). Editor visual sobre el repositorio.
-         Login con GitHub. Requiere proxy OAuth configurado en config.yml (Fase 2). -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+         Bundle AUTO-ALOJADO (no CDN) para cumplir CSP. Login con GitHub vía
+         proxy OAuth (config.yml). -->
+    <script src="./sveltia-cms.js"></script>
   </body>
 </html>
