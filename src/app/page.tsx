@@ -4,6 +4,7 @@ import { Contact } from '@/components/sections/contact';
 import { DemoValidation } from '@/components/shared/demo-validation';
 import { Faq } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
+import { LatestNews } from '@/components/sections/latest-news';
 import { ProductShowcase } from '@/components/sections/product-showcase';
 import { Solutions } from '@/components/sections/solutions';
 import { WhyUs } from '@/components/sections/why-us';
@@ -206,6 +207,7 @@ export default async function Home() {
         <ProductShowcase translations={defaultTranslations} />
         <DemoValidation />
         <Faq translations={defaultTranslations} />
+        <LatestNews />
         <Contact />
       </div>
     </>

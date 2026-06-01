@@ -414,6 +414,7 @@ export const translations = {
     ...baseTranslations,
     navigationLinks: [
       { href: '/quienes-somos', label: 'Quiénes somos' },
+      { href: '/noticias', label: 'Noticias' },
       { href: '#faq', label: 'FAQs' },
       { href: '#contact', label: 'Contacto' },
     ],
@@ -844,6 +845,7 @@ export const translations = {
     ],
     navigationLinks: [
       { href: '/quienes-somos', label: 'Qui som' },
+      { href: '/noticias', label: 'Notícies' },
         { href: '#faq', label: 'FAQs' },
         { href: '#contact', label: 'Contacte' },
     ],
@@ -1258,6 +1260,7 @@ export const translations = {
     ],
     navigationLinks: [
       { href: '/quienes-somos', label: 'Nor gara' },
+      { href: '/noticias', label: 'Albisteak' },
         { href: '#faq', label: 'FAQs' },
         { href: '#contact', label: 'Kontaktua' },
     ],

@@ -7,7 +7,7 @@ import { SectionWrapper } from '@/components/shared/section-wrapper';
 import { ContactFormButton } from '@/components/shared/contact-form-button';
 import { JsonLd } from '@/components/seo/json-ld';
 import { SITE_URL, breadcrumbSchema, newsArticleSchema } from '@/lib/seo/structured-data';
-import { getNoticia, getNoticiaSlugs } from '@/lib/noticias';
+import { getNoticia, getNoticiaSlugs, getNoticias } from '@/lib/noticias';
 
 const MESES = [
   'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
@@ -18,6 +18,15 @@ function formatFecha(iso: string): string {
   if (!y || !m || !d) return iso;
   return `${d} de ${MESES[m - 1]} de ${y}`;
 }
+
+// Enlaces internos hacia las landings clave (reparte autoridad SEO y guía al lead).
+const SOLUCIONES_RELACIONADAS = [
+  { href: '/adas-autobuses', label: 'ADAS para autobuses' },
+  { href: '/adas-camiones', label: 'ADAS para camiones' },
+  { href: '/anti-atropellos-peatones-ciclistas', label: 'Anti-atropellos' },
+  { href: '/vision-360-vehiculos-industriales', label: 'Visión 360° industrial' },
+  { href: '/precio-sistema-adas-flotas', label: 'Precio orientativo' },
+];
 
 export function generateStaticParams() {
   return getNoticiaSlugs().map((slug) => ({ slug }));
@@ -48,6 +57,8 @@ export default async function NoticiaPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const n = getNoticia(slug);
   if (!n) notFound();
+
+  const relacionadas = getNoticias().filter((x) => x.slug !== slug).slice(0, 2);
 
   const schemas = [
     breadcrumbSchema([
@@ -104,13 +115,68 @@ export default async function NoticiaPage({ params }: { params: Promise<{ slug: 
             dangerouslySetInnerHTML={{ __html: n.contentHtml }}
           />
 
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-8">
+          {/* CTA de conversión — objetivo nº1 de la web: captar el lead */}
+          <div className="mt-12 overflow-hidden rounded-[1.75rem] border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-7 shadow-[var(--shadow-soft)] md:p-9">
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <h2 className="font-headline text-2xl font-semibold tracking-[-0.02em] text-slate-950 md:text-3xl">
+                  ¿Quieres esto en tu flota?
+                </h2>
+                <p className="mt-2 max-w-xl text-base leading-relaxed text-slate-600">
+                  Te asesoramos sin compromiso sobre visión 360°, ADAS y cumplimiento GSR para tus vehículos.
+                </p>
+              </div>
+              <ContactFormButton className="min-h-[48px] shrink-0 rounded-full bg-accent px-6 py-3 text-base font-semibold text-accent-foreground shadow-[0_16px_36px_rgba(245,158,11,0.22)] hover:bg-accent/90">
+                Solicitar información <ArrowRight className="ml-1.5 h-4 w-4" />
+              </ContactFormButton>
+            </div>
+          </div>
+
+          {/* Soluciones relacionadas — enlaces internos hacia las landings */}
+          <div className="mt-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">Soluciones relacionadas</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {SOLUCIONES_RELACIONADAS.map((s) => (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="inline-flex min-h-[40px] items-center rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-sky-200 hover:text-slate-950"
+                >
+                  {s.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Artículos relacionados */}
+          {relacionadas.length > 0 ? (
+            <div className="mt-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">Más noticias</p>
+              <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+                {relacionadas.map((r) => (
+                  <li key={r.slug}>
+                    <Link
+                      href={`/noticias/${r.slug}`}
+                      className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white/80 p-5 transition-colors hover:border-sky-200"
+                    >
+                      <time dateTime={r.date} className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                        {formatFecha(r.date)}
+                      </time>
+                      <span className="mt-2 font-headline text-base font-semibold leading-snug tracking-[-0.01em] text-slate-950">
+                        {r.title}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {/* Volver al índice */}
+          <div className="mt-10 border-t border-slate-200 pt-8">
             <Link href="/noticias" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-slate-950">
               <ArrowLeft className="h-4 w-4" /> Todas las noticias
             </Link>
-            <ContactFormButton className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:bg-accent/90">
-              Solicitar información <ArrowRight className="ml-1.5 h-4 w-4" />
-            </ContactFormButton>
           </div>
         </SectionWrapper>
       </article>
