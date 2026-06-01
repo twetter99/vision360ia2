@@ -6,7 +6,8 @@ escribe Markdown en el repo; al publicar, GitHub reconstruye la web y la sube a
 SiteGround. Las noticias quedan como **páginas estáticas rápidas y con SEO** en
 `www.vision360ia.com/noticias`.
 
-Rama de desarrollo: `feature/noticias-cms` (NO fusionar a `main` hasta cerrar Fase 3).
+**Estado: EN PRODUCCIÓN.** Consolidado en `main`. Publicar desde
+`https://www.vision360ia.com/admin/` dispara build + deploy automático.
 
 ---
 
@@ -21,70 +22,79 @@ Rama de desarrollo: `feature/noticias-cms` (NO fusionar a `main` hasta cerrar Fa
 - **CMS:** `public/admin/` (`index.html` + `config.yml`) → editor en `/admin`.
 - **Imágenes del editor:** `public/images/noticias/` (referenciadas como `/images/noticias/...`).
 
-## Estado por fases
+## Estado por fases — TODAS HECHAS ✅
 
-- **Fase 1 (HECHA, en esta rama):** sección de noticias en Next + 1 noticia de
-  ejemplo + `/admin` con Sveltia configurado. Funciona en local. **Sin tocar
-  producción ni deploy automático.**
-- **Fase 2 (pendiente, requiere tu acción):** login del CMS con GitHub.
-- **Fase 3 (pendiente):** auto-publicación (GitHub Actions → FTP a SiteGround) +
-  excepción de CSP para `/admin` + enlace "Noticias" en menú/footer.
+- **Fase 1 (HECHA):** sección de noticias en Next + 1 noticia de ejemplo +
+  `/admin` con Sveltia configurado.
+- **Fase 2 (HECHA):** login del CMS funcionando en producción.
+- **Fase 3 (HECHA):** auto-publicación (GitHub Actions → FTP a SiteGround),
+  CSP propia para `/admin`, enlace "Noticias" en el footer. Consolidado en `main`.
 
 ---
 
-## Fase 2 — Login del CMS con GitHub (OAuth)
+## Fase 2 — Login del CMS (cómo quedó)
 
-Sveltia/Decap necesitan un proxy OAuth para autenticar con GitHub (el host es
-SiteGround, no Netlify). Pasos:
+El plan inicial era OAuth con un proxy (Cloudflare Worker `sveltia-cms-auth`),
+pero **el Worker valida por el header `Referer`** y los popups del navegador
+(Safari/privado) no siempre lo envían → `Forbidden` recurrente. **Se abandonó
+OAuth** y se usa **login por Personal Access Token (PAT) de GitHub**, que sí
+funciona de forma fiable.
 
-1. **Crear una GitHub OAuth App**: GitHub → Settings → Developer settings →
-   OAuth Apps → New. Homepage: `https://www.vision360ia.com`. Authorization
-   callback URL: la del proxy OAuth (paso 2).
-2. **Desplegar un proxy OAuth** (gratis): el worker de Cloudflare recomendado por
-   Sveltia (`sveltia-cms-auth`) o un OAuth client equivalente. Configurar
-   CLIENT_ID y CLIENT_SECRET de la OAuth App.
-3. En `public/admin/config.yml`, descomentar y poner:
-   ```yaml
-   backend:
-     name: github
-     repo: twetter99/vision360ia2
-     branch: main
-     base_url: https://<tu-proxy-oauth>
-   ```
-4. **CSP para /admin:** `/admin` carga Sveltia desde un CDN y llama a la API de
-   GitHub. La CSP estricta del sitio lo bloquea. Añadir en `public/.htaccess` una
-   excepción solo para `/admin` (no tocar la CSP del resto), permitiendo:
-   `script-src` unpkg.com/jsdelivr; `connect-src` api.github.com + el proxy;
-   `frame-src`/`form-action` el proxy. Ejemplo (ajustar):
-   ```apache
-   <If "%{REQUEST_URI} =~ m#^/admin#">
-     Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://<tu-proxy-oauth>; frame-src https://<tu-proxy-oauth>; form-action 'self' https://github.com;"
-   </If>
-   ```
+**Cómo entrar al CMS:**
 
-## Fase 3 — Auto-publicación (GitHub Actions → FTP)
+1. Ir a `https://www.vision360ia.com/admin/`.
+2. Sveltia ofrece "Sign in with GitHub" y, debajo, la opción de **token**.
+3. Pegar un **fine-grained PAT** con permisos sobre `twetter99/vision360ia2`:
+   *Contents: Read and write* (Metadata se añade solo). Recomendado crearlo
+   **sin caducidad** ("No expiration") para no tener que renovarlo cada año.
 
-Workflow que, al hacer push a `main` (o al cambiar `content/noticias/**`),
-construye el sitio y lo sube por FTP a SiteGround.
+**Detalles técnicos que hubo que resolver (host SiteGround = nginx + Apache):**
 
-**Secrets a crear en el repo** (Settings → Secrets and variables → Actions):
+- **Bundle auto-alojado:** `public/admin/sveltia-cms.js` (no CDN) para cumplir la
+  CSP (`script-src 'self'`).
+- **Config como `.txt`, no `.yml`:** nginx de SiteGround devuelve **403 en `.yml`**.
+  Se sirve la config como `public/admin/config.txt` y se enlaza desde
+  `index.html` con `<link rel="cms-config-url" type="text/yaml" href="config.txt">`.
+- **CSP propia de `/admin`:** `public/admin/.htaccess` relaja la CSP global solo
+  en esa carpeta (permite GitHub API, fonts del editor) y marca `noindex`.
+
+## Fase 3 — Auto-publicación (cómo quedó)
+
+Workflow `.github/workflows/deploy.yml`: al hacer **push a `main`** (lo que hace
+el CMS al publicar) construye el sitio y lo sube por FTP a SiteGround.
+
+**Secrets del repo** (ya creados, Settings → Secrets and variables → Actions):
 `FTP_HOST`, `FTP_USER`, `FTP_PASS`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.
 
 **Pasos del workflow:** `npm ci` → `npm run build` →
-`cp -R .next/static/. out/_next/static/` → `rm -f out/api/form/config.php` →
-subir `out/` por FTP a `/vision360ia.com/public_html`.
+`cp -R .next/static/. out/_next/static/` (arregla chunks del export) →
+`cp out/noticias.html out/noticias/index.html` + `rm out/noticias.html` →
+`rm -f out/api/form/config.php` → subir `out/` por FTP con
+`.github/scripts/ftp_upload.py` a `/vision360ia.com/public_html`.
+
+> **`/noticias` y nginx:** nginx sirve el *directorio* `/noticias/` antes de que
+> Apache aplique reescrituras, así que un `noticias.html` suelto da 403. La
+> solución es poner el índice como `noticias/index.html` (lo hace el workflow).
 
 ### ⚠️ Restricciones de deploy (CRÍTICAS, no romper)
 
-- **NUNCA "clean slate"** en el FTP: el deploy debe **solo subir/actualizar**,
-  jamás borrar archivos del servidor. (En SamKirkland/FTP-Deploy-Action:
-  `dangerous-clean-slate: false`, que es el valor por defecto — confirmarlo.)
-- **NO tocar ni borrar** `public_html/api/form/config.php` (credenciales SMTP del
-  formulario; vive solo en el servidor, está en `.gitignore`). Como `out/` no lo
-  contiene y no hacemos clean-slate, queda intacto. Verificarlo tras el primer
-  deploy automático.
-- **NO borrar** `public_html/api/form/vendor/` (PHPMailer).
-- Mantener la web **estática, rápida y orientada a SEO**.
+- **Solo sube, nunca borra.** `ftp_upload.py` hace únicamente `STOR` (0 borrados,
+  verificado). No hay "clean slate". Sube solo archivos nuevos o de distinto
+  tamaño (salta los iguales).
+- **`public_html/api/form/config.php`** (SMTP) queda **intacto**: el workflow lo
+  elimina del `out/` antes de subir y el uploader nunca borra del servidor.
+  Verificado tras el primer deploy (responde 403 = presente y protegido, no 404).
+- **`public_html/api/form/vendor/`** (PHPMailer) tampoco se toca.
+- La web sigue **estática, rápida y orientada a SEO**.
+
+### Mantenimiento
+
+- **PAT del CMS:** si se creó con caducidad, regenerarlo como "No expiration" para
+  no perder el acceso. Es lo único que caduca en todo el sistema.
+- **Aviso de GitHub Actions:** `actions/checkout@v4` y `setup-node@v4` corren en
+  Node 20, que GitHub deprecará (jun/sep 2026). Subir a `@v5` cuando convenga; no
+  es urgente.
+- Los cambios solo en `docs/**` **no** disparan deploy (`paths-ignore`).
 
 ---
 

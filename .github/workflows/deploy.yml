@@ -11,6 +11,12 @@ name: Build & Deploy a SiteGround
 on:
   push:
     branches: [main]
+    # OJO: NO ignorar '**/*.md' — las noticias del CMS son .md en content/noticias
+    # y deben disparar el deploy. Solo ignoramos documentación de desarrollo.
+    paths-ignore:
+      - 'docs/**'
+      - '.gitignore'
+      - 'README.md'
   workflow_dispatch: {}
 
 concurrency:
