@@ -1,10 +1,13 @@
 import { MetadataRoute } from 'next';
 
+import { getNoticias } from '@/lib/noticias';
+
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.vision360ia.com';
   const currentDate = new Date().toISOString();
+  const noticias = getNoticias();
 
   return [
     {
@@ -154,6 +157,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
+    // Noticias (blog)
+    {
+      url: `${baseUrl}/noticias`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    ...noticias.map((n) => ({
+      url: `${baseUrl}/noticias/${n.slug}`,
+      lastModified: new Date(`${n.dateModified ?? n.date}T00:00:00Z`).toISOString(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
     // Legales
     {
       url: `${baseUrl}/aviso-legal`,

@@ -1,0 +1,36 @@
+# Gestor de noticias (Sveltia CMS) — Vision360IA
+# Login con GitHub. El proxy OAuth (base_url) se configura en la Fase 2.
+
+backend:
+  name: github
+  repo: twetter99/vision360ia2
+  branch: main
+  # base_url: https://TU-PROXY-OAUTH   # <-- Fase 2: OAuth App de GitHub + proxy
+
+# Las imágenes subidas en el editor se guardan aquí y se referencian con public_folder
+media_folder: "public/images/noticias"
+public_folder: "/images/noticias"
+
+locale: es
+
+collections:
+  - name: noticias
+    label: "Noticias"
+    label_singular: "Noticia"
+    description: "Noticias del sector que se publican en /noticias"
+    folder: content/noticias
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    summary: "{{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: "Título", name: title, widget: string }
+      - { label: "Fecha", name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Descripción (resumen SEO, ~150 caracteres)", name: description, widget: text }
+      - { label: "Imagen de portada", name: image, widget: image, required: false }
+      - { label: "Autor", name: author, widget: string, default: "WINFIN", required: false }
+      - { label: "Etiquetas", name: tags, widget: list, required: false }
+      - { label: "Borrador (no se publica)", name: draft, widget: boolean, default: false, required: false }
+      - { label: "Contenido", name: body, widget: markdown }

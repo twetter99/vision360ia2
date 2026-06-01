@@ -277,3 +277,36 @@ export function articleSchema(opts: {
     ...(opts.about ? { about: [...opts.about] } : {}),
   };
 }
+
+/**
+ * NewsArticle para las noticias del blog. Igual que articleSchema pero con
+ * @type NewsArticle (Google distingue noticia de artículo). publisher
+ * referencia la Organization; author puede ser el nombre de la noticia.
+ */
+export function newsArticleSchema(opts: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  dateModified?: string;
+  image?: string;
+  authorName?: string;
+}) {
+  const img = opts.image ?? `${SITE_URL}/images/og-image.jpg`;
+  const url = opts.url.startsWith('http') ? opts.url : `${SITE_URL}${opts.url}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: opts.headline,
+    description: opts.description,
+    image: [img],
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    author: opts.authorName
+      ? { '@type': 'Organization', name: opts.authorName }
+      : { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    inLanguage: 'es-ES',
+  };
+}
