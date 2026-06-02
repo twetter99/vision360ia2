@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import { SectionWrapper } from '@/components/shared/section-wrapper';
 import { ContactFormButton } from '@/components/shared/contact-form-button';
+import { Gallery } from '@/components/noticias/gallery';
 import { JsonLd } from '@/components/seo/json-ld';
 import { SITE_URL, breadcrumbSchema, newsArticleSchema } from '@/lib/seo/structured-data';
 import { getNoticia, getNoticiaSlugs, getNoticias } from '@/lib/noticias';
@@ -111,9 +112,12 @@ export default async function NoticiaPage({ params }: { params: Promise<{ slug: 
           ) : null}
 
           <div
-            className="mt-8 text-lg leading-relaxed text-slate-700 [&>blockquote]:mt-6 [&>blockquote]:rounded-r-xl [&>blockquote]:border-l-4 [&>blockquote]:border-sky-300 [&>blockquote]:bg-sky-50/60 [&>blockquote]:px-5 [&>blockquote]:py-3 [&>h2]:mt-10 [&>h2]:font-headline [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-[-0.02em] [&>h2]:text-slate-950 md:[&>h2]:text-3xl [&>h3]:mt-8 [&>h3]:font-headline [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-slate-950 [&>ol]:mt-5 [&>ol]:list-decimal [&>ol]:space-y-2 [&>ol]:pl-6 [&>p]:mt-5 [&>ul]:mt-5 [&>ul]:list-disc [&>ul]:space-y-2 [&>ul]:pl-6 [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 [&_img]:my-6 [&_img]:rounded-2xl [&_strong]:font-semibold [&_strong]:text-slate-900"
+            className="mt-8 text-lg leading-relaxed text-slate-700 [&>blockquote]:mt-6 [&>blockquote]:rounded-r-xl [&>blockquote]:border-l-4 [&>blockquote]:border-sky-300 [&>blockquote]:bg-sky-50/60 [&>blockquote]:px-5 [&>blockquote]:py-3 [&>h2]:mt-10 [&>h2]:font-headline [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-[-0.02em] [&>h2]:text-slate-950 md:[&>h2]:text-3xl [&>h3]:mt-8 [&>h3]:font-headline [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-slate-950 [&>ol]:mt-5 [&>ol]:list-decimal [&>ol]:space-y-2 [&>ol]:pl-6 [&>p]:mt-5 [&>ul]:mt-5 [&>ul]:list-disc [&>ul]:space-y-2 [&>ul]:pl-6 [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 [&_img]:my-6 [&_img]:rounded-2xl [&_figure]:my-8 [&_figure>img]:my-0 [&_figcaption]:mt-2 [&_figcaption]:text-center [&_figcaption]:text-sm [&_figcaption]:italic [&_figcaption]:text-slate-500 [&_strong]:font-semibold [&_strong]:text-slate-900"
             dangerouslySetInnerHTML={{ __html: n.contentHtml }}
           />
+
+          {/* Galería de fotos (lightbox) — para reportajes con muchas imágenes */}
+          <Gallery items={n.galeria ?? []} />
 
           {/* CTA de conversión — objetivo nº1 de la web: captar el lead */}
           <div className="mt-12 overflow-hidden rounded-[1.75rem] border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-7 shadow-[var(--shadow-soft)] md:p-9">

@@ -19,6 +19,24 @@ const NOTICIAS_DIR = path.join(process.cwd(), 'content', 'noticias');
 
 const md = new MarkdownIt({ html: false, linkify: true, typographer: true });
 
+/**
+ * Post-procesa el HTML del cuerpo para enriquecer las imágenes:
+ *  - loading="lazy" + decoding="async" (clave si hay muchas fotos: no penaliza).
+ *  - Una imagen que va sola en un párrafo se convierte en <figure> con
+ *    <figcaption> (el texto alternativo se muestra como pie de foto). Las
+ *    imágenes en mitad de un texto se dejan en línea, sin pie.
+ */
+function enhanceImages(html: string): string {
+  const withLazy = html.replace(/<img /g, '<img loading="lazy" decoding="async" ');
+  return withLazy.replace(/<p>\s*(<img\b[^>]*?>)\s*<\/p>/g, (_m, img) => {
+    const alt = /alt="([^"]*)"/.exec(img)?.[1] ?? '';
+    const caption = alt.trim() ? `<figcaption>${alt}</figcaption>` : '';
+    return `<figure>${img}${caption}</figure>`;
+  });
+}
+
+export type GaleriaItem = { image: string; caption?: string };
+
 export type Noticia = {
   slug: string;
   title: string;
@@ -29,6 +47,7 @@ export type Noticia = {
   author: string;
   tags?: string[];
   draft: boolean;
+  galeria?: GaleriaItem[]; // fotos adicionales -> galería con lightbox al final
 };
 
 export type NoticiaFull = Noticia & { contentHtml: string };
@@ -66,6 +85,15 @@ function toNoticia(slug: string, d: Record<string, unknown>): Noticia {
     author: d.author ? String(d.author) : 'WINFIN',
     tags: Array.isArray(d.tags) ? (d.tags as unknown[]).map(String) : undefined,
     draft: Boolean(d.draft),
+    galeria: Array.isArray(d.galeria)
+      ? ((d.galeria as unknown[])
+          .map((it) => {
+            const o = (it ?? {}) as Record<string, unknown>;
+            const image = o.image ? String(o.image) : '';
+            return image ? { image, caption: o.caption ? String(o.caption) : undefined } : null;
+          })
+          .filter(Boolean) as GaleriaItem[])
+      : undefined,
   };
 }
 
@@ -87,5 +115,5 @@ export function getNoticia(slug: string): NoticiaFull | null {
   if (!post) return null;
   const meta = toNoticia(slug, post.data);
   if (meta.draft) return null;
-  return { ...meta, contentHtml: md.render(post.body) };
+  return { ...meta, contentHtml: enhanceImages(md.render(post.body)) };
 }

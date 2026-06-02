@@ -38,3 +38,14 @@ collections:
       - { label: "Etiquetas", name: tags, widget: list, required: false }
       - { label: "Borrador (no se publica)", name: draft, widget: boolean, default: false, required: false }
       - { label: "Contenido", name: body, widget: markdown }
+      # Galería: fotos adicionales que se muestran al final con ampliación (lightbox).
+      # Para fotos dentro del texto, insértalas directamente en "Contenido".
+      - label: "Galería de fotos (al final, con ampliación)"
+        name: galeria
+        widget: list
+        required: false
+        label_singular: "Foto"
+        summary: "{{fields.caption}}"
+        fields:
+          - { label: "Imagen", name: image, widget: image }
+          - { label: "Pie de foto", name: caption, widget: string, required: false }
