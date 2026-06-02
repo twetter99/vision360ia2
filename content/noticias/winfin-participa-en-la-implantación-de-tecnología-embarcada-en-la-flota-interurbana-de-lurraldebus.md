@@ -6,7 +6,7 @@ image: /images/noticias/ID-Lurraldebus-2.jpg
 author: WINFIN
 tags:
   - Lurraldebus, tecnología embarcada, SAE, billetaje, transporte público, Gipuzkoa, autobuses, integración en vehículos
-draft: true
+draft: false
 ---
 
 **WINFIN ha participado en la instalación e integración de equipos embarcados en la flota interurbana de Lurraldebus, con intervención técnica sobre cerca de 280 autobuses de Gipuzkoa de múltiples operadores y unas 54 configuraciones de vehículo distintas.**
