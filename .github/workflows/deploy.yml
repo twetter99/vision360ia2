@@ -58,10 +58,11 @@ jobs:
           # El config.php real vive SOLO en el servidor (gitignored). No subir el local.
           rm -f out/api/form/config.php
 
-      - name: Optimizar imágenes de noticias (no bloqueante)
+      - name: Imágenes de noticias — sociales 1200x630 + compresión (no bloqueante)
         continue-on-error: true
         run: |
           npm i sharp --no-save --no-audit --no-fund || exit 0
+          node .github/scripts/social-images.mjs out/images/noticias/social || true
           node .github/scripts/optimize-images.mjs out/images/noticias || true
 
       - name: Deploy por FTP (solo subida, nunca borra)

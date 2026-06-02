@@ -38,7 +38,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const n = getNoticia(slug);
   if (!n) return { title: 'Noticia no encontrada' };
   const url = `${SITE_URL}/noticias/${slug}`;
-  const image = n.image ? `${SITE_URL}${n.image}` : `${SITE_URL}/images/og-image.jpg`;
+  // Imagen social 1200x630 generada automáticamente en el deploy
+  // (.github/scripts/social-images.mjs) → LinkedIn/WhatsApp/Facebook/X la ven bien.
+  const social = `${SITE_URL}/images/noticias/social/${slug}.jpg`;
   return {
     title: n.title,
     description: n.description,
@@ -49,7 +51,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url,
       type: 'article',
       publishedTime: n.date,
-      images: [{ url: image }],
+      images: [{ url: social, width: 1200, height: 630, alt: n.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: n.title,
+      description: n.description,
+      images: [social],
     },
   };
 }
@@ -72,7 +80,7 @@ export default async function NoticiaPage({ params }: { params: Promise<{ slug: 
       url: `/noticias/${slug}`,
       datePublished: n.date,
       dateModified: n.dateModified,
-      image: n.image ? `${SITE_URL}${n.image}` : undefined,
+      image: `${SITE_URL}/images/noticias/social/${slug}.jpg`,
       authorName: n.author,
     }),
   ];
