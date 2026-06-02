@@ -2,7 +2,7 @@
 title: WINFIN participa en la implantación de tecnología embarcada en la flota interurbana de Lurraldebus
 date: 2026-06-02
 description: WINFIN participa en la implantación de equipos embarcados en cerca de 280 autobuses de Lurraldebus, integrando SAE, billetaje, comunicaciones e información al viajero.
-image: ''
+image: /images/noticias/ID-Lurraldebus-2.jpg
 author: WINFIN
 tags:
   - Lurraldebus, tecnología embarcada, SAE, billetaje, transporte público, Gipuzkoa, autobuses, integración en vehículos
