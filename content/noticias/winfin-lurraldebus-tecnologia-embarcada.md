@@ -28,6 +28,22 @@ galeria:
   - image: /images/noticias/lurraldebus-galeria-18.jpg
   - image: /images/noticias/lurraldebus-galeria-19.jpg
   - image: /images/noticias/lurraldebus-galeria-20.jpg
+  - image: /images/noticias/lurraldebus-galeria-21.jpg
+    caption: "Información al viajero en parada — Estación de RENFE, Zumárraga."
+  - image: /images/noticias/lurraldebus-galeria-22.jpg
+    caption: "Información al viajero en parada — Estación de RENFE, Zumárraga."
+  - image: /images/noticias/lurraldebus-galeria-23.jpg
+    caption: "Información al viajero en parada — Estación de RENFE, Zumárraga."
+  - image: /images/noticias/lurraldebus-galeria-24.jpg
+    caption: "Información al viajero en parada — Colón-Loidi, Irún."
+  - image: /images/noticias/lurraldebus-galeria-25.jpg
+    caption: "Información al viajero en parada — Colón-Loidi, Irún."
+  - image: /images/noticias/lurraldebus-galeria-26.jpg
+    caption: "Información al viajero en parada — Colón-Loidi, Irún."
+  - image: /images/noticias/lurraldebus-galeria-27.jpg
+    caption: "Información al viajero en parada — Colón-Loidi, Irún."
+  - image: /images/noticias/lurraldebus-galeria-28.jpg
+    caption: "Despliegue de Lurraldebus en parada."
 ---
 
 **WINFIN ha participado en la instalación e integración de equipos embarcados en la flota interurbana de Lurraldebus, con intervención técnica sobre cerca de 280 autobuses de Gipuzkoa de múltiples operadores y unas 54 configuraciones de vehículo distintas.**
