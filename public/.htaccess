@@ -25,6 +25,11 @@
     RewriteCond %{HTTP_HOST} ^vision360ia\.com$ [NC]
     RewriteRule ^(.*)$ https://www.vision360ia.com/$1 [R=301,L]
 
+    # 301 de URLs antiguas (.html) de la web anterior que daban 404, hacia las
+    # páginas actuales (limpia el rastreo y conserva cualquier enlace residual).
+    RewriteRule ^politica-cookies\.html$ /cookies [R=301,L]
+    RewriteRule ^contacto\.html$ / [R=301,L]
+
     # Índice de sección que coexiste con su carpeta de subpáginas:
     # p.ej. /noticias (noticias.html) + /noticias/<post> (carpeta noticias/).
     # Apache, al ver el directorio, redirige con barra y da 403 (sin index).

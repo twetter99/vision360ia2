@@ -4,9 +4,9 @@ import { SupportPage } from '@/components/sections/support-page';
 import { SITE_URL, ORGANIZATION_ID } from '@/lib/seo/structured-data';
 
 export const metadata: Metadata = {
-  title: 'Qué es la visión 360° en vehículos: definición, funcionamiento y usos',
+  title: 'Qué es la visión 360° en vehículos y cómo elimina los puntos ciegos',
   description:
-    'Qué es la visión 360° en vehículos industriales: definición clara, cómo funciona la fusión de cámaras en vista cenital, componentes, ventajas y diferencia con una cámara de marcha atrás convencional.',
+    'Qué es la visión 360° en vehículos, cómo funciona la fusión de cámaras en una vista cenital y por qué elimina los puntos ciegos en autobuses, camiones y flotas. Guía clara con ejemplos.',
   keywords: [
     'qué es visión 360 vehículos',
     'visión perimetral vehículo',

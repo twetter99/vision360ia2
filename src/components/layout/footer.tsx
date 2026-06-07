@@ -33,6 +33,18 @@ export function Footer() {
     { href: '/normativa-gsr-flotas', label: 'Normativa GSR' },
     { href: '/que-es-vision-360-vehiculos', label: 'Qué es la visión 360°' },
   ];
+  // Soluciones por sector — enlaces internos para que Google rastree e indexe
+  // estas landings (estaban huérfanas: "descubierta, sin indexar" en GSC).
+  const sectorLinks = [
+    { href: '/adas-autocares-minibuses', label: 'Autocares y minibuses' },
+    { href: '/adas-furgonetas-reparto', label: 'Furgonetas de reparto' },
+    { href: '/adas-vehiculos-recogida-residuos', label: 'Recogida de residuos' },
+    { href: '/adas-construccion-obra', label: 'Construcción y obra' },
+    { href: '/adas-logistica-portuaria', label: 'Logística portuaria' },
+    { href: '/adas-aeropuerto-lanzaderas', label: 'Aeropuerto y lanzaderas' },
+    { href: '/bsis-camiones-autobuses', label: 'BSIS · ángulo muerto' },
+    { href: '/fcw-flotas', label: 'FCW · colisión frontal' },
+  ];
   const rinCertificateHref = '/Certificados%20Empresa/RIN%20Titulo.pdf';
   const ministryLogoHref = '/Certificados%20Empresa/ministerio-1.png';
   const crtmSupportHref = '/Certificados%20Empresa/manual_crtm_web.pdf';
@@ -137,6 +149,21 @@ export function Footer() {
             >
               Solicitar revisión técnica <ArrowRight className="ml-2 h-4 w-4" />
             </button>
+          </div>
+        </div>
+
+        <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-5">
+          <h4 className="font-headline text-sm font-semibold uppercase tracking-[0.2em] text-white/70">Soluciones por sector</h4>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {sectorLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="inline-flex min-h-[36px] items-center rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-sm text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
 
