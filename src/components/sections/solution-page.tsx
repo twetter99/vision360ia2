@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AnimatedSection } from '@/components/shared/animated-section';
@@ -465,13 +465,23 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                 Cuéntanos tus vehículos y maniobras y te preparamos una evaluación técnica con la configuración recomendada. Respuesta en 24-48 h.
               </p>
             </div>
-            <ContactFormButton
-              size="lg"
-              className={`min-h-[54px] shrink-0 rounded-full px-7 ${data.theme.primaryButton}`}
-            >
-              Solicitar evaluación técnica
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </ContactFormButton>
+            <div className="flex shrink-0 flex-col items-stretch gap-3 sm:items-center">
+              <ContactFormButton
+                size="lg"
+                className={`min-h-[54px] shrink-0 rounded-full px-7 ${data.theme.primaryButton}`}
+              >
+                Solicitar evaluación técnica
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </ContactFormButton>
+              {/* Los gestores de flota llaman: vía directa sin formulario */}
+              <a
+                href="tel:+34914520406"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-6 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950"
+              >
+                <Phone className="h-4 w-4" />
+                O llámanos: 914 520 406
+              </a>
+            </div>
           </div>
         </SectionWrapper>
 

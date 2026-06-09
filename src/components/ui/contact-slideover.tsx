@@ -26,7 +26,14 @@ const formSchema = z.object({
   email: z.string().email("Dirección de correo electrónico no válida."),
   company: z.string().optional(),
   phone: z.string().optional(),
-  message: z.string().min(10, "El mensaje debe tener al menos 10 caracteres."),
+  // Opcional para reducir fricción (leads B2B): si va vacío, el envío incluye
+  // un texto por defecto que cumple el mínimo de 10 caracteres del backend.
+  message: z
+    .string()
+    .optional()
+    .refine((v) => !v || v.trim().length === 0 || v.trim().length >= 10, {
+      message: "Si escribes un mensaje, que tenga al menos 10 caracteres.",
+    }),
   privacyAccepted: z
     .boolean()
     .refine((val) => val === true, {
@@ -195,7 +202,12 @@ export function ContactSlideOver() {
         email: values.email,
         company: values.company || undefined,
         phone: values.phone || undefined,
-        message: values.message,
+        // El backend exige >=10 caracteres: si el usuario no escribe nada,
+        // enviamos una solicitud estándar (el lead vale igual: nombre+contacto).
+        message:
+          values.message && values.message.trim().length >= 10
+            ? values.message.trim()
+            : "Solicito información sobre el sistema Vision360IA para mi flota.",
         privacyAccepted: values.privacyAccepted,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         formLoadTime,
@@ -391,11 +403,13 @@ export function ContactSlideOver() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{t.form.message} *</FormLabel>
+                      <FormLabel>
+                        {t.form.message} <span className="font-normal text-slate-400">(opcional)</span>
+                      </FormLabel>
                       <FormControl>
                         <Textarea
-                          rows={3}
-                          placeholder="¿Qué tipo de vehículos tienes? ¿Cuántos? ¿Qué problema quieres resolver?"
+                          rows={2}
+                          placeholder="Opcional: tipo de vehículos, tamaño de flota, qué quieres resolver…"
                           {...field}
                         />
                       </FormControl>
