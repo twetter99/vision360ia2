@@ -65,6 +65,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     },
     page: {
       breadcrumbLabel: 'ADAS para Autobuses',
+      quickLead: true,
       schemas: [
         {
           '@context': 'https://schema.org',
@@ -282,6 +283,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     },
     page: {
       breadcrumbLabel: 'ADAS para Camiones',
+      quickLead: true,
       schemas: [
         {
           '@context': 'https://schema.org',
@@ -421,6 +423,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     },
     page: {
       breadcrumbLabel: 'Sistema Anti-Atropellos',
+      quickLead: true,
       schemas: [
         {
           '@context': 'https://schema.org',

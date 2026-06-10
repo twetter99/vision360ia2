@@ -8,6 +8,7 @@ import { ContactFormButton } from '@/components/shared/contact-form-button';
 import { DemoValidation } from '@/components/shared/demo-validation';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionWrapper } from '@/components/shared/section-wrapper';
+import { LeadCapture } from '@/components/sections/lead-capture';
 import { Button } from '@/components/ui/button';
 
 type Stat = {
@@ -113,6 +114,8 @@ type CtaBlock = {
 export type SolutionPageData = {
   schemas: Record<string, unknown>[];
   breadcrumbLabel: string;
+  /** Landing de campaña: muestra el bloque de instalación experta + formulario corto tras el hero. */
+  quickLead?: boolean;
   theme: {
     heroBackground: string;
     heroGlowPrimary: string;
@@ -375,6 +378,9 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
             </div>
           </div>
         </section>
+
+        {/* Landings de campaña: instalación experta + formulario corto (CRO) */}
+        {data.quickLead ? <LeadCapture /> : null}
 
         <SectionWrapper className="max-w-7xl bg-transparent px-6 py-20 md:px-6">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">

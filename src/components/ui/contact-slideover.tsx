@@ -19,6 +19,7 @@ import { Check, Loader2, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
+import { pushFormSuccess } from "@/lib/analytics";
 
 // ✅ Schema simplificado: solo campos esenciales
 const formSchema = z.object({
@@ -233,6 +234,9 @@ export function ContactSlideOver() {
         resetTurnstile();
         return;
       }
+
+      // Conversión de Google Ads (vía GTM): SOLO cuando el PHP respondió OK.
+      pushFormSuccess("vision360ia_contact");
 
       toast({
         title: t.toast?.downloadSuccess?.title || "¡Documentación enviada!",

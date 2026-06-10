@@ -1,4 +1,5 @@
 // Declaración de tipos para Cloudflare Turnstile
+// (window.dataLayer ya está declarado en components/analytics/google-analytics.tsx)
 interface Window {
   turnstile: {
     render: (container: string | HTMLElement, options: {
