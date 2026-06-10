@@ -27,7 +27,7 @@ const PUNTOS = [
   // En móvil se priorizan los 3 primeros; estos dos aparecen desde md.
   {
     icon: History,
-    text: '+15 años de experiencia en instalaciones embarcadas',
+    text: '+20 años de experiencia en instalaciones embarcadas',
     desktopOnly: true,
   },
   {
