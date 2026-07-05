@@ -76,13 +76,13 @@ export const legalTranslations = {
             formulario: { badge: '📝 Datos de formulario', content: 'Nombre, email, empresa, teléfono, cargo, información sobre flota.' },
             tecnicos: { badge: '💻 Datos técnicos', content: 'Dirección IP, navegador, dispositivo, idioma, ubicación aproximada.' },
             navegacion: { badge: '📊 Datos de navegación', content: 'Páginas visitadas, tiempo de sesión, interacciones con el contenido.' },
-            terceros: { badge: '🔗 Servicios de terceros', content: 'Datos derivados del uso de Vimeo, Google Analytics, Firebase, Vercel.' },
+            terceros: { badge: '🔗 Servicios de terceros', content: 'Datos derivados del uso de Vimeo, Google Analytics, Firebase, Vercel y WhatsApp (Meta), si nos contactas por ese canal.' },
           },
         },
         finalidades: {
           title: '2. Finalidades del tratamiento',
           intro: 'Los datos se utilizan para:',
-          items: ['Gestionar consultas o solicitudes recibidas a través del formulario de contacto', 'Comunicaciones comerciales relacionadas con nuestros servicios (solo con consentimiento)', 'Analítica, medición y mejora del rendimiento de la web', 'Seguridad del sitio y prevención del fraude', 'Gestión de relaciones contractuales o precontractuales'],
+          items: ['Gestionar consultas o solicitudes recibidas a través del formulario de contacto, por teléfono o por WhatsApp', 'Comunicaciones comerciales relacionadas con nuestros servicios (solo con consentimiento)', 'Analítica, medición y mejora del rendimiento de la web', 'Seguridad del sitio y prevención del fraude', 'Gestión de relaciones contractuales o precontractuales'],
         },
         baseLegal: {
           title: '3. Base legal',
@@ -251,13 +251,13 @@ export const legalTranslations = {
             formulario: { badge: '📝 Dades de formulari', content: 'Nom, email, empresa, telèfon, càrrec, informació sobre flota.' },
             tecnicos: { badge: '💻 Dades tècniques', content: 'Adreça IP, navegador, dispositiu, idioma, ubicació aproximada.' },
             navegacion: { badge: '📊 Dades de navegació', content: 'Pàgines visitades, temps de sessió, interaccions amb el contingut.' },
-            terceros: { badge: '🔗 Serveis de tercers', content: 'Dades derivades de l\'ús de Vimeo, Google Analytics, Firebase, Vercel.' },
+            terceros: { badge: '🔗 Serveis de tercers', content: 'Dades derivades de l\'ús de Vimeo, Google Analytics, Firebase, Vercel i WhatsApp (Meta), si ens contactes per aquest canal.' },
           },
         },
         finalidades: {
           title: '2. Finalitats del tractament',
           intro: 'Les dades s\'utilitzen per a:',
-          items: ['Gestionar consultes o sol·licituds rebudes a través del formulari de contacte', 'Comunicacions comercials relacionades amb els nostres serveis (només amb consentiment)', 'Analítica, mesurament i millora del rendiment del web', 'Seguretat del lloc i prevenció del frau', 'Gestió de relacions contractuals o precontractuals'],
+          items: ['Gestionar consultes o sol·licituds rebudes a través del formulari de contacte, per telèfon o per WhatsApp', 'Comunicacions comercials relacionades amb els nostres serveis (només amb consentiment)', 'Analítica, mesurament i millora del rendiment del web', 'Seguretat del lloc i prevenció del frau', 'Gestió de relacions contractuals o precontractuals'],
         },
         baseLegal: {
           title: '3. Base legal',
@@ -427,13 +427,13 @@ export const legalTranslations = {
             formulario: { badge: '📝 Formularioko datuak', content: 'Izena, emaila, enpresa, telefonoa, kargua, flotari buruzko informazioa.' },
             tecnicos: { badge: '💻 Datu teknikoak', content: 'IP helbidea, nabigatzailea, gailua, hizkuntza, gutxi gorabeherako kokapena.' },
             navegacion: { badge: '📊 Nabigazio datuak', content: 'Bisitatutako orrialdeak, saioko denbora, edukiarekin interakzioak.' },
-            terceros: { badge: '🔗 Hirugarrenen zerbitzuak', content: 'Vimeo, Google Analytics, Firebase, Vercel erabiltzean sortutako datuak.' },
+            terceros: { badge: '🔗 Hirugarrenen zerbitzuak', content: 'Vimeo, Google Analytics, Firebase, Vercel eta WhatsApp (Meta) erabiltzean sortutako datuak, kanal horren bidez kontaktatzen bagaituzu.' },
           },
         },
         finalidades: {
           title: '2. Tratamenduaren helburuak',
           intro: 'Datuak honako hauetarako erabiltzen dira:',
-          items: ['Kontaktu formularioaren bidez jasotako kontsultak edo eskaerak kudeatzeko', 'Gure zerbitzuekin lotutako komunikazio komertzialak (bakarrik baimenarekin)', 'Analitika, webaren errendimenduaren neurketa eta hobekuntza', 'Gunearen segurtasuna eta iruzurraren prebentzioa', 'Harreman kontratatuak edo kontratu aurreko harremanak kudeatzeko'],
+          items: ['Kontaktu formularioaren, telefonoaren edo WhatsAppen bidez jasotako kontsultak edo eskaerak kudeatzeko', 'Gure zerbitzuekin lotutako komunikazio komertzialak (bakarrik baimenarekin)', 'Analitika, webaren errendimenduaren neurketa eta hobekuntza', 'Gunearen segurtasuna eta iruzurraren prebentzioa', 'Harreman kontratatuak edo kontratu aurreko harremanak kudeatzeko'],
         },
         baseLegal: {
           title: '3. Oinarri juridikoa',

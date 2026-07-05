@@ -59,7 +59,7 @@ export function organizationSchema() {
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+34-914-520-406',
+        telephone: '+34-649-567-837',
         email: 'info@vision360ia.com',
         contactType: 'sales',
         areaServed: 'ES',
@@ -117,7 +117,7 @@ export function localBusinessMadridSchema() {
       'Oficina y taller propio de WINFIN en Madrid para implantación, calibración e integración de sistemas ADAS y visión 360° en flotas profesionales.',
     url: `${SITE_URL}/quienes-somos`,
     image: `${SITE_URL}/images/og-image.jpg`,
-    telephone: '+34-914-520-406',
+    telephone: '+34-649-567-837',
     email: 'info@vision360ia.com',
     address: {
       '@type': 'PostalAddress',

@@ -5,6 +5,7 @@ import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AnimatedSection } from '@/components/shared/animated-section';
 import { ContactFormButton } from '@/components/shared/contact-form-button';
+import { PhoneCtaLink, WhatsAppCtaLink, WhatsAppIcon } from '@/components/shared/contact-channel-links';
 import { DemoValidation } from '@/components/shared/demo-validation';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionWrapper } from '@/components/shared/section-wrapper';
@@ -380,7 +381,7 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
         </section>
 
         {/* Landings de campaña: instalación experta + formulario corto (CRO) */}
-        {data.quickLead ? <LeadCapture /> : null}
+        {data.quickLead ? <LeadCapture whatsappTopic={data.breadcrumbLabel} /> : null}
 
         <SectionWrapper className="max-w-7xl bg-transparent px-6 py-20 md:px-6">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -479,14 +480,18 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                 Solicitar evaluación técnica
                 <ArrowRight className="ml-2 h-5 w-5" />
               </ContactFormButton>
-              {/* Los gestores de flota llaman: vía directa sin formulario */}
-              <a
-                href="tel:+34914520406"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-6 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950"
-              >
+              {/* Los gestores de flota llaman o escriben: vía directa sin formulario */}
+              <PhoneCtaLink className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-6 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950">
                 <Phone className="h-4 w-4" />
-                O llámanos: 914 520 406
-              </a>
+                O llámanos: 649 567 837
+              </PhoneCtaLink>
+              <WhatsAppCtaLink
+                topic={data.breadcrumbLabel}
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-emerald-300 bg-white/80 px-6 text-sm font-semibold text-emerald-800 transition-colors hover:border-emerald-400 hover:bg-emerald-50"
+              >
+                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                Escríbenos por WhatsApp
+              </WhatsAppCtaLink>
             </div>
           </div>
         </SectionWrapper>

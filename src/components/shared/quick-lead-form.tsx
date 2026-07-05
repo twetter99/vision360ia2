@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { pushFormSuccess } from "@/lib/analytics";
+import { PhoneCtaLink, WhatsAppCtaLink, WhatsAppIcon } from "@/components/shared/contact-channel-links";
 
 /**
  * Formulario corto de captación para landings de campaña (CRO).
@@ -50,7 +51,7 @@ const quickSchema = z.object({
 
 type QuickFormData = z.infer<typeof quickSchema>;
 
-export function QuickLeadForm() {
+export function QuickLeadForm({ whatsappTopic }: { whatsappTopic?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -344,14 +345,20 @@ export function QuickLeadForm() {
             )}
           </Button>
 
-          {/* Los gestores de flota llaman: vía directa (no emite form_success) */}
-          <a
-            href="tel:+34914520406"
-            className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950"
-          >
-            <Phone className="h-4 w-4" />
-            O llámanos: 914 520 406
-          </a>
+          {/* Los gestores de flota llaman o escriben: vía directa (no emite form_success) */}
+          <div className="grid gap-2 sm:grid-cols-2">
+            <PhoneCtaLink className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950">
+              <Phone className="h-4 w-4" />
+              649 567 837
+            </PhoneCtaLink>
+            <WhatsAppCtaLink
+              topic={whatsappTopic}
+              className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-emerald-300 bg-white px-5 text-sm font-semibold text-emerald-800 transition-colors hover:border-emerald-400 hover:bg-emerald-50"
+            >
+              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+              WhatsApp
+            </WhatsAppCtaLink>
+          </div>
         </form>
       </Form>
     </div>

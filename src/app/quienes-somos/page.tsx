@@ -28,7 +28,7 @@ export default function AboutPage() {
       city: 'Madrid',
       role: 'Oficina y taller propios',
       address: ['Moreras, 1, N 65 y 66', '28350 Ciempozuelos, Madrid'],
-      phone: '+34 914 520 406',
+      phone: '+34 649 567 837',
     },
     {
       city: 'Donostia / San Sebastián',

@@ -14,3 +14,21 @@ export function pushFormSuccess(formName: string) {
     lead_source: 'landing_vision360ia',
   });
 }
+
+/**
+ * Clic en un canal de contacto directo (llamada o WhatsApp).
+ *
+ * A diferencia de `form_success`, aquí SÍ se emite en el clic: en llamadas y
+ * WhatsApp no existe un "éxito confirmado" que esperar. Por eso en Google Ads
+ * estas conversiones deben configurarse como SECUNDARIAS (form_success sigue
+ * siendo la conversión principal que optimiza la puja).
+ */
+export function pushContactClick(channel: 'phone' | 'whatsapp') {
+  if (typeof window === 'undefined') return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: channel === 'phone' ? 'phone_click' : 'whatsapp_click',
+    contact_source: window.location.pathname,
+    lead_source: 'landing_vision360ia',
+  });
+}
