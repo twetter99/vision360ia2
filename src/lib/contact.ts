@@ -23,6 +23,6 @@ export function whatsappHref(message: string): string {
  */
 export function whatsappLeadMessage(topic?: string): string {
   return topic
-    ? `Hola, os escribo desde la página «${topic}» de Vision360IA. Me gustaría más información para mi flota.`
-    : 'Hola, os escribo desde vision360ia.com. Me gustaría más información para mi flota.';
+    ? `Hola, acabo de ver vuestra página «${topic}» y me interesa para mi flota. ¿Me dais más información?`
+    : 'Hola, acabo de ver vuestra web vision360ia.com y me interesa el sistema para mi flota. ¿Me dais más información?';
 }
