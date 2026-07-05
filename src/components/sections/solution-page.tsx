@@ -327,9 +327,9 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                   <WhatsAppCtaLink
                     topic={data.breadcrumbLabel}
-                    className="inline-flex min-h-[54px] w-full items-center justify-center rounded-full bg-[#25D366] px-7 text-base font-semibold text-white shadow-[0_18px_40px_rgba(37,211,102,0.32)] transition-colors hover:bg-[#1fb855] sm:w-auto"
+                    className="inline-flex min-h-[54px] w-full shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#25D366] px-7 text-base font-semibold text-white shadow-[0_18px_40px_rgba(37,211,102,0.32)] transition-colors hover:bg-[#1fb855] sm:w-auto"
                   >
-                    <WhatsAppIcon className="mr-2 h-5 w-5" />
+                    <WhatsAppIcon className="mr-2 h-5 w-5 shrink-0" />
                     Escríbenos por WhatsApp
                   </WhatsAppCtaLink>
                   <ContactFormButton
