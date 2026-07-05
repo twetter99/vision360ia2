@@ -76,14 +76,14 @@ export function Footer() {
                 <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Madrid · Oficina y taller</div>
                 <div className="mt-2 text-sm font-medium text-slate-200">Moreras, 1, N 65 y 66 · 28350 Ciempozuelos, Madrid</div>
                 <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
-                  <PhoneCtaLink className="inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-slate-200">
-                    <Phone className="h-4 w-4 text-slate-400" />
-                    <span>{LEAD_PHONE_INTL_DISPLAY}</span>
-                  </PhoneCtaLink>
                   <WhatsAppCtaLink className="inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-slate-200">
                     <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
-                    <span>WhatsApp</span>
+                    <span>WhatsApp: {LEAD_PHONE_INTL_DISPLAY}</span>
                   </WhatsAppCtaLink>
+                  <PhoneCtaLink className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-white">
+                    <Phone className="h-4 w-4 text-slate-400" />
+                    <span>Llamadas: {LEAD_PHONE_INTL_DISPLAY}</span>
+                  </PhoneCtaLink>
                 </div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">

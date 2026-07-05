@@ -20,6 +20,7 @@ import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
 import { pushFormSuccess } from "@/lib/analytics";
+import { WhatsAppCtaLink, WhatsAppIcon } from "@/components/shared/contact-channel-links";
 
 // ✅ Schema simplificado: solo campos esenciales
 const formSchema = z.object({
@@ -316,6 +317,11 @@ export function ContactSlideOver() {
                   Sin compromiso
                 </span>
               </div>
+              {/* Atajo al canal principal: quien prefiera chat no debería rellenar un formulario */}
+              <WhatsAppCtaLink className="mt-4 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb855]">
+                <WhatsAppIcon className="h-4 w-4" />
+                ¿Prefieres WhatsApp? Escríbenos ahora
+              </WhatsAppCtaLink>
             </div>
           </div>
 

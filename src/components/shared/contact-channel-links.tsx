@@ -1,6 +1,6 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { forwardRef } from 'react';
 
 import { pushContactClick } from '@/lib/analytics';
 import { LEAD_PHONE_HREF, whatsappHref, whatsappLeadMessage } from '@/lib/contact';
@@ -9,38 +9,50 @@ import { LEAD_PHONE_HREF, whatsappHref, whatsappLeadMessage } from '@/lib/contac
  * Enlaces de contacto directo (llamada / WhatsApp) con tracking unificado.
  * Aquí solo href + evento de analítica; el estilo lo pone el llamador vía
  * className para que encajen en cualquier contexto (CTA, formulario, footer).
+ *
+ * forwardRef + resto de props de <a>: composables con Radix Slot
+ * (p. ej. <SheetClose asChild>), que inyecta ref y onClick en el hijo.
  */
 
-export function PhoneCtaLink({ className, children }: { className?: string; children: ReactNode }) {
-  return (
-    <a href={LEAD_PHONE_HREF} className={className} onClick={() => pushContactClick('phone')}>
-      {children}
-    </a>
-  );
-}
+type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export function WhatsAppCtaLink({
-  topic,
-  className,
-  children,
-}: {
-  /** Nombre de la landing para el mensaje precargado (atribución en el chat). */
-  topic?: string;
-  className?: string;
-  children: ReactNode;
-}) {
+export const PhoneCtaLink = forwardRef<HTMLAnchorElement, AnchorProps>(
+  function PhoneCtaLink({ onClick, ...props }, ref) {
+    return (
+      <a
+        ref={ref}
+        href={LEAD_PHONE_HREF}
+        {...props}
+        onClick={(e) => {
+          pushContactClick('phone');
+          onClick?.(e);
+        }}
+      />
+    );
+  }
+);
+
+export const WhatsAppCtaLink = forwardRef<
+  HTMLAnchorElement,
+  AnchorProps & {
+    /** Nombre de la landing para el mensaje precargado (atribución en el chat). */
+    topic?: string;
+  }
+>(function WhatsAppCtaLink({ topic, onClick, ...props }, ref) {
   return (
     <a
+      ref={ref}
       href={whatsappHref(whatsappLeadMessage(topic))}
       target="_blank"
       rel="noopener noreferrer"
-      className={className}
-      onClick={() => pushContactClick('whatsapp')}
-    >
-      {children}
-    </a>
+      {...props}
+      onClick={(e) => {
+        pushContactClick('whatsapp');
+        onClick?.(e);
+      }}
+    />
   );
-}
+});
 
 /** Glifo oficial de WhatsApp (lucide no lo incluye). */
 export function WhatsAppIcon({ className }: { className?: string }) {

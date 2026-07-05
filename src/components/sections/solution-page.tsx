@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
-import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Mail } from 'lucide-react';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AnimatedSection } from '@/components/shared/animated-section';
@@ -10,7 +10,6 @@ import { DemoValidation } from '@/components/shared/demo-validation';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionWrapper } from '@/components/shared/section-wrapper';
 import { LeadCapture } from '@/components/sections/lead-capture';
-import { Button } from '@/components/ui/button';
 
 type Stat = {
   value: string;
@@ -324,21 +323,31 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                   ))}
                 </div>
 
+                {/* Jerarquía de contacto: WhatsApp principal, email (formulario) alternativa */}
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                  <ContactFormButton size="lg" className={`min-h-[54px] w-full justify-center rounded-full px-7 sm:w-auto ${data.theme.primaryButton}`}>
-                    {data.hero.primaryCtaLabel}
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                  <WhatsAppCtaLink
+                    topic={data.breadcrumbLabel}
+                    className="inline-flex min-h-[54px] w-full items-center justify-center rounded-full bg-[#25D366] px-7 text-base font-semibold text-white shadow-[0_18px_40px_rgba(37,211,102,0.32)] transition-colors hover:bg-[#1fb855] sm:w-auto"
+                  >
+                    <WhatsAppIcon className="mr-2 h-5 w-5" />
+                    Escríbenos por WhatsApp
+                  </WhatsAppCtaLink>
+                  <ContactFormButton
+                    size="lg"
+                    variant="outline"
+                    className="min-h-[54px] w-full justify-center rounded-full border-slate-200 bg-white/90 px-7 text-slate-700 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-md hover:bg-slate-50 sm:w-auto"
+                  >
+                    <Mail className="mr-2 h-4 w-4" />
+                    O por email: {data.hero.primaryCtaLabel.toLowerCase()}
                   </ContactFormButton>
-                  <Link href="/#productos" className="w-full sm:w-auto">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className={`min-h-[54px] w-full justify-center rounded-full border-slate-200 bg-white/90 px-7 text-slate-700 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-md hover:bg-slate-50 sm:w-auto ${data.theme.secondaryButtonText ?? ''}`}
-                    >
-                      {data.hero.secondaryCtaLabel}
-                    </Button>
-                  </Link>
                 </div>
+                <Link
+                  href="/#productos"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-slate-600 underline-offset-4 hover:text-slate-950 hover:underline"
+                >
+                  {data.hero.secondaryCtaLabel}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </AnimatedSection>
 
               <AnimatedSection animation="slide-up" delay={0.08} className="rounded-[2rem] border border-white/80 bg-white/92 p-5 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-7">
@@ -469,29 +478,31 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                 ¿Encaja en tu flota? Te lo decimos sin compromiso
               </h2>
               <p className="mt-2 text-base leading-relaxed text-slate-600">
-                Cuéntanos tus vehículos y maniobras y te preparamos una evaluación técnica con la configuración recomendada. Respuesta en 24-48 h.
+                Cuéntanos tus vehículos y maniobras y te preparamos una evaluación técnica con la configuración recomendada. Por WhatsApp te respondemos en horario laboral; por email, en 24-48 h.
               </p>
             </div>
+            {/* Jerarquía de contacto: WhatsApp principal, email alternativa, teléfono discreto */}
             <div className="flex shrink-0 flex-col items-stretch gap-3 sm:items-center">
-              <ContactFormButton
-                size="lg"
-                className={`min-h-[54px] shrink-0 rounded-full px-7 ${data.theme.primaryButton}`}
-              >
-                Solicitar evaluación técnica
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </ContactFormButton>
-              {/* Los gestores de flota llaman o escriben: vía directa sin formulario */}
-              <PhoneCtaLink className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-6 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950">
-                <Phone className="h-4 w-4" />
-                O llámanos: 649 567 837
-              </PhoneCtaLink>
               <WhatsAppCtaLink
                 topic={data.breadcrumbLabel}
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-emerald-300 bg-white/80 px-6 text-sm font-semibold text-emerald-800 transition-colors hover:border-emerald-400 hover:bg-emerald-50"
+                className="inline-flex min-h-[54px] shrink-0 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 text-base font-semibold text-white shadow-[0_18px_40px_rgba(37,211,102,0.32)] transition-colors hover:bg-[#1fb855]"
               >
-                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                <WhatsAppIcon className="h-5 w-5" />
                 Escríbenos por WhatsApp
               </WhatsAppCtaLink>
+              <ContactFormButton
+                variant="outline"
+                className="min-h-[48px] rounded-full border-slate-300 bg-white/80 px-6 text-sm font-semibold text-slate-700 hover:border-slate-400 hover:text-slate-950"
+              >
+                <Mail className="mr-2 h-4 w-4" />
+                O por email: solicitar evaluación
+              </ContactFormButton>
+              <p className="text-center text-sm text-slate-500">
+                También por teléfono:{' '}
+                <PhoneCtaLink className="font-semibold text-slate-700 underline-offset-4 hover:underline">
+                  649 567 837
+                </PhoneCtaLink>
+              </p>
             </div>
           </div>
         </SectionWrapper>

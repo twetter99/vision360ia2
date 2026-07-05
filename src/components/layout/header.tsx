@@ -11,6 +11,7 @@ import { useLanguage } from '@/hooks/use-language';
 import { useContactSlideOver } from '@/context/contact-slideover-provider';
 import { usePathname } from 'next/navigation';
 import { BrandLogo } from '../brand/BrandLogo';
+import { WhatsAppCtaLink, WhatsAppIcon } from '@/components/shared/contact-channel-links';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -182,24 +183,22 @@ export function Header() {
               ))}
             </nav>
             <div className="ml-auto flex items-center gap-2 lg:gap-2.5">
-              <Button 
+              {/* WhatsApp = canal principal; el formulario (email) queda en el enlace "Contacto" del menú */}
+              <WhatsAppCtaLink
                 className={cn(
-                  'hidden rounded-full md:flex',
+                  'hidden items-center rounded-full bg-[#25D366] font-semibold text-white transition-colors hover:bg-[#1fb855] md:inline-flex',
                   isScrolled
-                    ? 'h-10 px-5 text-sm shadow-[0_12px_28px_rgba(245,158,11,0.2)]'
-                    : 'shadow-[0_16px_36px_rgba(245,158,11,0.24)]',
-                  'bg-accent text-accent-foreground hover:bg-accent/90'
+                    ? 'h-10 px-5 text-sm shadow-[0_12px_28px_rgba(37,211,102,0.24)]'
+                    : 'h-11 px-6 shadow-[0_16px_36px_rgba(37,211,102,0.28)]'
                 )}
-                onClick={openContactSlideOver}
               >
-                {t.getQuote}
-              </Button>
-              <Button
-                className="flex h-10 rounded-full bg-accent px-4 text-sm font-semibold text-accent-foreground shadow-[0_12px_28px_rgba(245,158,11,0.24)] hover:bg-accent/90 md:hidden"
-                onClick={openContactSlideOver}
-              >
-                Contacto
-              </Button>
+                <WhatsAppIcon className="mr-2 h-4 w-4" />
+                WhatsApp
+              </WhatsAppCtaLink>
+              <WhatsAppCtaLink className="inline-flex h-10 items-center rounded-full bg-[#25D366] px-4 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(37,211,102,0.28)] transition-colors hover:bg-[#1fb855] md:hidden">
+                <WhatsAppIcon className="mr-1.5 h-4 w-4" />
+                WhatsApp
+              </WhatsAppCtaLink>
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon" className={cn(
@@ -286,15 +285,13 @@ export function Header() {
 
                       <div className="mt-auto flex flex-col gap-3 border-t border-slate-200/80 pt-5">
                         <SheetClose asChild>
-                          <Button variant="outline" onClick={openContactSlideOver} className="min-h-[50px] rounded-full border-slate-300 bg-white/85 text-base">
-                            {t.login}
-                          </Button>
+                          <WhatsAppCtaLink className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[#25D366] text-base font-semibold text-white shadow-[0_18px_40px_rgba(37,211,102,0.28)] transition-colors hover:bg-[#1fb855]">
+                            <WhatsAppIcon className="h-5 w-5" />
+                            Escríbenos por WhatsApp
+                          </WhatsAppCtaLink>
                         </SheetClose>
                         <SheetClose asChild>
-                          <Button
-                            className="min-h-[54px] rounded-full bg-accent text-base text-accent-foreground shadow-[0_18px_40px_rgba(245,158,11,0.22)] hover:bg-accent/90"
-                            onClick={openContactSlideOver}
-                          >
+                          <Button variant="outline" onClick={openContactSlideOver} className="min-h-[50px] rounded-full border-slate-300 bg-white/85 text-base">
                             {t.getQuote}
                           </Button>
                         </SheetClose>

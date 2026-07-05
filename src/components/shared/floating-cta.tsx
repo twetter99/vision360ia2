@@ -5,13 +5,14 @@ import { MessageSquareText, PlayCircle, X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { useContactSlideOver } from '@/context/contact-slideover-provider';
+import { WhatsAppCtaLink, WhatsAppIcon } from '@/components/shared/contact-channel-links';
 
 /**
  * Clúster flotante de captación, visible al hacer scroll en cualquier página:
- *   - "Solicitar información" (principal, abre el formulario) → objetivo nº1.
+ *   - "Escríbenos por WhatsApp" (principal, verde) → canal nº1 de contacto.
+ *   - "Por email" (secundario, abre el formulario) → alternativa.
  *   - "Ver demo" (secundario) → abre un modal con los vídeos de demostración,
- *     que son el activo que más convence. El de leads manda visualmente para
- *     no canibalizar el formulario.
+ *     que son el activo que más convence.
  *
  * El modal reproduce los vídeos desde CUALQUIER página (no depende de que la
  * galería de la home esté en pantalla). Patrón facade: miniatura local +
@@ -83,12 +84,18 @@ export function FloatingCta() {
         <button
           type="button"
           onClick={openContactSlideOver}
-          aria-label="Solicitar información"
-          className="inline-flex min-h-[52px] items-center gap-2 rounded-full bg-accent px-5 py-3.5 text-sm font-semibold text-accent-foreground shadow-[0_18px_40px_rgba(245,158,11,0.34)] transition-colors hover:bg-accent/90"
+          aria-label="Contactar por email"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-slate-200 bg-white/95 px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.18)] backdrop-blur-md transition-colors hover:bg-white"
         >
-          <MessageSquareText className="h-5 w-5" />
-          <span>Solicitar información</span>
+          <MessageSquareText className="h-5 w-5 text-primary" />
+          <span>Por email</span>
         </button>
+        <WhatsAppCtaLink
+          className="inline-flex min-h-[52px] items-center gap-2 rounded-full bg-[#25D366] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(37,211,102,0.34)] transition-colors hover:bg-[#1fb855]"
+        >
+          <WhatsAppIcon className="h-5 w-5" />
+          <span>Escríbenos por WhatsApp</span>
+        </WhatsAppCtaLink>
       </div>
 
       {videosOpen && (

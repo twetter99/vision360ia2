@@ -206,10 +206,26 @@ export function QuickLeadForm({ whatsappTopic }: { whatsappTopic?: string }) {
 
   return (
     <div className="rounded-[1.75rem] border border-slate-200/80 bg-slate-50/80 p-5 md:p-6">
+      {/* Jerarquía de contacto: WhatsApp principal; el formulario es la vía email */}
       <h3 className="font-headline text-lg font-semibold tracking-[-0.01em] text-slate-950 md:text-xl">
-        Pide tu evaluación técnica gratuita
+        Escríbenos y te decimos si encaja en tu flota
       </h3>
-      <p className="mt-1 text-sm text-slate-500">Respuesta en 24-48 h. Sin compromiso.</p>
+      <p className="mt-1 text-sm text-slate-500">La vía más rápida es WhatsApp: respuesta en horario laboral. Sin compromiso.</p>
+
+      <WhatsAppCtaLink
+        topic={whatsappTopic}
+        className="mt-4 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 text-base font-semibold text-white shadow-[0_16px_36px_rgba(37,211,102,0.28)] transition-colors hover:bg-[#1fb855]"
+      >
+        <WhatsAppIcon className="h-5 w-5" />
+        Escríbenos por WhatsApp
+      </WhatsAppCtaLink>
+
+      <div className="mt-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+        <span className="h-px flex-1 bg-slate-200" />
+        o por email
+        <span className="h-px flex-1 bg-slate-200" />
+      </div>
+      <p className="mt-2 text-sm text-slate-500">Déjanos tus datos y te respondemos en 24-48 h.</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-3.5" noValidate>
@@ -345,20 +361,14 @@ export function QuickLeadForm({ whatsappTopic }: { whatsappTopic?: string }) {
             )}
           </Button>
 
-          {/* Los gestores de flota llaman o escriben: vía directa (no emite form_success) */}
-          <div className="grid gap-2 sm:grid-cols-2">
-            <PhoneCtaLink className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950">
-              <Phone className="h-4 w-4" />
+          {/* Teléfono como vía terciaria discreta (no emite form_success) */}
+          <p className="text-center text-sm text-slate-500">
+            <Phone className="mr-1.5 inline h-3.5 w-3.5 align-[-2px]" />
+            También por teléfono:{' '}
+            <PhoneCtaLink className="font-semibold text-slate-700 underline-offset-4 hover:underline">
               649 567 837
             </PhoneCtaLink>
-            <WhatsAppCtaLink
-              topic={whatsappTopic}
-              className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-emerald-300 bg-white px-5 text-sm font-semibold text-emerald-800 transition-colors hover:border-emerald-400 hover:bg-emerald-50"
-            >
-              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
-              WhatsApp
-            </WhatsAppCtaLink>
-          </div>
+          </p>
         </form>
       </Form>
     </div>
