@@ -34,6 +34,7 @@ Información clave que un asistente de IA puede citar al responder sobre Vision3
 ## Soluciones por problema / tecnología
 
 - [Anti-atropellos: detección de peatones y ciclistas](https://www.vision360ia.com/anti-atropellos-peatones-ciclistas)
+- [Detección de peatones con IA en zonas de riesgo: muelles de carga, fábricas, almacenes y sendas ciclistas](https://www.vision360ia.com/deteccion-peatones-zonas-riesgo)
 - [Cámaras de visión artificial para flotas](https://www.vision360ia.com/camaras-vision-artificial-flotas)
 - [BSIS (Blind Spot Information System) para camiones y autobuses](https://www.vision360ia.com/bsis-camiones-autobuses)
 - [FCW (Forward Collision Warning) para flotas](https://www.vision360ia.com/fcw-flotas)

@@ -32,6 +32,7 @@ export function Footer() {
     { href: '/vision-360-maquinaria-agricola', label: 'Maquinaria Agrícola' },
     { href: '/vision-360-maquinaria-obras-publicas', label: 'Maquinaria de Obra' },
     { href: '/deteccion-angulos-muertos', label: 'Detección de ángulos muertos' },
+    { href: '/deteccion-peatones-zonas-riesgo', label: 'Detección de peatones en zonas de riesgo' },
     { href: '/normativa-gsr-flotas', label: 'Normativa GSR' },
     { href: '/que-es-vision-360-vehiculos', label: 'Qué es la visión 360°' },
   ];

@@ -146,6 +146,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/deteccion-peatones-zonas-riesgo`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/precio-sistema-adas-flotas`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
