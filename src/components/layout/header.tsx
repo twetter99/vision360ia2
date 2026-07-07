@@ -29,6 +29,7 @@ export function Header() {
     { href: '/adas-autobuses', label: 'ADAS Autobuses' },
     { href: '/adas-camiones', label: 'ADAS Camiones' },
     { href: '/anti-atropellos-peatones-ciclistas', label: 'Anti-Atropellos' },
+    { href: '/deteccion-peatones-zonas-riesgo', label: 'Peatones en zonas de riesgo' },
     { href: '/vision-360-vehiculos-industriales', label: 'Vehículos Industriales' },
     { href: '/camaras-vision-artificial-flotas', label: 'Cámaras 360' },
     { href: '/adas-vehiculos-recogida-residuos', label: 'Recogida de Residuos' },
