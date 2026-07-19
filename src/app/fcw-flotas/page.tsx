@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.vision360ia.com/fcw-flotas',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Sistema FCW para flotas | Vision360IA',
     description: 'Explicación práctica de FCW, su valor operativo y cómo se combina con visión artificial y otras funciones ADAS en flotas profesionales.',
   },

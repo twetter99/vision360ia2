@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     canonical: '/que-es-vision-360-vehiculos',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Qué es la visión 360° en vehículos | Vision360IA',
     description:
       'Definición, funcionamiento y usos de la visión perimetral 360° en autobuses, camiones y vehículos industriales.',

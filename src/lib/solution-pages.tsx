@@ -862,7 +862,7 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
   'deteccion-peatones-zonas-riesgo': {
     metadata: {
       title: 'Detección de peatones con IA en zonas de riesgo',
-      description: 'Cámaras con IA, detección por zonas y alertas en tiempo real para muelles de carga, fábricas, almacenes y sendas ciclistas. Solución configurable con estudio técnico previo y validación en piloto.',
+      description: 'Cámaras con IA, detección por zonas y alertas en tiempo real para muelles de carga, fábricas, almacenes y sendas ciclistas. Con estudio técnico previo.',
       keywords: ['detección de peatones con IA', 'cámaras IA para muelles de carga', 'sistema antiatropello en almacenes', 'detección de peatones en fábricas', 'seguridad en zonas de carga', 'cámaras inteligentes para zonas industriales', 'detección de usuarios vulnerables', 'alertas en tiempo real para conductores', 'detección de peatones por zonas', 'seguridad peatonal en entornos industriales'],
       openGraph: {
         title: 'Detección de peatones con IA en zonas de riesgo | Vision360IA',
@@ -997,3 +997,21 @@ export const solutionPages: Record<string, SolutionPageEntry> = {
     },
   },
 };
+
+// Imagen social por defecto para TODAS las landings de solución.
+// Next.js NO hereda el openGraph del layout cuando la página define el suyo
+// (reemplazo, no fusión), así que sin esto las landings se compartían SIN
+// imagen en WhatsApp/LinkedIn. Se aplica solo si la entrada no define una.
+const DEFAULT_OG_IMAGE = {
+  url: 'https://www.vision360ia.com/images/og-image.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas',
+};
+
+for (const entry of Object.values(solutionPages)) {
+  const og = entry.metadata.openGraph;
+  if (og && !og.images) {
+    og.images = [DEFAULT_OG_IMAGE];
+  }
+}

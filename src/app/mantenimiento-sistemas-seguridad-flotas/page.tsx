@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     canonical: '/mantenimiento-sistemas-seguridad-flotas',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Mantenimiento de sistemas de seguridad para flotas | Vision360IA',
     description:
       'Mantenemos operativos tus sistemas de visión 360° y detección: recalibración, soporte y revisión preventiva para que la seguridad no falle cuando más importa.',

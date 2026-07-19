@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Visión 360° inteligente para flotas urbanas | Vision360IA',
     description:
       'Reduce accidentes en maniobras urbanas con cámaras 360°, detección de peatones y ciclistas y solución ADAS para autobuses, camiones y vehículos municipales.',

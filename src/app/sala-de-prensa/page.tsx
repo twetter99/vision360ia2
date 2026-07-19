@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/sala-de-prensa' },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Sala de prensa | Vision360IA',
     description:
       'Vision360IA y WINFIN en los medios del sector del transporte y alianza con CONFEBUS.',

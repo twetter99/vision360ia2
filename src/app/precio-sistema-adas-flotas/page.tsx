@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/precio-sistema-adas-flotas' },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Precio de un sistema ADAS para flotas | Vision360IA',
     description:
       'Desde 2.500 € + IVA por vehículo. Qué determina el precio de un sistema ADAS con cámaras 360° e IA y cómo pedir presupuesto a medida.',

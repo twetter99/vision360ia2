@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     canonical: '/deteccion-angulos-muertos',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Detección de ángulos muertos en camiones y autobuses | Vision360IA',
     description:
       'Por qué los puntos ciegos provocan atropellos y cómo eliminarlos con visión 360° y detección por IA en flotas profesionales.',

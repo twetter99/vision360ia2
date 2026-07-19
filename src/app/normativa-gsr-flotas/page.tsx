@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     canonical: '/normativa-gsr-flotas',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Normativa GSR para flotas (R151, R158, R159) | Vision360IA',
     description:
       'Qué exige la GSR de la UE, a qué vehículos afecta y cómo preparar tu flota con visión 360° y detección de peatones y ciclistas.',

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     canonical: '/quienes-somos',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Quiénes somos | WINFIN y Vision360IA',
     description:
       'Ingeniería, implantación y experiencia real en autobuses, camiones y vehículos industriales para desplegar sistemas ADAS con criterio técnico.',

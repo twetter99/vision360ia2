@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.vision360ia.com/bsis-camiones-autobuses',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'BSIS para camiones y autobuses | Vision360IA',
     description: 'Explicación clara de BSIS, su papel en GSR y cómo reforzarlo con visión 360° y detección VRU en flotas reales.',
   },

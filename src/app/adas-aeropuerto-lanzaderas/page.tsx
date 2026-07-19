@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.vision360ia.com/adas-aeropuerto-lanzaderas',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'ADAS para aeropuerto y lanzaderas | Vision360IA',
     description: 'Cobertura específica para shuttle buses, lanzaderas y vehículos de apoyo en entorno aeroportuario.',
   },

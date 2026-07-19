@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.vision360ia.com/adas-furgonetas-reparto',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'ADAS para furgonetas de reparto | Vision360IA',
     description: 'Cobertura específica para reparto urbano y última milla con visión 360° y cámaras inteligentes.',
   },

@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     canonical: '/instalacion-equipos-embarcados-flotas',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Instalación de equipos embarcados para flotas | Vision360IA',
     description:
       'Instalamos y calibramos cámaras 360°, sistemas de detección y equipos de seguridad sobre tu flota existente. Talleres propios e ingeniería de integración.',

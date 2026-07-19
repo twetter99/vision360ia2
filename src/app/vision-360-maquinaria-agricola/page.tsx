@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     canonical: '/vision-360-maquinaria-agricola',
   },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Visión 360° para maquinaria agrícola | Vision360IA',
     description:
       'Elimina ángulos muertos en tractores, cosechadoras y remolques con visión 360° y detección de personas y obstáculos.',

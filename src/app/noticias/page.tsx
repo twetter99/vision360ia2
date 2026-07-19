@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/noticias' },
   openGraph: {
+    images: [{ url: 'https://www.vision360ia.com/images/og-image.jpg', width: 1200, height: 630, alt: 'Vision360IA — visión 360° con inteligencia artificial para flotas' }],
     title: 'Noticias | Vision360IA',
     description:
       'Novedades sobre seguridad, ADAS, visión 360° y digitalización del transporte en flotas profesionales.',
