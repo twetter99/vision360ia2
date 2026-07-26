@@ -145,6 +145,11 @@ def main() -> int:
     for path in local_root.rglob("*"):
         if path.is_file():
             rel = path.relative_to(local_root).as_posix()
+            # NUNCA subir credenciales ni dependencias gestionadas en el
+            # servidor: config.php vive solo en SiteGround (el local es de
+            # testing y en jul-2026 machacó el secret real de producción).
+            if rel == "api/form/config.php" or rel.startswith("api/form/vendor/"):
+                continue
             files.append((path, f"{remote_root}/{rel}"))
 
     total_bytes = sum(p.stat().st_size for p, _ in files)
