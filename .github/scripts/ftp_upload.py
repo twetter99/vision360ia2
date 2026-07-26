@@ -81,10 +81,10 @@ class Worker:
             try:
                 ftp = self._ensure()
                 local_size = local.stat().st_size
-                # OJO: el skip por tamaño NO aplica a .html/.xml/.txt — un cambio
+                # OJO: el skip por tamaño NO aplica a .html/.xml/.txt/.php — un cambio
                 # de texto con el mismo número de bytes ("15"->"20") los dejaría
                 # sin actualizar en el servidor. Son ligeros: se suben siempre.
-                always_upload = local.suffix.lower() in {".html", ".xml", ".txt"}
+                always_upload = local.suffix.lower() in {".html", ".xml", ".txt", ".php"}
                 rs = None if always_upload else remote_size(ftp, remote)
                 if rs is not None and rs == local_size:
                     return ("skipped", f"{remote} ({local_size}b)")
