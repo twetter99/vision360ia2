@@ -5,19 +5,12 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Cookie } from 'lucide-react';
 import { useContactSlideOver } from '@/context/contact-slideover-provider';
-
-const COOKIE_CONSENT_KEY = 'vision360ia-cookie-consent';
-const COOKIE_CONSENT_VERSION = '1.0'; // Incrementar si cambia la política
-
-type ConsentStatus = 'pending' | 'accepted' | 'rejected' | 'custom';
-
-interface CookiePreferences {
-  necessary: boolean; // Siempre true, no se puede desactivar
-  analytics: boolean;
-  marketing: boolean;
-  version: string;
-  timestamp: string;
-}
+import {
+  COOKIE_CONSENT_KEY,
+  COOKIE_CONSENT_VERSION,
+  CONSENT_UPDATED_EVENT,
+  type CookiePreferences,
+} from '@/lib/consent';
 
 const defaultPreferences: CookiePreferences = {
   necessary: true,
@@ -70,8 +63,9 @@ export function CookieBanner() {
     setPreferences(finalPrefs);
     setIsVisible(false);
     
-    // Disparar evento para que otros componentes reaccionen
-    window.dispatchEvent(new CustomEvent('cookieConsentUpdated', { detail: finalPrefs }));
+    // Disparar evento para que otros componentes reaccionen (GTM lo escucha
+    // para emitir gtag('consent', 'update', …) — ver google-tag-manager.tsx)
+    window.dispatchEvent(new CustomEvent(CONSENT_UPDATED_EVENT, { detail: finalPrefs }));
   };
 
   const handleAcceptAll = () => {
@@ -271,8 +265,8 @@ export function useCookieConsent() {
       setConsent(e.detail);
     };
 
-    window.addEventListener('cookieConsentUpdated', handleUpdate as EventListener);
-    return () => window.removeEventListener('cookieConsentUpdated', handleUpdate as EventListener);
+    window.addEventListener(CONSENT_UPDATED_EVENT, handleUpdate as EventListener);
+    return () => window.removeEventListener(CONSENT_UPDATED_EVENT, handleUpdate as EventListener);
   }, []);
 
   return {

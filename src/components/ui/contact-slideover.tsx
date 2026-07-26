@@ -237,7 +237,8 @@ export function ContactSlideOver() {
       }
 
       // Conversión de Google Ads (vía GTM): SOLO cuando el PHP respondió OK.
-      pushFormSuccess("vision360ia_contact");
+      // email/phone → conversiones mejoradas (se hashean antes de ir a Google).
+      pushFormSuccess("vision360ia_contact", { email: values.email, phone: values.phone });
 
       toast({
         title: t.toast?.downloadSuccess?.title || "¡Documentación enviada!",

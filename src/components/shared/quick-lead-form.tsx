@@ -177,7 +177,8 @@ export function QuickLeadForm({ whatsappTopic }: { whatsappTopic?: string }) {
       }
 
       // Conversión de Google Ads (vía GTM): SOLO con respuesta OK del PHP.
-      pushFormSuccess("vision360ia_contact_quick");
+      // email/phone → conversiones mejoradas (se hashean antes de ir a Google).
+      pushFormSuccess("vision360ia_contact_quick", { email: values.email, phone: values.phone });
       setIsSent(true);
     } catch {
       setSubmitError("Error de conexión. Inténtalo de nuevo o escríbenos a info@vision360ia.com");
