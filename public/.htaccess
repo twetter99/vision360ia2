@@ -28,6 +28,7 @@
     # 301 de URLs antiguas (.html) de la web anterior que daban 404, hacia las
     # páginas actuales (limpia el rastreo y conserva cualquier enlace residual).
     RewriteRule ^politica-cookies\.html$ /cookies [R=301,L]
+    RewriteRule ^politica-privacidad\.html$ /privacidad [R=301,L]
     RewriteRule ^contacto\.html$ / [R=301,L]
 
     # Índice de sección que coexiste con su carpeta de subpáginas:

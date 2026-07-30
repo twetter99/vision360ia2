@@ -150,6 +150,11 @@ def main() -> int:
             # testing y en jul-2026 machacó el secret real de producción).
             if rel == "api/form/config.php" or rel.startswith("api/form/vendor/"):
                 continue
+            # composer.json/lock no se pueden proteger con .htaccess: nginx sirve
+            # los estáticos existentes sin pasar por Apache (solo los .php van al
+            # handler). No se suben: vendor/ ya está instalado en el servidor.
+            if rel in ("api/form/composer.json", "api/form/composer.lock"):
+                continue
             files.append((path, f"{remote_root}/{rel}"))
 
     total_bytes = sum(p.stat().st_size for p, _ in files)

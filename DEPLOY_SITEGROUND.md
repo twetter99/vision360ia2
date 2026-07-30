@@ -153,8 +153,25 @@ Probar manualmente en orden:
      confirmación al usuario**.
 6. **Endpoint protegido**:
    - `curl https://www.vision360ia.com/api/form/config.php` → 403.
-   - `curl https://www.vision360ia.com/api/form/composer.json` → 403.
    - `curl https://www.vision360ia.com/api/form/vendor/autoload.php` → 403.
+   - `curl https://www.vision360ia.com/api/form/composer.json` → **404** (no 403).
+     El `.htaccess` no puede protegerlo: nginx sirve los estáticos que existen
+     sin pasar por Apache, y solo los `.php` van al handler. Por eso el uploader
+     no sube `composer.json`/`composer.lock` — deben borrarse del servidor a
+     mano una vez `vendor/` está instalado.
+
+7. **Anti-spam vivo** (tras cualquier cambio en `contacto.php` o `config.php`):
+
+   ```bash
+   curl -s -X POST https://www.vision360ia.com/api/form/contacto.php \
+     -H 'Content-Type: application/json' \
+     -d '{"name":"probe","email":"probe@example.com","message":"prueba 0123456789","privacyAccepted":true,"token":"falso"}'
+   ```
+
+   Debe responder **400** `No hemos podido validar la verificación anti-spam`.
+   Si responde `200 ok`, Turnstile está anulado: revisar la condición de
+   `success` en `contacto.php` y el `TURNSTILE_SECRET` de `config.php` (un
+   secret de testing de Cloudflare aprueba cualquier token).
 
 Si algo falla, mirar los logs:
 
