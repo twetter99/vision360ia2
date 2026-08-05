@@ -2,7 +2,7 @@
 title: "Cámaras de visión 360 para autobuses y camiones: cómo funcionan y qué exigir al instalador"
 date: 2026-06-29
 description: "Guía práctica de las cámaras de visión 360 en autobuses y camiones: cómo funcionan, qué aporta la IA y los 6 criterios que debes exigir antes de instalarlas en tu flota."
-image: /images/demo-vision360-1.jpg
+image: /images/noticias/vision-360-cobertura-camaras.jpg
 author: WINFIN
 tags:
   - cámaras 360, visión perimetral, autobuses, camiones, flotas, instalación

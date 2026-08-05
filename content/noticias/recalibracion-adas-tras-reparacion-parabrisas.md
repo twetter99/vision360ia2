@@ -2,7 +2,7 @@
 title: "ADAS después de un golpe o un cambio de parabrisas: cuándo hay que recalibrar"
 date: 2026-07-30
 description: "Una reparación de chapa o un parabrisas nuevo pueden dejar un sistema ADAS desalineado y aparentemente operativo. Qué situaciones obligan a revisar la calibración en una flota."
-image: /images/tecnico_trabajando_enbus.jpg
+image: /images/noticias/recalibracion-camara-parabrisas.jpg
 author: WINFIN
 tags:
   - calibración, mantenimiento, ADAS, parabrisas, taller, flotas, posventa

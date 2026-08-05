@@ -2,7 +2,7 @@
 title: "Cómo especificar ADAS y visión 360 en un pliego de licitación de transporte"
 date: 2026-07-24
 description: "Guía para ayuntamientos, consorcios y operadores: cómo redactar las cláusulas técnicas de ADAS y visión 360 en un pliego sin cerrar el mercado a una sola marca."
-image: /images/lateral_bus.jpg
+image: /images/noticias/pliego-licitacion-adas.jpg
 author: WINFIN
 tags:
   - pliegos, licitación, contratación pública, ADAS autobuses, transporte urbano, consorcios

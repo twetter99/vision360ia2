@@ -2,7 +2,7 @@
 title: "¿Es legal poner cámaras en los vehículos de la flota? RGPD, AEPD y conductores"
 date: 2026-07-21
 description: "Qué exige el RGPD para instalar cámaras en vehículos de flota en España: información a la plantilla, base jurídica, plazos de conservación y la diferencia entre grabar y detectar."
-image: /images/noticias/lurraldebus-camara-videovigilancia.jpg
+image: /images/noticias/rgpd-camaras-flota.jpg
 author: WINFIN
 tags:
   - RGPD, AEPD, protección de datos, cámaras embarcadas, flotas, conductores, videovigilancia

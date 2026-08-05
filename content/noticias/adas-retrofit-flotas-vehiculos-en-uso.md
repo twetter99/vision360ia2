@@ -2,7 +2,7 @@
 title: "ADAS de fábrica vs retrofit: qué hacer con la flota que ya tienes"
 date: 2026-07-06
 description: "Los vehículos nuevos ya llegan con ADAS por normativa, pero ¿y tu flota actual? Guía de retrofit: qué sistemas se pueden instalar, cómo es el proceso y qué cuesta."
-image: /images/noticias/lurraldebus-pc-embarcado-sae.jpg
+image: /images/noticias/retrofit-instalacion-flota.jpg
 author: WINFIN
 tags:
   - ADAS retrofit, flotas, instalación, camiones, autobuses, GSR
