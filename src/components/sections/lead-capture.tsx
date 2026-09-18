@@ -37,7 +37,7 @@ const PUNTOS = [
   },
 ];
 
-export function LeadCapture({ whatsappTopic }: { whatsappTopic?: string }) {
+export function LeadCapture() {
   return (
     <SectionWrapper className="max-w-7xl bg-transparent px-6 py-10 md:px-6 md:py-14">
       {/* Tarjeta blanca: el fondo del artículo puede ser oscuro (contraste). */}
@@ -67,7 +67,7 @@ export function LeadCapture({ whatsappTopic }: { whatsappTopic?: string }) {
           </p>
         </div>
 
-        <QuickLeadForm whatsappTopic={whatsappTopic} />
+        <QuickLeadForm />
       </div>
     </SectionWrapper>
   );

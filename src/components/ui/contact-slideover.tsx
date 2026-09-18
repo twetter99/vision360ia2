@@ -20,7 +20,7 @@ import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useContactSlideOver } from "@/context/contact-slideover-provider";
 import { pushFormSuccess } from "@/lib/analytics";
-import { WhatsAppCtaLink, WhatsAppIcon } from "@/components/shared/contact-channel-links";
+import { FLEET_SIZE_OPTIONS } from "@/lib/contact";
 
 // ✅ Schema simplificado: solo campos esenciales
 const formSchema = z.object({
@@ -28,6 +28,8 @@ const formSchema = z.object({
   email: z.string().email("Dirección de correo electrónico no válida."),
   company: z.string().optional(),
   phone: z.string().optional(),
+  // Cualificación: separa autónomos (1 vehículo) de gestores de flota.
+  flota: z.enum(FLEET_SIZE_OPTIONS, { message: "Indica el tamaño aproximado de tu flota." }),
   // Opcional para reducir fricción (leads B2B): si va vacío, el envío incluye
   // un texto por defecto que cumple el mínimo de 10 caracteres del backend.
   message: z
@@ -204,12 +206,14 @@ export function ContactSlideOver() {
         email: values.email,
         company: values.company || undefined,
         phone: values.phone || undefined,
-        // El backend exige >=10 caracteres: si el usuario no escribe nada,
-        // enviamos una solicitud estándar (el lead vale igual: nombre+contacto).
-        message:
+        // "Tamaño de flota" viaja dentro de message (el endpoint PHP no tiene
+        // campo propio). Si el usuario no escribe nada, va una solicitud
+        // estándar (el backend exige >=10 caracteres).
+        message: `Tamaño de flota: ${values.flota}.\n\n${
           values.message && values.message.trim().length >= 10
             ? values.message.trim()
-            : "Solicito información sobre el sistema Vision360IA para mi flota.",
+            : "Solicito información sobre el sistema Vision360IA para mi flota."
+        }`,
         privacyAccepted: values.privacyAccepted,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         formLoadTime,
@@ -263,16 +267,17 @@ export function ContactSlideOver() {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay (z-[80]: por encima de la cabecera fija, que es z-[60] y
+          tapaba el título y la X de cerrar, sobre todo en móvil) */}
       <div
-        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 transition-opacity duration-300"
+        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[80] transition-opacity duration-300"
         onClick={closeContactSlideOver}
         aria-hidden="true"
       />
 
       {/* Slide-over panel */}
       <div
-        className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-md"
+        className="fixed inset-y-0 right-0 z-[80] w-full sm:max-w-md"
         role="dialog"
         aria-modal="true"
         aria-labelledby="slideover-title"
@@ -318,11 +323,6 @@ export function ContactSlideOver() {
                   Sin compromiso
                 </span>
               </div>
-              {/* Atajo al canal principal: quien prefiera chat no debería rellenar un formulario */}
-              <WhatsAppCtaLink className="mt-4 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb855]">
-                <WhatsAppIcon className="h-4 w-4" />
-                ¿Prefieres WhatsApp? Escríbenos ahora
-              </WhatsAppCtaLink>
             </div>
           </div>
 
@@ -408,6 +408,38 @@ export function ContactSlideOver() {
                   />
                 </div>
 
+                {/* Tamaño de flota (cualificación del lead) */}
+                <FormField
+                  control={form.control}
+                  name="flota"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel htmlFor="so-flota">Tamaño de flota *</FormLabel>
+                      <FormControl>
+                        <select
+                          id="so-flota"
+                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          value={field.value ?? ""}
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
+                          name={field.name}
+                          ref={field.ref}
+                        >
+                          <option value="" disabled>
+                            Selecciona…
+                          </option>
+                          {FLEET_SIZE_OPTIONS.map((opcion) => (
+                            <option key={opcion} value={opcion}>
+                              {opcion}
+                            </option>
+                          ))}
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
                 {/* Mensaje */}
                 <FormField
                   control={form.control}
@@ -420,7 +452,7 @@ export function ContactSlideOver() {
                       <FormControl>
                         <Textarea
                           rows={2}
-                          placeholder="Opcional: tipo de vehículos, tamaño de flota, qué quieres resolver…"
+                          placeholder="Opcional: tipo de vehículos, qué quieres resolver…"
                           {...field}
                         />
                       </FormControl>

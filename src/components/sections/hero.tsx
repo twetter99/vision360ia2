@@ -1,13 +1,16 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import { heroData } from '@/lib/data';
 import { useLanguage } from '@/hooks/use-language';
 import type { Translation } from '@/lib/translations';
+import { ContactFormButton } from '@/components/shared/contact-form-button';
 
 export function Hero({ translations: initialTranslations }: { translations: Translation['es'] }) {
   const { translations } = useLanguage();
   const t = translations.hero || initialTranslations.hero;
+  const tHeader = translations.header || initialTranslations.header;
   const heroImage = heroData.image;
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
@@ -106,6 +109,14 @@ export function Hero({ translations: initialTranslations }: { translations: Tran
                     {t.subtitle}
                   </p>
                 )}
+                {/* CTA principal de la home: abre el formulario (lead cualificado) */}
+                <ContactFormButton
+                  size="lg"
+                  className="mt-8 min-h-[54px] rounded-full bg-accent px-7 text-base font-semibold text-accent-foreground shadow-[0_18px_40px_rgba(245,158,11,0.34)] hover:bg-accent/90"
+                >
+                  {tHeader.contactCta}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </ContactFormButton>
               </div>
             </div>
           </div>

@@ -5,6 +5,8 @@ const baseTranslations = {
   header: {
     login: 'Ver si encaja en mi flota',
     getQuote: 'Solicitar evaluación técnica',
+    contactCta: 'Contacta con nosotros',
+    contactCtaShort: 'Contacto',
     openMenu: 'Abrir Menú',
     changeLanguage: 'Cambiar idioma',
   },
@@ -550,6 +552,8 @@ export const translations = {
     header: {
       login: 'Iniciar Sessió',
       getQuote: 'Sol·licitar informació tècnica',
+      contactCta: 'Contacta amb nosaltres',
+      contactCtaShort: 'Contacte',
       openMenu: 'Obrir Menú',
       changeLanguage: 'Canviar idioma',
     },
@@ -965,6 +969,8 @@ export const translations = {
     header: {
         login: 'Saioa Hasi',
       getQuote: 'Informazio teknikoa eskatu',
+      contactCta: 'Jarri gurekin harremanetan',
+      contactCtaShort: 'Kontaktua',
         openMenu: 'Menua Ireki',
         changeLanguage: 'Hizkuntza Aldatu',
     },

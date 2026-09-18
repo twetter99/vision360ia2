@@ -18,7 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { pushFormSuccess } from "@/lib/analytics";
-import { PhoneCtaLink, WhatsAppCtaLink, WhatsAppIcon } from "@/components/shared/contact-channel-links";
+import { PhoneCtaLink } from "@/components/shared/contact-channel-links";
+import { FLEET_SIZE_OPTIONS } from "@/lib/contact";
 
 /**
  * Formulario corto de captación para landings de campaña (CRO).
@@ -32,12 +33,7 @@ import { PhoneCtaLink, WhatsAppCtaLink, WhatsAppIcon } from "@/components/shared
  *   (conversión de Google Ads vía GTM). Nunca en el clic.
  */
 
-const FLOTA_OPCIONES = [
-  "1–10 vehículos",
-  "11–50 vehículos",
-  "51–200 vehículos",
-  "Más de 200 vehículos",
-] as const;
+const FLOTA_OPCIONES = FLEET_SIZE_OPTIONS;
 
 const quickSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
@@ -51,7 +47,7 @@ const quickSchema = z.object({
 
 type QuickFormData = z.infer<typeof quickSchema>;
 
-export function QuickLeadForm({ whatsappTopic }: { whatsappTopic?: string }) {
+export function QuickLeadForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -207,26 +203,10 @@ export function QuickLeadForm({ whatsappTopic }: { whatsappTopic?: string }) {
 
   return (
     <div className="rounded-[1.75rem] border border-slate-200/80 bg-slate-50/80 p-5 md:p-6">
-      {/* Jerarquía de contacto: WhatsApp principal; el formulario es la vía email */}
       <h3 className="font-headline text-lg font-semibold tracking-[-0.01em] text-slate-950 md:text-xl">
-        Escríbenos y te decimos si encaja en tu flota
+        Pide tu evaluación técnica gratuita
       </h3>
-      <p className="mt-1 text-sm text-slate-500">La vía más rápida es WhatsApp: respuesta en horario laboral. Sin compromiso.</p>
-
-      <WhatsAppCtaLink
-        topic={whatsappTopic}
-        className="mt-4 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 text-base font-semibold text-white shadow-[0_16px_36px_rgba(37,211,102,0.28)] transition-colors hover:bg-[#1fb855]"
-      >
-        <WhatsAppIcon className="h-5 w-5" />
-        Escríbenos por WhatsApp
-      </WhatsAppCtaLink>
-
-      <div className="mt-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-        <span className="h-px flex-1 bg-slate-200" />
-        o por email
-        <span className="h-px flex-1 bg-slate-200" />
-      </div>
-      <p className="mt-2 text-sm text-slate-500">Déjanos tus datos y te respondemos en 24-48 h.</p>
+      <p className="mt-1 text-sm text-slate-500">Respuesta en 24-48 h. Sin compromiso.</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-3.5" noValidate>

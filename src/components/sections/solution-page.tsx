@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
-import { ArrowRight, CheckCircle2, Mail } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AnimatedSection } from '@/components/shared/animated-section';
 import { ContactFormButton } from '@/components/shared/contact-form-button';
-import { PhoneCtaLink, WhatsAppCtaLink, WhatsAppIcon } from '@/components/shared/contact-channel-links';
+import { PhoneCtaLink, WhatsAppCtaLink } from '@/components/shared/contact-channel-links';
 import { DemoValidation } from '@/components/shared/demo-validation';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionWrapper } from '@/components/shared/section-wrapper';
@@ -323,22 +323,14 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                   ))}
                 </div>
 
-                {/* Jerarquía de contacto: WhatsApp principal, email (formulario) alternativa */}
+                {/* CTA principal = formulario (lead cualificado). WhatsApp solo como texto en el bloque final. */}
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                  <WhatsAppCtaLink
-                    topic={data.breadcrumbLabel}
-                    className="inline-flex min-h-[54px] w-full shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#25D366] px-7 text-base font-semibold text-white shadow-[0_18px_40px_rgba(37,211,102,0.32)] transition-colors hover:bg-[#1fb855] sm:w-auto"
-                  >
-                    <WhatsAppIcon className="mr-2 h-5 w-5 shrink-0" />
-                    Escríbenos por WhatsApp
-                  </WhatsAppCtaLink>
                   <ContactFormButton
                     size="lg"
-                    variant="outline"
-                    className="min-h-[54px] w-full justify-center rounded-full border-slate-200 bg-white/90 px-7 text-slate-700 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-md hover:bg-slate-50 sm:w-auto"
+                    className={`min-h-[54px] w-full justify-center whitespace-nowrap rounded-full px-7 sm:w-auto ${data.theme.primaryButton}`}
                   >
-                    <Mail className="mr-2 h-4 w-4" />
-                    O por email: {data.hero.primaryCtaLabel.toLowerCase()}
+                    Contacta con nosotros
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </ContactFormButton>
                 </div>
                 <Link
@@ -390,7 +382,7 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
         </section>
 
         {/* Landings de campaña: instalación experta + formulario corto (CRO) */}
-        {data.quickLead ? <LeadCapture whatsappTopic={data.breadcrumbLabel} /> : null}
+        {data.quickLead ? <LeadCapture /> : null}
 
         <SectionWrapper className="max-w-7xl bg-transparent px-6 py-20 md:px-6">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -478,30 +470,30 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                 ¿Encaja en tu flota? Te lo decimos sin compromiso
               </h2>
               <p className="mt-2 text-base leading-relaxed text-slate-600">
-                Cuéntanos tus vehículos y maniobras y te preparamos una evaluación técnica con la configuración recomendada. Por WhatsApp te respondemos en horario laboral; por email, en 24-48 h.
+                Cuéntanos tus vehículos y maniobras y te preparamos una evaluación técnica con la configuración recomendada. Respuesta en 24-48 h, sin compromiso.
               </p>
             </div>
-            {/* Jerarquía de contacto: WhatsApp principal, email alternativa, teléfono discreto */}
+            {/* Jerarquía de contacto: formulario principal; teléfono y WhatsApp solo como texto discreto */}
             <div className="flex shrink-0 flex-col items-stretch gap-3 sm:items-center">
-              <WhatsAppCtaLink
-                topic={data.breadcrumbLabel}
-                className="inline-flex min-h-[54px] shrink-0 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 text-base font-semibold text-white shadow-[0_18px_40px_rgba(37,211,102,0.32)] transition-colors hover:bg-[#1fb855]"
-              >
-                <WhatsAppIcon className="h-5 w-5" />
-                Escríbenos por WhatsApp
-              </WhatsAppCtaLink>
               <ContactFormButton
-                variant="outline"
-                className="min-h-[48px] rounded-full border-slate-300 bg-white/80 px-6 text-sm font-semibold text-slate-700 hover:border-slate-400 hover:text-slate-950"
+                size="lg"
+                className={`min-h-[54px] shrink-0 rounded-full px-7 ${data.theme.primaryButton}`}
               >
-                <Mail className="mr-2 h-4 w-4" />
-                O por email: solicitar evaluación
+                Contacta con nosotros
+                <ArrowRight className="ml-2 h-5 w-5" />
               </ContactFormButton>
               <p className="text-center text-sm text-slate-500">
                 También por teléfono:{' '}
                 <PhoneCtaLink className="font-semibold text-slate-700 underline-offset-4 hover:underline">
                   649 567 837
                 </PhoneCtaLink>
+                {' '}o{' '}
+                <WhatsAppCtaLink
+                  topic={data.breadcrumbLabel}
+                  className="font-semibold text-slate-700 underline-offset-4 hover:underline"
+                >
+                  WhatsApp
+                </WhatsAppCtaLink>
               </p>
             </div>
           </div>
