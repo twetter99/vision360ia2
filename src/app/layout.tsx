@@ -3,6 +3,7 @@ import { Sora, Inter } from 'next/font/google';
 import './globals.css';
 import { ClientLayout } from '@/components/layout/client-layout';
 import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/analytics/google-tag-manager';
+import { OpenAIPixel } from '@/components/analytics/openai-pixel';
 import { JsonLd } from '@/components/seo/json-ld';
 import {
   organizationSchema,
@@ -185,6 +186,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <GoogleTagManager />
+        <OpenAIPixel />
         <GoogleTagManagerNoscript />
         <ClientLayout>{children}</ClientLayout>
       </body>

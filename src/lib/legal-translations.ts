@@ -102,7 +102,7 @@ export const legalTranslations = {
         comunicacion: {
           title: '5. Comunicación de datos a terceros',
           intro: 'Los datos pueden ser compartidos con proveedores tecnológicos utilizados por WINFIN INSTALACIONES, S.L.:',
-          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting y analítica)', 'Vimeo (reproducción de vídeos)', 'Servicios de email y almacenamiento'],
+          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting y analítica)', 'Vimeo (reproducción de vídeos)', 'OpenAI (medición de anuncios en ChatGPT, solo con consentimiento de marketing)', 'Servicios de email y almacenamiento'],
           footer: 'Todos ellos cumplen con garantías adecuadas conforme al RGPD.',
           noSale: 'No se venden datos a terceros bajo ningún concepto.',
         },
@@ -164,6 +164,9 @@ export const legalTranslations = {
             { name: 'cookie_consent', provider: 'Vision360IA', purpose: 'Preferencias de cookies', duration: '1 año' },
             { name: '_ga', provider: 'Google Analytics', purpose: 'Identificador de usuario', duration: '2 años' },
             { name: 'vuid', provider: 'Vimeo', purpose: 'Reproducción de vídeos', duration: '2 años' },
+            { name: '__oppref', provider: 'OpenAI', purpose: 'Atribución de clics en anuncios de ChatGPT', duration: '30 días' },
+            { name: '__obref', provider: 'OpenAI', purpose: 'Identificador de navegador para medir anuncios', duration: '1 año' },
+            { name: '__oaiq_consent', provider: 'OpenAI', purpose: 'Recuerda la decisión de consentimiento del píxel', duration: '30 días' },
           ],
         },
         cambios: {
@@ -277,7 +280,7 @@ export const legalTranslations = {
         comunicacion: {
           title: '5. Comunicació de dades a tercers',
           intro: 'Les dades poden ser compartides amb proveïdors tecnològics utilitzats per WINFIN INSTALACIONES, S.L.:',
-          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting i analítica)', 'Vimeo (reproducció de vídeos)', 'Serveis d\'email i emmagatzematge'],
+          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting i analítica)', 'Vimeo (reproducció de vídeos)', 'OpenAI (mesurament d\'anuncis a ChatGPT, només amb consentiment de màrqueting)', 'Serveis d\'email i emmagatzematge'],
           footer: 'Tots ells compleixen amb garanties adequades conforme al RGPD.',
           noSale: 'No es venen dades a tercers sota cap concepte.',
         },
@@ -340,6 +343,9 @@ export const legalTranslations = {
             { name: 'cookie_consent', provider: 'Vision360IA', purpose: 'Preferències de cookies', duration: '1 any' },
             { name: '_ga', provider: 'Google Analytics', purpose: 'Identificador d\'usuari', duration: '2 anys' },
             { name: 'vuid', provider: 'Vimeo', purpose: 'Reproducció de vídeos', duration: '2 anys' },
+            { name: '__oppref', provider: 'OpenAI', purpose: 'Atribució de clics en anuncis de ChatGPT', duration: '30 dies' },
+            { name: '__obref', provider: 'OpenAI', purpose: 'Identificador de navegador per mesurar anuncis', duration: '1 any' },
+            { name: '__oaiq_consent', provider: 'OpenAI', purpose: 'Recorda la decisió de consentiment del píxel', duration: '30 dies' },
           ],
         },
         cambios: {
@@ -453,7 +459,7 @@ export const legalTranslations = {
         comunicacion: {
           title: '5. Datuen komunikazioa hirugarrenei',
           intro: 'Datuak WINFIN INSTALACIONES, S.L. enpresak erabiltzen dituen hornitzaile teknologikoekin partekatu daitezke:',
-          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting eta analitika)', 'Vimeo (bideoen erreprodukzioa)', 'Email eta biltegiratze zerbitzuak'],
+          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting eta analitika)', 'Vimeo (bideoen erreprodukzioa)', 'OpenAI (ChatGPTko iragarkien neurketa, marketin-baimenarekin soilik)', 'Email eta biltegiratze zerbitzuak'],
           footer: 'Guztiek DBEO-aren araberako berme egokiak betetzen dituzte.',
           noSale: 'Datuak ez dira hirugarrenei saltzen inola ere.',
         },
@@ -516,6 +522,9 @@ export const legalTranslations = {
             { name: 'cookie_consent', provider: 'Vision360IA', purpose: 'Cookieen hobespenak', duration: '1 urte' },
             { name: '_ga', provider: 'Google Analytics', purpose: 'Erabiltzaile identifikatzailea', duration: '2 urte' },
             { name: 'vuid', provider: 'Vimeo', purpose: 'Bideoen erreprodukzioa', duration: '2 urte' },
+            { name: '__oppref', provider: 'OpenAI', purpose: 'ChatGPTko iragarkietako kliken atribuzioa', duration: '30 egun' },
+            { name: '__obref', provider: 'OpenAI', purpose: 'Nabigatzailearen identifikatzailea iragarkiak neurtzeko', duration: '1 urte' },
+            { name: '__oaiq_consent', provider: 'OpenAI', purpose: 'Pixelaren baimen-erabakia gogoratzen du', duration: '30 egun' },
           ],
         },
         cambios: {

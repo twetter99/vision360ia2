@@ -6,11 +6,14 @@
  * COOKIE_CONSENT_KEY y emite CONSENT_UPDATED_EVENT al decidir el usuario.
  * El script de GTM (google-tag-manager.tsx) arranca con Consent Mode v2 en
  * "denied", lee localStorage por si hay decisión previa y escucha el evento
- * para emitir gtag('consent', 'update', …). Si cambias el formato de
- * CookiePreferences, revisa ambos lados.
+ * para emitir gtag('consent', 'update', …). El píxel de OpenAI Ads
+ * (openai-pixel.tsx) sigue el mismo contrato, pero no se descarga hasta que
+ * marketing === true. Si cambias el formato de CookiePreferences, revisa los
+ * tres lados.
  */
 export const COOKIE_CONSENT_KEY = 'vision360ia-cookie-consent';
-export const COOKIE_CONSENT_VERSION = '1.0'; // Incrementar si cambia la política
+// 1.1 (sep-2026): se añade OpenAI Ads a la categoría marketing → se vuelve a preguntar.
+export const COOKIE_CONSENT_VERSION = '1.1'; // Incrementar si cambia la política
 export const CONSENT_UPDATED_EVENT = 'cookieConsentUpdated';
 
 export interface CookiePreferences {
