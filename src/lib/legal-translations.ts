@@ -88,7 +88,7 @@ export const legalTranslations = {
           title: '3. Base legal',
           intro: 'Dependiendo del tratamiento:',
           items: [
-            { title: 'Consentimiento del usuario', content: 'Formularios, newsletter, cookies analíticas' },
+            { title: 'Consentimiento del usuario', content: 'Formularios, newsletter, cookies analíticas y de marketing (incluida la medición de anuncios de OpenAI)' },
             { title: 'Interés legítimo', content: 'Seguridad del sitio, analítica técnica básica' },
             { title: 'Ejecución de un contrato', content: 'Prestación de servicios profesionales' },
             { title: 'Cumplimiento de obligaciones legales', content: 'Facturación, contabilidad, conservación fiscal' },
@@ -102,7 +102,7 @@ export const legalTranslations = {
         comunicacion: {
           title: '5. Comunicación de datos a terceros',
           intro: 'Los datos pueden ser compartidos con proveedores tecnológicos utilizados por WINFIN INSTALACIONES, S.L.:',
-          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting y analítica)', 'Vimeo (reproducción de vídeos)', 'OpenAI (medición de anuncios en ChatGPT, solo con consentimiento de marketing)', 'Servicios de email y almacenamiento'],
+          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting y analítica)', 'Vimeo (reproducción de vídeos)', 'OpenAI (medición de anuncios en ChatGPT, solo con consentimiento de marketing). Con ese consentimiento, el píxel de OpenAI aplica la coincidencia avanzada automática: al enviar el formulario de contacto, los datos compatibles, como el email y el teléfono, se normalizan y se transforman en el navegador mediante SHA-256 antes de enviarse, de modo que OpenAI no recibe esos valores en texto claro. Se utilizan para mejorar la coincidencia, la medición y la atribución de conversiones publicitarias. Sin consentimiento de marketing, el píxel no se carga ni se envía ningún dato a OpenAI.', 'Servicios de email y almacenamiento'],
           footer: 'Todos ellos cumplen con garantías adecuadas conforme al RGPD.',
           noSale: 'No se venden datos a terceros bajo ningún concepto.',
         },
@@ -134,7 +134,7 @@ export const legalTranslations = {
     cookies: {
       title: 'Política de Cookies',
       subtitle: 'Información sobre el uso de cookies en este sitio web',
-      intro: 'Esta web utiliza cookies propias y de terceros para mejorar la experiencia del usuario, realizar mediciones estadísticas, mostrar vídeos y garantizar el funcionamiento correcto de la plataforma.',
+      intro: 'Esta web utiliza cookies propias y de terceros para mejorar la experiencia del usuario, realizar mediciones estadísticas, mostrar vídeos y garantizar el funcionamiento correcto de la plataforma. Además, solo si acepta las cookies de marketing, usamos el píxel de medición de OpenAI para medir los resultados de nuestros anuncios en ChatGPT. Esta tecnología la proporciona un proveedor externo (OpenAI), pero sus cookies se guardan como cookies propias (first-party) de este dominio.',
       sections: {
         que: {
           title: '1. ¿Qué son las cookies?',
@@ -164,9 +164,9 @@ export const legalTranslations = {
             { name: 'cookie_consent', provider: 'Vision360IA', purpose: 'Preferencias de cookies', duration: '1 año' },
             { name: '_ga', provider: 'Google Analytics', purpose: 'Identificador de usuario', duration: '2 años' },
             { name: 'vuid', provider: 'Vimeo', purpose: 'Reproducción de vídeos', duration: '2 años' },
-            { name: '__oppref', provider: 'OpenAI', purpose: 'Atribución de clics en anuncios de ChatGPT', duration: '30 días' },
-            { name: '__obref', provider: 'OpenAI', purpose: 'Identificador de navegador para medir anuncios', duration: '1 año' },
-            { name: '__oaiq_consent', provider: 'OpenAI', purpose: 'Recuerda la decisión de consentimiento del píxel', duration: '30 días' },
+            { name: '__oppref', provider: 'OpenAI', purpose: 'Cookie propia (first-party) del píxel de OpenAI. Guarda el identificador del clic en un anuncio de ChatGPT (oppref) para atribuir la conversión', duration: '30 días' },
+            { name: '__obref', provider: 'OpenAI', purpose: 'Cookie propia (first-party) del píxel de OpenAI. Referencia aleatoria del navegador para medir anuncios', duration: '365 días' },
+            { name: '__oaiq_consent', provider: 'Vision360IA – integración OpenAI', purpose: 'Cookie propia (first-party) del píxel de OpenAI. Recuerda la decisión de consentimiento de medición', duration: '30 días' },
           ],
         },
         cambios: {
@@ -266,7 +266,7 @@ export const legalTranslations = {
           title: '3. Base legal',
           intro: 'Depenent del tractament:',
           items: [
-            { title: 'Consentiment de l\'usuari', content: 'Formularis, newsletter, cookies analítiques' },
+            { title: 'Consentiment de l\'usuari', content: 'Formularis, newsletter, cookies analítiques i de màrqueting (inclòs el mesurament d\'anuncis d\'OpenAI)' },
             { title: 'Interès legítim', content: 'Seguretat del lloc, analítica tècnica bàsica' },
             { title: 'Execució d\'un contracte', content: 'Prestació de serveis professionals' },
             { title: 'Compliment d\'obligacions legals', content: 'Facturació, comptabilitat, conservació fiscal' },
@@ -280,7 +280,7 @@ export const legalTranslations = {
         comunicacion: {
           title: '5. Comunicació de dades a tercers',
           intro: 'Les dades poden ser compartides amb proveïdors tecnològics utilitzats per WINFIN INSTALACIONES, S.L.:',
-          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting i analítica)', 'Vimeo (reproducció de vídeos)', 'OpenAI (mesurament d\'anuncis a ChatGPT, només amb consentiment de màrqueting)', 'Serveis d\'email i emmagatzematge'],
+          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting i analítica)', 'Vimeo (reproducció de vídeos)', 'OpenAI (mesurament d\'anuncis a ChatGPT, només amb consentiment de màrqueting). Amb aquest consentiment, el píxel d\'OpenAI aplica la coincidència avançada automàtica: en enviar el formulari de contacte, les dades compatibles, com el correu electrònic i el telèfon, es normalitzen i es transformen al navegador mitjançant SHA-256 abans d\'enviar-se, de manera que OpenAI no rep aquests valors en text clar. S\'utilitzen per millorar la coincidència, el mesurament i l\'atribució de conversions publicitàries. Sense consentiment de màrqueting, el píxel no es carrega ni s\'envia cap dada a OpenAI.', 'Serveis d\'email i emmagatzematge'],
           footer: 'Tots ells compleixen amb garanties adequades conforme al RGPD.',
           noSale: 'No es venen dades a tercers sota cap concepte.',
         },
@@ -312,7 +312,7 @@ export const legalTranslations = {
     cookies: {
       title: 'Política de Cookies',
       subtitle: 'Informació sobre l\'ús de cookies en aquest lloc web',
-      intro: 'Aquest web utilitza cookies pròpies i de tercers per millorar l\'experiència de l\'usuari, realitzar mesuraments estadístics, mostrar vídeos i garantir el funcionament correcte de la plataforma.',
+      intro: 'Aquest web utilitza cookies pròpies i de tercers per millorar l\'experiència de l\'usuari, realitzar mesuraments estadístics, mostrar vídeos i garantir el funcionament correcte de la plataforma. A més, només si accepta les cookies de màrqueting, utilitzem el píxel de mesurament d\'OpenAI per mesurar els resultats dels nostres anuncis a ChatGPT. Aquesta tecnologia la proporciona un proveïdor extern (OpenAI), però les seves cookies es desen com a cookies pròpies (first-party) d\'aquest domini.',
       sections: {
         que: {
           title: '1. Què són les cookies?',
@@ -343,9 +343,9 @@ export const legalTranslations = {
             { name: 'cookie_consent', provider: 'Vision360IA', purpose: 'Preferències de cookies', duration: '1 any' },
             { name: '_ga', provider: 'Google Analytics', purpose: 'Identificador d\'usuari', duration: '2 anys' },
             { name: 'vuid', provider: 'Vimeo', purpose: 'Reproducció de vídeos', duration: '2 anys' },
-            { name: '__oppref', provider: 'OpenAI', purpose: 'Atribució de clics en anuncis de ChatGPT', duration: '30 dies' },
-            { name: '__obref', provider: 'OpenAI', purpose: 'Identificador de navegador per mesurar anuncis', duration: '1 any' },
-            { name: '__oaiq_consent', provider: 'OpenAI', purpose: 'Recorda la decisió de consentiment del píxel', duration: '30 dies' },
+            { name: '__oppref', provider: 'OpenAI', purpose: 'Cookie pròpia (first-party) del píxel d\'OpenAI. Desa l\'identificador del clic en un anunci de ChatGPT (oppref) per atribuir la conversió', duration: '30 dies' },
+            { name: '__obref', provider: 'OpenAI', purpose: 'Cookie pròpia (first-party) del píxel d\'OpenAI. Referència aleatòria del navegador per mesurar anuncis', duration: '365 dies' },
+            { name: '__oaiq_consent', provider: 'Vision360IA – integració OpenAI', purpose: 'Cookie pròpia (first-party) del píxel d\'OpenAI. Recorda la decisió de consentiment de mesurament', duration: '30 dies' },
           ],
         },
         cambios: {
@@ -445,7 +445,7 @@ export const legalTranslations = {
           title: '3. Oinarri juridikoa',
           intro: 'Tratamenduaren arabera:',
           items: [
-            { title: 'Erabiltzailearen baimena', content: 'Formularioak, newsletter-ak, cookie analitikoak' },
+            { title: 'Erabiltzailearen baimena', content: 'Formularioak, newsletter-ak, cookie analitikoak eta marketinekoak (OpenAIren iragarkien neurketa barne)' },
             { title: 'Interes legitimoa', content: 'Gunearen segurtasuna, oinarrizko analitika teknikoa' },
             { title: 'Kontratu baten exekuzioa', content: 'Zerbitzu profesionalen prestazioa' },
             { title: 'Lege betebeharren betetzea', content: 'Fakturazioa, kontabilitatea, kontserbazio fiskala' },
@@ -459,7 +459,7 @@ export const legalTranslations = {
         comunicacion: {
           title: '5. Datuen komunikazioa hirugarrenei',
           intro: 'Datuak WINFIN INSTALACIONES, S.L. enpresak erabiltzen dituen hornitzaile teknologikoekin partekatu daitezke:',
-          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting eta analitika)', 'Vimeo (bideoen erreprodukzioa)', 'OpenAI (ChatGPTko iragarkien neurketa, marketin-baimenarekin soilik)', 'Email eta biltegiratze zerbitzuak'],
+          providers: ['Google Analytics / Google Cloud / Firebase', 'Vercel (hosting eta analitika)', 'Vimeo (bideoen erreprodukzioa)', 'OpenAI (ChatGPTko iragarkien neurketa, marketin-baimenarekin soilik). Baimen horrekin, OpenAIren pixelak parekatze aurreratu automatikoa aplikatzen du: harremanetarako formularioa bidaltzean, datu bateragarriak (hala nola posta elektronikoa eta telefonoa) nabigatzailean normalizatu eta SHA-256 bidez eraldatzen dira bidali aurretik; beraz, OpenAIk ez ditu balio horiek testu argian jasotzen. Iragarkien bihurketen parekatzea, neurketa eta atribuzioa hobetzeko erabiltzen dira. Marketin-baimenik gabe, pixela ez da kargatzen eta ez zaio daturik bidaltzen OpenAIri.', 'Email eta biltegiratze zerbitzuak'],
           footer: 'Guztiek DBEO-aren araberako berme egokiak betetzen dituzte.',
           noSale: 'Datuak ez dira hirugarrenei saltzen inola ere.',
         },
@@ -491,7 +491,7 @@ export const legalTranslations = {
     cookies: {
       title: 'Cookieen Politika',
       subtitle: 'Webgune honetan cookieen erabilerari buruzko informazioa',
-      intro: 'Web honek cookie propioak eta hirugarrenenak erabiltzen ditu erabiltzailearen esperientzia hobetzeko, neurri estatistikoak egiteko, bideoak erakusteko eta plataformaren funtzionamendu zuzena bermatzeko.',
+      intro: 'Web honek cookie propioak eta hirugarrenenak erabiltzen ditu erabiltzailearen esperientzia hobetzeko, neurri estatistikoak egiteko, bideoak erakusteko eta plataformaren funtzionamendu zuzena bermatzeko. Gainera, marketin-cookieak onartzen badituzu soilik, OpenAIren neurketa-pixela erabiltzen dugu ChatGPTko gure iragarkien emaitzak neurtzeko. Teknologia hori kanpoko hornitzaile batek (OpenAI) ematen du, baina haren cookieak domeinu honetako cookie propio (first-party) gisa gordetzen dira.',
       sections: {
         que: {
           title: '1. Zer dira cookieak?',
@@ -522,9 +522,9 @@ export const legalTranslations = {
             { name: 'cookie_consent', provider: 'Vision360IA', purpose: 'Cookieen hobespenak', duration: '1 urte' },
             { name: '_ga', provider: 'Google Analytics', purpose: 'Erabiltzaile identifikatzailea', duration: '2 urte' },
             { name: 'vuid', provider: 'Vimeo', purpose: 'Bideoen erreprodukzioa', duration: '2 urte' },
-            { name: '__oppref', provider: 'OpenAI', purpose: 'ChatGPTko iragarkietako kliken atribuzioa', duration: '30 egun' },
-            { name: '__obref', provider: 'OpenAI', purpose: 'Nabigatzailearen identifikatzailea iragarkiak neurtzeko', duration: '1 urte' },
-            { name: '__oaiq_consent', provider: 'OpenAI', purpose: 'Pixelaren baimen-erabakia gogoratzen du', duration: '30 egun' },
+            { name: '__oppref', provider: 'OpenAI', purpose: 'OpenAIren pixelaren cookie propioa (first-party). ChatGPTko iragarki bateko klikaren identifikatzailea (oppref) gordetzen du, bihurketa egozteko', duration: '30 egun' },
+            { name: '__obref', provider: 'OpenAI', purpose: 'OpenAIren pixelaren cookie propioa (first-party). Nabigatzailearen ausazko erreferentzia, iragarkiak neurtzeko', duration: '365 egun' },
+            { name: '__oaiq_consent', provider: 'Vision360IA – OpenAI integrazioa', purpose: 'OpenAIren pixelaren cookie propioa (first-party). Neurketa-baimenari buruzko erabakia gogoratzen du', duration: '30 egun' },
           ],
         },
         cambios: {
