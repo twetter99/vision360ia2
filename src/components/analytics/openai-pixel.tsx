@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 import {
   COOKIE_CONSENT_KEY,
@@ -31,6 +33,10 @@ const isProduction = process.env.NODE_ENV === 'production';
  * Por eso se guarda en memoria (una variable, nada en disco) y se repone en la
  * URL justo antes de cargar el SDK.
  *
+ * Vistas de página: el SDK NO las mide solo (al iniciar solo envía eventos de
+ * ciclo de vida). La vista inicial se mide aquí al arrancar el píxel y las
+ * navegaciones cliente de Next en <OpenAIPageViews />.
+ *
  * Eventos de conversión: ver src/lib/analytics.ts (lead_created).
  */
 export function OpenAIPixel() {
@@ -39,11 +45,13 @@ export function OpenAIPixel() {
   }
 
   return (
-    <Script
-      id="openai-pixel"
-      strategy="afterInteractive"
-      dangerouslySetInnerHTML={{
-        __html: `
+    <>
+      <OpenAIPageViews />
+      <Script
+        id="openai-pixel"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
           (function () {
             var started = false;
             var landingRef = null;
@@ -83,6 +91,14 @@ export function OpenAIPixel() {
               // "false" de una visita anterior bloquearía la medición.
               window.oaiq('consent', true);
               window.oaiq('init', { pixelId: '${OPENAI_PIXEL_ID}' });
+              window.oaiq('measure', 'page_viewed', {
+                type: 'contents',
+                contents: [{
+                  id: window.location.pathname,
+                  name: document.title,
+                  content_type: 'page'
+                }]
+              });
             }
 
             function stop() {
@@ -120,9 +136,42 @@ export function OpenAIPixel() {
             });
           })();
         `,
-      }}
-    />
+        }}
+      />
+    </>
   );
+}
+
+/**
+ * Mide las navegaciones cliente (el router de Next no recarga la página, así
+ * que el script de arriba solo ve la primera). La vista inicial NO se mide
+ * aquí: la envía el script al arrancar el píxel, que puede ocurrir más tarde
+ * (cuando el visitante acepta). Si el píxel no está cargado, no hace nada.
+ */
+function OpenAIPageViews() {
+  const pathname = usePathname();
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    // Un tick de margen para que Next haya actualizado document.title.
+    const timer = window.setTimeout(() => {
+      try {
+        window.oaiq?.('measure', 'page_viewed', {
+          type: 'contents',
+          contents: [{ id: pathname, name: document.title, content_type: 'page' }],
+        });
+      } catch {
+        // un fallo del píxel no puede afectar a la navegación
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [pathname]);
+
+  return null;
 }
 
 declare global {
