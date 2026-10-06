@@ -581,12 +581,18 @@ export function FleetEvaluationForm() {
                         className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300"
                       />
                     </FormControl>
-                    <label htmlFor="ef-privacy" className="text-xs leading-relaxed text-slate-600">
-                      He leído y acepto la{" "}
-                      <Link href="/privacidad" className="underline underline-offset-2 hover:text-slate-950" target="_blank">
-                        Política de Privacidad
-                      </Link>
+                    {/* Todo el texto marca la casilla; el enlace a la política va aparte
+                        para que un toque en el texto no abra otra pestaña en el móvil. */}
+                    <label htmlFor="ef-privacy" className="min-w-0 flex-1 text-xs leading-relaxed text-slate-600">
+                      He leído y acepto la política de privacidad
                     </label>
+                    <Link
+                      href="/privacidad"
+                      target="_blank"
+                      className="-my-1 shrink-0 py-1 text-xs font-medium text-slate-700 underline underline-offset-2 hover:text-slate-950"
+                    >
+                      Leer
+                    </Link>
                   </div>
                   <FormMessage />
                 </FormItem>
