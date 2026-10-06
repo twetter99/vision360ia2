@@ -1,0 +1,180 @@
+/*
+ * Landing /evaluacion-flota (tráfico de OpenAI/ChatGPT Ads).
+ *
+ * Oculta la navegación global (header, footer y CTA flotante del layout raíz)
+ * SOLO mientras esta página está montada: las reglas dependen del marcador
+ * [data-lp="evaluacion-flota"], que ninguna otra página tiene. No se toca
+ * ningún componente compartido. El aviso de cookies se mantiene.
+ */
+body:has([data-lp="evaluacion-flota"]) > header,
+body:has([data-lp="evaluacion-flota"]) > footer,
+body:has([data-lp="evaluacion-flota"]) > div.fixed.bottom-5.right-4.z-40 {
+  display: none !important;
+}
+
+/* Mientras el aviso de cookies está abierto, deja hueco para que no tape el
+   final de la página (pie legal, último CTA). Alturas medidas del aviso:
+   ~185px en móvil (versión compacta, más abajo), ~260px en tablet y ~220px
+   (con su margen inferior) en escritorio. */
+body:has(#cookie-banner-title) [data-lp="evaluacion-flota"] {
+  padding-bottom: 12.5rem;
+}
+
+@media (min-width: 768px) {
+  body:has(#cookie-banner-title) [data-lp="evaluacion-flota"] {
+    padding-bottom: 17rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body:has(#cookie-banner-title) [data-lp="evaluacion-flota"] {
+    padding-bottom: 14rem;
+  }
+}
+
+/* ===== Animaciones de la landing (clases ef-*, solo se usan aquí) =====
+   Solo transform/opacity (fluidas en Android de gama media). Se pausan fuera
+   de pantalla (InView) y, con "reducir movimiento", se ve el estado final. */
+.ef-anim [data-a] {
+  animation-play-state: paused;
+}
+.ef-anim[data-inview="true"] [data-a] {
+  animation-play-state: running;
+}
+
+/* Idea 1: peatón que entra en el ángulo muerto + aviso (bucle de 6 s) */
+.ef-ped {
+  animation: ef-ped 6s ease-in-out infinite both;
+}
+@keyframes ef-ped {
+  0% { transform: translateY(-44px); opacity: 0; }
+  10% { opacity: 1; }
+  45%, 90% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+.ef-alert {
+  animation: ef-alert 6s ease-in-out infinite both;
+}
+@keyframes ef-alert {
+  0%, 42% { opacity: 0; }
+  50%, 90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Ideas 2 y 4: aparición escalonada (una vez) */
+.ef-pop {
+  animation: ef-pop 0.5s ease-out both;
+  animation-delay: calc(var(--i, 0) * 0.45s + 0.2s);
+}
+@keyframes ef-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+.ef-grow-y {
+  animation: ef-grow-y 1.6s ease-in-out 0.2s both;
+}
+@keyframes ef-grow-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.ef-grow-x {
+  animation: ef-grow-x 1.6s ease-in-out 0.2s both;
+}
+@keyframes ef-grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Idea 3: rutas que se dibujan + furgoneta que recorre A Coruña → Almería */
+.ef-draw {
+  stroke-dasharray: var(--len);
+  animation: ef-draw 1.6s ease-out both;
+}
+@keyframes ef-draw {
+  from { stroke-dashoffset: var(--len); }
+  to { stroke-dashoffset: 0; }
+}
+.ef-van {
+  animation: ef-van 5s ease-in-out 1.2s infinite both;
+}
+@keyframes ef-van {
+  0% { transform: translate(22px, 26px); }
+  45%, 55% { transform: translate(141px, 189px); }
+  100% { transform: translate(22px, 26px); }
+}
+
+/* Idea 5: el botón "Con Vision360IA" late hasta que se pulsa */
+.ef-ping {
+  animation: ef-ping 1.8s ease-out infinite;
+}
+@keyframes ef-ping {
+  0% { box-shadow: 0 0 0 0 rgba(32, 76, 207, 0.45); }
+  100% { box-shadow: 0 0 0 8px rgba(32, 76, 207, 0); }
+}
+
+/* Formulario por pasos: los campos se despliegan al elegir una opción */
+.ef-reveal {
+  animation: ef-reveal 0.35s ease-out both;
+}
+@keyframes ef-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ef-anim [data-a],
+  .ef-ping,
+  .ef-reveal {
+    animation: none !important;
+  }
+}
+
+/* ===== Aviso de cookies compacto en móvil, SOLO en esta landing =====
+   Cambia el aspecto, no el funcionamiento: mismos textos, enlaces
+   ("Configurar", "Política de cookies") y los dos botones con el mismo peso.
+   Si el componente compartido cambia, estas reglas dejan de aplicar y el
+   aviso se ve como en el resto de la web. */
+@media (max-width: 767px) {
+  body:has([data-lp="evaluacion-flota"]) [aria-labelledby="cookie-banner-title"] {
+    padding: 6px;
+  }
+  body:has([data-lp="evaluacion-flota"]) [aria-labelledby="cookie-banner-title"] > div > div {
+    border-radius: 16px;
+    padding: 10px 12px;
+    /* Con "Configurar" abierto en móviles bajos, que se pueda desplazar dentro */
+    max-height: calc(100dvh - 12px);
+    overflow-y: auto;
+  }
+  /* Contenedor de texto + botones: menos separación */
+  body:has([data-lp="evaluacion-flota"]) div:has(> div > div > div > #cookie-banner-title) {
+    gap: 8px;
+  }
+  /* Icono decorativo fuera; título algo menor */
+  body:has([data-lp="evaluacion-flota"]) div:has(> div > #cookie-banner-title) > div:first-child:not(:has(#cookie-banner-title)) {
+    display: none;
+  }
+  body:has([data-lp="evaluacion-flota"]) #cookie-banner-title {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  /* Texto y enlaces seguidos, en vez de en filas separadas */
+  body:has([data-lp="evaluacion-flota"]) div:has(> #cookie-banner-description) {
+    margin-top: 3px;
+    /* el interlineado del contenedor manda en las líneas del texto en línea */
+    font-size: 12px;
+    line-height: 16px;
+  }
+  body:has([data-lp="evaluacion-flota"]) #cookie-banner-description {
+    display: inline;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  body:has([data-lp="evaluacion-flota"]) #cookie-banner-description + div {
+    display: inline-flex;
+    margin-top: 0 !important;
+    margin-left: 6px;
+    column-gap: 10px;
+    vertical-align: baseline;
+    line-height: 16px;
+  }
+}
