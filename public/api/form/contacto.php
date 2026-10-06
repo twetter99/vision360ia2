@@ -96,6 +96,7 @@ if ($turnstileSecret !== '') {
 $name    = trim((string) ($data['name'] ?? ''));
 $email   = trim((string) ($data['email'] ?? ''));
 $company = trim((string) ($data['company'] ?? ''));
+$fleetSize = trim((string) ($data['fleetSize'] ?? ''));
 $phone   = trim((string) ($data['phone'] ?? ''));
 $message = trim((string) ($data['message'] ?? ''));
 $privacy = !empty($data['privacyAccepted']);
@@ -109,6 +110,18 @@ if (strlen($name) < 2 || strlen($name) > 120) {
 if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 200) {
     http_response_code(400);
     echo json_encode(['error' => 'Email inválido']);
+    exit;
+}
+if (preg_match('/\A.{1,200}\z/us', $company) !== 1) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Indica el nombre de tu empresa']);
+    exit;
+}
+// Mismo rango de cualificación que src/lib/contact.ts; se valida también en
+// el servidor para no admitir envíos con rangos antiguos de 1–4 vehículos.
+if (!in_array($fleetSize, ['5–10 vehículos', '11–50 vehículos', '51–200 vehículos', 'Más de 200 vehículos'], true)) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Solicitamos una flota de al menos 5 vehículos. Selecciona su tamaño en el formulario actualizado.']);
     exit;
 }
 if (strlen($message) < 10 || strlen($message) > 5000) {

@@ -5,7 +5,7 @@ import { QuickLeadForm } from '@/components/shared/quick-lead-form';
 
 /**
  * Sección de captación para landings de campaña (CRO):
- * diferenciador de "instalación experta" + formulario corto + CTA de llamada.
+ * evaluación de flotas + instalación experta + formulario corto.
  *
  * Móvil primero: titular corto + 3 bullets (los 2 últimos solo en md+) y el
  * formulario inmediatamente después. No se fuerza que todo quepa sin scroll.
@@ -41,13 +41,13 @@ export function LeadCapture() {
   return (
     <SectionWrapper className="max-w-7xl bg-transparent px-6 py-10 md:px-6 md:py-14">
       {/* Tarjeta blanca: el fondo del artículo puede ser oscuro (contraste). */}
-      <div className="grid gap-6 rounded-[2rem] border border-white/70 bg-white/95 p-5 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
+      <div className="grid grid-cols-1 gap-6 rounded-[2rem] border border-white/70 bg-white/95 p-5 shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
         <div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-amber-700/90">
-            Instalación experta
+            Evaluación de flotas
           </p>
           <h2 className="font-headline text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-slate-950 md:text-4xl">
-            No vendemos un kit. Lo instalamos y calibramos nosotros.
+            Instalación y calibración para flotas profesionales.
           </h2>
           <ul className="mt-6 space-y-3.5">
             {PUNTOS.map(({ icon: Icon, text, desktopOnly }) => (
@@ -63,7 +63,8 @@ export function LeadCapture() {
             ))}
           </ul>
           <p className="mt-6 text-sm font-medium italic text-slate-500">
-            Hablas con ingenieros de instalación, no con comerciales.
+            Cuéntanos qué vehículos opera tu empresa y el tamaño de tu flota.
+            Nuestro equipo técnico estudiará la instalación.
           </p>
         </div>
 

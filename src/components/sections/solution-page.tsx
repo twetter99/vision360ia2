@@ -5,7 +5,6 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AnimatedSection } from '@/components/shared/animated-section';
 import { ContactFormButton } from '@/components/shared/contact-form-button';
-import { PhoneCtaLink, WhatsAppCtaLink } from '@/components/shared/contact-channel-links';
 import { DemoValidation } from '@/components/shared/demo-validation';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionWrapper } from '@/components/shared/section-wrapper';
@@ -323,7 +322,6 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                   ))}
                 </div>
 
-                {/* CTA principal = formulario (lead cualificado). WhatsApp solo como texto en el bloque final. */}
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                   <ContactFormButton
                     size="lg"
@@ -473,8 +471,7 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                 Cuéntanos tus vehículos y maniobras y te preparamos una evaluación técnica con la configuración recomendada. Respuesta en 24-48 h, sin compromiso.
               </p>
             </div>
-            {/* Jerarquía de contacto: formulario principal; teléfono y WhatsApp solo como texto discreto */}
-            <div className="flex shrink-0 flex-col items-stretch gap-3 sm:items-center">
+            <div className="flex shrink-0 items-center">
               <ContactFormButton
                 size="lg"
                 className={`min-h-[54px] shrink-0 rounded-full px-7 ${data.theme.primaryButton}`}
@@ -482,19 +479,6 @@ export function SolutionPage({ data }: { data: SolutionPageData }) {
                 Contacta con nosotros
                 <ArrowRight className="ml-2 h-5 w-5" />
               </ContactFormButton>
-              <p className="text-center text-sm text-slate-500">
-                También por teléfono:{' '}
-                <PhoneCtaLink className="font-semibold text-slate-700 underline-offset-4 hover:underline">
-                  649 567 837
-                </PhoneCtaLink>
-                {' '}o{' '}
-                <WhatsAppCtaLink
-                  topic={data.breadcrumbLabel}
-                  className="font-semibold text-slate-700 underline-offset-4 hover:underline"
-                >
-                  WhatsApp
-                </WhatsAppCtaLink>
-              </p>
             </div>
           </div>
         </SectionWrapper>

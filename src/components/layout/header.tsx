@@ -183,7 +183,6 @@ export function Header() {
               ))}
             </nav>
             <div className="ml-auto flex items-center gap-2 lg:gap-2.5">
-              {/* CTA principal = formulario (lead cualificado). WhatsApp solo en footer. */}
               <Button
                 onClick={openContactSlideOver}
                 className={cn(

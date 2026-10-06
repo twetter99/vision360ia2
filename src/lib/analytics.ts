@@ -7,8 +7,8 @@
  *
  * Los mismos momentos se notifican al píxel de OpenAI Ads (anuncios en
  * ChatGPT), que solo existe en la página si hay consentimiento de marketing
- * (ver components/analytics/openai-pixel.tsx). `lead_created` es la conversión;
- * los clics de contacto van como eventos personalizados, solo para observar.
+ * (ver components/analytics/openai-pixel.tsx). `lead_created` es la conversión
+ * de solicitud de evaluación de flota confirmada.
  */
 
 /**
@@ -67,27 +67,4 @@ export function pushFormSuccess(formName: string, userData?: LeadUserData) {
       : {}),
   });
   measureOpenAI('lead_created', { type: 'customer_action' });
-}
-
-/**
- * Clic en un canal de contacto directo (llamada o WhatsApp).
- *
- * A diferencia de `form_success`, aquí SÍ se emite en el clic: en llamadas y
- * WhatsApp no existe un "éxito confirmado" que esperar. Por eso en Google Ads
- * estas conversiones deben configurarse como SECUNDARIAS (form_success sigue
- * siendo la conversión principal que optimiza la puja).
- */
-export function pushContactClick(channel: 'phone' | 'whatsapp') {
-  if (typeof window === 'undefined') return;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: channel === 'phone' ? 'phone_click' : 'whatsapp_click',
-    contact_source: window.location.pathname,
-    lead_source: 'landing_vision360ia',
-  });
-  measureOpenAI(
-    'custom',
-    { type: 'custom' },
-    { custom_event_name: channel === 'phone' ? 'phone_click' : 'whatsapp_click' },
-  );
 }

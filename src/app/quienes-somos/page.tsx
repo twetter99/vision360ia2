@@ -29,13 +29,11 @@ export default function AboutPage() {
       city: 'Madrid',
       role: 'Oficina y taller propios',
       address: ['Moreras, 1, N 65 y 66', '28350 Ciempozuelos, Madrid'],
-      phone: '+34 649 567 837',
     },
     {
       city: 'Donostia / San Sebastián',
       role: 'Oficina y taller propios',
       address: ['P. Mikeletegui, 56, of 314', '20009 Donostia / San Sebastián, Guipúzcoa'],
-      phone: '+34 943 284 721',
       context: 'Presencia en el campus de Donostia del Parke, Parque Tecnológico de Euskadi.',
     },
   ];
@@ -183,12 +181,6 @@ export default function AboutPage() {
               {'context' in office ? (
                 <p className="mt-4 text-sm leading-6 text-slate-500">{office.context}</p>
               ) : null}
-              <a
-                href={`tel:${office.phone.replace(/\s+/g, '')}`}
-                className="mt-5 inline-flex items-center rounded-full border border-slate-200/80 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-800 transition-colors hover:bg-white"
-              >
-                {office.phone}
-              </a>
             </article>
           ))}
         </div>

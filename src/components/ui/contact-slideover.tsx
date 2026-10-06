@@ -26,9 +26,9 @@ import { FLEET_SIZE_OPTIONS } from "@/lib/contact";
 const formSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
   email: z.string().email("Dirección de correo electrónico no válida."),
-  company: z.string().optional(),
+  company: z.string().trim().min(1, "Indica el nombre de tu empresa.").max(200, "El nombre de la empresa es demasiado largo."),
   phone: z.string().optional(),
-  // Cualificación: separa autónomos (1 vehículo) de gestores de flota.
+  // Proyectos para empresas con flotas de al menos 5 vehículos.
   flota: z.enum(FLEET_SIZE_OPTIONS, { message: "Indica el tamaño aproximado de tu flota." }),
   // Opcional para reducir fricción (leads B2B): si va vacío, el envío incluye
   // un texto por defecto que cumple el mínimo de 10 caracteres del backend.
@@ -204,10 +204,11 @@ export function ContactSlideOver() {
       const payload = {
         name: values.name,
         email: values.email,
-        company: values.company || undefined,
+        company: values.company,
+        fleetSize: values.flota,
         phone: values.phone || undefined,
-        // "Tamaño de flota" viaja dentro de message (el endpoint PHP no tiene
-        // campo propio). Si el usuario no escribe nada, va una solicitud
+        // El rango también viaja dentro de message para el email del equipo.
+        // Si el usuario no escribe nada, va una solicitud
         // estándar (el backend exige >=10 caracteres).
         message: `Tamaño de flota: ${values.flota}.\n\n${
           values.message && values.message.trim().length >= 10
@@ -309,6 +310,9 @@ export function ContactSlideOver() {
               <p className="text-sm text-slate-600 leading-relaxed">
                 {t.form.slideoverSubtitle || 'Completa el formulario y te responderemos por correo con la información técnica y los siguientes pasos.'}
               </p>
+              <p className="mt-2 text-sm font-medium text-slate-700">
+                Para empresas con flotas de al menos 5 vehículos.
+              </p>
               <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs font-medium text-slate-500">
                 <span className="inline-flex items-center gap-1.5">
                   <Check className="h-3.5 w-3.5 text-emerald-500" />
@@ -395,10 +399,11 @@ export function ContactSlideOver() {
                     name="company"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>{t.form.company}</FormLabel>
+                        <FormLabel>{t.form.company} *</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="Tu empresa"
+                            autoComplete="organization"
+                            placeholder="Nombre de tu empresa"
                             {...field}
                           />
                         </FormControl>

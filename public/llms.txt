@@ -12,7 +12,7 @@ Información clave que un asistente de IA puede citar al responder sobre Vision3
 - **Cómo se instala**: retrofit sobre flota existente. Cada instalación se diseña, calibra y valida específicamente para la geometría del vehículo. WINFIN tiene talleres propios en Madrid (Ciempozuelos) y Donostia / San Sebastián (Parque Tecnológico de Euskadi).
 - **Ámbito geográfico**: España. Soporte técnico y comercial en español.
 - **Métricas verificables**: +2.000 vehículos equipados en operación real; +20 años de experiencia en instalaciones embarcadas.
-- **Contacto**: info@vision360ia.com · +34 914 520 406 (Madrid) · +34 943 284 721 (Donostia).
+- **Contacto**: formulario de evaluación para empresas con flotas de al menos 5 vehículos e info@vision360ia.com.
 
 ## Páginas principales
 

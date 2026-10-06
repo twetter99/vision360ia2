@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Check, Loader2, Phone } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,15 +18,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { pushFormSuccess } from "@/lib/analytics";
-import { PhoneCtaLink } from "@/components/shared/contact-channel-links";
 import { FLEET_SIZE_OPTIONS } from "@/lib/contact";
 
 /**
  * Formulario corto de captación para landings de campaña (CRO).
  *
- * - Solo 4 campos (nombre, email, teléfono, tamaño de flota) + privacidad.
+ * - Nombre, empresa, email, teléfono opcional y tamaño de flota + privacidad.
  * - Envía al MISMO endpoint PHP que el slideover (/api/form/contacto.php), sin
- *   tocarlo: el "Tamaño de flota" viaja dentro del campo `message`.
+ *   fleetSize valida el rango y el tamaño se incluye también en `message`.
  * - Turnstile y honeypots PROPIOS (ids _qf_*) para no chocar con el slideover
  *   si ambos conviven en la misma página.
  * - Al éxito real (PHP responde OK): aviso de éxito + dataLayer `form_success`
@@ -38,6 +37,7 @@ const FLOTA_OPCIONES = FLEET_SIZE_OPTIONS;
 const quickSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
   email: z.string().email("Dirección de correo electrónico no válida."),
+  company: z.string().trim().min(1, "Indica el nombre de tu empresa.").max(200, "El nombre de la empresa es demasiado largo."),
   phone: z.string().optional(),
   flota: z.enum(FLOTA_OPCIONES, { message: "Indica el tamaño aproximado de tu flota." }),
   privacyAccepted: z.boolean().refine((v) => v === true, {
@@ -62,7 +62,7 @@ export function QuickLeadForm() {
 
   const form = useForm<QuickFormData>({
     resolver: zodResolver(quickSchema),
-    defaultValues: { name: "", email: "", phone: "", privacyAccepted: false },
+    defaultValues: { name: "", email: "", company: "", phone: "", privacyAccepted: false },
   });
 
   const resetTurnstile = () => {
@@ -144,14 +144,15 @@ export function QuickLeadForm() {
         url: (document.getElementById("_qf_org") as HTMLInputElement)?.value || "",
       };
 
-      // "Tamaño de flota" viaja dentro de message: llega al email del lead sin
-      // tocar el endpoint PHP (que exige message >= 10 caracteres).
+      // El servidor valida fleetSize y el equipo recibe también el rango
+      // dentro del mensaje de la solicitud.
       const payload = {
         name: values.name,
         email: values.email,
         phone: values.phone || undefined,
-        company: undefined,
-        message: `Tamaño de flota: ${values.flota}.\n\nSolicitud rápida de información desde la landing.`,
+        company: values.company,
+        fleetSize: values.flota,
+        message: `Tamaño de flota: ${values.flota}.\n\nSolicitud de evaluación técnica para la flota de ${values.company}.`,
         privacyAccepted: values.privacyAccepted,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
         formLoadTime,
@@ -188,25 +189,25 @@ export function QuickLeadForm() {
     return (
       <div
         role="status"
-        className="flex h-full min-h-[320px] flex-col items-center justify-center rounded-[1.75rem] border border-emerald-200 bg-emerald-50/70 p-8 text-center"
+        className="flex h-full min-h-[320px] min-w-0 flex-col items-center justify-center rounded-[1.75rem] border border-emerald-200 bg-emerald-50/70 p-8 text-center"
       >
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
           <Check className="h-7 w-7" />
         </div>
         <h3 className="mt-4 font-headline text-xl font-semibold text-slate-950">¡Solicitud recibida!</h3>
         <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-600">
-          Te responderemos en 24-48 h por correo o teléfono con la evaluación para tu flota.
+          Te responderemos en 24-48 h con la evaluación para tu flota.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-[1.75rem] border border-slate-200/80 bg-slate-50/80 p-5 md:p-6">
+    <div className="min-w-0 rounded-[1.75rem] border border-slate-200/80 bg-slate-50/80 p-5 md:p-6">
       <h3 className="font-headline text-lg font-semibold tracking-[-0.01em] text-slate-950 md:text-xl">
-        Pide tu evaluación técnica gratuita
+        Solicita una evaluación para tu flota
       </h3>
-      <p className="mt-1 text-sm text-slate-500">Respuesta en 24-48 h. Sin compromiso.</p>
+      <p className="mt-1 text-sm text-slate-500">Para empresas con flotas de al menos 5 vehículos. Respuesta en 24-48 h.</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-3.5" noValidate>
@@ -218,6 +219,19 @@ export function QuickLeadForm() {
                 <FormLabel htmlFor="qf-name">Nombre *</FormLabel>
                 <FormControl>
                   <Input id="qf-name" autoComplete="name" placeholder="Tu nombre" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="company"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor="qf-company">Empresa *</FormLabel>
+                <FormControl>
+                  <Input id="qf-company" autoComplete="organization" placeholder="Nombre de tu empresa" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -241,7 +255,7 @@ export function QuickLeadForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel htmlFor="qf-phone">Teléfono</FormLabel>
+                <FormLabel htmlFor="qf-phone">Teléfono (opcional)</FormLabel>
                 <FormControl>
                   <Input id="qf-phone" type="tel" autoComplete="tel" placeholder="+34…" {...field} />
                 </FormControl>
@@ -338,18 +352,10 @@ export function QuickLeadForm() {
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Enviando…
               </>
             ) : (
-              "Solicitar evaluación gratuita"
+              "Solicitar evaluación de flota"
             )}
           </Button>
 
-          {/* Teléfono como vía terciaria discreta (no emite form_success) */}
-          <p className="text-center text-sm text-slate-500">
-            <Phone className="mr-1.5 inline h-3.5 w-3.5 align-[-2px]" />
-            También por teléfono:{' '}
-            <PhoneCtaLink className="font-semibold text-slate-700 underline-offset-4 hover:underline">
-              649 567 837
-            </PhoneCtaLink>
-          </p>
         </form>
       </Form>
     </div>

@@ -1,12 +1,10 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, FileText, Phone } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
 import { BrandLogo } from '../brand/BrandLogo';
 import { useContactSlideOver } from '@/context/contact-slideover-provider';
-import { PhoneCtaLink, WhatsAppCtaLink, WhatsAppIcon } from '@/components/shared/contact-channel-links';
-import { LEAD_PHONE_INTL_DISPLAY } from '@/lib/contact';
 
 export function Footer() {
   const { translations } = useLanguage();
@@ -76,17 +74,6 @@ export function Footer() {
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Madrid · Oficina y taller</div>
                 <div className="mt-2 text-sm font-medium text-slate-200">Moreras, 1, N 65 y 66 · 28350 Ciempozuelos, Madrid</div>
-                <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
-                  <PhoneCtaLink className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-white">
-                    <Phone className="h-4 w-4 text-slate-400" />
-                    <span>Llamadas: {LEAD_PHONE_INTL_DISPLAY}</span>
-                  </PhoneCtaLink>
-                  {/* WhatsApp: canal secundario discreto (el protagonismo es del formulario) */}
-                  <WhatsAppCtaLink className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-white">
-                    <WhatsAppIcon className="h-4 w-4 text-slate-400" />
-                    <span>WhatsApp: {LEAD_PHONE_INTL_DISPLAY}</span>
-                  </WhatsAppCtaLink>
-                </div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Donostia / San Sebastián · Oficina y taller</div>
@@ -108,10 +95,6 @@ export function Footer() {
                       className="object-contain object-left"
                     />
                   </div>
-                </a>
-                <a href="tel:+34943284721" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-slate-200">
-                  <Phone className="h-4 w-4 text-slate-400" />
-                  <span>+34 943 284 721</span>
                 </a>
               </div>
             </div>
