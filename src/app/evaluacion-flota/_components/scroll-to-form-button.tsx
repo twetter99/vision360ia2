@@ -17,8 +17,9 @@ function goToForm(interest?: Interest) {
   }
   const anchor = document.getElementById(FORM_ANCHOR_ID);
   if (!anchor) return;
-  // Solo desplaza: enfocar un campo abriría el teclado del móvil a mitad del scroll.
-  anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+  // Focus the card, not an input: no mobile keyboard. Respect reduced motion.
+  anchor.focus({ preventScroll: true });
+  anchor.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: "start" });
 }
 
 export function ScrollToFormButton({
@@ -38,7 +39,7 @@ export function ScrollToFormButton({
         type="button"
         onClick={() => goToForm(interest)}
         className={cn(
-          "inline-flex min-h-[44px] items-center text-sm font-semibold text-slate-700 underline decoration-slate-300 underline-offset-4 transition-colors hover:text-slate-950 hover:decoration-slate-500",
+          "ef-text-button",
           className,
         )}
       >
@@ -52,7 +53,7 @@ export function ScrollToFormButton({
       type="button"
       onClick={() => goToForm(interest)}
       className={cn(
-        "h-auto min-h-[52px] w-full whitespace-normal rounded-full bg-accent px-6 py-3 text-sm font-semibold leading-tight tracking-[0.04em] text-slate-950 shadow-[0_16px_36px_rgba(245,158,11,0.22)] [text-wrap:balance] hover:bg-accent/90 sm:w-auto sm:px-7",
+        "ef-primary",
         className,
       )}
     >

@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Bus, Check, Eye, Loader2, MessagesSquare } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,6 +25,7 @@ import { HomeLink } from "./home-link";
 import {
   FIRST_FIELD_ID,
   FORM_ANCHOR_ID,
+  DEFAULT_INTEREST,
   INTERESTS,
   INTEREST_VALUES,
   SELECT_INTEREST_EVENT,
@@ -32,6 +33,7 @@ import {
   type Interest,
 } from "./interest";
 import { PROVINCES } from "./provinces";
+import { getLandingVariant } from "./variants";
 
 /**
  * Formulario de la landing /evaluacion-flota (tráfico de OpenAI/ChatGPT Ads).
@@ -42,8 +44,9 @@ import { PROVINCES } from "./provinces";
  * - El PHP no tiene campos de interés, provincia, tipo de vehículo ni origen: viajan dentro
  *   de `message`. `pageUrl` lleva la URL de llegada con UTM y oppref.
  * - Turnstile y honeypots PROPIOS (ids _ef_*), compatibles con el slideover.
- * - Se abre por pasos: primero solo "¿Por dónde quieres empezar?" (3 tarjetas,
- *   ninguna marcada); al elegir, se despliegan los campos.
+ * - Todos los campos están visibles; demo es el interés inicial. Una variante
+ *   permitida de utm_content puede preseleccionar otro interés, hasta que el
+ *   visitante elija mediante los radios o un CTA.
  * - Medición: `lead_option_select` en cada elección de opción; `lead_form_start` con la primera interacción real (no con un foco puesto por código); `form_success` + `lead_created`
  *   (vía pushFormSuccess) solo si el PHP confirma el envío real. Antes se deja
  *   `lead_interest` en el dataLayer para poder segmentar la conversión en GTM.
@@ -53,16 +56,11 @@ import { PROVINCES } from "./provinces";
 
 const FORM_NAME = "vision360ia_evaluacion_flota";
 
-const INTEREST_ICONS: Record<Interest, typeof Eye> = {
-  demo: Eye,
-  piloto: Bus,
-  implantacion: MessagesSquare,
-};
-
 const VEHICLE_TYPE_OPTIONS = [
   "Autobuses / autocares",
   "Camiones",
   "Vehículos municipales",
+  "Vehículos industriales",
   "Furgonetas",
   "Otro",
 ] as const;
@@ -111,7 +109,11 @@ export function FleetEvaluationForm() {
   const widgetContainerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<string | null>(null);
   const startedRef = useRef(false);
+  const humanInterestRef = useRef(false);
+  const submittingRef = useRef(false);
+  const completedRef = useRef(false);
   const successRef = useRef<HTMLDivElement | null>(null);
+  const errorRef = useRef<HTMLParagraphElement | null>(null);
   const [formLoadTime] = useState(() => Math.floor(Date.now() / 1000));
   const attribution = useLandingAttribution();
 
@@ -120,8 +122,8 @@ export function FleetEvaluationForm() {
 
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
-    // Sin interés marcado: los campos se despliegan al elegir una opción.
     defaultValues: {
+      interest: DEFAULT_INTEREST,
       company: "",
       name: "",
       email: "",
@@ -130,14 +132,22 @@ export function FleetEvaluationForm() {
     },
   });
   const interestValue = form.watch("interest");
-  const isOpen = Boolean(interestValue);
   const selectedInterest = interestInfo(interestValue);
+
+  useEffect(() => {
+    if (humanInterestRef.current) return;
+    const variant = getLandingVariant(attribution?.params.utm_content);
+    form.setValue("interest", variant.interest, { shouldDirty: false });
+  }, [attribution?.params.utm_content, form]);
 
   // Los CTA de la página ("Quiero probarlo en un vehículo"…) preseleccionan el interés.
   useEffect(() => {
     const onSelect = (event: Event) => {
       const value = (event as CustomEvent<Interest>).detail;
-      if (INTEREST_VALUES.includes(value)) form.setValue("interest", value, { shouldDirty: true });
+      if (INTEREST_VALUES.includes(value)) {
+        humanInterestRef.current = true;
+        form.setValue("interest", value, { shouldDirty: true });
+      }
     };
     window.addEventListener(SELECT_INTEREST_EVENT, onSelect);
     return () => window.removeEventListener(SELECT_INTEREST_EVENT, onSelect);
@@ -164,8 +174,7 @@ export function FleetEvaluationForm() {
 
   // Carga/render de Turnstile (widget propio; reutiliza el script si ya existe).
   useEffect(() => {
-    // El widget vive dentro de los campos: solo se pinta cuando están desplegados.
-    if (!isTurnstileRequired || !turnstileWanted || !isOpen) return;
+    if (!isTurnstileRequired || !turnstileWanted) return;
     if (!siteKey) {
       setTurnstileError("No hemos podido cargar la comprobación antispam. Recarga la página e inténtalo de nuevo.");
       return;
@@ -217,7 +226,7 @@ export function FleetEvaluationForm() {
     );
     document.head.appendChild(script);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [turnstileWanted, isOpen]);
+  }, [turnstileWanted]);
 
   // Al desmontar (envío correcto o navegación), retira el widget de Turnstile.
   useEffect(
@@ -233,9 +242,13 @@ export function FleetEvaluationForm() {
   // Tras el envío, el aviso de éxito queda a la vista (en móvil es más corto que el formulario).
   useEffect(() => {
     if (!sentInterest || !successRef.current) return;
-    successRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    successRef.current.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
     successRef.current.focus({ preventScroll: true });
   }, [sentInterest]);
+
+  useEffect(() => {
+    if (submitError) errorRef.current?.focus();
+  }, [submitError]);
 
   // Etapa "inicio de formulario": una sola vez, con la primera interacción real
   // (escribir o elegir). Los focos puestos por código (CTA, errores de
@@ -262,11 +275,13 @@ export function FleetEvaluationForm() {
   };
 
   async function onSubmit(values: FormData) {
+    if (submittingRef.current || completedRef.current) return;
     if (isTurnstileRequired && !turnstileToken) {
       setSubmitError("Completa la comprobación antispam antes de enviar.");
       return;
     }
     setSubmitError(null);
+    submittingRef.current = true;
     setIsSubmitting(true);
 
     try {
@@ -307,10 +322,11 @@ export function FleetEvaluationForm() {
       });
       const data = await response.json().catch(() => null);
 
-      if (!response.ok || !data) {
+      const confirmed = data?.ok === true && typeof data.message === "string" && data.message.trim().length > 0;
+      if (!response.ok || !confirmed) {
         setSubmitError(
-          data?.message ||
-            data?.error ||
+          (typeof data?.message === "string" && data.message.trim() ? data.message : null) ||
+            (typeof data?.error === "string" && data.error.trim() ? data.error : null) ||
             "No hemos podido enviar la solicitud. Inténtalo de nuevo o escríbenos a info@vision360ia.com",
         );
         resetTurnstile();
@@ -319,16 +335,22 @@ export function FleetEvaluationForm() {
 
       // Envío real confirmado por el PHP (incluye `message`). Un {ok:true} sin
       // mensaje es un descarte silencioso del antispam: no se cuenta como lead.
-      if (data.ok && data.message) {
+      completedRef.current = true;
+      setSentInterest(values.interest);
+      // A third-party tracking failure must not turn a received lead into an
+      // error or invite a duplicate submission. Keep telemetry independent.
+      try {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ lead_interest: values.interest });
-        pushFormSuccess(FORM_NAME, { email: values.email });
+        pushFormSuccess(FORM_NAME);
+      } catch {
+        // The server has already confirmed reception; keep the success state.
       }
-      setSentInterest(values.interest);
     } catch {
       setSubmitError("Error de conexión. Inténtalo de nuevo o escríbenos a info@vision360ia.com");
       resetTurnstile();
     } finally {
+      submittingRef.current = false;
       setIsSubmitting(false);
     }
   }
@@ -363,8 +385,15 @@ export function FleetEvaluationForm() {
   return (
     <div
       id={FORM_ANCHOR_ID}
-      className="min-w-0 scroll-mt-16 rounded-2xl border border-slate-200 bg-white p-3 shadow-[var(--shadow-soft)] sm:scroll-mt-6 sm:rounded-[1.75rem] sm:p-6"
+      className="ef-formcard"
+      aria-labelledby="ef-form-title"
+      tabIndex={-1}
     >
+      <p className="ef-form-kicker">Demos y pilotos para flotas</p>
+      <h2 id="ef-form-title" className="ef-form-title">Veamos cómo encaja en tu flota</h2>
+      <p id="ef-form-explain" className="ef-form-explain">
+        Déjanos tus datos y organizamos el siguiente paso contigo. Sin compromiso.
+      </p>
       <Form {...form}>
         <form
           method="post"
@@ -373,9 +402,11 @@ export function FleetEvaluationForm() {
           onInputCapture={handleFormStart}
           onFocusCapture={wantTurnstile}
           onPointerDownCapture={wantTurnstile}
-          className="space-y-3"
+          className="space-y-4"
           noValidate
           aria-label="Solicitud de evaluación de flota"
+          aria-describedby="ef-form-explain ef-form-terms"
+          aria-busy={isSubmitting}
         >
           <FormField
             control={form.control}
@@ -383,20 +414,16 @@ export function FleetEvaluationForm() {
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <fieldset>
-                  <legend className="mb-2 text-[15px] font-semibold leading-none text-slate-950">¿Por dónde quieres empezar?</legend>
-                  <div className="grid gap-2">
+                  <legend className="mb-2 text-sm font-semibold text-slate-800">Me interesa</legend>
+                  <div className="ef-interest-grid">
                     {INTERESTS.map((option) => {
                       const checked = field.value === option.value;
-                      const Icon = INTEREST_ICONS[option.value];
                       return (
                         <label
                           key={option.value}
                           htmlFor={`ef-interest-${option.value}`}
-                          className={`flex min-h-[56px] cursor-pointer items-center gap-3 rounded-xl border px-3 py-2 text-[15px] font-medium leading-snug transition-colors [text-wrap:balance] has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary/50 md:min-h-[52px] ${
-                            checked
-                              ? "border-primary bg-primary/[0.06] text-slate-950 ring-1 ring-primary"
-                              : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50"
-                          }`}
+                          className="ef-interest-option"
+                          data-selected={checked}
                         >
                           <input
                             id={`ef-interest-${option.value}`}
@@ -405,22 +432,15 @@ export function FleetEvaluationForm() {
                             value={option.value}
                             checked={checked}
                             onChange={() => {
+                              humanInterestRef.current = true;
                               field.onChange(option.value);
                               pushOptionSelect(option.value);
                             }}
                             onBlur={field.onBlur}
                             ref={checked || !field.value ? field.ref : undefined}
-                            className="sr-only"
+                            className="h-4 w-4 shrink-0 accent-blue-700"
                           />
-                          <span
-                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
-                              checked ? "bg-primary text-white" : "bg-primary/10 text-primary"
-                            }`}
-                          >
-                            <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
-                          </span>
-                          <span className="min-w-0 flex-1">{option.label}</span>
-                          {checked ? <Check className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" /> : null}
+                          <span>{option.shortLabel}</span>
                         </label>
                       );
                     })}
@@ -430,16 +450,15 @@ export function FleetEvaluationForm() {
               </FormItem>
             )}
           />
-          {isOpen ? (
-            <div className="ef-reveal space-y-3">
+            <div className="ef-fields">
             <FormField
               control={form.control}
               name="company"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="ef-field-full">
                   <FormLabel htmlFor={FIRST_FIELD_ID}>Empresa *</FormLabel>
                   <FormControl>
-                    <Input id={FIRST_FIELD_ID} className="h-12 md:h-11" autoComplete="organization" autoCapitalize="words" enterKeyHint="next" placeholder="Nombre de tu empresa" {...field} />
+                    <Input id={FIRST_FIELD_ID} className="h-12 md:h-11" autoComplete="organization" autoCapitalize="words" enterKeyHint="next" placeholder="Nombre de tu empresa" aria-required="true" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -452,7 +471,7 @@ export function FleetEvaluationForm() {
                 <FormItem>
                   <FormLabel htmlFor="ef-name">Nombre *</FormLabel>
                   <FormControl>
-                    <Input id="ef-name" className="h-12 md:h-11" autoComplete="name" autoCapitalize="words" enterKeyHint="next" placeholder="Tu nombre" {...field} />
+                    <Input id="ef-name" className="h-12 md:h-11" autoComplete="name" autoCapitalize="words" enterKeyHint="next" placeholder="Tu nombre" aria-required="true" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -465,13 +484,12 @@ export function FleetEvaluationForm() {
                 <FormItem>
                   <FormLabel htmlFor="ef-email">Email profesional *</FormLabel>
                   <FormControl>
-                    <Input id="ef-email" className="h-12 md:h-11" type="email" inputMode="email" autoComplete="email" autoCapitalize="none" enterKeyHint="next" placeholder="nombre@empresa.com" {...field} />
+                    <Input id="ef-email" className="h-12 md:h-11" type="email" inputMode="email" autoComplete="email" autoCapitalize="none" enterKeyHint="next" placeholder="nombre@empresa.com" aria-required="true" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <div className="space-y-3">
               <FormField
                 control={form.control}
                 name="flota"
@@ -482,6 +500,7 @@ export function FleetEvaluationForm() {
                       <select
                         id="ef-flota"
                         className={selectClassName}
+                        aria-required="true"
                         value={field.value ?? ""}
                         onChange={field.onChange}
                         onBlur={field.onBlur}
@@ -512,6 +531,7 @@ export function FleetEvaluationForm() {
                       <select
                         id="ef-provincia"
                         className={selectClassName}
+                        aria-required="true"
                         autoComplete="address-level2"
                         value={field.value ?? ""}
                         onChange={field.onChange}
@@ -537,7 +557,7 @@ export function FleetEvaluationForm() {
                 control={form.control}
                 name="vehicleType"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="ef-field-full">
                     <FormLabel htmlFor="ef-vehiculo">
                       Tipo principal de vehículo <span className="font-normal text-slate-500">(opcional)</span>
                     </FormLabel>
@@ -579,6 +599,7 @@ export function FleetEvaluationForm() {
                         onBlur={field.onBlur}
                         ref={field.ref}
                         className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300"
+                        aria-required="true"
                       />
                     </FormControl>
                     {/* Todo el texto marca la casilla; el enlace a la política va aparte
@@ -616,7 +637,7 @@ export function FleetEvaluationForm() {
               </p>
             ) : null}
             {submitError ? (
-              <p className="text-sm text-red-600" role="alert">
+              <p id="ef-submit-error" ref={errorRef} tabIndex={-1} className="text-sm text-red-600 outline-none" role="alert">
                 {submitError}
               </p>
             ) : null}
@@ -624,7 +645,7 @@ export function FleetEvaluationForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="h-auto min-h-[52px] w-full whitespace-normal rounded-full bg-accent px-4 py-3 text-[15px] font-semibold leading-tight tracking-[0.02em] text-slate-950 shadow-[0_16px_36px_rgba(245,158,11,0.22)] [text-wrap:balance] hover:bg-accent/90 min-[380px]:text-base min-[380px]:tracking-[0.04em]"
+              className="ef-form-submit"
             >
               {isSubmitting ? (
                 <>
@@ -634,9 +655,7 @@ export function FleetEvaluationForm() {
                 selectedInterest.submit
               )}
             </Button>
-            </div>
-          ) : null}
-          <p className="text-center text-xs leading-relaxed text-slate-500">
+          <p id="ef-form-terms" className="text-center text-xs leading-relaxed text-slate-500">
             Sin compromiso · Respuesta en 24-48 h · Flotas desde 5 vehículos
           </p>
         </form>

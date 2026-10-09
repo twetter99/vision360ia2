@@ -18,6 +18,9 @@ const ATTRIBUTION_KEYS = [
   "utm_content",
   "utm_id",
   "oppref",
+  "gclid",
+  "gbraid",
+  "wbraid",
 ] as const;
 
 type AttributionKey = (typeof ATTRIBUTION_KEYS)[number];
@@ -71,7 +74,7 @@ function clean(value: string) {
 /** Líneas de origen que se añaden al mensaje que recibe el equipo. */
 export function buildAttributionNote(attribution: LandingAttribution | null): string {
   const params = attribution?.params ?? {};
-  const utms = ATTRIBUTION_KEYS.filter((key) => key !== "oppref" && params[key]).map(
+  const utms = ATTRIBUTION_KEYS.filter((key) => key.startsWith('utm_') && params[key]).map(
     (key) => `${key}=${clean(params[key] as string)}`,
   );
   return [
