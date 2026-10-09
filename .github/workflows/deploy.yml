@@ -1,7 +1,9 @@
 name: Build & Deploy a SiteGround
 
 # Auto-publicación: al hacer push a main (incluye lo que publica el CMS),
-# reconstruye la web estática y la sube por FTP a SiteGround.
+# reconstruye la web estática y la sube por FTPS a SiteGround.
+# Un merge marcado [manual-landing] se publica mediante deploy-landing para
+# actualizar solo esa ruta; las publicaciones ordinarias del CMS no cambian.
 #
 # SEGURIDAD (constraints del proyecto):
 #  - El uploader (.github/scripts/ftp_upload.py) SOLO SUBE, nunca borra → no
@@ -73,7 +75,7 @@ jobs:
         run: python3 .github/scripts/landing_deploy.py rollback /vision360ia.com/public_html --backup-dir landing-backup
 
   build-deploy:
-    if: github.event_name == 'push' || inputs.operation == 'deploy-landing'
+    if: (github.event_name == 'push' && !contains(github.event.head_commit.message, '[manual-landing]')) || inputs.operation == 'deploy-landing'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
