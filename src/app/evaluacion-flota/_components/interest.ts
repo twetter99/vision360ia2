@@ -6,18 +6,21 @@ export const INTERESTS = [
   {
     value: "demo",
     label: "Ver una demo en vivo",
+    shortLabel: "Demo",
     submit: "QUIERO VER UNA DEMO",
     successEnding: "para organizar la demo en tu cochera o base.",
   },
   {
     value: "piloto",
     label: "Probarlo en un vehículo propio",
+    shortLabel: "Piloto",
     submit: "QUIERO HACER UN PILOTO",
     successEnding: "para preparar el piloto en uno de tus vehículos.",
   },
   {
     value: "implantacion",
     label: "Hablar de equipar mi flota",
+    shortLabel: "Equipar flota",
     submit: "HABLAR DE MI FLOTA",
     successEnding: "para hablar de cómo equipar tu flota.",
   },

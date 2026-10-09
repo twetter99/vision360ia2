@@ -1,7 +1,9 @@
 name: Build & Deploy a SiteGround
 
 # Auto-publicación: al hacer push a main (incluye lo que publica el CMS),
-# reconstruye la web estática y la sube por FTP a SiteGround.
+# reconstruye la web estática y la sube por FTPS a SiteGround.
+# Un merge marcado [manual-landing] se publica mediante deploy-landing para
+# actualizar solo esa ruta; las publicaciones ordinarias del CMS no cambian.
 #
 # SEGURIDAD (constraints del proyecto):
 #  - El uploader (.github/scripts/ftp_upload.py) SOLO SUBE, nunca borra → no
@@ -17,14 +19,63 @@ on:
       - 'docs/**'
       - '.gitignore'
       - 'README.md'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: 'Preflight de acceso, publicar solo la landing o restaurarla'
+        type: choice
+        options: [preflight, deploy-landing, rollback-landing]
+        default: preflight
+      rollback_run_id:
+        description: 'Run de deploy-landing cuyo respaldo se debe restaurar'
+        type: string
+        required: false
+
+permissions:
+  contents: read
+  actions: read
 
 concurrency:
   group: deploy-siteground
   cancel-in-progress: false
 
 jobs:
+  preflight:
+    if: github.event_name == 'workflow_dispatch' && inputs.operation == 'preflight'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar FTPS y acceso, sin escribir
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: python3 .github/scripts/ftp_upload.py out /vision360ia.com/public_html --check-only
+
+  rollback-landing:
+    if: github.event_name == 'workflow_dispatch' && inputs.operation == 'rollback-landing'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar identificador de respaldo
+        env:
+          ROLLBACK_RUN_ID: ${{ inputs.rollback_run_id }}
+        run: '[[ "$ROLLBACK_RUN_ID" =~ ^[0-9]+$ ]]'
+      - uses: actions/download-artifact@v4
+        with:
+          name: landing-rollback-${{ inputs.rollback_run_id }}
+          path: landing-backup
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.rollback_run_id }}
+      - name: Restaurar solo la landing, con verificación
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: python3 .github/scripts/landing_deploy.py rollback /vision360ia.com/public_html --backup-dir landing-backup
+
   build-deploy:
+    if: (github.event_name == 'push' && !contains(github.event.head_commit.message, '[manual-landing]')) || inputs.operation == 'deploy-landing'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,7 +116,33 @@ jobs:
           node .github/scripts/social-images.mjs out/images/noticias/social || true
           node .github/scripts/optimize-images.mjs out/images/noticias || true
 
-      - name: Deploy por FTP (solo subida, nunca borra)
+      - name: Respaldar los dos puntos de entrada de la landing
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: python3 .github/scripts/landing_deploy.py backup /vision360ia.com/public_html --backup-dir landing-backup
+
+      - name: Guardar el respaldo antes de publicar
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: landing-rollback-${{ github.run_id }}
+          path: landing-backup/
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Publicar solo la landing por FTPS
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: python3 .github/scripts/landing_deploy.py deploy /vision360ia.com/public_html --backup-dir landing-backup
+
+      - name: Deploy completo por FTPS (solo subida, nunca borra)
+        if: github.event_name == 'push'
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
