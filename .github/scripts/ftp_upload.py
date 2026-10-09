@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Upload paralelo por FTP de un árbol local a un directorio remoto.
+Upload paralelo por FTPS explícito de un árbol local a un directorio remoto.
 Pensado para mover `out/` (build de Next.js) a `public_html/` en SiteGround.
 
 Credenciales por env vars (no por argv) para no exponerlas en `ps`.
@@ -8,6 +8,7 @@ Credenciales por env vars (no por argv) para no exponerlas en `ps`.
 Uso:
     FTP_USER=... FTP_PASS=... FTP_HOST=... \\
         python3 ftp_upload.py LOCAL_DIR REMOTE_DIR [--workers 6]
+    Añadir --check-only para comprobar acceso sin crear ni subir archivos.
 
 Características:
 - Sube en paralelo con N workers (cada uno mantiene su conexión FTP).
@@ -19,10 +20,11 @@ Características:
 import argparse
 import concurrent.futures
 import os
+import ssl
 import sys
 import threading
 import time
-from ftplib import FTP, error_perm
+from ftplib import FTP_TLS, error_perm
 from pathlib import Path
 
 
@@ -33,14 +35,23 @@ def env(k: str) -> str:
     return v
 
 
-def connect(host: str, user: str, password: str) -> FTP:
-    ftp = FTP(host, timeout=60)
-    ftp.login(user, password)
-    ftp.set_pasv(True)
-    return ftp
+def connect(host: str, user: str, password: str) -> FTP_TLS:
+    # Verificar certificado y hostname antes de transmitir credenciales.
+    # Sin fallback a FTP ni a un canal de datos sin cifrar.
+    ftp = FTP_TLS(context=ssl.create_default_context(), timeout=60)
+    try:
+        ftp.connect(host, 21)
+        ftp.auth()
+        ftp.login(user, password)
+        ftp.prot_p()
+        ftp.set_pasv(True)
+        return ftp
+    except Exception:
+        ftp.close()
+        raise
 
 
-def remote_mkdirs(ftp: FTP, path: str) -> None:
+def remote_mkdirs(ftp: FTP_TLS, path: str) -> None:
     """mkdir -p equivalente. path estilo POSIX, sin slash inicial obligatorio."""
     parts = [p for p in path.split("/") if p]
     cur = ""
@@ -53,7 +64,7 @@ def remote_mkdirs(ftp: FTP, path: str) -> None:
             pass
 
 
-def remote_size(ftp: FTP, path: str) -> int | None:
+def remote_size(ftp: FTP_TLS, path: str) -> int | None:
     try:
         return ftp.size(path)
     except error_perm:
@@ -67,10 +78,10 @@ class Worker:
         self.host = host
         self.user = user
         self.password = password
-        self.ftp: FTP | None = None
+        self.ftp: FTP_TLS | None = None
         self.lock = threading.Lock()
 
-    def _ensure(self) -> FTP:
+    def _ensure(self) -> FTP_TLS:
         if self.ftp is None:
             self.ftp = connect(self.host, self.user, self.password)
         return self.ftp
@@ -121,19 +132,36 @@ def main() -> int:
     ap.add_argument("remote_dir", help="Carpeta remota destino (ej: /vision360ia.com/public_html)")
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--retry-errors", type=int, default=1)
+    ap.add_argument("--check-only", action="store_true", help="Verificar FTPS y listar el destino existente sin escribir")
     args = ap.parse_args()
 
     host = env("FTP_HOST")
     user = env("FTP_USER")
     password = env("FTP_PASS")
 
-    local_root = Path(args.local_dir).resolve()
-    if not local_root.is_dir():
-        sys.exit(f"Local dir not found: {local_root}")
-
     remote_root = args.remote_dir.rstrip("/")
     if not remote_root.startswith("/"):
         remote_root = "/" + remote_root
+
+    if args.check_only:
+        ftp = None
+        try:
+            ftp = connect(host, user, password)
+            ftp.cwd(remote_root)
+            entries = ftp.nlst()
+            print(f"FTPS check succeeded: {len(entries)} entries")
+            return 0
+        except Exception as exc:
+            # No imprimir respuestas del servidor ni valores de credenciales.
+            print(f"FTPS check failed ({type(exc).__name__})", file=sys.stderr)
+            return 1
+        finally:
+            if ftp is not None:
+                ftp.close()
+
+    local_root = Path(args.local_dir).resolve()
+    if not local_root.is_dir():
+        sys.exit(f"Local dir not found: {local_root}")
 
     # Crear remote root de antemano
     bootstrap = connect(host, user, password)
